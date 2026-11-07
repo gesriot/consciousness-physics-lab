@@ -98,7 +98,10 @@ provenance metadata from scientific equality. Primary and repeat calculation
 times were 34.47 and 34.87 seconds on this environment; these are descriptive
 single-run timings, not a performance benchmark. The pinned numerical runtime
 was used. The full check passed 92 laboratory tests and 30 vendor tests;
-the six E012-specific tests also passed separately. The full metadata and source digests are in each map.
+the six E012-specific tests also passed separately.
+
+Test-discovery provenance: the 92-test laboratory total included eight then-untracked E013 development smoke tests, including a fixed z=1 evaluation, before E013 preregistration. Thus 92 is the discovered working-tree suite total, not a count attributable solely to the committed E012 tree. These smoke tests did not change the E012 map, its protocol or its thresholds. The original full-suite log is retained unchanged; the E013 report separately records that experiment's preregistration departure.
+ The full metadata and source digests are in each map.
 
 The finite map cannot exclude isolated interior transitions or certify the
 continuum between sampled nodes. Its adaptive density must not be interpreted
