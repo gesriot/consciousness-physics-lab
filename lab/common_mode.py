@@ -13,6 +13,7 @@ from lab.allocation import propose_modes
 from lab.fault_holdout import verify
 from lab.finite_volume import response
 from lab.experiment_audit import metadata
+from lab.replay import load_replay, protect_output
 
 FAULTS = ('clean', 'request_time', 'request_conjugate', 'model_scale')
 POLICIES = ('D', 'D_hash', 'D_invariants', 'D_both')
@@ -119,21 +120,27 @@ def summarize(rows):
     return summary
 
 
-def run():
-    sources = ['lab/common_mode.py', 'lab/experiment_audit.py', 'lab/fault_holdout.py',
+def run(replay=None, runtime_override=None):
+    sources = ['lab/common_mode.py', 'lab/replay.py', 'lab/experiment_audit.py', 'lab/fault_holdout.py',
         'lab/allocation.py', 'lab/executor.py', 'lab/guard.py', 'lab/finite_volume.py',
         'lab/scientist.py', 'vendor/sphere-thermal-cli/sphere_thermal/response.py']
-    audit = metadata('experiments/E008-common-mode.md', sources)
+    audit = metadata('experiments/E008-common-mode.md', sources, runtime_override)
+    saved = None
+    if replay is not None:
+        saved, requests, audit['replay'] = load_replay(replay, 'E008', 96)
     rng = np.random.default_rng(20261116)
     order = np.random.default_rng(20261117)
     rows = []
     intake = []
     for task_id in range(96):
-        t = 10 ** rng.uniform(-2, 2)
-        magnitude = 10 ** rng.uniform(-6, 5)
-        phase = rng.uniform(-np.pi / 2, np.pi / 2)
-        tolerance = 10 ** rng.uniform(-4, -1)
-        original = Request(magnitude * np.exp(1j * phase) / t, t, tolerance)
+        if saved is None:
+            t = 10 ** rng.uniform(-2, 2)
+            magnitude = 10 ** rng.uniform(-6, 5)
+            phase = rng.uniform(-np.pi / 2, np.pi / 2)
+            tolerance = 10 ** rng.uniform(-4, -1)
+            original = Request(magnitude * np.exp(1j * phase) / t, t, tolerance)
+        else:
+            original = requests[task_id]
         # Independent intake record is populated before any corruption occurs.
         digest = request_hash(original)
         intake.append(dict(task_id=task_id, request=encode(original), request_sha256=digest))
@@ -153,8 +160,11 @@ def run():
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--output', type=Path, required=True)
+    parser.add_argument('--replay', type=Path, help='Read exact requests from archived results.json')
+    parser.add_argument('--runtime-override', help='Explicit audit reason for using an unpinned runtime')
     args = parser.parse_args()
-    result = run()
+    protect_output(args.output, args.replay)
+    result = run(args.replay, args.runtime_override)
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(result, indent=2, allow_nan=False) + '\n')
     print(json.dumps(result['summary'], indent=2))
