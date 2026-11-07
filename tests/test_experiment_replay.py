@@ -7,7 +7,7 @@ from unittest.mock import patch
 from lab.experiment_audit import environment_metadata, metadata
 from lab.executor import request_hash
 from lab.replay import load_replay, protect_output
-from scripts.compare_experiment_runs import compare
+from scripts.compare_experiment_runs import compare, compare_details
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -52,15 +52,50 @@ class ComparisonTests(unittest.TestCase):
         self.assertTrue(compare(self.original, self.repeat, 'decisions')[0])
         self.original['runs'][0]['value'] = 0.0
         self.repeat['runs'][0]['value'] = 1e-30
-        self.assertTrue(compare(self.original, self.repeat, 'decisions')[0])
+        self.assertFalse(compare(self.original, self.repeat, 'decisions')[0])
+        self.assertTrue(compare(self.original, self.repeat, 'decisions', absolute_tolerance=0)[0])
         del self.repeat['runs'][0]['accepted']
         self.assertTrue(compare(self.original, self.repeat, 'decisions')[0])
 
 
+    def test_diagnostic_changes_do_not_mask_operational_changes(self):
+        original = dict(experiment='E009', coverage_steps=[dict(converging=True)],
+            runs=[dict(accepted=True, verdict='accept', independent=dict(
+                cells_solved=512, steps=[dict(converging=True, verdict='accept')]),
+                shadow=dict(any_accept=True, steps=[dict(converging=True)]))],
+            summary=dict(cells={'uniform/order': dict(coverage=dict(fallback_steps=240),
+                                                      decision_cells=512)}))
+        repeat = copy.deepcopy(original)
+        repeat['coverage_steps'][0]['converging'] = False
+        repeat['runs'][0]['shadow']['steps'][0]['converging'] = False
+        repeat['summary']['cells']['uniform/order']['coverage']['fallback_steps'] = 239
+        failures, _, diagnostics = compare_details(original, repeat, 'decisions')
+        self.assertFalse(failures)
+        self.assertEqual(len(diagnostics), 3)
+        self.assertTrue(compare(original, repeat, 'exact')[0])
+        repeat['runs'][0]['independent']['steps'][0]['converging'] = False
+        self.assertTrue(compare_details(original, repeat, 'decisions')[0])
+        repeat = copy.deepcopy(original)
+        repeat['summary']['cells']['uniform/order']['decision_cells'] = 513
+        self.assertTrue(compare_details(original, repeat, 'decisions')[0])
+
+    def test_absolute_tolerance_is_additive_finite_and_does_not_relax_counts(self):
+        self.original['runs'][0]['value'] = 1.0
+        self.repeat['runs'][0]['value'] = 1.15
+        self.assertFalse(compare(self.original, self.repeat, 'decisions', .1,
+                                 absolute_tolerance=.1)[0])
+        for tolerance in (-1, float('nan'), float('inf')):
+            with self.assertRaises(ValueError):
+                compare(self.original, self.repeat, 'decisions', absolute_tolerance=tolerance)
+        self.repeat['runs'][0]['cells'] = 513
+        self.assertTrue(compare(self.original, self.repeat, 'decisions', .1,
+                                absolute_tolerance=1e6)[0])
+
 class ReplayTests(unittest.TestCase):
     def test_archived_inputs_and_digests_are_bit_identical(self):
         for experiment, folder, count, key in [('E007', 'verifier-stress', 192, 'tasks'),
-                                              ('E008', 'common-mode', 96, 'intake_channel')]:
+                                              ('E008', 'common-mode', 96, 'intake_channel'),
+                                              ('E009', 'surface-order', 192, 'tasks')]:
             data, requests, provenance = load_replay(ROOT / 'results' / folder / 'results.json', experiment, count)
             self.assertEqual(provenance['task_count'], count)
             for record, request in zip(data[key], requests):
@@ -72,13 +107,14 @@ class ReplayTests(unittest.TestCase):
                     self.assertEqual(record['request_sha256'], request_hash(request))
 
     def test_runners_use_saved_requests_before_evaluation(self):
-        from lab import common_mode, verifier_stress
+        from lab import common_mode, verifier_stress, surface_experiment
         from types import SimpleNamespace
         class Captured(Exception):
             pass
         for module, folder, experiment, count in [
                 (common_mode, 'common-mode', 'E008', 96),
-                (verifier_stress, 'verifier-stress', 'E007', 192)]:
+                (verifier_stress, 'verifier-stress', 'E007', 192),
+                (surface_experiment, 'surface-order', 'E009', 192)]:
             path = ROOT / 'results' / folder / 'results.json'
             _, requests, _ = load_replay(path, experiment, count)
             def capture(request, *args):

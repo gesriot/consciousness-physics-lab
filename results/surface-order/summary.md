@@ -99,3 +99,49 @@ Each mesh's shadow costs 1,560,576 cells. Separate mesh wall times and initial
 stale execution time were not recorded; pooled shadow time is available. This
 is a measurement limitation, not zero cost. No scientific outcomes were rerun,
 replaced or tuned for this reporting correction.
+
+## Cross-platform observation and comparison contract
+
+The owner reports a regeneration on macOS arm64 with Python 3.12.13,
+NumPy 2.3.5 and SciPy 1.17.0, bypassing the former Python-version gate.
+All 4,608 operational decisions matched. Differences were confined to the
+shadow path of the observed-order variants: 60 steps with surface
+δ/h_s approximately 1.7e5–9.2e6. In this fully resolved regime consecutive
+mesh differences are at rounding scale, so log2(Δ_previous/Δ_current) is
+noise-sensitive and its order-band membership can flip with the last bits.
+The uniform/order diagnostic fallback count changed from 240 to 239.
+This is an owner-supplied observation, not an independently inspected raw
+macOS archive. It does not alter the frozen estimator or the archived results.
+
+The owner also reports that E010 replay preserved all decisions with
+rounding-level numerical differences, but that the previous relative-only
+comparison failed near zero for both studies. No new cross-platform run is
+claimed here.
+
+E009 now accepts `--replay results/surface-order/results.json` and an optional
+`--runtime-override 'reason'`, following E007/E008/E010. Replay retains the
+archived floating-point requests and sampled magnitudes, checks cohort and
+magnitude consistency, and records the source archive SHA-256. It reexecutes
+the working and shadow solvers; it does not replay saved decisions. Existing
+output paths are rejected. The override records a reason and the actual
+runtime; it is not a certification of numerical portability.
+
+For cross-platform comparisons in this report use `--mode decisions --atol
+1e-12 --rtol 1e-12`. Finite floating-point differences must satisfy
+|a-b| ≤ 1e-12 + 1e-12 max(|a|,|b|). These are comparison tolerances, not
+acceptance tolerances of the scientific checker, and they were introduced
+after the reported portability observation. Exact mode retains zero numerical
+tolerances and compares all non-timing fields.
+
+Decision mode compares operational verdicts, acceptance flags, accuracy
+labels, stopping reasons, used grids, work counters and protocol identity
+exactly; finite numerical fields use the rule above. Operational convergence
+and fallback flags remain authoritative. Only registered E007/E009 diagnostic
+paths (full-path coverage, shadow values/decisions, their coverage and shadow
+summaries) are listed separately, including boolean and integer differences.
+A changed diagnostic count therefore remains visible without becoming a
+claim that the working decision changed. Unknown fields remain authoritative.
+Execution provenance is a third, separately reported category. A decision-mode
+pass is conditional operational reproducibility, not exact reproducibility or
+complete scientific equivalence. In particular, changed coverage diagnostics
+still require scientific inspection, even if the command exits successfully.

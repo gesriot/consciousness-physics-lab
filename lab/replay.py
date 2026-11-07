@@ -11,7 +11,7 @@ def load_replay(path, experiment, count):
     path = Path(path)
     raw = path.read_bytes()
     data = json.loads(raw)
-    key = 'tasks' if experiment == 'E007' else 'intake_channel'
+    key = 'tasks' if experiment in ('E007', 'E009') else 'intake_channel'
     if data.get('experiment') != experiment or len(data.get(key, [])) != count:
         raise ValueError('Replay experiment or task count mismatch')
     records = data[key]
