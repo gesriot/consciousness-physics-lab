@@ -1,0 +1,155 @@
+{
+  "kind": "post-map constructed numerical-gate witness; not an additional sampled trial or full pipeline claim",
+  "point": {
+    "coordinate": [
+      2880,
+      0
+    ],
+    "level": 0,
+    "log10_magnitude": 12.0,
+    "phase": -1.5707963267948966,
+    "q": [
+      6.123233995736766e-05,
+      -1000000000000.0
+    ],
+    "reference": [
+      5.477225575051662e-07,
+      5.47722357505166e-07
+    ],
+    "values": [
+      [
+        3.0648103634930344e-17,
+        3.324201857490652e-10
+      ],
+      [
+        2.450373139688061e-16,
+        6.648403714980034e-10
+      ],
+      [
+        1.9597088064959807e-15,
+        1.3296807429914566e-09
+      ],
+      [
+        1.567531233973968e-14,
+        2.6593614858529925e-09
+      ],
+      [
+        1.2539306753083714e-13,
+        5.318722967556855e-09
+      ],
+      [
+        1.0031067980851449e-12,
+        1.0637445802096735e-08
+      ],
+      [
+        8.024700829540647e-12,
+        2.1274887347750416e-08
+      ]
+    ],
+    "steps": [
+      {
+        "grid": 512,
+        "converging": true,
+        "covered": false,
+        "error": 7.727183526085721e-07,
+        "uncertainty": 4.522006635095504e-09,
+        "delta": 1.3296807429322739e-09,
+        "previous_delta": 6.648403714956644e-10,
+        "ratio": 1.9999999999111744,
+        "ratio_deficit": 1.4999999999111744,
+        "zero_previous_delta": false,
+        "rounding_exception": true,
+        "layer_ratio": 0.0017166104577984618
+      },
+      {
+        "grid": 1024,
+        "converging": true,
+        "covered": false,
+        "error": 7.70844709003312e-07,
+        "uncertainty": 1.2769303564858199e-08,
+        "delta": 2.6593614839671853e-09,
+        "previous_delta": 1.3296807429322739e-09,
+        "ratio": 1.9999999985730692,
+        "ratio_deficit": 1.4999999985730692,
+        "zero_previous_delta": false,
+        "rounding_exception": true,
+        "layer_ratio": 0.0034332209155969236
+      },
+      {
+        "grid": 2048,
+        "converging": true,
+        "covered": false,
+        "error": 7.671108808586006e-07,
+        "uncertainty": 4.0439768201618375e-08,
+        "delta": 5.318722906961532e-09,
+        "previous_delta": 2.6593614839671853e-09,
+        "ratio": 1.9999999770723766,
+        "ratio_deficit": 1.4999999770723766,
+        "zero_previous_delta": false,
+        "rounding_exception": true,
+        "layer_ratio": 0.006866441831203984
+      },
+      {
+        "grid": 4096,
+        "converging": true,
+        "covered": false,
+        "error": 7.596960894201152e-07,
+        "uncertainty": 1.4048417727692277e-07,
+        "delta": 1.0637443863070757e-08,
+        "previous_delta": 5.318722906961532e-09,
+        "ratio": 1.9999996332103889,
+        "ratio_deficit": 1.4999996332103889,
+        "zero_previous_delta": false,
+        "rounding_exception": true,
+        "layer_ratio": 0.013732883662407968
+      }
+    ]
+  },
+  "grid": 512,
+  "supplied_value": [
+    1.567531233973968e-14,
+    2.6593614858529925e-09
+  ],
+  "tolerance": 3.886201796218338e-07,
+  "true_error": 7.727183526085721e-07,
+  "operational": {
+    "accepted": true,
+    "verdict": "accept",
+    "stop_reason": "decisive",
+    "grids": [
+      64,
+      128,
+      256,
+      512
+    ],
+    "values": [
+      [
+        3.0648103634930344e-17,
+        3.324201857490652e-10
+      ],
+      [
+        2.450373139688061e-16,
+        6.648403714980034e-10
+      ],
+      [
+        1.9597088064959807e-15,
+        1.3296807429914566e-09
+      ],
+      [
+        1.567531233973968e-14,
+        2.6593614858529925e-09
+      ]
+    ],
+    "steps": [
+      {
+        "last_grid": 512,
+        "converging": true,
+        "uncertainty_estimate": 4.522006635095504e-09,
+        "discrepancy": 0.0,
+        "verdict": "accept",
+        "futile": false
+      }
+    ],
+    "cells_solved": 960
+  }
+}

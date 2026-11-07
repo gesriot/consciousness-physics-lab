@@ -1,0 +1,11 @@
+test_base_and_endpoints (tests.test_coverage_map.CoverageMapTests.test_base_and_endpoints) ... ok
+test_dimensions (tests.test_coverage_map.CoverageMapTests.test_dimensions) ... ok
+test_frozen_formula (tests.test_coverage_map.CoverageMapTests.test_frozen_formula) ... ok
+test_geometry_cache_preserves_values (tests.test_coverage_map.CoverageMapTests.test_geometry_cache_preserves_values) ... ok
+test_reference_fallback (tests.test_coverage_map.CoverageMapTests.test_reference_fallback) ... ok
+test_refinement_is_local_and_dyadic (tests.test_coverage_map.CoverageMapTests.test_refinement_is_local_and_dyadic) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.085s
+
+OK

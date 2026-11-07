@@ -1,0 +1,22 @@
+{
+  "passed": true,
+  "exact_fields": {
+    "experiment": true,
+    "protocol_sha256": true,
+    "source_sha256": true,
+    "points": true,
+    "batches": true,
+    "refinements": true,
+    "summary": true,
+    "dimensionless": true,
+    "reference_level_0": true,
+    "reference_level_1": true,
+    "reference_level_2": true,
+    "reference_level_3": true
+  },
+  "excluded": [
+    "elapsed time",
+    "git head and environment provenance"
+  ],
+  "points": 26023
+}
