@@ -1,0 +1,380 @@
+{
+  "clean": {
+    "tasks": 96,
+    "accurate": 90,
+    "policies": {
+      "D": {
+        "accepted": 89,
+        "rejected": 7,
+        "false_acceptances": 0,
+        "accurate_rejected": 1,
+        "inaccurate_rejected": 6,
+        "clean_false_rejected": 7
+      },
+      "hash": {
+        "accepted": 96,
+        "rejected": 0,
+        "false_acceptances": 6,
+        "accurate_rejected": 0,
+        "inaccurate_rejected": 0,
+        "clean_false_rejected": 0
+      },
+      "normalization": {
+        "accepted": 96,
+        "rejected": 0,
+        "false_acceptances": 6,
+        "accurate_rejected": 0,
+        "inaccurate_rejected": 0,
+        "clean_false_rejected": 0
+      },
+      "first_moment": {
+        "accepted": 96,
+        "rejected": 0,
+        "false_acceptances": 6,
+        "accurate_rejected": 0,
+        "inaccurate_rejected": 0,
+        "clean_false_rejected": 0
+      },
+      "old_invariants": {
+        "accepted": 96,
+        "rejected": 0,
+        "false_acceptances": 6,
+        "accurate_rejected": 0,
+        "inaccurate_rejected": 0,
+        "clean_false_rejected": 0
+      },
+      "second_moment": {
+        "accepted": 96,
+        "rejected": 0,
+        "false_acceptances": 6,
+        "accurate_rejected": 0,
+        "inaccurate_rejected": 0,
+        "clean_false_rejected": 0
+      },
+      "high_frequency": {
+        "accepted": 96,
+        "rejected": 0,
+        "false_acceptances": 6,
+        "accurate_rejected": 0,
+        "inaccurate_rejected": 0,
+        "clean_false_rejected": 0
+      },
+      "all": {
+        "accepted": 96,
+        "rejected": 0,
+        "false_acceptances": 6,
+        "accurate_rejected": 0,
+        "inaccurate_rejected": 0,
+        "clean_false_rejected": 0
+      },
+      "D_hash": {
+        "accepted": 89,
+        "rejected": 7,
+        "false_acceptances": 0,
+        "accurate_rejected": 1,
+        "inaccurate_rejected": 6,
+        "clean_false_rejected": 7
+      },
+      "D_normalization": {
+        "accepted": 89,
+        "rejected": 7,
+        "false_acceptances": 0,
+        "accurate_rejected": 1,
+        "inaccurate_rejected": 6,
+        "clean_false_rejected": 7
+      },
+      "D_first_moment": {
+        "accepted": 89,
+        "rejected": 7,
+        "false_acceptances": 0,
+        "accurate_rejected": 1,
+        "inaccurate_rejected": 6,
+        "clean_false_rejected": 7
+      },
+      "D_old_invariants": {
+        "accepted": 89,
+        "rejected": 7,
+        "false_acceptances": 0,
+        "accurate_rejected": 1,
+        "inaccurate_rejected": 6,
+        "clean_false_rejected": 7
+      },
+      "D_second_moment": {
+        "accepted": 89,
+        "rejected": 7,
+        "false_acceptances": 0,
+        "accurate_rejected": 1,
+        "inaccurate_rejected": 6,
+        "clean_false_rejected": 7
+      },
+      "D_high_frequency": {
+        "accepted": 89,
+        "rejected": 7,
+        "false_acceptances": 0,
+        "accurate_rejected": 1,
+        "inaccurate_rejected": 6,
+        "clean_false_rejected": 7
+      },
+      "D_all": {
+        "accepted": 89,
+        "rejected": 7,
+        "false_acceptances": 0,
+        "accurate_rejected": 1,
+        "inaccurate_rejected": 6,
+        "clean_false_rejected": 7
+      }
+    }
+  },
+  "slab": {
+    "tasks": 96,
+    "accurate": 58,
+    "policies": {
+      "D": {
+        "accepted": 90,
+        "rejected": 6,
+        "false_acceptances": 33,
+        "accurate_rejected": 1,
+        "inaccurate_rejected": 5,
+        "clean_false_rejected": null
+      },
+      "hash": {
+        "accepted": 96,
+        "rejected": 0,
+        "false_acceptances": 38,
+        "accurate_rejected": 0,
+        "inaccurate_rejected": 0,
+        "clean_false_rejected": null
+      },
+      "normalization": {
+        "accepted": 96,
+        "rejected": 0,
+        "false_acceptances": 38,
+        "accurate_rejected": 0,
+        "inaccurate_rejected": 0,
+        "clean_false_rejected": null
+      },
+      "first_moment": {
+        "accepted": 96,
+        "rejected": 0,
+        "false_acceptances": 38,
+        "accurate_rejected": 0,
+        "inaccurate_rejected": 0,
+        "clean_false_rejected": null
+      },
+      "old_invariants": {
+        "accepted": 96,
+        "rejected": 0,
+        "false_acceptances": 38,
+        "accurate_rejected": 0,
+        "inaccurate_rejected": 0,
+        "clean_false_rejected": null
+      },
+      "second_moment": {
+        "accepted": 0,
+        "rejected": 96,
+        "false_acceptances": 0,
+        "accurate_rejected": 58,
+        "inaccurate_rejected": 38,
+        "clean_false_rejected": null
+      },
+      "high_frequency": {
+        "accepted": 0,
+        "rejected": 96,
+        "false_acceptances": 0,
+        "accurate_rejected": 58,
+        "inaccurate_rejected": 38,
+        "clean_false_rejected": null
+      },
+      "all": {
+        "accepted": 0,
+        "rejected": 96,
+        "false_acceptances": 0,
+        "accurate_rejected": 58,
+        "inaccurate_rejected": 38,
+        "clean_false_rejected": null
+      },
+      "D_hash": {
+        "accepted": 90,
+        "rejected": 6,
+        "false_acceptances": 33,
+        "accurate_rejected": 1,
+        "inaccurate_rejected": 5,
+        "clean_false_rejected": null
+      },
+      "D_normalization": {
+        "accepted": 90,
+        "rejected": 6,
+        "false_acceptances": 33,
+        "accurate_rejected": 1,
+        "inaccurate_rejected": 5,
+        "clean_false_rejected": null
+      },
+      "D_first_moment": {
+        "accepted": 90,
+        "rejected": 6,
+        "false_acceptances": 33,
+        "accurate_rejected": 1,
+        "inaccurate_rejected": 5,
+        "clean_false_rejected": null
+      },
+      "D_old_invariants": {
+        "accepted": 90,
+        "rejected": 6,
+        "false_acceptances": 33,
+        "accurate_rejected": 1,
+        "inaccurate_rejected": 5,
+        "clean_false_rejected": null
+      },
+      "D_second_moment": {
+        "accepted": 0,
+        "rejected": 96,
+        "false_acceptances": 0,
+        "accurate_rejected": 58,
+        "inaccurate_rejected": 38,
+        "clean_false_rejected": null
+      },
+      "D_high_frequency": {
+        "accepted": 0,
+        "rejected": 96,
+        "false_acceptances": 0,
+        "accurate_rejected": 58,
+        "inaccurate_rejected": 38,
+        "clean_false_rejected": null
+      },
+      "D_all": {
+        "accepted": 0,
+        "rejected": 96,
+        "false_acceptances": 0,
+        "accurate_rejected": 58,
+        "inaccurate_rejected": 38,
+        "clean_false_rejected": null
+      }
+    }
+  },
+  "cylinder": {
+    "tasks": 96,
+    "accurate": 64,
+    "policies": {
+      "D": {
+        "accepted": 90,
+        "rejected": 6,
+        "false_acceptances": 27,
+        "accurate_rejected": 1,
+        "inaccurate_rejected": 5,
+        "clean_false_rejected": null
+      },
+      "hash": {
+        "accepted": 96,
+        "rejected": 0,
+        "false_acceptances": 32,
+        "accurate_rejected": 0,
+        "inaccurate_rejected": 0,
+        "clean_false_rejected": null
+      },
+      "normalization": {
+        "accepted": 96,
+        "rejected": 0,
+        "false_acceptances": 32,
+        "accurate_rejected": 0,
+        "inaccurate_rejected": 0,
+        "clean_false_rejected": null
+      },
+      "first_moment": {
+        "accepted": 96,
+        "rejected": 0,
+        "false_acceptances": 32,
+        "accurate_rejected": 0,
+        "inaccurate_rejected": 0,
+        "clean_false_rejected": null
+      },
+      "old_invariants": {
+        "accepted": 96,
+        "rejected": 0,
+        "false_acceptances": 32,
+        "accurate_rejected": 0,
+        "inaccurate_rejected": 0,
+        "clean_false_rejected": null
+      },
+      "second_moment": {
+        "accepted": 0,
+        "rejected": 96,
+        "false_acceptances": 0,
+        "accurate_rejected": 64,
+        "inaccurate_rejected": 32,
+        "clean_false_rejected": null
+      },
+      "high_frequency": {
+        "accepted": 0,
+        "rejected": 96,
+        "false_acceptances": 0,
+        "accurate_rejected": 64,
+        "inaccurate_rejected": 32,
+        "clean_false_rejected": null
+      },
+      "all": {
+        "accepted": 0,
+        "rejected": 96,
+        "false_acceptances": 0,
+        "accurate_rejected": 64,
+        "inaccurate_rejected": 32,
+        "clean_false_rejected": null
+      },
+      "D_hash": {
+        "accepted": 90,
+        "rejected": 6,
+        "false_acceptances": 27,
+        "accurate_rejected": 1,
+        "inaccurate_rejected": 5,
+        "clean_false_rejected": null
+      },
+      "D_normalization": {
+        "accepted": 90,
+        "rejected": 6,
+        "false_acceptances": 27,
+        "accurate_rejected": 1,
+        "inaccurate_rejected": 5,
+        "clean_false_rejected": null
+      },
+      "D_first_moment": {
+        "accepted": 90,
+        "rejected": 6,
+        "false_acceptances": 27,
+        "accurate_rejected": 1,
+        "inaccurate_rejected": 5,
+        "clean_false_rejected": null
+      },
+      "D_old_invariants": {
+        "accepted": 90,
+        "rejected": 6,
+        "false_acceptances": 27,
+        "accurate_rejected": 1,
+        "inaccurate_rejected": 5,
+        "clean_false_rejected": null
+      },
+      "D_second_moment": {
+        "accepted": 0,
+        "rejected": 96,
+        "false_acceptances": 0,
+        "accurate_rejected": 64,
+        "inaccurate_rejected": 32,
+        "clean_false_rejected": null
+      },
+      "D_high_frequency": {
+        "accepted": 0,
+        "rejected": 96,
+        "false_acceptances": 0,
+        "accurate_rejected": 64,
+        "inaccurate_rejected": 32,
+        "clean_false_rejected": null
+      },
+      "D_all": {
+        "accepted": 0,
+        "rejected": 96,
+        "false_acceptances": 0,
+        "accurate_rejected": 64,
+        "inaccurate_rejected": 32,
+        "clean_false_rejected": null
+      }
+    }
+  }
+}
