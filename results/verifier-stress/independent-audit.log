@@ -1,0 +1,7 @@
+Post-hoc independent audit, not an extra preregistered endpoint.
+mpmath 1.3.0 precision 60 decimal digits.
+Independent closed form 3*(coth(sqrt(15*z*T))/sqrt(15*z*T)-1/(15*z*T)).
+All 2304 accuracy labels and D3 step inequalities agree; all 768 coverage labels agree.
+Coverage misses: 101 max error/U: 3.0823350154740297
+Maximum absolute change of recorded artifact error: 4.440892098500626e-16
+PASS

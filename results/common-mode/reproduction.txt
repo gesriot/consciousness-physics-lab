@@ -1,0 +1,8 @@
+Command: python3 -m lab.common_mode --output /tmp/e008-reproduced.json
+PASS: all raw records, intake hashes, probes, D steps, policy decisions, summary, work and provenance match exactly.
+Excluded ONLY execution_seconds, verification_seconds, defense_seconds.
+Rows: 384 Independent tasks: 96
+Environment: {'python': '3.12.14', 'numpy': '2.3.5', 'scipy': '1.17.0'}
+Implementation: a04f712137de38af5a2e21906fc4e9a861a7b963
+Protocol: 43f2b4401b3ec6a25ea399818b228c185a5fff0b
+Work: {'execution_modal_terms': 506372, 'decision_fv_cells': 985088, 'defense_modal_terms': 3145728, 'defense_fv_cells': 393216}

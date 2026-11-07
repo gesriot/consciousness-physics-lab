@@ -1,0 +1,38 @@
+Final-tree numerical reproduction from documentation HEAD 86b9839.
+No experimental source or protocol changed after its registered run.
+
+python3 -m lab.verifier_stress --output results/local/e007-final.json
+python3 scripts/compare_experiment_runs.py results/verifier-stress/results.json results/local/e007-final.json --ignore-git-head
+PASS: exact equality after removing fields ending seconds and git_head (later commit).
+Protocol commit/hash, source hashes, environment, seeds, values, decisions and counts retained.
+
+python3 -m lab.common_mode --output results/local/e008-final.json
+python3 scripts/compare_experiment_runs.py results/common-mode/results.json results/local/e008-final.json --ignore-git-head
+PASS: exact equality after removing fields ending seconds and git_head (later commit).
+Protocol commit/hash, source hashes, environment, seeds, values, decisions and counts retained.
+
+python3 -m lab.development_analysis --output results/local/development-final.json
+cmp results/development-verifier/analysis.json results/local/development-final.json
+PASS: development JSON byte-identical.
+python3 scripts/audit_e007_high_precision.py
+Post-hoc independent audit, not an extra preregistered endpoint.
+mpmath 1.3.0 precision 60 decimal digits.
+Independent closed form 3*(coth(sqrt(15*z*T))/sqrt(15*z*T)-1/(15*z*T)).
+All 2304 accuracy labels and D3 step inequalities agree; all 768 coverage labels agree.
+Coverage misses: 101 max error/U: 3.0823350154740297
+Maximum absolute change of recorded artifact error: 4.440892098500626e-16
+PASS
+
+PASS MANUSCRIPT.md
+PASS docs/research-program.md
+PASS theories/
+PASS concepts/
+PASS bibliography/sources.md
+PASS experiments/
+PASS observations/
+PASS lab/
+PASS vendor/sphere-thermal-cli/
+PASS results/baseline/
+PASS PROVENANCE.md
+PASS: all 11 README navigation targets exist and are clickable Markdown links.
+Correction: prior documentation commit body said 12 navigation targets; actual count is 11. No code or results affected.
