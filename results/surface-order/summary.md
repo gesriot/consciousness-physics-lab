@@ -89,3 +89,13 @@ Grading removed observed coverage misses and improved clean acceptance. The orde
 Actual decision FV cells 13160448; separate shadow cells 3121152; total 16281600. Modal execution terms 241100, additional injection terms 482200; initial stale execution is separately recorded in results.json. Shadow work is not counted as decision savings.
 
 Raw tasks, both mesh paths, all estimator steps, fallback status, strata and paired artifacts are in results.json. Recorded timings are descriptive. Prior E005–E008 outputs were not changed.
+
+## Post-result reporting audit
+
+The supplementary reporting-audit.json derives decisive-step cohort/stratum
+counts and maximum ratios from the preserved raw results. It also deduplicates
+injection timings across factorial cells and includes initial stale modal terms.
+Each mesh's shadow costs 1,560,576 cells. Separate mesh wall times and initial
+stale execution time were not recorded; pooled shadow time is available. This
+is a measurement limitation, not zero cost. No scientific outcomes were rerun,
+replaced or tuned for this reporting correction.
