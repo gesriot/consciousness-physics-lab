@@ -331,5 +331,5 @@ C1, C2 и C3 – по нулю. На 2688 зависимых строках со
 
 ```sh
 OPENBLAS_NUM_THREADS=1 python3 -m lab.convergence_candidates results/local/e014
-python3 scripts/audit_e014.py results/E014-convergence-candidates/first results/E014-convergence-candidates/repeat --output results/local/e014-audit.json
+PYTHONPATH=. python3 scripts/audit_e014.py results/E014-convergence-candidates/first results/E014-convergence-candidates/repeat results/local/e014-audit.json
 ```
