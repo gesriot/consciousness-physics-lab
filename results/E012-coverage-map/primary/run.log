@@ -1,0 +1,46 @@
+{"level": 0, "new_points": 13357, "audit_count": 4002, "reference_failures": 0, "fallback": false, "max_reference_error": 6.741253543183264e-16}
+{"level": 1, "new_points": 1796, "audit_count": 1117, "reference_failures": 0, "fallback": false, "max_reference_error": 2.2372227711913547e-19}
+{"level": 2, "new_points": 3634, "audit_count": 2247, "reference_failures": 0, "fallback": false, "max_reference_error": 1.9522595278820916e-19}
+{"level": 3, "new_points": 7236, "audit_count": 4482, "reference_failures": 0, "fallback": false, "max_reference_error": 2.0165341451870011e-19}
+{
+  "512": {
+    "steps": 26023,
+    "misses": 11940,
+    "dangerous_misses": 870,
+    "covered_not_converging": 4477,
+    "min_miss_layer_ratio": 0.0017166104577984618,
+    "max_miss_layer_ratio": 0.3164439186915614,
+    "min_miss_ratio_deficit": 1.1071182679413731,
+    "max_error_over_U": 170.87952649416056
+  },
+  "1024": {
+    "steps": 26023,
+    "misses": 9354,
+    "dangerous_misses": 2103,
+    "covered_not_converging": 5510,
+    "min_miss_layer_ratio": 0.0034332209155969236,
+    "max_miss_layer_ratio": 0.31492109267539264,
+    "min_miss_ratio_deficit": 1.105713094936469,
+    "max_error_over_U": 61.17255536343267
+  },
+  "2048": {
+    "steps": 26023,
+    "misses": 8226,
+    "dangerous_misses": 3336,
+    "covered_not_converging": 5035,
+    "min_miss_layer_ratio": 0.006866441831203984,
+    "max_miss_layer_ratio": 0.31566886249818127,
+    "min_miss_ratio_deficit": 1.10860371749568,
+    "max_error_over_U": 21.403956750662466
+  },
+  "4096": {
+    "steps": 26023,
+    "misses": 6502,
+    "dangerous_misses": 4159,
+    "covered_not_converging": 4167,
+    "min_miss_layer_ratio": 0.013732883662407968,
+    "max_miss_layer_ratio": 0.314149766292148,
+    "min_miss_ratio_deficit": 1.1114760295851418,
+    "max_error_over_U": 7.351680870955347
+  }
+}

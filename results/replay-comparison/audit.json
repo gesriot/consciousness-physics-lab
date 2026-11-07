@@ -1,0 +1,1206 @@
+{
+  "description": "Bundled archival repeats and synthetic nextafter perturbations; not a macOS rerun",
+  "reports": [
+    {
+      "experiment": "E009",
+      "original": "surface-order/results.json",
+      "repeat": "platform-replay/e009-replay.json",
+      "repeat_environment": {
+        "python": "3.12.14",
+        "numpy": "2.3.5",
+        "scipy": "1.17.0",
+        "os": "Linux",
+        "os_release": "6.18.57",
+        "architecture": "x86_64",
+        "blas_lapack_configuration": "Build Dependencies:\n  blas:\n    detection method: pkgconfig\n    found: true\n    include directory: /opt/_internal/cpython-3.12.12/lib/python3.12/site-packages/scipy_openblas64/include\n    lib directory: /opt/_internal/cpython-3.12.12/lib/python3.12/site-packages/scipy_openblas64/lib\n    name: scipy-openblas\n    openblas configuration: OpenBLAS 0.3.30  USE64BITINT DYNAMIC_ARCH NO_AFFINITY\n      Haswell MAX_THREADS=64\n    pc file directory: /project/.openblas\n    version: 0.3.30\n  lapack:\n    detection method: pkgconfig\n    found: true\n    include directory: /opt/_internal/cpython-3.12.12/lib/python3.12/site-packages/scipy_openblas64/include\n    lib directory: /opt/_internal/cpython-3.12.12/lib/python3.12/site-packages/scipy_openblas64/lib\n    name: scipy-openblas\n    openblas configuration: OpenBLAS 0.3.30  USE64BITINT DYNAMIC_ARCH NO_AFFINITY\n      Haswell MAX_THREADS=64\n    pc file directory: /project/.openblas\n    version: 0.3.30\nCompilers:\n  c:\n    commands: cc\n    linker: ld.bfd\n    name: gcc\n    version: 14.2.1\n  c++:\n    commands: c++\n    linker: ld.bfd\n    name: gcc\n    version: 14.2.1\n  cython:\n    commands: cython\n    linker: cython\n    name: cython\n    version: 3.2.1\nMachine Information:\n  build:\n    cpu: x86_64\n    endian: little\n    family: x86_64\n    system: linux\n  host:\n    cpu: x86_64\n    endian: little\n    family: x86_64\n    system: linux\nPython Information:\n  path: /tmp/build-env-aw1mwcap/bin/python\n  version: '3.12'\nSIMD Extensions:\n  baseline:\n  - SSE\n  - SSE2\n  - SSE3\n  found:\n  - SSSE3\n  - SSE41\n  - POPCNT\n  - SSE42\n  - AVX\n  - F16C\n  - FMA3\n  - AVX2\n  - AVX512F\n  - AVX512CD\n  - AVX512_SKX\n  - AVX512_CLX\n  - AVX512_CNL\n  - AVX512_ICL\n  not found:\n  - AVX512_KNL\n  - AVX512_KNM\n  - AVX512_SPR\n\nBuild Dependencies:\n  blas:\n    detection method: pkgconfig\n    found: true\n    has ilp64: false\n    include directory: /opt/_internal/cpython-3.12.11/lib/python3.12/site-packages/scipy_openblas32/include\n    lib directory: /opt/_internal/cpython-3.12.11/lib/python3.12/site-packages/scipy_openblas32/lib\n    name: scipy-openblas\n    openblas configuration: OpenBLAS 0.3.30 DYNAMIC_ARCH NO_AFFINITY Haswell MAX_THREADS=64\n    pc file directory: /project/\n    version: 0.3.30\n  lapack:\n    detection method: pkgconfig\n    found: true\n    has ilp64: false\n    include directory: /opt/_internal/cpython-3.12.11/lib/python3.12/site-packages/scipy_openblas32/include\n    lib directory: /opt/_internal/cpython-3.12.11/lib/python3.12/site-packages/scipy_openblas32/lib\n    name: scipy-openblas\n    openblas configuration: OpenBLAS 0.3.30 DYNAMIC_ARCH NO_AFFINITY Haswell MAX_THREADS=64\n    pc file directory: /project/\n    version: 0.3.30\n  pybind11:\n    detection method: config-tool\n    include directory: unknown\n    name: pybind11\n    version: 3.0.1\nCompilers:\n  c:\n    commands: cc\n    linker: ld.bfd\n    name: gcc\n    version: 14.2.1\n  c++:\n    commands: c++\n    linker: ld.bfd\n    name: gcc\n    version: 14.2.1\n  cython:\n    commands: cython\n    linker: cython\n    name: cython\n    version: 3.2.4\n  fortran:\n    commands: gfortran\n    linker: ld.bfd\n    name: gcc\n    version: 14.2.1\n  pythran:\n    include directory: ../../tmp/build-env-h6rtuvfe/lib/python3.12/site-packages/pythran\n    version: 0.18.1\nMachine Information:\n  build:\n    cpu: x86_64\n    endian: little\n    family: x86_64\n    system: linux\n  cross-compiled: false\n  host:\n    cpu: x86_64\n    endian: little\n    family: x86_64\n    system: linux\nPython Information:\n  path: /tmp/build-env-h6rtuvfe/bin/python\n  version: '3.12'\n\n"
+      },
+      "archived_failures": 0,
+      "synthetic_failures": 0,
+      "changed_numeric_fields": 158029,
+      "exact_synthetic_failures": 158029,
+      "synthetic_diagnostic_differences": 68386,
+      "changed_decision_detected": true,
+      "canonical_inputs_equal": true,
+      "synthetic_numeric_summary": {
+        "$.coverage_steps[].delta_over_h": {
+          "count": 3072,
+          "changed": 3072,
+          "max_abs": 1.862645149230957e-09,
+          "max_rel": 2.2130629826083015e-16,
+          "nonfinite": 0
+        },
+        "$.coverage_steps[].error": {
+          "count": 3072,
+          "changed": 3072,
+          "max_abs": 2.168404344971009e-19,
+          "max_rel": 2.2198713456380903e-16,
+          "nonfinite": 0
+        },
+        "$.coverage_steps[].ratio": {
+          "count": 3072,
+          "changed": 3072,
+          "max_abs": 4.440892098500626e-16,
+          "max_rel": 2.2170751958157717e-16,
+          "nonfinite": 0
+        },
+        "$.coverage_steps[].surface_width": {
+          "count": 3072,
+          "changed": 3072,
+          "max_abs": 4.336808689942018e-19,
+          "max_rel": 2.2204460492503126e-16,
+          "nonfinite": 0
+        },
+        "$.coverage_steps[].uncertainty": {
+          "count": 3072,
+          "changed": 3072,
+          "max_abs": 1.1102230246251565e-16,
+          "max_rel": 2.2204323730800687e-16,
+          "nonfinite": 0
+        },
+        "$.coverage_steps[].observed_order": {
+          "count": 1536,
+          "changed": 1536,
+          "max_abs": 4.440892098500626e-16,
+          "max_rel": 2.2204458109629575e-16,
+          "nonfinite": 0
+        },
+        "$.runs[].absolute_error": {
+          "count": 4608,
+          "changed": 4608,
+          "max_abs": 1.1102230246251565e-16,
+          "max_rel": 2.2199738164998624e-16,
+          "nonfinite": 0
+        },
+        "$.runs[].independent.steps[].discrepancy": {
+          "count": 8657,
+          "changed": 8657,
+          "max_abs": 1.1102230246251565e-16,
+          "max_rel": 2.2204081072367208e-16,
+          "nonfinite": 0
+        },
+        "$.runs[].independent.steps[].observed_order": {
+          "count": 4327,
+          "changed": 4327,
+          "max_abs": 4.440892098500626e-16,
+          "max_rel": 2.2204266194269092e-16,
+          "nonfinite": 0
+        },
+        "$.runs[].independent.steps[].uncertainty_estimate": {
+          "count": 8657,
+          "changed": 8657,
+          "max_abs": 1.1102230246251565e-16,
+          "max_rel": 2.217894722248447e-16,
+          "nonfinite": 0
+        },
+        "$.runs[].independent.values[][]": {
+          "count": 44962,
+          "changed": 44962,
+          "max_abs": 1.1102230246251565e-16,
+          "max_rel": 2.2189432560430365e-16,
+          "nonfinite": 0
+        },
+        "$.runs[].outcome.value[]": {
+          "count": 9216,
+          "changed": 9216,
+          "max_abs": 2.220446049250313e-16,
+          "max_rel": 1.0,
+          "nonfinite": 0
+        },
+        "$.runs[].resolution.recomputed_error_estimate": {
+          "count": 4608,
+          "changed": 4608,
+          "max_abs": 6.938893903907228e-18,
+          "max_rel": 2.1971994214906187e-16,
+          "nonfinite": 0
+        },
+        "$.runs[].resolution.requested_tolerance": {
+          "count": 4608,
+          "changed": 4608,
+          "max_abs": 1.3877787807814457e-17,
+          "max_rel": 2.2133838171873618e-16,
+          "nonfinite": 0
+        },
+        "$.runs[].shadow.steps[].discrepancy": {
+          "count": 18432,
+          "changed": 18432,
+          "max_abs": 1.1102230246251565e-16,
+          "max_rel": 2.2204081072367208e-16,
+          "nonfinite": 0
+        },
+        "$.runs[].shadow.steps[].observed_order": {
+          "count": 9216,
+          "changed": 9216,
+          "max_abs": 4.440892098500626e-16,
+          "max_rel": 2.2204458109629575e-16,
+          "nonfinite": 0
+        },
+        "$.runs[].shadow.steps[].uncertainty_estimate": {
+          "count": 18432,
+          "changed": 18432,
+          "max_abs": 1.1102230246251565e-16,
+          "max_rel": 2.2204323730800687e-16,
+          "nonfinite": 0
+        },
+        "$.summary.cells.surface/frozen.coverage.max_ratio": {
+          "count": 1,
+          "changed": 1,
+          "max_abs": 2.7755575615628914e-17,
+          "max_rel": 1.3571353684455664e-16,
+          "nonfinite": 0
+        },
+        "$.summary.cells.surface/frozen.coverage.strata.broad:[1,2).max_ratio": {
+          "count": 1,
+          "changed": 1,
+          "max_abs": 2.7755575615628914e-17,
+          "max_rel": 1.3902092722988865e-16,
+          "nonfinite": 0
+        },
+        "$.summary.cells.surface/frozen.coverage.strata.broad:[2,4).max_ratio": {
+          "count": 1,
+          "changed": 1,
+          "max_abs": 2.7755575615628914e-17,
+          "max_rel": 1.413457617033675e-16,
+          "nonfinite": 0
+        },
+        "$.summary.cells.surface/frozen.coverage.strata.broad:[4,infinity).max_ratio": {
+          "count": 1,
+          "changed": 1,
+          "max_abs": 2.7755575615628914e-17,
+          "max_rel": 1.5934526451115454e-16,
+          "nonfinite": 0
+        },
+        "$.summary.cells.surface/frozen.coverage.strata.high:[1,2).max_ratio": {
+          "count": 1,
+          "changed": 1,
+          "max_abs": 2.7755575615628914e-17,
+          "max_rel": 1.3571353684455664e-16,
+          "nonfinite": 0
+        },
+        "$.summary.cells.surface/frozen.coverage.strata.high:[2,4).max_ratio": {
+          "count": 1,
+          "changed": 1,
+          "max_abs": 2.7755575615628914e-17,
+          "max_rel": 1.444664661916953e-16,
+          "nonfinite": 0
+        },
+        "$.summary.cells.surface/frozen.coverage.strata.high:[4,infinity).max_ratio": {
+          "count": 1,
+          "changed": 1,
+          "max_abs": 2.7755575615628914e-17,
+          "max_rel": 1.5956979034797933e-16,
+          "nonfinite": 0
+        },
+        "$.summary.cells.surface/order.coverage.max_ratio": {
+          "count": 1,
+          "changed": 1,
+          "max_abs": 5.551115123125783e-17,
+          "max_rel": 1.110885421483004e-16,
+          "nonfinite": 0
+        },
+        "$.summary.cells.surface/order.coverage.strata.broad:[1,2).max_ratio": {
+          "count": 1,
+          "changed": 1,
+          "max_abs": 5.551115123125783e-17,
+          "max_rel": 1.967211233022512e-16,
+          "nonfinite": 0
+        },
+        "$.summary.cells.surface/order.coverage.strata.broad:[2,4).max_ratio": {
+          "count": 1,
+          "changed": 1,
+          "max_abs": 5.551115123125783e-17,
+          "max_rel": 1.271664095857219e-16,
+          "nonfinite": 0
+        },
+        "$.summary.cells.surface/order.coverage.strata.broad:[4,infinity).max_ratio": {
+          "count": 1,
+          "changed": 1,
+          "max_abs": 5.551115123125783e-17,
+          "max_rel": 1.110885421483004e-16,
+          "nonfinite": 0
+        },
+        "$.summary.cells.surface/order.coverage.strata.high:[1,2).max_ratio": {
+          "count": 1,
+          "changed": 1,
+          "max_abs": 5.551115123125783e-17,
+          "max_rel": 1.7370367161145952e-16,
+          "nonfinite": 0
+        },
+        "$.summary.cells.surface/order.coverage.strata.high:[2,4).max_ratio": {
+          "count": 1,
+          "changed": 1,
+          "max_abs": 5.551115123125783e-17,
+          "max_rel": 1.1691522792925273e-16,
+          "nonfinite": 0
+        },
+        "$.summary.cells.surface/order.coverage.strata.high:[4,infinity).max_ratio": {
+          "count": 1,
+          "changed": 1,
+          "max_abs": 5.551115123125783e-17,
+          "max_rel": 1.1134669866001464e-16,
+          "nonfinite": 0
+        },
+        "$.summary.cells.uniform/frozen.coverage.max_ratio": {
+          "count": 1,
+          "changed": 1,
+          "max_abs": 4.440892098500626e-16,
+          "max_rel": 1.474879623365517e-16,
+          "nonfinite": 0
+        },
+        "$.summary.cells.uniform/frozen.coverage.strata.broad:[.5,1).max_ratio": {
+          "count": 1,
+          "changed": 1,
+          "max_abs": 5.551115123125783e-17,
+          "max_rel": 1.1318417268198618e-16,
+          "nonfinite": 0
+        },
+        "$.summary.cells.uniform/frozen.coverage.strata.broad:[0,.5).max_ratio": {
+          "count": 1,
+          "changed": 1,
+          "max_abs": 4.440892098500626e-16,
+          "max_rel": 1.537093323869763e-16,
+          "nonfinite": 0
+        },
+        "$.summary.cells.uniform/frozen.coverage.strata.broad:[1,2).max_ratio": {
+          "count": 1,
+          "changed": 1,
+          "max_abs": 5.551115123125783e-17,
+          "max_rel": 1.9962288109152956e-16,
+          "nonfinite": 0
+        },
+        "$.summary.cells.uniform/frozen.coverage.strata.broad:[2,4).max_ratio": {
+          "count": 1,
+          "changed": 1,
+          "max_abs": 2.7755575615628914e-17,
+          "max_rel": 1.415631860088315e-16,
+          "nonfinite": 0
+        },
+        "$.summary.cells.uniform/frozen.coverage.strata.broad:[4,infinity).max_ratio": {
+          "count": 1,
+          "changed": 1,
+          "max_abs": 2.7755575615628914e-17,
+          "max_rel": 1.5940897882007476e-16,
+          "nonfinite": 0
+        },
+        "$.summary.cells.uniform/frozen.coverage.strata.high:[.5,1).max_ratio": {
+          "count": 1,
+          "changed": 1,
+          "max_abs": 1.1102230246251565e-16,
+          "max_rel": 2.0487643338073548e-16,
+          "nonfinite": 0
+        },
+        "$.summary.cells.uniform/frozen.coverage.strata.high:[0,.5).max_ratio": {
+          "count": 1,
+          "changed": 1,
+          "max_abs": 4.440892098500626e-16,
+          "max_rel": 1.474879623365517e-16,
+          "nonfinite": 0
+        },
+        "$.summary.cells.uniform/frozen.coverage.strata.high:[1,2).max_ratio": {
+          "count": 1,
+          "changed": 1,
+          "max_abs": 5.551115123125783e-17,
+          "max_rel": 2.0830627114862026e-16,
+          "nonfinite": 0
+        },
+        "$.summary.cells.uniform/frozen.coverage.strata.high:[2,4).max_ratio": {
+          "count": 1,
+          "changed": 1,
+          "max_abs": 2.7755575615628914e-17,
+          "max_rel": 1.4413537097839887e-16,
+          "nonfinite": 0
+        },
+        "$.summary.cells.uniform/order.coverage.max_ratio": {
+          "count": 1,
+          "changed": 1,
+          "max_abs": 4.440892098500626e-16,
+          "max_rel": 1.474879623365517e-16,
+          "nonfinite": 0
+        },
+        "$.summary.cells.uniform/order.coverage.strata.broad:[.5,1).max_ratio": {
+          "count": 1,
+          "changed": 1,
+          "max_abs": 5.551115123125783e-17,
+          "max_rel": 1.1318417268198618e-16,
+          "nonfinite": 0
+        },
+        "$.summary.cells.uniform/order.coverage.strata.broad:[0,.5).max_ratio": {
+          "count": 1,
+          "changed": 1,
+          "max_abs": 4.440892098500626e-16,
+          "max_rel": 1.537093323869763e-16,
+          "nonfinite": 0
+        },
+        "$.summary.cells.uniform/order.coverage.strata.broad:[1,2).max_ratio": {
+          "count": 1,
+          "changed": 1,
+          "max_abs": 5.551115123125783e-17,
+          "max_rel": 1.8313915237186277e-16,
+          "nonfinite": 0
+        },
+        "$.summary.cells.uniform/order.coverage.strata.broad:[2,4).max_ratio": {
+          "count": 1,
+          "changed": 1,
+          "max_abs": 5.551115123125783e-17,
+          "max_rel": 1.2093212378431684e-16,
+          "nonfinite": 0
+        },
+        "$.summary.cells.uniform/order.coverage.strata.broad:[4,infinity).max_ratio": {
+          "count": 1,
+          "changed": 1,
+          "max_abs": 5.551115123125783e-17,
+          "max_rel": 1.1105268806783612e-16,
+          "nonfinite": 0
+        },
+        "$.summary.cells.uniform/order.coverage.strata.high:[.5,1).max_ratio": {
+          "count": 1,
+          "changed": 1,
+          "max_abs": 1.1102230246251565e-16,
+          "max_rel": 2.0487643338073548e-16,
+          "nonfinite": 0
+        },
+        "$.summary.cells.uniform/order.coverage.strata.high:[0,.5).max_ratio": {
+          "count": 1,
+          "changed": 1,
+          "max_abs": 4.440892098500626e-16,
+          "max_rel": 1.474879623365517e-16,
+          "nonfinite": 0
+        },
+        "$.summary.cells.uniform/order.coverage.strata.high:[1,2).max_ratio": {
+          "count": 1,
+          "changed": 1,
+          "max_abs": 5.551115123125783e-17,
+          "max_rel": 1.6949861507120556e-16,
+          "nonfinite": 0
+        },
+        "$.summary.cells.uniform/order.coverage.strata.high:[2,4).max_ratio": {
+          "count": 1,
+          "changed": 1,
+          "max_abs": 5.551115123125783e-17,
+          "max_rel": 1.2132470276665028e-16,
+          "nonfinite": 0
+        },
+        "$.tasks[].request.mean_time": {
+          "count": 192,
+          "changed": 0,
+          "max_abs": 0.0,
+          "max_rel": 0.0,
+          "nonfinite": 0
+        },
+        "$.tasks[].request.tolerance": {
+          "count": 192,
+          "changed": 0,
+          "max_abs": 0.0,
+          "max_rel": 0.0,
+          "nonfinite": 0
+        },
+        "$.tasks[].request.z[]": {
+          "count": 384,
+          "changed": 0,
+          "max_abs": 0.0,
+          "max_rel": 0.0,
+          "nonfinite": 0
+        },
+        "$.tasks[].sampled_magnitude": {
+          "count": 192,
+          "changed": 0,
+          "max_abs": 0.0,
+          "max_rel": 0.0,
+          "nonfinite": 0
+        },
+        "$.tasks[].shadow_values.surface[][]": {
+          "count": 2688,
+          "changed": 2688,
+          "max_abs": 1.1102230246251565e-16,
+          "max_rel": 2.2184274656108056e-16,
+          "nonfinite": 0
+        },
+        "$.tasks[].shadow_values.uniform[][]": {
+          "count": 2688,
+          "changed": 2688,
+          "max_abs": 1.1102230246251565e-16,
+          "max_rel": 2.2189432560430365e-16,
+          "nonfinite": 0
+        }
+      }
+    },
+    {
+      "experiment": "E011",
+      "original": "E011-extrapolation/results.json",
+      "repeat": "E011-extrapolation/repeat.json",
+      "repeat_environment": {
+        "python": "3.12.14",
+        "numpy": "2.3.5",
+        "scipy": "1.17.0",
+        "os": "Linux",
+        "os_release": "6.18.57",
+        "architecture": "x86_64",
+        "blas_lapack_configuration": "Build Dependencies:\n  blas:\n    detection method: pkgconfig\n    found: true\n    include directory: /opt/_internal/cpython-3.12.12/lib/python3.12/site-packages/scipy_openblas64/include\n    lib directory: /opt/_internal/cpython-3.12.12/lib/python3.12/site-packages/scipy_openblas64/lib\n    name: scipy-openblas\n    openblas configuration: OpenBLAS 0.3.30  USE64BITINT DYNAMIC_ARCH NO_AFFINITY\n      Haswell MAX_THREADS=64\n    pc file directory: /project/.openblas\n    version: 0.3.30\n  lapack:\n    detection method: pkgconfig\n    found: true\n    include directory: /opt/_internal/cpython-3.12.12/lib/python3.12/site-packages/scipy_openblas64/include\n    lib directory: /opt/_internal/cpython-3.12.12/lib/python3.12/site-packages/scipy_openblas64/lib\n    name: scipy-openblas\n    openblas configuration: OpenBLAS 0.3.30  USE64BITINT DYNAMIC_ARCH NO_AFFINITY\n      Haswell MAX_THREADS=64\n    pc file directory: /project/.openblas\n    version: 0.3.30\nCompilers:\n  c:\n    commands: cc\n    linker: ld.bfd\n    name: gcc\n    version: 14.2.1\n  c++:\n    commands: c++\n    linker: ld.bfd\n    name: gcc\n    version: 14.2.1\n  cython:\n    commands: cython\n    linker: cython\n    name: cython\n    version: 3.2.1\nMachine Information:\n  build:\n    cpu: x86_64\n    endian: little\n    family: x86_64\n    system: linux\n  host:\n    cpu: x86_64\n    endian: little\n    family: x86_64\n    system: linux\nPython Information:\n  path: /tmp/build-env-aw1mwcap/bin/python\n  version: '3.12'\nSIMD Extensions:\n  baseline:\n  - SSE\n  - SSE2\n  - SSE3\n  found:\n  - SSSE3\n  - SSE41\n  - POPCNT\n  - SSE42\n  - AVX\n  - F16C\n  - FMA3\n  - AVX2\n  - AVX512F\n  - AVX512CD\n  - AVX512_SKX\n  - AVX512_CLX\n  - AVX512_CNL\n  - AVX512_ICL\n  not found:\n  - AVX512_KNL\n  - AVX512_KNM\n  - AVX512_SPR\n\nBuild Dependencies:\n  blas:\n    detection method: pkgconfig\n    found: true\n    has ilp64: false\n    include directory: /opt/_internal/cpython-3.12.11/lib/python3.12/site-packages/scipy_openblas32/include\n    lib directory: /opt/_internal/cpython-3.12.11/lib/python3.12/site-packages/scipy_openblas32/lib\n    name: scipy-openblas\n    openblas configuration: OpenBLAS 0.3.30 DYNAMIC_ARCH NO_AFFINITY Haswell MAX_THREADS=64\n    pc file directory: /project/\n    version: 0.3.30\n  lapack:\n    detection method: pkgconfig\n    found: true\n    has ilp64: false\n    include directory: /opt/_internal/cpython-3.12.11/lib/python3.12/site-packages/scipy_openblas32/include\n    lib directory: /opt/_internal/cpython-3.12.11/lib/python3.12/site-packages/scipy_openblas32/lib\n    name: scipy-openblas\n    openblas configuration: OpenBLAS 0.3.30 DYNAMIC_ARCH NO_AFFINITY Haswell MAX_THREADS=64\n    pc file directory: /project/\n    version: 0.3.30\n  pybind11:\n    detection method: config-tool\n    include directory: unknown\n    name: pybind11\n    version: 3.0.1\nCompilers:\n  c:\n    commands: cc\n    linker: ld.bfd\n    name: gcc\n    version: 14.2.1\n  c++:\n    commands: c++\n    linker: ld.bfd\n    name: gcc\n    version: 14.2.1\n  cython:\n    commands: cython\n    linker: cython\n    name: cython\n    version: 3.2.4\n  fortran:\n    commands: gfortran\n    linker: ld.bfd\n    name: gcc\n    version: 14.2.1\n  pythran:\n    include directory: ../../tmp/build-env-h6rtuvfe/lib/python3.12/site-packages/pythran\n    version: 0.18.1\nMachine Information:\n  build:\n    cpu: x86_64\n    endian: little\n    family: x86_64\n    system: linux\n  cross-compiled: false\n  host:\n    cpu: x86_64\n    endian: little\n    family: x86_64\n    system: linux\nPython Information:\n  path: /tmp/build-env-h6rtuvfe/bin/python\n  version: '3.12'\n\n"
+      },
+      "archived_failures": 0,
+      "synthetic_failures": 0,
+      "changed_numeric_fields": 126469,
+      "exact_synthetic_failures": 126469,
+      "synthetic_diagnostic_differences": 36522,
+      "changed_decision_detected": true,
+      "canonical_inputs_equal": true,
+      "synthetic_numeric_summary": {
+        "$.coverage_steps[].delta_over_h": {
+          "count": 2304,
+          "changed": 2304,
+          "max_abs": 3.725290298461914e-09,
+          "max_rel": 2.2204170676098053e-16,
+          "nonfinite": 0
+        },
+        "$.coverage_steps[].error": {
+          "count": 2304,
+          "changed": 2304,
+          "max_abs": 1.3552527156068805e-20,
+          "max_rel": 2.2203049667890618e-16,
+          "nonfinite": 0
+        },
+        "$.coverage_steps[].exact_model_bias": {
+          "count": 2304,
+          "changed": 2304,
+          "max_abs": 1.1102230246251565e-16,
+          "max_rel": 1.0,
+          "nonfinite": 0
+        },
+        "$.coverage_steps[].original_sphere_discrepancy": {
+          "count": 2304,
+          "changed": 2304,
+          "max_abs": 1.1102230246251565e-16,
+          "max_rel": 2.2197786435840057e-16,
+          "nonfinite": 0
+        },
+        "$.coverage_steps[].ratio": {
+          "count": 2304,
+          "changed": 2304,
+          "max_abs": 1.4210854715202004e-14,
+          "max_rel": 2.2183600051646968e-16,
+          "nonfinite": 0
+        },
+        "$.coverage_steps[].surface_width": {
+          "count": 2304,
+          "changed": 2304,
+          "max_abs": 2.710505431213761e-20,
+          "max_rel": 1.8020534378378743e-16,
+          "nonfinite": 0
+        },
+        "$.coverage_steps[].uncertainty": {
+          "count": 2304,
+          "changed": 2304,
+          "max_abs": 2.710505431213761e-20,
+          "max_rel": 2.2204008556462311e-16,
+          "nonfinite": 0
+        },
+        "$.intake_channel[].request.mean_time": {
+          "count": 192,
+          "changed": 0,
+          "max_abs": 0.0,
+          "max_rel": 0.0,
+          "nonfinite": 0
+        },
+        "$.intake_channel[].request.tolerance": {
+          "count": 192,
+          "changed": 0,
+          "max_abs": 0.0,
+          "max_rel": 0.0,
+          "nonfinite": 0
+        },
+        "$.intake_channel[].request.z[]": {
+          "count": 384,
+          "changed": 0,
+          "max_abs": 0.0,
+          "max_rel": 0.0,
+          "nonfinite": 0
+        },
+        "$.intake_channel[].sampled_magnitude": {
+          "count": 192,
+          "changed": 0,
+          "max_abs": 0.0,
+          "max_rel": 0.0,
+          "nonfinite": 0
+        },
+        "$.intake_channel[].sampled_phase": {
+          "count": 192,
+          "changed": 0,
+          "max_abs": 0.0,
+          "max_rel": 0.0,
+          "nonfinite": 0
+        },
+        "$.reference_audit.absolute_allowance": {
+          "count": 1,
+          "changed": 1,
+          "max_abs": 1.262177448353619e-29,
+          "max_rel": 1.2621774483536186e-16,
+          "nonfinite": 0
+        },
+        "$.reference_audit.max_absolute_error": {
+          "count": 1,
+          "changed": 1,
+          "max_abs": 2.465190328815662e-32,
+          "max_rel": 1.4048115276489223e-16,
+          "nonfinite": 0
+        },
+        "$.reference_audit.records[].absolute_error": {
+          "count": 96,
+          "changed": 96,
+          "max_abs": 2.465190328815662e-32,
+          "max_rel": 2.2198672750589889e-16,
+          "nonfinite": 0
+        },
+        "$.reference_audit.records[].analytic[]": {
+          "count": 192,
+          "changed": 192,
+          "max_abs": 1.1102230246251565e-16,
+          "max_rel": 2.2198276038526848e-16,
+          "nonfinite": 0
+        },
+        "$.reference_audit.relative_allowance": {
+          "count": 1,
+          "changed": 1,
+          "max_abs": 2.0194839173657902e-28,
+          "max_rel": 2.01948391736579e-16,
+          "nonfinite": 0
+        },
+        "$.runs[].absolute_error": {
+          "count": 1536,
+          "changed": 1536,
+          "max_abs": 1.1102230246251565e-16,
+          "max_rel": 2.2200718692869105e-16,
+          "nonfinite": 0
+        },
+        "$.runs[].independent.steps[].discrepancy": {
+          "count": 2446,
+          "changed": 2446,
+          "max_abs": 1.1102230246251565e-16,
+          "max_rel": 2.2194894811981756e-16,
+          "nonfinite": 0
+        },
+        "$.runs[].independent.steps[].uncertainty_estimate": {
+          "count": 2446,
+          "changed": 2446,
+          "max_abs": 2.710505431213761e-20,
+          "max_rel": 2.219905720592197e-16,
+          "nonfinite": 0
+        },
+        "$.runs[].independent.values[][]": {
+          "count": 14108,
+          "changed": 14108,
+          "max_abs": 1.1102230246251565e-16,
+          "max_rel": 2.2202420258500463e-16,
+          "nonfinite": 0
+        },
+        "$.runs[].outcome.value[]": {
+          "count": 3072,
+          "changed": 3072,
+          "max_abs": 2.220446049250313e-16,
+          "max_rel": 1.0,
+          "nonfinite": 0
+        },
+        "$.runs[].probes.high_frequency.probes.finite_volume.relative_error": {
+          "count": 1536,
+          "changed": 1536,
+          "max_abs": 1.1102230246251565e-16,
+          "max_rel": 2.1799403844196385e-16,
+          "nonfinite": 0
+        },
+        "$.runs[].probes.high_frequency.probes.finite_volume.scaled[]": {
+          "count": 3072,
+          "changed": 3072,
+          "max_abs": 1.1102230246251565e-16,
+          "max_rel": 1.0,
+          "nonfinite": 0
+        },
+        "$.runs[].probes.high_frequency.probes.finite_volume.value[]": {
+          "count": 3072,
+          "changed": 3072,
+          "max_abs": 8.673617379884035e-19,
+          "max_rel": 1.0,
+          "nonfinite": 0
+        },
+        "$.runs[].probes.high_frequency.probes.modal.relative_error": {
+          "count": 1536,
+          "changed": 1536,
+          "max_abs": 1.1102230246251565e-16,
+          "max_rel": 2.1266147953726318e-16,
+          "nonfinite": 0
+        },
+        "$.runs[].probes.high_frequency.probes.modal.scaled[]": {
+          "count": 3072,
+          "changed": 3072,
+          "max_abs": 1.1102230246251565e-16,
+          "max_rel": 1.0,
+          "nonfinite": 0
+        },
+        "$.runs[].probes.high_frequency.probes.modal.value[]": {
+          "count": 3072,
+          "changed": 3072,
+          "max_abs": 8.673617379884035e-19,
+          "max_rel": 1.0,
+          "nonfinite": 0
+        },
+        "$.runs[].probes.old.probes.finite_volume.estimated_mean": {
+          "count": 1536,
+          "changed": 1536,
+          "max_abs": 1.4551915228366852e-11,
+          "max_rel": 2.2061846603822223e-16,
+          "nonfinite": 0
+        },
+        "$.runs[].probes.old.probes.finite_volume.h": {
+          "count": 1536,
+          "changed": 1536,
+          "max_abs": 1.3552527156068805e-20,
+          "max_rel": 2.213602117442103e-16,
+          "nonfinite": 0
+        },
+        "$.runs[].probes.old.probes.finite_volume.mean_relative_error": {
+          "count": 1536,
+          "changed": 1536,
+          "max_abs": 1.1368683772161603e-13,
+          "max_rel": 1.57704389419069e-16,
+          "nonfinite": 0
+        },
+        "$.runs[].probes.old.probes.finite_volume.normalization_error": {
+          "count": 1536,
+          "changed": 1536,
+          "max_abs": 1.6155871338926322e-27,
+          "max_rel": 2.2204460492503126e-16,
+          "nonfinite": 0
+        },
+        "$.runs[].probes.old.probes.finite_volume.shifted[]": {
+          "count": 3072,
+          "changed": 3072,
+          "max_abs": 2.220446049250313e-16,
+          "max_rel": 2.220446049250288e-16,
+          "nonfinite": 0
+        },
+        "$.runs[].probes.old.probes.finite_volume.zero[]": {
+          "count": 3072,
+          "changed": 3072,
+          "max_abs": 2.220446049250313e-16,
+          "max_rel": 1.0,
+          "nonfinite": 0
+        },
+        "$.runs[].probes.old.probes.modal.estimated_mean": {
+          "count": 1536,
+          "changed": 1536,
+          "max_abs": 1.4551915228366852e-11,
+          "max_rel": 2.2062092982484128e-16,
+          "nonfinite": 0
+        },
+        "$.runs[].probes.old.probes.modal.h": {
+          "count": 1536,
+          "changed": 1536,
+          "max_abs": 1.3552527156068805e-20,
+          "max_rel": 2.213602117442103e-16,
+          "nonfinite": 0
+        },
+        "$.runs[].probes.old.probes.modal.mean_relative_error": {
+          "count": 1536,
+          "changed": 1536,
+          "max_abs": 1.1368683772161603e-13,
+          "max_rel": 1.2197749562755112e-16,
+          "nonfinite": 0
+        },
+        "$.runs[].probes.old.probes.modal.normalization_error": {
+          "count": 1536,
+          "changed": 1536,
+          "max_abs": 2.710505431213761e-20,
+          "max_rel": 1.8264666142138497e-16,
+          "nonfinite": 0
+        },
+        "$.runs[].probes.old.probes.modal.shifted[]": {
+          "count": 3072,
+          "changed": 3072,
+          "max_abs": 1.1102230246251565e-16,
+          "max_rel": 2.1684089915607278e-16,
+          "nonfinite": 0
+        },
+        "$.runs[].probes.old.probes.modal.zero[]": {
+          "count": 3072,
+          "changed": 3072,
+          "max_abs": 1.1102230246251565e-16,
+          "max_rel": 1.0,
+          "nonfinite": 0
+        },
+        "$.runs[].probes.second_moment.probes.finite_volume.h": {
+          "count": 1536,
+          "changed": 1536,
+          "max_abs": 1.1102230246251565e-16,
+          "max_rel": 2.2180238926164386e-16,
+          "nonfinite": 0
+        },
+        "$.runs[].probes.second_moment.probes.finite_volume.normalized_second_moment": {
+          "count": 1536,
+          "changed": 1536,
+          "max_abs": 3.637978807091713e-12,
+          "max_rel": 2.200049066958604e-16,
+          "nonfinite": 0
+        },
+        "$.runs[].probes.second_moment.probes.finite_volume.relative_error": {
+          "count": 1536,
+          "changed": 1536,
+          "max_abs": 9.094947017729282e-13,
+          "max_rel": 1.7333930360402666e-16,
+          "nonfinite": 0
+        },
+        "$.runs[].probes.second_moment.probes.finite_volume.shifted[]": {
+          "count": 3072,
+          "changed": 3072,
+          "max_abs": 1.1102230246251565e-16,
+          "max_rel": 1.811661755179288e-16,
+          "nonfinite": 0
+        },
+        "$.runs[].probes.second_moment.probes.finite_volume.zero[]": {
+          "count": 3072,
+          "changed": 3072,
+          "max_abs": 2.220446049250313e-16,
+          "max_rel": 1.0,
+          "nonfinite": 0
+        },
+        "$.runs[].probes.second_moment.probes.modal.h": {
+          "count": 1536,
+          "changed": 1536,
+          "max_abs": 1.1102230246251565e-16,
+          "max_rel": 2.2180238926164386e-16,
+          "nonfinite": 0
+        },
+        "$.runs[].probes.second_moment.probes.modal.normalized_second_moment": {
+          "count": 1536,
+          "changed": 1536,
+          "max_abs": 3.637978807091713e-12,
+          "max_rel": 2.2000491113879973e-16,
+          "nonfinite": 0
+        },
+        "$.runs[].probes.second_moment.probes.modal.relative_error": {
+          "count": 1536,
+          "changed": 1536,
+          "max_abs": 9.094947017729282e-13,
+          "max_rel": 1.7333803048139717e-16,
+          "nonfinite": 0
+        },
+        "$.runs[].probes.second_moment.probes.modal.shifted[]": {
+          "count": 3072,
+          "changed": 3072,
+          "max_abs": 1.1102230246251565e-16,
+          "max_rel": 1.8116616819724752e-16,
+          "nonfinite": 0
+        },
+        "$.runs[].probes.second_moment.probes.modal.zero[]": {
+          "count": 3072,
+          "changed": 3072,
+          "max_abs": 1.1102230246251565e-16,
+          "max_rel": 1.0,
+          "nonfinite": 0
+        },
+        "$.runs[].resolution.recomputed_error_estimate": {
+          "count": 1536,
+          "changed": 1536,
+          "max_abs": 6.938893903907228e-18,
+          "max_rel": 2.2188188092276415e-16,
+          "nonfinite": 0
+        },
+        "$.runs[].resolution.requested_tolerance": {
+          "count": 1536,
+          "changed": 1536,
+          "max_abs": 1.3877787807814457e-17,
+          "max_rel": 2.2137562142077765e-16,
+          "nonfinite": 0
+        },
+        "$.runs[].shadow.steps[].discrepancy": {
+          "count": 6144,
+          "changed": 6144,
+          "max_abs": 1.1102230246251565e-16,
+          "max_rel": 2.2202739636062907e-16,
+          "nonfinite": 0
+        },
+        "$.runs[].shadow.steps[].uncertainty_estimate": {
+          "count": 6144,
+          "changed": 6144,
+          "max_abs": 2.710505431213761e-20,
+          "max_rel": 2.2204008556462311e-16,
+          "nonfinite": 0
+        },
+        "$.summary.A.coverage.max_ratio": {
+          "count": 1,
+          "changed": 1,
+          "max_abs": 1.4210854715202004e-14,
+          "max_rel": 1.8578086366201714e-16,
+          "nonfinite": 0
+        },
+        "$.summary.A.coverage.strata.model_scale:[0,.5).max_ratio": {
+          "count": 1,
+          "changed": 1,
+          "max_abs": 1.4210854715202004e-14,
+          "max_rel": 1.8578086366201714e-16,
+          "nonfinite": 0
+        },
+        "$.summary.A.coverage.strata.slab:[.5,1).max_ratio": {
+          "count": 1,
+          "changed": 1,
+          "max_abs": 1.1102230246251565e-16,
+          "max_rel": 2.148674756728679e-16,
+          "nonfinite": 0
+        },
+        "$.summary.A.coverage.strata.slab:[0,.5).max_ratio": {
+          "count": 1,
+          "changed": 1,
+          "max_abs": 1.1102230246251565e-16,
+          "max_rel": 1.6716256995993064e-16,
+          "nonfinite": 0
+        },
+        "$.summary.A.coverage.strata.slab:[1,2).max_ratio": {
+          "count": 1,
+          "changed": 1,
+          "max_abs": 5.551115123125783e-17,
+          "max_rel": 2.1887079317077402e-16,
+          "nonfinite": 0
+        },
+        "$.summary.A.coverage.strata.slab:[2,4).max_ratio": {
+          "count": 1,
+          "changed": 1,
+          "max_abs": 2.7755575615628914e-17,
+          "max_rel": 1.4190335666519289e-16,
+          "nonfinite": 0
+        },
+        "$.summary.A.coverage.strata.slab:[4,infinity).max_ratio": {
+          "count": 1,
+          "changed": 1,
+          "max_abs": 2.7755575615628914e-17,
+          "max_rel": 1.5960693735433935e-16,
+          "nonfinite": 0
+        },
+        "$.summary.A.coverage.strata.sphere:[.5,1).max_ratio": {
+          "count": 1,
+          "changed": 1,
+          "max_abs": 1.1102230246251565e-16,
+          "max_rel": 2.12197102785835e-16,
+          "nonfinite": 0
+        },
+        "$.summary.A.coverage.strata.sphere:[0,.5).max_ratio": {
+          "count": 1,
+          "changed": 1,
+          "max_abs": 2.220446049250313e-16,
+          "max_rel": 1.183089207815737e-16,
+          "nonfinite": 0
+        },
+        "$.summary.A.coverage.strata.sphere:[1,2).max_ratio": {
+          "count": 1,
+          "changed": 1,
+          "max_abs": 5.551115123125783e-17,
+          "max_rel": 2.0768383253454085e-16,
+          "nonfinite": 0
+        },
+        "$.summary.A.coverage.strata.sphere:[2,4).max_ratio": {
+          "count": 1,
+          "changed": 1,
+          "max_abs": 2.7755575615628914e-17,
+          "max_rel": 1.4495239725619276e-16,
+          "nonfinite": 0
+        },
+        "$.summary.A.coverage.strata.sphere:[4,infinity).max_ratio": {
+          "count": 1,
+          "changed": 1,
+          "max_abs": 2.7755575615628914e-17,
+          "max_rel": 1.614066429488641e-16,
+          "nonfinite": 0
+        },
+        "$.summary.B.coverage.max_ratio": {
+          "count": 1,
+          "changed": 1,
+          "max_abs": 8.881784197001252e-16,
+          "max_rel": 1.5980706284426786e-16,
+          "nonfinite": 0
+        },
+        "$.summary.B.coverage.strata.model_scale:[.5,1).max_ratio": {
+          "count": 1,
+          "changed": 1,
+          "max_abs": 5.551115123125783e-17,
+          "max_rel": 1.2550865238270337e-16,
+          "nonfinite": 0
+        },
+        "$.summary.B.coverage.strata.model_scale:[0,.5).max_ratio": {
+          "count": 1,
+          "changed": 1,
+          "max_abs": 8.881784197001252e-16,
+          "max_rel": 1.5980706284426786e-16,
+          "nonfinite": 0
+        },
+        "$.summary.B.coverage.strata.model_scale:[1,2).max_ratio": {
+          "count": 1,
+          "changed": 1,
+          "max_abs": 2.7755575615628914e-17,
+          "max_rel": 1.352874446903702e-16,
+          "nonfinite": 0
+        },
+        "$.summary.B.coverage.strata.model_scale:[2,4).max_ratio": {
+          "count": 1,
+          "changed": 1,
+          "max_abs": 2.7755575615628914e-17,
+          "max_rel": 1.6362864310066969e-16,
+          "nonfinite": 0
+        },
+        "$.summary.B.coverage.strata.model_scale:[4,infinity).max_ratio": {
+          "count": 1,
+          "changed": 1,
+          "max_abs": 2.7755575615628914e-17,
+          "max_rel": 1.6602353805561481e-16,
+          "nonfinite": 0
+        },
+        "$.summary.B.coverage.strata.slab:[4,infinity).max_ratio": {
+          "count": 1,
+          "changed": 1,
+          "max_abs": 2.7755575615628914e-17,
+          "max_rel": 1.664451818144931e-16,
+          "nonfinite": 0
+        },
+        "$.summary.B.coverage.strata.sphere:[2,4).max_ratio": {
+          "count": 1,
+          "changed": 1,
+          "max_abs": 2.7755575615628914e-17,
+          "max_rel": 1.6502068314173876e-16,
+          "nonfinite": 0
+        },
+        "$.summary.B.coverage.strata.sphere:[4,infinity).max_ratio": {
+          "count": 1,
+          "changed": 1,
+          "max_abs": 2.7755575615628914e-17,
+          "max_rel": 1.66057634742991e-16,
+          "nonfinite": 0
+        },
+        "$.summary.C.coverage.max_ratio": {
+          "count": 1,
+          "changed": 1,
+          "max_abs": 8.881784197001252e-16,
+          "max_rel": 1.1242923053591182e-16,
+          "nonfinite": 0
+        },
+        "$.summary.C.coverage.strata.model_scale:[.5,1).max_ratio": {
+          "count": 1,
+          "changed": 1,
+          "max_abs": 1.1102230246251565e-16,
+          "max_rel": 2.0558232943382637e-16,
+          "nonfinite": 0
+        },
+        "$.summary.C.coverage.strata.model_scale:[0,.5).max_ratio": {
+          "count": 1,
+          "changed": 1,
+          "max_abs": 8.881784197001252e-16,
+          "max_rel": 1.1242923053591182e-16,
+          "nonfinite": 0
+        },
+        "$.summary.C.coverage.strata.model_scale:[1,2).max_ratio": {
+          "count": 1,
+          "changed": 1,
+          "max_abs": 5.551115123125783e-17,
+          "max_rel": 2.0248242581315437e-16,
+          "nonfinite": 0
+        },
+        "$.summary.C.coverage.strata.model_scale:[2,4).max_ratio": {
+          "count": 1,
+          "changed": 1,
+          "max_abs": 2.7755575615628914e-17,
+          "max_rel": 1.4327484273734172e-16,
+          "nonfinite": 0
+        },
+        "$.summary.C.coverage.strata.model_scale:[4,infinity).max_ratio": {
+          "count": 1,
+          "changed": 1,
+          "max_abs": 2.7755575615628914e-17,
+          "max_rel": 1.616321149390731e-16,
+          "nonfinite": 0
+        },
+        "$.summary.C.coverage.strata.slab:[4,infinity).max_ratio": {
+          "count": 1,
+          "changed": 1,
+          "max_abs": 2.7755575615628914e-17,
+          "max_rel": 1.6020384135089057e-16,
+          "nonfinite": 0
+        },
+        "$.summary.C.coverage.strata.sphere:[1,2).max_ratio": {
+          "count": 1,
+          "changed": 1,
+          "max_abs": 2.7755575615628914e-17,
+          "max_rel": 1.3886016383770733e-16,
+          "nonfinite": 0
+        },
+        "$.summary.C.coverage.strata.sphere:[2,4).max_ratio": {
+          "count": 1,
+          "changed": 1,
+          "max_abs": 2.7755575615628914e-17,
+          "max_rel": 1.4684562611617237e-16,
+          "nonfinite": 0
+        },
+        "$.summary.C.coverage.strata.sphere:[4,infinity).max_ratio": {
+          "count": 1,
+          "changed": 1,
+          "max_abs": 2.7755575615628914e-17,
+          "max_rel": 1.606553772699389e-16,
+          "nonfinite": 0
+        },
+        "$.summary.K.coverage.max_ratio": {
+          "count": 1,
+          "changed": 1,
+          "max_abs": 1.7763568394002505e-15,
+          "max_rel": 2.1754937074369768e-16,
+          "nonfinite": 0
+        },
+        "$.summary.K.coverage.strata.model_scale:[.5,1).max_ratio": {
+          "count": 1,
+          "changed": 1,
+          "max_abs": 1.1102230246251565e-16,
+          "max_rel": 2.0948780721918924e-16,
+          "nonfinite": 0
+        },
+        "$.summary.K.coverage.strata.model_scale:[0,.5).max_ratio": {
+          "count": 1,
+          "changed": 1,
+          "max_abs": 1.7763568394002505e-15,
+          "max_rel": 2.1754937074369768e-16,
+          "nonfinite": 0
+        },
+        "$.summary.K.coverage.strata.model_scale:[1,2).max_ratio": {
+          "count": 1,
+          "changed": 1,
+          "max_abs": 5.551115123125783e-17,
+          "max_rel": 2.1552515383517485e-16,
+          "nonfinite": 0
+        },
+        "$.summary.K.coverage.strata.model_scale:[2,4).max_ratio": {
+          "count": 1,
+          "changed": 1,
+          "max_abs": 2.7755575615628914e-17,
+          "max_rel": 1.4655418127696188e-16,
+          "nonfinite": 0
+        },
+        "$.summary.K.coverage.strata.model_scale:[4,infinity).max_ratio": {
+          "count": 1,
+          "changed": 1,
+          "max_abs": 2.7755575615628914e-17,
+          "max_rel": 1.612673435911666e-16,
+          "nonfinite": 0
+        },
+        "$.summary.K.coverage.strata.slab:[2,4).max_ratio": {
+          "count": 1,
+          "changed": 1,
+          "max_abs": 2.7755575615628914e-17,
+          "max_rel": 1.6094838789663204e-16,
+          "nonfinite": 0
+        },
+        "$.summary.K.coverage.strata.slab:[4,infinity).max_ratio": {
+          "count": 1,
+          "changed": 1,
+          "max_abs": 2.7755575615628914e-17,
+          "max_rel": 1.6166063622497428e-16,
+          "nonfinite": 0
+        },
+        "$.summary.K.coverage.strata.sphere:[1,2).max_ratio": {
+          "count": 1,
+          "changed": 1,
+          "max_abs": 2.7755575615628914e-17,
+          "max_rel": 1.4084829919900937e-16,
+          "nonfinite": 0
+        },
+        "$.summary.K.coverage.strata.sphere:[2,4).max_ratio": {
+          "count": 1,
+          "changed": 1,
+          "max_abs": 2.7755575615628914e-17,
+          "max_rel": 1.4473812597581002e-16,
+          "nonfinite": 0
+        },
+        "$.summary.K.coverage.strata.sphere:[4,infinity).max_ratio": {
+          "count": 1,
+          "changed": 1,
+          "max_abs": 2.7755575615628914e-17,
+          "max_rel": 1.6051215626948605e-16,
+          "nonfinite": 0
+        },
+        "$.tasks[].model_references.model_scale[]": {
+          "count": 384,
+          "changed": 384,
+          "max_abs": 1.1102230246251565e-16,
+          "max_rel": 2.2084134318526635e-16,
+          "nonfinite": 0
+        },
+        "$.tasks[].model_references.slab[]": {
+          "count": 384,
+          "changed": 384,
+          "max_abs": 1.1102230246251565e-16,
+          "max_rel": 2.2172997054561018e-16,
+          "nonfinite": 0
+        },
+        "$.tasks[].model_references.sphere[]": {
+          "count": 384,
+          "changed": 384,
+          "max_abs": 1.1102230246251565e-16,
+          "max_rel": 2.2198276038526848e-16,
+          "nonfinite": 0
+        },
+        "$.tasks[].reference[]": {
+          "count": 384,
+          "changed": 384,
+          "max_abs": 1.1102230246251565e-16,
+          "max_rel": 2.2198276038526848e-16,
+          "nonfinite": 0
+        },
+        "$.tasks[].request.mean_time": {
+          "count": 192,
+          "changed": 0,
+          "max_abs": 0.0,
+          "max_rel": 0.0,
+          "nonfinite": 0
+        },
+        "$.tasks[].request.tolerance": {
+          "count": 192,
+          "changed": 0,
+          "max_abs": 0.0,
+          "max_rel": 0.0,
+          "nonfinite": 0
+        },
+        "$.tasks[].request.z[]": {
+          "count": 384,
+          "changed": 0,
+          "max_abs": 0.0,
+          "max_rel": 0.0,
+          "nonfinite": 0
+        },
+        "$.tasks[].sampled_magnitude": {
+          "count": 192,
+          "changed": 0,
+          "max_abs": 0.0,
+          "max_rel": 0.0,
+          "nonfinite": 0
+        },
+        "$.tasks[].sampled_phase": {
+          "count": 192,
+          "changed": 0,
+          "max_abs": 0.0,
+          "max_rel": 0.0,
+          "nonfinite": 0
+        },
+        "$.tasks[].shadow_values.model_scale[][]": {
+          "count": 2688,
+          "changed": 2688,
+          "max_abs": 1.1102230246251565e-16,
+          "max_rel": 2.2202420258500463e-16,
+          "nonfinite": 0
+        },
+        "$.tasks[].shadow_values.slab[][]": {
+          "count": 2688,
+          "changed": 2688,
+          "max_abs": 1.1102230246251565e-16,
+          "max_rel": 2.2199349661535728e-16,
+          "nonfinite": 0
+        },
+        "$.tasks[].shadow_values.sphere[][]": {
+          "count": 2688,
+          "changed": 2688,
+          "max_abs": 1.1102230246251565e-16,
+          "max_rel": 2.220180005876194e-16,
+          "nonfinite": 0
+        }
+      }
+    }
+  ]
+}

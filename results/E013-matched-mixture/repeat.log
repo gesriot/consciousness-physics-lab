@@ -1,0 +1,269 @@
+{
+  "clean": {
+    "tasks": 96,
+    "accurate": 88,
+    "third_inconclusive": 0,
+    "third_inconclusive_fraction": 0.0,
+    "gate_failures": {
+      "hash": 0,
+      "normalization": 0,
+      "first_moment": 0,
+      "second_moment": 0,
+      "high_frequency": 0
+    },
+    "policies": {
+      "D": {
+        "accept": 87,
+        "reject": 9,
+        "violation_detected": 0,
+        "inconclusive": 0,
+        "nonaccepted": 9,
+        "false_acceptances": 0,
+        "accurate_rejected": 1,
+        "accurate_nonaccepted": 1,
+        "inaccurate_rejected": 8,
+        "clean_false_rejections": 1
+      },
+      "D_gates": {
+        "accept": 87,
+        "reject": 9,
+        "violation_detected": 0,
+        "inconclusive": 0,
+        "nonaccepted": 9,
+        "false_acceptances": 0,
+        "accurate_rejected": 1,
+        "accurate_nonaccepted": 1,
+        "inaccurate_rejected": 8,
+        "clean_false_rejections": 1
+      },
+      "D_gates_third": {
+        "accept": 87,
+        "reject": 9,
+        "violation_detected": 0,
+        "inconclusive": 0,
+        "nonaccepted": 9,
+        "false_acceptances": 0,
+        "accurate_rejected": 1,
+        "accurate_nonaccepted": 1,
+        "inaccurate_rejected": 8,
+        "clean_false_rejections": 1
+      },
+      "third": {
+        "accept": 88,
+        "reject": 0,
+        "violation_detected": 8,
+        "inconclusive": 0,
+        "nonaccepted": 8,
+        "false_acceptances": 0,
+        "accurate_rejected": 0,
+        "accurate_nonaccepted": 0,
+        "inaccurate_rejected": 8,
+        "clean_false_rejections": 0
+      }
+    },
+    "policy_costs": {
+      "D": {
+        "modal_terms": 120183,
+        "fv_cells": 198656,
+        "third_matrix_solves": 0,
+        "seconds": 0.07518340798742429
+      },
+      "D_gates": {
+        "modal_terms": 2086263,
+        "fv_cells": 1476608,
+        "third_matrix_solves": 0,
+        "seconds": 0.2191922660022101
+      },
+      "D_gates_third": {
+        "modal_terms": 2086263,
+        "fv_cells": 1476608,
+        "third_matrix_solves": 192,
+        "seconds": 0.2957028220025677
+      },
+      "third": {
+        "modal_terms": 120183,
+        "fv_cells": 0,
+        "third_matrix_solves": 192,
+        "seconds": 0.08195696299480915
+      }
+    }
+  },
+  "mixture": {
+    "tasks": 96,
+    "accurate": 68,
+    "third_inconclusive": 0,
+    "third_inconclusive_fraction": 0.0,
+    "gate_failures": {
+      "hash": 0,
+      "normalization": 0,
+      "first_moment": 0,
+      "second_moment": 0,
+      "high_frequency": 0
+    },
+    "policies": {
+      "D": {
+        "accept": 88,
+        "reject": 8,
+        "violation_detected": 0,
+        "inconclusive": 0,
+        "nonaccepted": 8,
+        "false_acceptances": 23,
+        "accurate_rejected": 3,
+        "accurate_nonaccepted": 3,
+        "inaccurate_rejected": 5,
+        "clean_false_rejections": null
+      },
+      "D_gates": {
+        "accept": 88,
+        "reject": 8,
+        "violation_detected": 0,
+        "inconclusive": 0,
+        "nonaccepted": 8,
+        "false_acceptances": 23,
+        "accurate_rejected": 3,
+        "accurate_nonaccepted": 3,
+        "inaccurate_rejected": 5,
+        "clean_false_rejections": null
+      },
+      "D_gates_third": {
+        "accept": 65,
+        "reject": 8,
+        "violation_detected": 23,
+        "inconclusive": 0,
+        "nonaccepted": 31,
+        "false_acceptances": 0,
+        "accurate_rejected": 3,
+        "accurate_nonaccepted": 3,
+        "inaccurate_rejected": 28,
+        "clean_false_rejections": null
+      },
+      "third": {
+        "accept": 68,
+        "reject": 0,
+        "violation_detected": 28,
+        "inconclusive": 0,
+        "nonaccepted": 28,
+        "false_acceptances": 0,
+        "accurate_rejected": 0,
+        "accurate_nonaccepted": 0,
+        "inaccurate_rejected": 28,
+        "clean_false_rejections": null
+      }
+    },
+    "policy_costs": {
+      "D": {
+        "modal_terms": 240366,
+        "fv_cells": 212992,
+        "third_matrix_solves": 0,
+        "seconds": 0.0944196140007989
+      },
+      "D_gates": {
+        "modal_terms": 4172526,
+        "fv_cells": 2768896,
+        "third_matrix_solves": 0,
+        "seconds": 0.33666457698927843
+      },
+      "D_gates_third": {
+        "modal_terms": 4172526,
+        "fv_cells": 2768896,
+        "third_matrix_solves": 192,
+        "seconds": 0.4088262289878912
+      },
+      "third": {
+        "modal_terms": 240366,
+        "fv_cells": 0,
+        "third_matrix_solves": 192,
+        "seconds": 0.07752467499449267
+      }
+    }
+  },
+  "slab": {
+    "tasks": 96,
+    "accurate": 42,
+    "third_inconclusive": 1,
+    "third_inconclusive_fraction": 0.010416666666666666,
+    "gate_failures": {
+      "hash": 0,
+      "normalization": 0,
+      "first_moment": 0,
+      "second_moment": 96,
+      "high_frequency": 96
+    },
+    "policies": {
+      "D": {
+        "accept": 88,
+        "reject": 8,
+        "violation_detected": 0,
+        "inconclusive": 0,
+        "nonaccepted": 8,
+        "false_acceptances": 48,
+        "accurate_rejected": 2,
+        "accurate_nonaccepted": 2,
+        "inaccurate_rejected": 6,
+        "clean_false_rejections": null
+      },
+      "D_gates": {
+        "accept": 0,
+        "reject": 96,
+        "violation_detected": 0,
+        "inconclusive": 0,
+        "nonaccepted": 96,
+        "false_acceptances": 0,
+        "accurate_rejected": 42,
+        "accurate_nonaccepted": 42,
+        "inaccurate_rejected": 54,
+        "clean_false_rejections": null
+      },
+      "D_gates_third": {
+        "accept": 0,
+        "reject": 96,
+        "violation_detected": 0,
+        "inconclusive": 0,
+        "nonaccepted": 96,
+        "false_acceptances": 0,
+        "accurate_rejected": 42,
+        "accurate_nonaccepted": 42,
+        "inaccurate_rejected": 54,
+        "clean_false_rejections": null
+      },
+      "third": {
+        "accept": 42,
+        "reject": 0,
+        "violation_detected": 53,
+        "inconclusive": 1,
+        "nonaccepted": 54,
+        "false_acceptances": 0,
+        "accurate_rejected": 0,
+        "accurate_nonaccepted": 0,
+        "inaccurate_rejected": 53,
+        "clean_false_rejections": null
+      }
+    },
+    "policy_costs": {
+      "D": {
+        "modal_terms": 120183,
+        "fv_cells": 107520,
+        "third_matrix_solves": 0,
+        "seconds": 0.05978247500024736
+      },
+      "D_gates": {
+        "modal_terms": 2086263,
+        "fv_cells": 1385472,
+        "third_matrix_solves": 0,
+        "seconds": 0.17888326900538232
+      },
+      "D_gates_third": {
+        "modal_terms": 2086263,
+        "fv_cells": 1385472,
+        "third_matrix_solves": 192,
+        "seconds": 0.2528088440121792
+      },
+      "third": {
+        "modal_terms": 120183,
+        "fv_cells": 0,
+        "third_matrix_solves": 192,
+        "seconds": 0.07667689200752648
+      }
+    }
+  }
+}

@@ -1,0 +1,4 @@
+PASS: 96 tasks and 288 rows in each run; accuracy, verdicts and component work audited.
+PASS: every non-timing field exact, including environment, protocol/source hashes, input overlap and diagnostics.
+Excluded: keys ending seconds; repeat-only replay provenance (source digest independently verified).
+Replay provenance: {"experiment": "E013", "source_sha256": "ed9c52a4d62780985db91ea87067d253cdb422157f7c08143e7620306025170b", "task_count": 96}

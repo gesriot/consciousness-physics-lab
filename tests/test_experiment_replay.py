@@ -6,8 +6,8 @@ import unittest
 from unittest.mock import patch
 from lab.experiment_audit import environment_metadata, metadata
 from lab.executor import request_hash
-from lab.replay import load_replay, protect_output
-from scripts.compare_experiment_runs import compare, compare_details
+from lab.replay import canonical_sha256, load_replay, protect_output
+from scripts.compare_experiment_runs import compare, compare_details, numeric_summary, input_digest
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -49,11 +49,11 @@ class ComparisonTests(unittest.TestCase):
             with self.assertRaises(ValueError):
                 compare(self.original, self.repeat, 'decisions', value)
         self.repeat['runs'][0]['value'] = 1.01
-        self.assertTrue(compare(self.original, self.repeat, 'decisions')[0])
+        self.assertFalse(compare(self.original, self.repeat, 'decisions')[0])
         self.original['runs'][0]['value'] = 0.0
         self.repeat['runs'][0]['value'] = 1e-30
         self.assertFalse(compare(self.original, self.repeat, 'decisions')[0])
-        self.assertTrue(compare(self.original, self.repeat, 'decisions', absolute_tolerance=0)[0])
+        self.assertFalse(compare(self.original, self.repeat, 'decisions', absolute_tolerance=0)[0])
         del self.repeat['runs'][0]['accepted']
         self.assertTrue(compare(self.original, self.repeat, 'decisions')[0])
 
@@ -79,6 +79,33 @@ class ComparisonTests(unittest.TestCase):
         repeat['summary']['cells']['uniform/order']['decision_cells'] = 513
         self.assertTrue(compare_details(original, repeat, 'decisions')[0])
 
+    def test_e011_diagnostics_are_separate_and_operational_controls_remain_exact(self):
+        original = json.loads((ROOT / 'results/E011-extrapolation/results.json').read_text())
+        repeat = copy.deepcopy(original)
+        repeat['runs'][0]['shadow']['steps'][0]['verdict'] = 'changed diagnostic verdict'
+        repeat['runs'][0]['shadow']['steps'][0]['converging'] = not repeat['runs'][0]['shadow']['steps'][0]['converging']
+        repeat['coverage_steps'][0]['covered'] = not repeat['coverage_steps'][0]['covered']
+        repeat['summary']['A']['coverage']['misses'] += 1
+        repeat['tasks'][0]['shadow_cells'] += 1
+        repeat['tasks'][0]['shadow_work']['sphere']['cells'] += 1
+        repeat['work']['shadow_cells'] += 1
+        repeat['work']['shadow_by_model']['sphere']['cells'] += 1
+        failures, _, diagnostics = compare_details(original, repeat, 'decisions')
+        self.assertFalse(failures)
+        self.assertEqual(len(diagnostics), 8)
+        self.assertTrue(compare(original, repeat, 'exact')[0])
+        for key in ('converging', 'cells_solved'):
+            control = copy.deepcopy(repeat)
+            independent = control['runs'][0]['independent']
+            if key == 'converging':
+                independent['steps'][0][key] = not independent['steps'][0][key]
+            else:
+                independent[key] += 1
+            self.assertTrue(compare(original, control, 'decisions')[0])
+        control = copy.deepcopy(repeat)
+        control['work']['decision_cells'] += 1
+        self.assertTrue(compare(original, control, 'decisions')[0])
+
     def test_absolute_tolerance_is_additive_finite_and_does_not_relax_counts(self):
         self.original['runs'][0]['value'] = 1.0
         self.repeat['runs'][0]['value'] = 1.15
@@ -90,6 +117,52 @@ class ComparisonTests(unittest.TestCase):
         self.repeat['runs'][0]['cells'] = 513
         self.assertTrue(compare(self.original, self.repeat, 'decisions', .1,
                                 absolute_tolerance=1e6)[0])
+
+    def test_exact_inputs_even_when_numeric_outputs_are_unrestricted(self):
+        self.original['intake_channel'] = [{'request': {'z': [1.0, 0.0]}}]
+        self.repeat = copy.deepcopy(self.original)
+        self.repeat['intake_channel'][0]['request']['z'][0] += 1e-14
+        self.assertTrue(compare(self.original, self.repeat, 'decisions')[0])
+        self.assertNotEqual(input_digest(self.original), input_digest(self.repeat))
+
+    def test_canonical_hash_ignores_object_order_not_content(self):
+        self.assertEqual(canonical_sha256({'a': 1, 'b': 2}),
+                         canonical_sha256({'b': 2, 'a': 1}))
+        self.assertNotEqual(canonical_sha256({'a': 1}), canonical_sha256({'a': 2}))
+
+    def test_numeric_summary_has_no_hidden_threshold(self):
+        left = {'x': [1.0, 0.0, float('inf')]}
+        right = {'x': [3.0, 1e-30, float('inf')]}
+        row = numeric_summary(left, right)['$.x[]']
+        self.assertEqual(row['count'], 3)
+        self.assertEqual(row['changed'], 2)
+        self.assertEqual(row['max_abs'], 2.0)
+        self.assertEqual(row['max_rel'], 1.0)
+        self.assertEqual(row['nonfinite'], 1)
+        self.assertFalse(compare(left, right, 'decisions')[0])
+
+    def test_archives_and_controlled_lower_bit_changes(self):
+        import math
+        for original_path, repeat_path in [
+            ('surface-order/results.json', 'platform-replay/e009-replay.json'),
+            ('E011-extrapolation/results.json', 'E011-extrapolation/repeat.json')]:
+            original = json.loads((ROOT / 'results' / original_path).read_text())
+            repeat = json.loads((ROOT / 'results' / repeat_path).read_text())
+            self.assertFalse(compare(original, repeat, 'decisions')[0])
+            def perturb(value):
+                if isinstance(value, dict):
+                    return {k: (v if k in ('request', 'intake_channel', 'sampled_magnitude',
+                                          'sampled_phase') else perturb(v)) for k, v in value.items()}
+                if isinstance(value, list):
+                    return [perturb(v) for v in value]
+                return math.nextafter(value, math.inf) if isinstance(value, float) else value
+            changed = perturb(repeat)
+            self.assertFalse(compare(original, changed, 'decisions')[0])
+            self.assertTrue(compare(original, changed, 'exact')[0])
+            self.assertGreater(sum(r['changed'] for r in numeric_summary(repeat, changed).values()), 0)
+            changed['runs'][0]['accepted'] = not changed['runs'][0]['accepted']
+            self.assertTrue(compare(original, changed, 'decisions')[0])
+
 
 class ReplayTests(unittest.TestCase):
     def test_archived_inputs_and_digests_are_bit_identical(self):

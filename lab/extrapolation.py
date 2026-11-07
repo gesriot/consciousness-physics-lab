@@ -1,6 +1,5 @@
 """E011 frozen graded verification and held-out extrapolation experiment."""
 import argparse
-import hashlib
 import json
 import math
 from pathlib import Path
@@ -16,7 +15,7 @@ from lab.experiment_audit import metadata
 from lab.fault_holdout import FAULTS as LOCAL_FAULTS, inject
 from lab.geometry_invariants import modal_test_hook, pair, probes
 from lab.guard import Request, final_guard
-from lab.replay import load_replay, protect_output
+from lab.replay import canonical_sha256, load_replay, protect_output
 from lab.scientist import analytic
 from lab.surface_order import faces, surface_response
 from lab.three_way import GRIDS, check_three_way, step_evidence, shadow_evidence
@@ -229,8 +228,8 @@ def run(output, replay=None, runtime_override=None):
     write_json(audit_path, reference_check)
     # Both file handles are closed before ANY operational evaluation starts.
     reference_by_id = {r['task_id']: r for r in reference_check['records']}
-    audit['reference_audit_sha256'] = hashlib.sha256(audit_path.read_bytes()).hexdigest()
-    audit['intake_sha256'] = hashlib.sha256(intake_path.read_bytes()).hexdigest()
+    audit['reference_audit_sha256'] = canonical_sha256(reference_check)
+    audit['intake_sha256'] = canonical_sha256(intake)
     if replay_metadata is not None:
         audit['replay'] = replay_metadata
     order = np.random.default_rng(20261123)

@@ -7,6 +7,12 @@ from lab.guard import Request
 from lab.executor import request_hash
 
 
+def canonical_sha256(value):
+    """Hash semantic JSON content rather than an environment-bearing file."""
+    return hashlib.sha256(json.dumps(value, sort_keys=True, separators=(',', ':'),
+                                    allow_nan=False).encode()).hexdigest()
+
+
 def load_replay(path, experiment, count):
     path = Path(path)
     raw = path.read_bytes()

@@ -1,0 +1,13 @@
+test_clean_hook_preserves_existing_calls (test_matched_mixture.MatchedMixtureTests.test_clean_hook_preserves_existing_calls) ... ok
+test_common_mixture_hook_uses_two_components (test_matched_mixture.MatchedMixtureTests.test_common_mixture_hook_uses_two_components) ... ok
+test_model_rejection_and_abstention_are_distinct (test_matched_mixture.MatchedMixtureTests.test_model_rejection_and_abstention_are_distinct) ... ok
+test_probe_gates_and_control (test_matched_mixture.MatchedMixtureTests.test_probe_gates_and_control) ... ok
+test_third_does_not_import_existing_solvers (test_matched_mixture.MatchedMixtureTests.test_third_does_not_import_existing_solvers) ... ok
+test_third_equation_and_quadrature (test_matched_mixture.MatchedMixtureTests.test_third_equation_and_quadrature) ... ok
+test_three_slab_positive_construction (test_matched_mixture.MatchedMixtureTests.test_three_slab_positive_construction) ... ok
+test_two_slab_equations_and_branch (test_matched_mixture.MatchedMixtureTests.test_two_slab_equations_and_branch) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.034s
+
+OK
