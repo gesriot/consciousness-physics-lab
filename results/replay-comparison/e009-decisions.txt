@@ -1,0 +1,68 @@
+Provenance: DIFFERENT
+  $.replay: missing key
+  $.git_head: value differs
+  $.source_sha256.lab/replay.py: missing key
+  $.source_sha256.lab/surface_experiment.py: value differs
+Canonical input digests: a41fba710c701a7c2dfa50c88497649e2665064cbfd0e7fa8c5ea1aa66e625be / a41fba710c701a7c2dfa50c88497649e2665064cbfd0e7fa8c5ea1aa66e625be
+Numerical differences by field:
+  $.coverage_steps[].delta_over_h: {"changed": 0, "count": 3072, "max_abs": 0.0, "max_rel": 0.0, "nonfinite": 0}
+  $.coverage_steps[].error: {"changed": 0, "count": 3072, "max_abs": 0.0, "max_rel": 0.0, "nonfinite": 0}
+  $.coverage_steps[].ratio: {"changed": 0, "count": 3072, "max_abs": 0.0, "max_rel": 0.0, "nonfinite": 0}
+  $.coverage_steps[].surface_width: {"changed": 0, "count": 3072, "max_abs": 0.0, "max_rel": 0.0, "nonfinite": 0}
+  $.coverage_steps[].uncertainty: {"changed": 0, "count": 3072, "max_abs": 0.0, "max_rel": 0.0, "nonfinite": 0}
+  $.coverage_steps[].observed_order: {"changed": 0, "count": 1536, "max_abs": 0.0, "max_rel": 0.0, "nonfinite": 0}
+  $.runs[].absolute_error: {"changed": 0, "count": 4608, "max_abs": 0.0, "max_rel": 0.0, "nonfinite": 0}
+  $.runs[].independent.steps[].discrepancy: {"changed": 0, "count": 8657, "max_abs": 0.0, "max_rel": 0.0, "nonfinite": 0}
+  $.runs[].independent.steps[].observed_order: {"changed": 0, "count": 4327, "max_abs": 0.0, "max_rel": 0.0, "nonfinite": 0}
+  $.runs[].independent.steps[].uncertainty_estimate: {"changed": 0, "count": 8657, "max_abs": 0.0, "max_rel": 0.0, "nonfinite": 0}
+  $.runs[].independent.values[][]: {"changed": 0, "count": 44962, "max_abs": 0.0, "max_rel": 0.0, "nonfinite": 0}
+  $.runs[].outcome.value[]: {"changed": 0, "count": 9216, "max_abs": 0.0, "max_rel": 0.0, "nonfinite": 0}
+  $.runs[].resolution.recomputed_error_estimate: {"changed": 0, "count": 4608, "max_abs": 0.0, "max_rel": 0.0, "nonfinite": 0}
+  $.runs[].resolution.requested_tolerance: {"changed": 0, "count": 4608, "max_abs": 0.0, "max_rel": 0.0, "nonfinite": 0}
+  $.runs[].shadow.steps[].discrepancy: {"changed": 0, "count": 18432, "max_abs": 0.0, "max_rel": 0.0, "nonfinite": 0}
+  $.runs[].shadow.steps[].observed_order: {"changed": 0, "count": 9216, "max_abs": 0.0, "max_rel": 0.0, "nonfinite": 0}
+  $.runs[].shadow.steps[].uncertainty_estimate: {"changed": 0, "count": 18432, "max_abs": 0.0, "max_rel": 0.0, "nonfinite": 0}
+  $.summary.cells.surface/frozen.coverage.max_ratio: {"changed": 0, "count": 1, "max_abs": 0.0, "max_rel": 0.0, "nonfinite": 0}
+  $.summary.cells.surface/frozen.coverage.strata.broad:[1,2).max_ratio: {"changed": 0, "count": 1, "max_abs": 0.0, "max_rel": 0.0, "nonfinite": 0}
+  $.summary.cells.surface/frozen.coverage.strata.broad:[2,4).max_ratio: {"changed": 0, "count": 1, "max_abs": 0.0, "max_rel": 0.0, "nonfinite": 0}
+  $.summary.cells.surface/frozen.coverage.strata.broad:[4,infinity).max_ratio: {"changed": 0, "count": 1, "max_abs": 0.0, "max_rel": 0.0, "nonfinite": 0}
+  $.summary.cells.surface/frozen.coverage.strata.high:[1,2).max_ratio: {"changed": 0, "count": 1, "max_abs": 0.0, "max_rel": 0.0, "nonfinite": 0}
+  $.summary.cells.surface/frozen.coverage.strata.high:[2,4).max_ratio: {"changed": 0, "count": 1, "max_abs": 0.0, "max_rel": 0.0, "nonfinite": 0}
+  $.summary.cells.surface/frozen.coverage.strata.high:[4,infinity).max_ratio: {"changed": 0, "count": 1, "max_abs": 0.0, "max_rel": 0.0, "nonfinite": 0}
+  $.summary.cells.surface/order.coverage.max_ratio: {"changed": 0, "count": 1, "max_abs": 0.0, "max_rel": 0.0, "nonfinite": 0}
+  $.summary.cells.surface/order.coverage.strata.broad:[1,2).max_ratio: {"changed": 0, "count": 1, "max_abs": 0.0, "max_rel": 0.0, "nonfinite": 0}
+  $.summary.cells.surface/order.coverage.strata.broad:[2,4).max_ratio: {"changed": 0, "count": 1, "max_abs": 0.0, "max_rel": 0.0, "nonfinite": 0}
+  $.summary.cells.surface/order.coverage.strata.broad:[4,infinity).max_ratio: {"changed": 0, "count": 1, "max_abs": 0.0, "max_rel": 0.0, "nonfinite": 0}
+  $.summary.cells.surface/order.coverage.strata.high:[1,2).max_ratio: {"changed": 0, "count": 1, "max_abs": 0.0, "max_rel": 0.0, "nonfinite": 0}
+  $.summary.cells.surface/order.coverage.strata.high:[2,4).max_ratio: {"changed": 0, "count": 1, "max_abs": 0.0, "max_rel": 0.0, "nonfinite": 0}
+  $.summary.cells.surface/order.coverage.strata.high:[4,infinity).max_ratio: {"changed": 0, "count": 1, "max_abs": 0.0, "max_rel": 0.0, "nonfinite": 0}
+  $.summary.cells.uniform/frozen.coverage.max_ratio: {"changed": 0, "count": 1, "max_abs": 0.0, "max_rel": 0.0, "nonfinite": 0}
+  $.summary.cells.uniform/frozen.coverage.strata.broad:[.5,1).max_ratio: {"changed": 0, "count": 1, "max_abs": 0.0, "max_rel": 0.0, "nonfinite": 0}
+  $.summary.cells.uniform/frozen.coverage.strata.broad:[0,.5).max_ratio: {"changed": 0, "count": 1, "max_abs": 0.0, "max_rel": 0.0, "nonfinite": 0}
+  $.summary.cells.uniform/frozen.coverage.strata.broad:[1,2).max_ratio: {"changed": 0, "count": 1, "max_abs": 0.0, "max_rel": 0.0, "nonfinite": 0}
+  $.summary.cells.uniform/frozen.coverage.strata.broad:[2,4).max_ratio: {"changed": 0, "count": 1, "max_abs": 0.0, "max_rel": 0.0, "nonfinite": 0}
+  $.summary.cells.uniform/frozen.coverage.strata.broad:[4,infinity).max_ratio: {"changed": 0, "count": 1, "max_abs": 0.0, "max_rel": 0.0, "nonfinite": 0}
+  $.summary.cells.uniform/frozen.coverage.strata.high:[.5,1).max_ratio: {"changed": 0, "count": 1, "max_abs": 0.0, "max_rel": 0.0, "nonfinite": 0}
+  $.summary.cells.uniform/frozen.coverage.strata.high:[0,.5).max_ratio: {"changed": 0, "count": 1, "max_abs": 0.0, "max_rel": 0.0, "nonfinite": 0}
+  $.summary.cells.uniform/frozen.coverage.strata.high:[1,2).max_ratio: {"changed": 0, "count": 1, "max_abs": 0.0, "max_rel": 0.0, "nonfinite": 0}
+  $.summary.cells.uniform/frozen.coverage.strata.high:[2,4).max_ratio: {"changed": 0, "count": 1, "max_abs": 0.0, "max_rel": 0.0, "nonfinite": 0}
+  $.summary.cells.uniform/order.coverage.max_ratio: {"changed": 0, "count": 1, "max_abs": 0.0, "max_rel": 0.0, "nonfinite": 0}
+  $.summary.cells.uniform/order.coverage.strata.broad:[.5,1).max_ratio: {"changed": 0, "count": 1, "max_abs": 0.0, "max_rel": 0.0, "nonfinite": 0}
+  $.summary.cells.uniform/order.coverage.strata.broad:[0,.5).max_ratio: {"changed": 0, "count": 1, "max_abs": 0.0, "max_rel": 0.0, "nonfinite": 0}
+  $.summary.cells.uniform/order.coverage.strata.broad:[1,2).max_ratio: {"changed": 0, "count": 1, "max_abs": 0.0, "max_rel": 0.0, "nonfinite": 0}
+  $.summary.cells.uniform/order.coverage.strata.broad:[2,4).max_ratio: {"changed": 0, "count": 1, "max_abs": 0.0, "max_rel": 0.0, "nonfinite": 0}
+  $.summary.cells.uniform/order.coverage.strata.broad:[4,infinity).max_ratio: {"changed": 0, "count": 1, "max_abs": 0.0, "max_rel": 0.0, "nonfinite": 0}
+  $.summary.cells.uniform/order.coverage.strata.high:[.5,1).max_ratio: {"changed": 0, "count": 1, "max_abs": 0.0, "max_rel": 0.0, "nonfinite": 0}
+  $.summary.cells.uniform/order.coverage.strata.high:[0,.5).max_ratio: {"changed": 0, "count": 1, "max_abs": 0.0, "max_rel": 0.0, "nonfinite": 0}
+  $.summary.cells.uniform/order.coverage.strata.high:[1,2).max_ratio: {"changed": 0, "count": 1, "max_abs": 0.0, "max_rel": 0.0, "nonfinite": 0}
+  $.summary.cells.uniform/order.coverage.strata.high:[2,4).max_ratio: {"changed": 0, "count": 1, "max_abs": 0.0, "max_rel": 0.0, "nonfinite": 0}
+  $.tasks[].request.mean_time: {"changed": 0, "count": 192, "max_abs": 0.0, "max_rel": 0.0, "nonfinite": 0}
+  $.tasks[].request.tolerance: {"changed": 0, "count": 192, "max_abs": 0.0, "max_rel": 0.0, "nonfinite": 0}
+  $.tasks[].request.z[]: {"changed": 0, "count": 384, "max_abs": 0.0, "max_rel": 0.0, "nonfinite": 0}
+  $.tasks[].sampled_magnitude: {"changed": 0, "count": 192, "max_abs": 0.0, "max_rel": 0.0, "nonfinite": 0}
+  $.tasks[].shadow_values.surface[][]: {"changed": 0, "count": 2688, "max_abs": 0.0, "max_rel": 0.0, "nonfinite": 0}
+  $.tasks[].shadow_values.uniform[][]: {"changed": 0, "count": 2688, "max_abs": 0.0, "max_rel": 0.0, "nonfinite": 0}
+Diagnostic differences: 0 (not operational failures)
+E007/E009 full shadow trajectories and coverage summaries are diagnostic. Order estimation is unstable near rounded differences; shadow verdicts, convergence flags and coverage fallback counts may change without altering operational decisions. Other differences still require scientific review.
+PASS: operational decisions identical; measured floats reported without a pass/fail threshold; authoritative integers, booleans, strings, structure, protocol identity and canonical inputs exact.
+Diagnostic differences and execution provenance are reported separately; this is not an exact reproduction or complete scientific-equivalence claim.
