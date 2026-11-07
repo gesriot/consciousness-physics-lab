@@ -1,0 +1,7 @@
+PASS: one author and committer identity: gesriot <gessman1618@gmail.com>
+PASS: excluded marker search has no matches
+PASS: no U+2014 in tracked Markdown
+PASS: no AGENTS.md
+PASS: E004–E006 protocols and E012 numerical archives unchanged
+PASS: no attention paths changed
+PASS: full check 109 laboratory and 30 vendor tests
