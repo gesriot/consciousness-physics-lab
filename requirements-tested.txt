@@ -1,2 +1,5 @@
 # Tested with Python 3.12.14; only runtime dependency needed for baseline.
 numpy==2.3.5
+
+# Independent finite-volume verifier
+scipy==1.17.0
