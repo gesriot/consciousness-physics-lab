@@ -105,3 +105,17 @@ python3 scripts/audit_e010_reporting.py results/E010-geometry-invariants/results
 Use a new output path. The exact repeat in this archive was generated at the
 same implementation commit; the later reproduction command permits only the
 expected metadata change in the enclosing results/documentation commit.
+
+### Cross-platform comparison convention
+
+The owner reports a macOS arm64 replay with Python 3.12.13, NumPy 2.3.5 and
+SciPy 1.17.0: decisions unchanged, numerical differences at rounding level.
+The raw owner replay was not supplied for independent inspection. The earlier
+relative-only comparison rejected near-zero numerical fields despite matching
+decisions. For the revised comparison use `--mode decisions --atol 1e-12
+--rtol 1e-12`: finite floats satisfy |a-b| ≤ atol + rtol max(|a|,|b|), while
+operational verdicts, flags and integer counters remain exact. Provenance is
+separate. These are reporting tolerances, not changes to invariant thresholds.
+A pass is conditional operational reproducibility, not a bitwise or general
+cross-platform guarantee. The E009 report documents the shadow-path diagnostic
+separation used for experiments with those registered paths.

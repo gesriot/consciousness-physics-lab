@@ -14,10 +14,11 @@ from lab.three_way import GRIDS
 from lab.surface_order import CELLS, faces, solver, evidence, check, shadow
 from lab.verifier_stress import stratum
 from lab.experiment_audit import metadata
+from lab.replay import load_replay, protect_output
 
 PROTOCOL = 'experiments/E009-surface-order.md'
 SOURCES = ['lab/surface_experiment.py','lab/surface_order.py','lab/three_way.py',
-           'lab/experiment_audit.py','lab/fault_holdout.py','lab/allocation.py',
+           'lab/experiment_audit.py','lab/replay.py','lab/fault_holdout.py','lab/allocation.py',
            'lab/finite_volume.py','lab/guard.py','lab/executor.py','lab/scientist.py',
            'lab/verifier_stress.py','vendor/sphere-thermal-cli/sphere_thermal/response.py']
 
@@ -67,20 +68,34 @@ def summary(rows, coverage, tasks):
         shadow_seconds=sum(t['shadow_seconds'] for t in tasks)))
 
 
-def run():
-    audit = metadata(PROTOCOL,SOURCES)
+def run(replay=None, runtime_override=None):
+    audit = metadata(PROTOCOL,SOURCES,runtime_override)
+    saved = None
+    if replay is not None:
+        saved, requests, audit['replay'] = load_replay(replay, 'E009', 192)
     rng, order = np.random.default_rng(20261118), np.random.default_rng(20261119)
     initial = Request(1,1,.01)
     previous = execute(initial,propose_modes(initial,.5)).value
     rows,tasks,coverage = [],[],[]
     for task_id in range(192):
         cohort = 'broad' if task_id<96 else 'high'
-        t = 10**rng.uniform(-2,2)
-        magnitude = 10**rng.uniform(-6 if cohort=='broad' else 5,6)
-        phase = rng.uniform(-np.pi/2,np.pi/2)
-        tolerance = 10**rng.uniform(-4,-1)
-        z = magnitude*np.exp(1j*phase)/t
-        request = Request(z,t,tolerance)
+        if saved is None:
+            t = 10**rng.uniform(-2,2)
+            magnitude = 10**rng.uniform(-6 if cohort=='broad' else 5,6)
+            phase = rng.uniform(-np.pi/2,np.pi/2)
+            tolerance = 10**rng.uniform(-4,-1)
+            z = magnitude*np.exp(1j*phase)/t
+            request = Request(z,t,tolerance)
+        else:
+            record = saved['tasks'][task_id]
+            if record['cohort'] != cohort:
+                raise ValueError('Replay cohort mismatch')
+            request = requests[task_id]
+            z, t, tolerance = request.z, request.mean_time, request.tolerance
+            magnitude = record['sampled_magnitude']
+            if not (math.isfinite(magnitude) and magnitude > 0 and
+                    math.isclose(magnitude, abs(z*t), rel_tol=1e-12)):
+                raise ValueError('Replay sampled magnitude mismatch')
         receipt = execute(request,propose_modes(request,.5))
         local=[]; injection_modes=0
         for fault in order.permutation(FAULTS):
@@ -139,8 +154,10 @@ def run():
 if __name__=='__main__':
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--output',type=Path,required=True)
+    parser.add_argument('--replay', type=Path, help='Read exact requests from archived results.json')
+    parser.add_argument('--runtime-override', help='Explicit audit reason for using an unpinned runtime')
     args=parser.parse_args()
-    if args.output.exists():raise ValueError('Output exists; preserve prior data')
-    result=run();args.output.parent.mkdir(parents=True,exist_ok=True)
+    protect_output(args.output,args.replay)
+    result=run(args.replay,args.runtime_override);args.output.parent.mkdir(parents=True,exist_ok=True)
     args.output.write_text(json.dumps(result,indent=2,allow_nan=False)+'\n')
     print(json.dumps(result['summary'],indent=2))

@@ -1,0 +1,8 @@
+Provenance: DIFFERENT
+  $.replay: missing key
+  $.git_head: value differs
+  $.source_sha256.lab/replay.py: missing key
+  $.source_sha256.lab/surface_experiment.py: value differs
+Diagnostic differences: 0 (not operational failures)
+PASS: operational decisions identical; floats atol=0 + rtol=0 * max(abs(a), abs(b)); authoritative integers, booleans, strings, structure, protocol identity and input digests exact.
+Diagnostic differences and execution provenance are reported separately; this is not an exact reproduction or complete scientific-equivalence claim.

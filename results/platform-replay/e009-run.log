@@ -1,0 +1,372 @@
+{
+  "cells": {
+    "uniform/frozen": {
+      "records": 1152,
+      "coverage": {
+        "unique_steps": 768,
+        "misses": 88,
+        "max_ratio": 3.011020037260388,
+        "decisive_steps": 189,
+        "decisive_misses": 0,
+        "strata": {
+          "broad:[0,.5)": {
+            "steps": 25,
+            "misses": 14,
+            "max_ratio": 2.8891492985736886
+          },
+          "broad:[.5,1)": {
+            "steps": 21,
+            "misses": 0,
+            "max_ratio": 0.49044976798326406
+          },
+          "broad:[1,2)": {
+            "steps": 25,
+            "misses": 0,
+            "max_ratio": 0.27808010247986187
+          },
+          "broad:[2,4)": {
+            "steps": 23,
+            "misses": 0,
+            "max_ratio": 0.19606492618707635
+          },
+          "broad:[4,infinity)": {
+            "steps": 290,
+            "misses": 0,
+            "max_ratio": 0.17411550981050247
+          },
+          "high:[0,.5)": {
+            "steps": 145,
+            "misses": 74,
+            "max_ratio": 3.011020037260388
+          },
+          "high:[.5,1)": {
+            "steps": 96,
+            "misses": 0,
+            "max_ratio": 0.5418988442472322
+          },
+          "high:[1,2)": {
+            "steps": 96,
+            "misses": 0,
+            "max_ratio": 0.2664881423164273
+          },
+          "high:[2,4)": {
+            "steps": 47,
+            "misses": 0,
+            "max_ratio": 0.19256602614072124
+          },
+          "high:[4,infinity)": {
+            "steps": 0,
+            "misses": 0,
+            "max_ratio": null
+          }
+        },
+        "fallback_steps": 0
+      },
+      "false_acceptances": 0,
+      "accurate_violation": 0,
+      "accurate_violation_guard_pass": 0,
+      "clean": {
+        "broad": {
+          "tasks": 96,
+          "accurate": 87,
+          "accurate_accepted": 79,
+          "inconclusive": 10
+        },
+        "high": {
+          "tasks": 96,
+          "accurate": 91,
+          "accurate_accepted": 58,
+          "inconclusive": 38
+        }
+      },
+      "inconclusive": 303,
+      "accurate_inconclusive": 203,
+      "decision_cells": 5385216,
+      "full_path_equivalent_cells": 9363456,
+      "futility_stops": 66,
+      "accurate_shadow_accept_lost": 0,
+      "futility_accurate_shadow_accept_lost": 0,
+      "futility_lost_shadow_violations": 31,
+      "shadow_reversals": 0,
+      "verification_seconds": 0.7874656769799913
+    },
+    "surface/frozen": {
+      "records": 1152,
+      "coverage": {
+        "unique_steps": 768,
+        "misses": 0,
+        "max_ratio": 0.20451589621026198,
+        "decisive_steps": 236,
+        "decisive_misses": 0,
+        "strata": {
+          "broad:[0,.5)": {
+            "steps": 0,
+            "misses": 0,
+            "max_ratio": null
+          },
+          "broad:[.5,1)": {
+            "steps": 0,
+            "misses": 0,
+            "max_ratio": null
+          },
+          "broad:[1,2)": {
+            "steps": 3,
+            "misses": 0,
+            "max_ratio": 0.1996503416333252
+          },
+          "broad:[2,4)": {
+            "steps": 10,
+            "misses": 0,
+            "max_ratio": 0.19636652193277362
+          },
+          "broad:[4,infinity)": {
+            "steps": 371,
+            "misses": 0,
+            "max_ratio": 0.1741851300117297
+          },
+          "high:[0,.5)": {
+            "steps": 0,
+            "misses": 0,
+            "max_ratio": null
+          },
+          "high:[.5,1)": {
+            "steps": 0,
+            "misses": 0,
+            "max_ratio": null
+          },
+          "high:[1,2)": {
+            "steps": 9,
+            "misses": 0,
+            "max_ratio": 0.20451589621026198
+          },
+          "high:[2,4)": {
+            "steps": 65,
+            "misses": 0,
+            "max_ratio": 0.19212469403660437
+          },
+          "high:[4,infinity)": {
+            "steps": 310,
+            "misses": 0,
+            "max_ratio": 0.17394003937149613
+          }
+        },
+        "fallback_steps": 0
+      },
+      "false_acceptances": 0,
+      "accurate_violation": 0,
+      "accurate_violation_guard_pass": 0,
+      "clean": {
+        "broad": {
+          "tasks": 96,
+          "accurate": 87,
+          "accurate_accepted": 87,
+          "inconclusive": 0
+        },
+        "high": {
+          "tasks": 96,
+          "accurate": 91,
+          "accurate_accepted": 90,
+          "inconclusive": 1
+        }
+      },
+      "inconclusive": 2,
+      "accurate_inconclusive": 2,
+      "decision_cells": 1271808,
+      "full_path_equivalent_cells": 9363456,
+      "futility_stops": 0,
+      "accurate_shadow_accept_lost": 0,
+      "futility_accurate_shadow_accept_lost": 0,
+      "futility_lost_shadow_violations": 0,
+      "shadow_reversals": 0,
+      "verification_seconds": 2.0314965159832354
+    },
+    "uniform/order": {
+      "records": 1152,
+      "coverage": {
+        "unique_steps": 768,
+        "misses": 88,
+        "max_ratio": 3.011020037260388,
+        "decisive_steps": 118,
+        "decisive_misses": 0,
+        "strata": {
+          "broad:[0,.5)": {
+            "steps": 25,
+            "misses": 14,
+            "max_ratio": 2.8891492985736886
+          },
+          "broad:[.5,1)": {
+            "steps": 21,
+            "misses": 0,
+            "max_ratio": 0.49044976798326406
+          },
+          "broad:[1,2)": {
+            "steps": 25,
+            "misses": 0,
+            "max_ratio": 0.3031091413950787
+          },
+          "broad:[2,4)": {
+            "steps": 23,
+            "misses": 0,
+            "max_ratio": 0.45902734107491805
+          },
+          "broad:[4,infinity)": {
+            "steps": 290,
+            "misses": 0,
+            "max_ratio": 0.49986319284184316
+          },
+          "high:[0,.5)": {
+            "steps": 145,
+            "misses": 74,
+            "max_ratio": 3.011020037260388
+          },
+          "high:[.5,1)": {
+            "steps": 96,
+            "misses": 0,
+            "max_ratio": 0.5418988442472322
+          },
+          "high:[1,2)": {
+            "steps": 96,
+            "misses": 0,
+            "max_ratio": 0.32750209320552764
+          },
+          "high:[2,4)": {
+            "steps": 47,
+            "misses": 0,
+            "max_ratio": 0.4575420336122737
+          },
+          "high:[4,infinity)": {
+            "steps": 0,
+            "misses": 0,
+            "max_ratio": null
+          }
+        },
+        "fallback_steps": 240
+      },
+      "false_acceptances": 0,
+      "accurate_violation": 0,
+      "accurate_violation_guard_pass": 0,
+      "clean": {
+        "broad": {
+          "tasks": 96,
+          "accurate": 87,
+          "accurate_accepted": 76,
+          "inconclusive": 13
+        },
+        "high": {
+          "tasks": 96,
+          "accurate": 91,
+          "accurate_accepted": 24,
+          "inconclusive": 72
+        }
+      },
+      "inconclusive": 509,
+      "accurate_inconclusive": 345,
+      "decision_cells": 5218304,
+      "full_path_equivalent_cells": 9363456,
+      "futility_stops": 156,
+      "accurate_shadow_accept_lost": 34,
+      "futility_accurate_shadow_accept_lost": 34,
+      "futility_lost_shadow_violations": 42,
+      "shadow_reversals": 0,
+      "verification_seconds": 0.7743293960265873
+    },
+    "surface/order": {
+      "records": 1152,
+      "coverage": {
+        "unique_steps": 768,
+        "misses": 0,
+        "max_ratio": 0.4997018608557472,
+        "decisive_steps": 207,
+        "decisive_misses": 0,
+        "strata": {
+          "broad:[0,.5)": {
+            "steps": 0,
+            "misses": 0,
+            "max_ratio": null
+          },
+          "broad:[.5,1)": {
+            "steps": 0,
+            "misses": 0,
+            "max_ratio": null
+          },
+          "broad:[1,2)": {
+            "steps": 3,
+            "misses": 0,
+            "max_ratio": 0.2821819553458323
+          },
+          "broad:[2,4)": {
+            "steps": 10,
+            "misses": 0,
+            "max_ratio": 0.43652369687954573
+          },
+          "broad:[4,infinity)": {
+            "steps": 371,
+            "misses": 0,
+            "max_ratio": 0.4997018608557472
+          },
+          "high:[0,.5)": {
+            "steps": 0,
+            "misses": 0,
+            "max_ratio": null
+          },
+          "high:[.5,1)": {
+            "steps": 0,
+            "misses": 0,
+            "max_ratio": null
+          },
+          "high:[1,2)": {
+            "steps": 9,
+            "misses": 0,
+            "max_ratio": 0.31957385077861333
+          },
+          "high:[2,4)": {
+            "steps": 65,
+            "misses": 0,
+            "max_ratio": 0.47479829800142465
+          },
+          "high:[4,infinity)": {
+            "steps": 310,
+            "misses": 0,
+            "max_ratio": 0.49854330572256345
+          }
+        },
+        "fallback_steps": 1
+      },
+      "false_acceptances": 0,
+      "accurate_violation": 0,
+      "accurate_violation_guard_pass": 0,
+      "clean": {
+        "broad": {
+          "tasks": 96,
+          "accurate": 87,
+          "accurate_accepted": 87,
+          "inconclusive": 0
+        },
+        "high": {
+          "tasks": 96,
+          "accurate": 91,
+          "accurate_accepted": 91,
+          "inconclusive": 0
+        }
+      },
+      "inconclusive": 0,
+      "accurate_inconclusive": 0,
+      "decision_cells": 1285120,
+      "full_path_equivalent_cells": 9363456,
+      "futility_stops": 0,
+      "accurate_shadow_accept_lost": 0,
+      "futility_accurate_shadow_accept_lost": 0,
+      "futility_lost_shadow_violations": 0,
+      "shadow_reversals": 0,
+      "verification_seconds": 2.0759248469603335
+    }
+  },
+  "work": {
+    "shadow_cells": 3121152,
+    "decision_cells": 13160448,
+    "total_actual_fv_cells": 16281600,
+    "execution_modal_terms": 241100,
+    "additional_injection_modes": 482200,
+    "shadow_seconds": 0.8894901300100173
+  }
+}
