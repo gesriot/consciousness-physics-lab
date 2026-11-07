@@ -3,8 +3,8 @@
 This protocol precedes implementation and outcomes. E005–E013 are development
 evidence. This experiment selects a candidate, not independent validation.
 Frozen uncertainty is U=2 Delta_n+R_n, R_n=32 eps n² max(1,|F_n|).
-All candidates share each fresh graded sphere FV path at64..4096 and inspect
-all eligible grids512..4096, including grids not operationally reached.
+All candidates share each fresh graded sphere FV path at 64..4096 and inspect
+all eligible grids 512..4096, including grids not operationally reached.
 
 ## Candidates and prediction
 
@@ -28,20 +28,20 @@ roundoff acceptances; C2/C3 reduce that cost. Retain contrary outcomes.
 
 ## Shifted domain and audit
 
-Use log10|q| in[-6,12] and phase in[-pi/2,pi/2], T=1. Interior base nodes are
+Use log10|q| in [-6,12] and phase in [-pi/2,pi/2], T=1. Interior base nodes are
 shifted by half E012 base spacing: log=-6+.025+.05*i, i=0..359, and
 phase=-pi/2+pi/72+j*pi/36, j=0..35. Append both original domain boundaries
-on each axis, giving362*38 base nodes. This bounded convention uses half-width
+on each axis, giving 362*38 base nodes. This bounded convention uses half-width
 boundary cells and does not wrap magnitudes or phases. The integer lattice is
-log=-6+x/320 and phase=-pi/2+y*pi/576. Base x nodes0,8,24,..5752,5760;
-y nodes0,8,24,..568,576. Refine any rectangle whose four corners differ in
+log=-6+x/320 and phase=-pi/2+y*pi/576. Base x nodes 0,8,24,..5752,5760;
+y nodes 0,8,24,..568,576. Refine any rectangle whose four corners differ in
 any candidate's complete (converging,covered) vector, splitting four ways for
 three levels, globally deduplicating. No interior-transition guarantee.
 
 Use E012 dimensionless and cached-geometry controls. Reference auditing uses
-its exact binary64-to-60-digit formula and threshold1e-13+1e-12|G60|.
-Audit every x>4480 (log|q|>8), plus floor10% of remaining new sorted nodes
-without replacement per batch using continuous default_rng seed20261127.
+its exact binary64-to-60-digit formula and threshold 1e-13+1e-12|G60|.
+Audit every x>4480 (log|q|>8), plus floor 10% of remaining new sorted nodes
+without replacement per batch using continuous default_rng seed 20261127.
 The coordinate threshold, rather than floating abs(q), avoids boundary noise.
 Persist audit before FV evaluation; any failure replaces the entire batch with
 once-rounded high-precision references, retaining all discrepancies.
@@ -54,7 +54,7 @@ artifacts, probes or inputs. Replay sequential decisions on archived full shadow
 values, using only the prefix available at each grid, with unchanged futility
 and gates. Check C0 exactly reproduces archived operational values/prefixes and
 verdicts; a mismatch blocks selection. For E011 shared models use the solved
-model's kappa: scaled sphere1/(15000T), slab1/(3T). These are development costs,
+model's kappa: scaled sphere 1/(15000T), slab 1/(3T). These are development costs,
 not validation; shadow-based replay measures decision cell counts, not runtime.
 Report all candidate verdicts, accurate accepts lost versus C0, newly false
 acceptances, gained accurate accepts, violation changes and decision cells,
