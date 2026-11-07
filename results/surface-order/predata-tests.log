@@ -1,0 +1,11 @@
+test_decision_no_oracle (tests.test_surface_order.SurfaceOrderTests.test_decision_no_oracle) ... ok
+test_nested_midpoint_subdivision (tests.test_surface_order.SurfaceOrderTests.test_nested_midpoint_subdivision) ... ok
+test_normalization (tests.test_surface_order.SurfaceOrderTests.test_normalization) ... ok
+test_order_band_and_fallback (tests.test_surface_order.SurfaceOrderTests.test_order_band_and_fallback) ... ok
+test_second_order_against_analytic (tests.test_surface_order.SurfaceOrderTests.test_second_order_against_analytic) ... ok
+test_uniform_frozen_identical_to_d3 (tests.test_surface_order.SurfaceOrderTests.test_uniform_frozen_identical_to_d3) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.015s
+
+OK
