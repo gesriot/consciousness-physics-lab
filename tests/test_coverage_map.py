@@ -1,4 +1,6 @@
 import unittest
+from pathlib import Path
+import tempfile
 from functools import lru_cache
 from unittest.mock import patch
 import numpy as np
@@ -50,3 +52,17 @@ class CoverageMapTests(unittest.TestCase):
         self.assertTrue(audit['fallback'])
         for k in keys:
             self.assertLess(abs(refs[k]-bad[k]),1e-13)
+
+    def test_reference_boundary_uses_exact_coordinate(self):
+        keys = [(2240, y) for y in range(0, 289, 8)] + [(2241, y) for y in range(0, 289, 8)]
+        _, audit = m.reference_batch(keys, np.random.default_rng(20261124))
+        self.assertEqual(audit['random_subset_size'], 3)
+        self.assertEqual(audit['audited'], 40)
+        self.assertEqual(sum(r['coordinate'][0] == 2241 for r in audit['records']), 37)
+
+    def test_runtime_override_reaches_metadata_gate(self):
+        with tempfile.TemporaryDirectory() as directory:
+            with patch.object(m, 'metadata', side_effect=RuntimeError('stop before evaluation')) as mocked:
+                with self.assertRaisesRegex(RuntimeError, 'stop before evaluation'):
+                    m.run(Path(directory) / 'new-map', 'Cross-platform audit')
+            mocked.assert_called_once_with(m.PROTOCOL, m.SOURCES, 'Cross-platform audit')
