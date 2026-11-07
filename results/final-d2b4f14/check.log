@@ -65,7 +65,7 @@ test_futility_only_inconclusive (test_three_way.ThreeWayTests.test_futility_only
 test_u_matches_frozen_D (test_three_way.ThreeWayTests.test_u_matches_frozen_D) ... ok
 
 ----------------------------------------------------------------------
-Ran 65 tests in 0.599s
+Ran 65 tests in 0.603s
 
 OK
 test_examples_produce_documented_status (tests.test_cli.ExampleTests.test_examples_produce_documented_status) ... ok
@@ -100,6 +100,6 @@ test_tail_bound_against_independent_reference (tests.test_response.ModalTests.te
 test_zero_limit_keeps_truncated_weights (tests.test_response.ModalTests.test_zero_limit_keeps_truncated_weights) ... ok
 
 ----------------------------------------------------------------------
-Ran 30 tests in 5.713s
+Ran 30 tests in 6.112s
 
 OK
