@@ -1,0 +1,698 @@
+{
+  "summary": {
+    "A": {
+      "tasks": 48,
+      "paired_rows": 384,
+      "false_acceptances": 0,
+      "accurate_violation": 90,
+      "accurate_numerical_violation": 0,
+      "accurate_model_violation": 90,
+      "clean_accurate_violation": 0,
+      "coverage": {
+        "steps": 576,
+        "misses": 207,
+        "max_ratio": 76.49256460049178,
+        "decisive_steps": 104,
+        "decisive_misses": 0,
+        "sphere_decisive_steps": 56,
+        "sphere_decisive_misses": 0,
+        "strata": {
+          "sphere:[0,.5)": {
+            "steps": 39,
+            "misses": 18,
+            "max_ratio": 1.8768204752283917
+          },
+          "sphere:[.5,1)": {
+            "steps": 41,
+            "misses": 0,
+            "max_ratio": 0.5232036677454901
+          },
+          "sphere:[1,2)": {
+            "steps": 48,
+            "misses": 0,
+            "max_ratio": 0.2672868203259178
+          },
+          "sphere:[2,4)": {
+            "steps": 35,
+            "misses": 0,
+            "max_ratio": 0.19148062495698473
+          },
+          "sphere:[4,infinity)": {
+            "steps": 29,
+            "misses": 0,
+            "max_ratio": 0.1719605532247038
+          },
+          "model_scale:[0,.5)": {
+            "steps": 192,
+            "misses": 189,
+            "max_ratio": 76.49256460049178
+          },
+          "model_scale:[.5,1)": {
+            "steps": 0,
+            "misses": 0,
+            "max_ratio": null
+          },
+          "model_scale:[1,2)": {
+            "steps": 0,
+            "misses": 0,
+            "max_ratio": null
+          },
+          "model_scale:[2,4)": {
+            "steps": 0,
+            "misses": 0,
+            "max_ratio": null
+          },
+          "model_scale:[4,infinity)": {
+            "steps": 0,
+            "misses": 0,
+            "max_ratio": null
+          },
+          "slab:[0,.5)": {
+            "steps": 7,
+            "misses": 0,
+            "max_ratio": 0.6641576669294329
+          },
+          "slab:[.5,1)": {
+            "steps": 24,
+            "misses": 0,
+            "max_ratio": 0.5167012928077827
+          },
+          "slab:[1,2)": {
+            "steps": 38,
+            "misses": 0,
+            "max_ratio": 0.25362521160118984
+          },
+          "slab:[2,4)": {
+            "steps": 48,
+            "misses": 0,
+            "max_ratio": 0.1955949194430649
+          },
+          "slab:[4,infinity)": {
+            "steps": 75,
+            "misses": 0,
+            "max_ratio": 0.17389955647109157
+          }
+        }
+      },
+      "clean": {
+        "accurate": 47,
+        "accurate_accepted": 47,
+        "inaccurate": 1,
+        "inconclusive": 0,
+        "invariant_false_rejections": {
+          "normalization": 0,
+          "first_moment": 0,
+          "second_moment": 0,
+          "high_frequency": 0
+        }
+      },
+      "inconclusive": 4,
+      "numerical_inconclusive": 51,
+      "futility_stops": 0,
+      "conditions": {
+        "clean": {
+          "rows": 48,
+          "accepted": 47,
+          "accurate": 47,
+          "false_acceptances": 0
+        },
+        "conjugate": {
+          "rows": 48,
+          "accepted": 43,
+          "accurate": 44,
+          "false_acceptances": 0
+        },
+        "renormalized": {
+          "rows": 48,
+          "accepted": 47,
+          "accurate": 47,
+          "false_acceptances": 0
+        },
+        "time_units": {
+          "rows": 48,
+          "accepted": 43,
+          "accurate": 43,
+          "false_acceptances": 0
+        },
+        "near_tolerance": {
+          "rows": 48,
+          "accepted": 11,
+          "accurate": 12,
+          "false_acceptances": 0
+        },
+        "stale_value": {
+          "rows": 48,
+          "accepted": 40,
+          "accurate": 40,
+          "false_acceptances": 0
+        },
+        "model_scale": {
+          "rows": 48,
+          "accepted": 0,
+          "accurate": 43,
+          "false_acceptances": 0
+        },
+        "slab": {
+          "rows": 48,
+          "accepted": 0,
+          "accurate": 47,
+          "false_acceptances": 0
+        }
+      }
+    },
+    "B": {
+      "tasks": 48,
+      "paired_rows": 384,
+      "false_acceptances": 0,
+      "accurate_violation": 34,
+      "accurate_numerical_violation": 0,
+      "accurate_model_violation": 34,
+      "clean_accurate_violation": 0,
+      "coverage": {
+        "steps": 576,
+        "misses": 6,
+        "max_ratio": 5.557817056969853,
+        "decisive_steps": 143,
+        "decisive_misses": 0,
+        "sphere_decisive_steps": 50,
+        "sphere_decisive_misses": 0,
+        "strata": {
+          "sphere:[0,.5)": {
+            "steps": 0,
+            "misses": 0,
+            "max_ratio": null
+          },
+          "sphere:[.5,1)": {
+            "steps": 0,
+            "misses": 0,
+            "max_ratio": null
+          },
+          "sphere:[1,2)": {
+            "steps": 0,
+            "misses": 0,
+            "max_ratio": null
+          },
+          "sphere:[2,4)": {
+            "steps": 2,
+            "misses": 0,
+            "max_ratio": 0.168194526208507
+          },
+          "sphere:[4,infinity)": {
+            "steps": 190,
+            "misses": 0,
+            "max_ratio": 0.16714423072800283
+          },
+          "model_scale:[0,.5)": {
+            "steps": 11,
+            "misses": 6,
+            "max_ratio": 5.557817056969853
+          },
+          "model_scale:[.5,1)": {
+            "steps": 7,
+            "misses": 0,
+            "max_ratio": 0.44228943724128406
+          },
+          "model_scale:[1,2)": {
+            "steps": 5,
+            "misses": 0,
+            "max_ratio": 0.2051600255969988
+          },
+          "model_scale:[2,4)": {
+            "steps": 6,
+            "misses": 0,
+            "max_ratio": 0.16962540964513634
+          },
+          "model_scale:[4,infinity)": {
+            "steps": 163,
+            "misses": 0,
+            "max_ratio": 0.16717855757495848
+          },
+          "slab:[0,.5)": {
+            "steps": 0,
+            "misses": 0,
+            "max_ratio": null
+          },
+          "slab:[.5,1)": {
+            "steps": 0,
+            "misses": 0,
+            "max_ratio": null
+          },
+          "slab:[1,2)": {
+            "steps": 0,
+            "misses": 0,
+            "max_ratio": null
+          },
+          "slab:[2,4)": {
+            "steps": 0,
+            "misses": 0,
+            "max_ratio": null
+          },
+          "slab:[4,infinity)": {
+            "steps": 192,
+            "misses": 0,
+            "max_ratio": 0.16675505600734736
+          }
+        }
+      },
+      "clean": {
+        "accurate": 45,
+        "accurate_accepted": 45,
+        "inaccurate": 3,
+        "inconclusive": 0,
+        "invariant_false_rejections": {
+          "normalization": 0,
+          "first_moment": 0,
+          "second_moment": 0,
+          "high_frequency": 0
+        }
+      },
+      "inconclusive": 4,
+      "numerical_inconclusive": 3,
+      "futility_stops": 0,
+      "conditions": {
+        "clean": {
+          "rows": 48,
+          "accepted": 45,
+          "accurate": 45,
+          "false_acceptances": 0
+        },
+        "conjugate": {
+          "rows": 48,
+          "accepted": 21,
+          "accurate": 21,
+          "false_acceptances": 0
+        },
+        "renormalized": {
+          "rows": 48,
+          "accepted": 45,
+          "accurate": 46,
+          "false_acceptances": 0
+        },
+        "time_units": {
+          "rows": 48,
+          "accepted": 5,
+          "accurate": 5,
+          "false_acceptances": 0
+        },
+        "near_tolerance": {
+          "rows": 48,
+          "accepted": 43,
+          "accurate": 46,
+          "false_acceptances": 0
+        },
+        "stale_value": {
+          "rows": 48,
+          "accepted": 7,
+          "accurate": 7,
+          "false_acceptances": 0
+        },
+        "model_scale": {
+          "rows": 48,
+          "accepted": 0,
+          "accurate": 5,
+          "false_acceptances": 0
+        },
+        "slab": {
+          "rows": 48,
+          "accepted": 0,
+          "accurate": 29,
+          "false_acceptances": 0
+        }
+      }
+    },
+    "C": {
+      "tasks": 48,
+      "paired_rows": 384,
+      "false_acceptances": 0,
+      "accurate_violation": 1,
+      "accurate_numerical_violation": 0,
+      "accurate_model_violation": 1,
+      "clean_accurate_violation": 0,
+      "coverage": {
+        "steps": 576,
+        "misses": 16,
+        "max_ratio": 7.899888805308739,
+        "decisive_steps": 140,
+        "decisive_misses": 0,
+        "sphere_decisive_steps": 54,
+        "sphere_decisive_misses": 0,
+        "strata": {
+          "sphere:[0,.5)": {
+            "steps": 0,
+            "misses": 0,
+            "max_ratio": null
+          },
+          "sphere:[.5,1)": {
+            "steps": 0,
+            "misses": 0,
+            "max_ratio": null
+          },
+          "sphere:[1,2)": {
+            "steps": 2,
+            "misses": 0,
+            "max_ratio": 0.1998814839947057
+          },
+          "sphere:[2,4)": {
+            "steps": 4,
+            "misses": 0,
+            "max_ratio": 0.1890119328012599
+          },
+          "sphere:[4,infinity)": {
+            "steps": 186,
+            "misses": 0,
+            "max_ratio": 0.17276468480101353
+          },
+          "model_scale:[0,.5)": {
+            "steps": 22,
+            "misses": 16,
+            "max_ratio": 7.899888805308739
+          },
+          "model_scale:[.5,1)": {
+            "steps": 11,
+            "misses": 0,
+            "max_ratio": 0.5400381577943542
+          },
+          "model_scale:[1,2)": {
+            "steps": 11,
+            "misses": 0,
+            "max_ratio": 0.27415293454890793
+          },
+          "model_scale:[2,4)": {
+            "steps": 11,
+            "misses": 0,
+            "max_ratio": 0.19372260395016977
+          },
+          "model_scale:[4,infinity)": {
+            "steps": 137,
+            "misses": 0,
+            "max_ratio": 0.17172067337045807
+          },
+          "slab:[0,.5)": {
+            "steps": 0,
+            "misses": 0,
+            "max_ratio": null
+          },
+          "slab:[.5,1)": {
+            "steps": 0,
+            "misses": 0,
+            "max_ratio": null
+          },
+          "slab:[1,2)": {
+            "steps": 0,
+            "misses": 0,
+            "max_ratio": null
+          },
+          "slab:[2,4)": {
+            "steps": 0,
+            "misses": 0,
+            "max_ratio": null
+          },
+          "slab:[4,infinity)": {
+            "steps": 192,
+            "misses": 0,
+            "max_ratio": 0.17325162356648208
+          }
+        }
+      },
+      "clean": {
+        "accurate": 0,
+        "accurate_accepted": 0,
+        "inaccurate": 48,
+        "inconclusive": 0,
+        "invariant_false_rejections": {
+          "normalization": 0,
+          "first_moment": 0,
+          "second_moment": 0,
+          "high_frequency": 0
+        }
+      },
+      "inconclusive": 20,
+      "numerical_inconclusive": 10,
+      "futility_stops": 6,
+      "conditions": {
+        "clean": {
+          "rows": 48,
+          "accepted": 0,
+          "accurate": 0,
+          "false_acceptances": 0
+        },
+        "conjugate": {
+          "rows": 48,
+          "accepted": 0,
+          "accurate": 0,
+          "false_acceptances": 0
+        },
+        "renormalized": {
+          "rows": 48,
+          "accepted": 0,
+          "accurate": 16,
+          "false_acceptances": 0
+        },
+        "time_units": {
+          "rows": 48,
+          "accepted": 0,
+          "accurate": 0,
+          "false_acceptances": 0
+        },
+        "near_tolerance": {
+          "rows": 48,
+          "accepted": 0,
+          "accurate": 4,
+          "false_acceptances": 0
+        },
+        "stale_value": {
+          "rows": 48,
+          "accepted": 0,
+          "accurate": 0,
+          "false_acceptances": 0
+        },
+        "model_scale": {
+          "rows": 48,
+          "accepted": 0,
+          "accurate": 0,
+          "false_acceptances": 0
+        },
+        "slab": {
+          "rows": 48,
+          "accepted": 0,
+          "accurate": 1,
+          "false_acceptances": 0
+        }
+      }
+    },
+    "K": {
+      "tasks": 48,
+      "paired_rows": 384,
+      "false_acceptances": 0,
+      "accurate_violation": 39,
+      "accurate_numerical_violation": 0,
+      "accurate_model_violation": 39,
+      "clean_accurate_violation": 0,
+      "coverage": {
+        "steps": 576,
+        "misses": 26,
+        "max_ratio": 8.165304424130174,
+        "decisive_steps": 138,
+        "decisive_misses": 0,
+        "sphere_decisive_steps": 54,
+        "sphere_decisive_misses": 0,
+        "strata": {
+          "sphere:[0,.5)": {
+            "steps": 0,
+            "misses": 0,
+            "max_ratio": null
+          },
+          "sphere:[.5,1)": {
+            "steps": 0,
+            "misses": 0,
+            "max_ratio": null
+          },
+          "sphere:[1,2)": {
+            "steps": 2,
+            "misses": 0,
+            "max_ratio": 0.19706006940426105
+          },
+          "sphere:[2,4)": {
+            "steps": 7,
+            "misses": 0,
+            "max_ratio": 0.19176409414246304
+          },
+          "sphere:[4,infinity)": {
+            "steps": 183,
+            "misses": 0,
+            "max_ratio": 0.1729188384275998
+          },
+          "model_scale:[0,.5)": {
+            "steps": 34,
+            "misses": 26,
+            "max_ratio": 8.165304424130174
+          },
+          "model_scale:[.5,1)": {
+            "steps": 14,
+            "misses": 0,
+            "max_ratio": 0.529970235195368
+          },
+          "model_scale:[1,2)": {
+            "steps": 12,
+            "misses": 0,
+            "max_ratio": 0.2575622856240277
+          },
+          "model_scale:[2,4)": {
+            "steps": 9,
+            "misses": 0,
+            "max_ratio": 0.18938781120939638
+          },
+          "model_scale:[4,infinity)": {
+            "steps": 123,
+            "misses": 0,
+            "max_ratio": 0.1721090891531819
+          },
+          "slab:[0,.5)": {
+            "steps": 0,
+            "misses": 0,
+            "max_ratio": null
+          },
+          "slab:[.5,1)": {
+            "steps": 0,
+            "misses": 0,
+            "max_ratio": null
+          },
+          "slab:[1,2)": {
+            "steps": 0,
+            "misses": 0,
+            "max_ratio": null
+          },
+          "slab:[2,4)": {
+            "steps": 1,
+            "misses": 0,
+            "max_ratio": 0.1724501623057867
+          },
+          "slab:[4,infinity)": {
+            "steps": 191,
+            "misses": 0,
+            "max_ratio": 0.1716903772233272
+          }
+        }
+      },
+      "clean": {
+        "accurate": 45,
+        "accurate_accepted": 45,
+        "inaccurate": 3,
+        "inconclusive": 0,
+        "invariant_false_rejections": {
+          "normalization": 0,
+          "first_moment": 0,
+          "second_moment": 0,
+          "high_frequency": 0
+        }
+      },
+      "inconclusive": 4,
+      "numerical_inconclusive": 12,
+      "futility_stops": 0,
+      "conditions": {
+        "clean": {
+          "rows": 48,
+          "accepted": 45,
+          "accurate": 45,
+          "false_acceptances": 0
+        },
+        "conjugate": {
+          "rows": 48,
+          "accepted": 20,
+          "accurate": 20,
+          "false_acceptances": 0
+        },
+        "renormalized": {
+          "rows": 48,
+          "accepted": 45,
+          "accurate": 46,
+          "false_acceptances": 0
+        },
+        "time_units": {
+          "rows": 48,
+          "accepted": 7,
+          "accurate": 7,
+          "false_acceptances": 0
+        },
+        "near_tolerance": {
+          "rows": 48,
+          "accepted": 40,
+          "accurate": 43,
+          "false_acceptances": 0
+        },
+        "stale_value": {
+          "rows": 48,
+          "accepted": 6,
+          "accurate": 6,
+          "false_acceptances": 0
+        },
+        "model_scale": {
+          "rows": 48,
+          "accepted": 0,
+          "accurate": 7,
+          "false_acceptances": 0
+        },
+        "slab": {
+          "rows": 48,
+          "accepted": 0,
+          "accurate": 32,
+          "false_acceptances": 0
+        }
+      }
+    }
+  },
+  "reference_audit": {
+    "precision_decimal_digits": 60,
+    "mpmath_version": "1.3.0",
+    "absolute_allowance": 1e-13,
+    "relative_allowance": 1e-12,
+    "audited_tasks": 96,
+    "failed_tasks": 0,
+    "fallback_all_AB": false,
+    "max_absolute_error": 1.754819262439694e-16
+  },
+  "work": {
+    "reference_audit_seconds": 0.022052193999115843,
+    "initial_stale_modes": 122,
+    "initial_stale_seconds": 0.0001142210003308719,
+    "base_execution_modes": 361426,
+    "base_execution_seconds": 0.020959492985639372,
+    "additional_artifact_modes": 1445704,
+    "injection_seconds": 0.06768798097436957,
+    "decision_cells": 3286016,
+    "decision_seconds": 3.115023814039887,
+    "hash_seconds": 0.034053149007377215,
+    "shadow_cells": 4681728,
+    "shadow_seconds": 1.998300956976891,
+    "shadow_by_model": {
+      "sphere": {
+        "cells": 1560576,
+        "seconds": 0.6781291449751734
+      },
+      "model_scale": {
+        "cells": 1560576,
+        "seconds": 0.6697630220023711
+      },
+      "slab": {
+        "cells": 1560576,
+        "seconds": 0.6504087899993465
+      }
+    },
+    "operational_and_diagnostic_wall_seconds": 12.57395647500016,
+    "old": {
+      "modal_terms": 12582912,
+      "finite_volume_cells": 1572864,
+      "seconds": 1.7158753000385332
+    },
+    "second_moment": {
+      "modal_terms": 12582912,
+      "finite_volume_cells": 12582912,
+      "seconds": 2.770022838994919
+    },
+    "high_frequency": {
+      "modal_terms": 6291456,
+      "finite_volume_cells": 6291456,
+      "seconds": 1.440595062003922
+    }
+  }
+}

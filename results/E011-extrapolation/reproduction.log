@@ -1,0 +1,5 @@
+PASS: both runs satisfy accounting, accuracy, coverage and verdict arithmetic.
+PASS: every scientific field matches exactly, including diagnostics and reference audit.
+Compared top-level fields: experiment, task_seed, order_seed, paired_tasks, sampling_unit, reference_audit, intake_channel, tasks, coverage_steps, runs, summary, work
+Excluded timing keys: base_execution_seconds, decision_seconds, hash_seconds, initial_stale_seconds, injection_seconds, operational_and_diagnostic_wall_seconds, reference_audit_seconds, seconds, shadow_seconds
+Excluded top-level provenance: environment, git_head, intake_sha256, protocol_commit, protocol_sha256, reference_audit_sha256, runtime_override, source_sha256
