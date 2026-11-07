@@ -1,0 +1,13 @@
+Provenance: DIFFERENT
+  $.replay: missing key
+  $.runtime_override: missing key
+  $.environment.architecture: missing key
+  $.environment.blas_lapack_configuration: missing key
+  $.environment.os: missing key
+  $.environment.os_release: missing key
+  $.git_head: value differs
+  $.source_sha256.lab/replay.py: missing key
+  $.source_sha256.lab/experiment_audit.py: value differs
+  $.source_sha256.lab/verifier_stress.py: value differs
+PASS: decisions identical; floats rtol=1e-12, atol=0; integers, booleans, strings, structure, protocol identity and input digests exact.
+Execution provenance compared separately above; this is not an exact reproduction claim.
