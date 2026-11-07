@@ -40,3 +40,19 @@ within tasks and carry no independent-sample confidence claim.
 Checks: scripts/check.sh passed (37 laboratory + 30 solver tests).
 Full numerical reproduction passed excluding only timing fields; see logs.
 Run: python3 -m lab.verifier_stress --output results/local/e007.json.
+
+## Additional accounting audit
+
+All 101 U misses occur on nonconverging steps. The 84 futile artifacts belong to
+14 tasks (24 accurate, 60 inaccurate). D3 leaves 107/393 inaccurate artifacts
+inconclusive. The 34 lost later violations span 12 tasks: 12 time_units,
+12 stale_value and 10 conjugate. Clean accurate acceptance is 84/87 in the broad
+cohort and 61/90 in the high cohort. All 17 accurate guard failures concern
+corrupted artifacts. Of savings versus D, 442,368 cells are attributable to
+futility versus first-decisive stopping without futility.
+The first_decisive_grid field is 4096 as a sentinel when its paired verdict is
+inconclusive (no decisive step); it does not claim a decisive result there.
+Optional post-hoc high-precision check: scripts/audit_e007_high_precision.py,
+mpmath1.3.0 at60 decimal digits; see independent-audit.log.
+Exact comparison script: scripts/compare_experiment_runs.py. Reproduction from
+later documentation commits uses --ignore-git-head, retaining all source hashes.

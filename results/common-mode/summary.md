@@ -32,7 +32,7 @@ integrity and the guard's request differ.
 The original request digest was recorded in an independent intake list BEFORE
 corruption. Its comparison rejects all96 in each request-corruption condition,
 with zero clean false rejections. It rejects no model-scale cases and therefore
-leaves63 wrong model-scale acceptances. Comparing two corrupted requests would
+leaves63 wrong model-scale acceptances in D+hash (79 inaccurate artifacts pass the hash alone). Comparing two corrupted requests would
 not supply this protection.
 
 Definition-derived probes use G(0)=1 and -G'(0)=T_original for BOTH modal and FV,
@@ -40,14 +40,14 @@ with complex-step h=1e-6/T_original, normalization allowance2e-4 and relative
 mean allowance2e-3. These frozen numerical allowances are not certified bounds.
 Invariants reject all96 in both scale conditions, with zero clean false
 rejections. They reject no conjugation conditions and leave45 wrong conjugated
-acceptances: the local frequency request changes while these model invariants
+acceptances in D+invariants (49 inaccurate artifacts pass the invariants alone): the local frequency request changes while these model invariants
 remain intact. Normalization alone is insensitive to a time-scale change;
 the first-moment check provides the scale detection.
 
 D+both has zero inaccurate acceptances on this sample, retains all92 accurate
 clean acceptances, and adds zero clean rejections (0/96 defense-alone false
 rejections, 0/92 added accurate-clean rejection). It rejects all81 accidentally
-accurate corrupted outcomes as well. This conservative integrity/model criterion
+accurate corrupted outcomes as well (65 additional rejections versus D, which already rejected16). This conservative integrity/model criterion
 is not the same as merely checking whether an answer happens to meet tolerance.
 
 Task execution costs506,372 modal terms. D costs985,088 FV cells. Defense probes
@@ -74,3 +74,5 @@ passed43 laboratory and30 solver tests; checks.txt contains the full log. Full
 reproduction matches every non-timing field, including provenance, exactly;
 see reproduction.txt. Run: python3 -m lab.common_mode --output results/local/e008.json.
 No conclusions about consciousness follow from these operational fault tests.
+
+Both standalone defenses pass the 4 inaccurate clean outcomes rejected by D. Exact reproduction comparator: scripts/compare_experiment_runs.py; use --ignore-git-head only when running from a later results/documentation commit.
