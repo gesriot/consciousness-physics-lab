@@ -1,0 +1,13 @@
+test_controls (test_collocation_map.CollocationMapTests.test_controls) ... ok
+test_exact_audit_boundary_and_fallback (test_collocation_map.CollocationMapTests.test_exact_audit_boundary_and_fallback) ... ok
+test_false_agreement_negative_control (test_collocation_map.CollocationMapTests.test_false_agreement_negative_control) ... ok
+test_formula_matches_frozen_checker (test_collocation_map.CollocationMapTests.test_formula_matches_frozen_checker) ... ok
+test_planes_and_lattice (test_collocation_map.CollocationMapTests.test_planes_and_lattice) ... ok
+test_rounding_only_and_acceptance_floor (test_collocation_map.CollocationMapTests.test_rounding_only_and_acceptance_floor) ... ok
+test_tolerance_boundary (test_collocation_map.CollocationMapTests.test_tolerance_boundary) ... ok
+test_union_refinement (test_collocation_map.CollocationMapTests.test_union_refinement) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.060s
+
+OK
