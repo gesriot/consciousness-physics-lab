@@ -1,0 +1,2 @@
+PASS: two complete E007 runs identical after excluding only timing fields ending seconds.
+Same git_head, protocol_commit, protocol_sha256, source hashes, seeds, raw values, decisions and summaries.
