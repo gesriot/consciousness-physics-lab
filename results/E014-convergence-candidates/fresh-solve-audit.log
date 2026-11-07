@@ -1,0 +1,14 @@
+{
+  "passed": true,
+  "exact_paths": true,
+  "archive_hashes_match_original": true,
+  "candidate_replay_performed": true,
+  "fresh_paths": 768,
+  "fresh_fv_solves": 5376,
+  "fresh_fv_cells": 6242304,
+  "rows": 2688,
+  "exact_candidate_rows": true,
+  "exact_summary": true,
+  "differing_row_indices": [],
+  "seconds": 8.34413177800161
+}
