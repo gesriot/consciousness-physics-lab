@@ -1,0 +1,664 @@
+{
+  "schema_version": "0.1",
+  "kind": "deterministic_tool_baseline",
+  "consciousness_inference": null,
+  "request_sha256": "3be400951031336dedf61abf3f8809ee1b0ea44a9bb1ae34f043063e3e4f1e67",
+  "request": {
+    "schema_version": "1.0",
+    "mode": "compare",
+    "units": {
+      "time": "s",
+      "length": "mm"
+    },
+    "spheres": [
+      {
+        "radius": 0.5,
+        "diffusivity": 10.0
+      }
+    ],
+    "points": [
+      {
+        "re": 0.0,
+        "im": 0.0
+      },
+      {
+        "re": 600.0,
+        "im": 0.0
+      },
+      {
+        "re": 0.0,
+        "im": 628.3185307179587
+      },
+      {
+        "re": 0.0,
+        "im": 6283.185307179586
+      }
+    ],
+    "modes": 10000,
+    "tolerance": 0.0001
+  },
+  "repeats": 3,
+  "environment": {
+    "python": "3.12.14",
+    "numpy": "2.3.5",
+    "platform": "Linux-6.18.57-x86_64-with-glibc2.41",
+    "machine": "x86_64"
+  },
+  "timing": {
+    "scope": "CLI subprocess wall time, including Python/NumPy startup",
+    "seconds": [
+      0.09374872999978834,
+      0.10126041900002747,
+      0.09444490199894062
+    ],
+    "median_seconds": 0.09444490199894062
+  },
+  "runs": [
+    {
+      "exit_code": 0,
+      "response": {
+        "schema_version": "1.0",
+        "tool": {
+          "name": "sphere-thermal-cli",
+          "version": "0.1.0"
+        },
+        "status": "ok",
+        "mode": "compare",
+        "input": {
+          "mode": "compare",
+          "modes": 10000,
+          "points": [
+            {
+              "im": 0.0,
+              "re": 0.0
+            },
+            {
+              "im": 0.0,
+              "re": 600.0
+            },
+            {
+              "im": 628.3185307179587,
+              "re": 0.0
+            },
+            {
+              "im": 6283.185307179586,
+              "re": 0.0
+            }
+          ],
+          "schema_version": "1.0",
+          "spheres": [
+            {
+              "diffusivity": 10.0,
+              "radius": 0.5
+            }
+          ],
+          "tolerance": 0.0001,
+          "units": {
+            "length": "mm",
+            "time": "s"
+          }
+        },
+        "model": {
+          "quantity": "g(z) = mean sphere temperature / surface temperature, signals exp(z t)",
+          "assumptions": "passive conduction in a homogeneous inert sphere, ideal thermal contact, prescribed surface temperature, zero initial state",
+          "analytic": "g(z;T) = 3 (q coth q - 1)/q^2, q = sqrt(15 T z), T = R^2/(15 kappa); Taylor series in 15 T z for |15 T z| <= 1",
+          "modal": "g_N(z;T) = sum_{n=1..N} w_n/(1 + z tau_n), w_n = 6/(pi^2 n^2), tau_n = 15 T/(pi^2 n^2); weights not renormalized",
+          "mixture": "g(z) = sum_j a_j g(z;T_j), a_j > 0, sum_j a_j = 1; the same N modes are used for every sphere",
+          "domain": "Re z >= 0",
+          "source": "dissertation manuscript, section 3.2"
+        },
+        "units": {
+          "time": "s",
+          "z": "1/s",
+          "mean_time": "s",
+          "g": "1 (dimensionless)",
+          "abs_discrepancy": "1",
+          "tail_bound": "1",
+          "radius": "mm",
+          "diffusivity": "mm^2/s"
+        },
+        "medium": {
+          "spheres": [
+            {
+              "weight": 1.0,
+              "mean_time": 0.0016666666666666668
+            }
+          ],
+          "weight_sum": 1.0,
+          "mean_relaxation_time": 0.0016666666666666668
+        },
+        "modes": [
+          10000
+        ],
+        "tolerance": 0.0001,
+        "results": [
+          {
+            "z": {
+              "re": 0.0,
+              "im": 0.0
+            },
+            "analytic": {
+              "re": 1.0,
+              "im": 0.0
+            },
+            "modal": [
+              {
+                "modes": 10000,
+                "value": {
+                  "re": 0.9999392103293491,
+                  "im": 0.0
+                },
+                "abs_discrepancy": 6.078967065092922e-05,
+                "tail_bound": 6.078967070186757e-05,
+                "rounding_allowance": 5.68416911144524e-14,
+                "consistent": true,
+                "tolerance_met": true
+              }
+            ]
+          },
+          {
+            "z": {
+              "re": 600.0,
+              "im": 0.0
+            },
+            "analytic": {
+              "re": 0.5752669594804959,
+              "im": 0.0
+            },
+            "modal": [
+              {
+                "modes": 10000,
+                "value": {
+                  "re": 0.5752061698101527,
+                  "im": 0.0
+                },
+                "abs_discrepancy": 6.0789670343175395e-05,
+                "tail_bound": 6.078967070186757e-05,
+                "rounding_allowance": 3.269841298818644e-14,
+                "consistent": true,
+                "tolerance_met": true
+              }
+            ]
+          },
+          {
+            "z": {
+              "re": 0.0,
+              "im": 628.3185307179587
+            },
+            "analytic": {
+              "re": 0.5407927731001505,
+              "im": -0.34483616438437276
+            },
+            "modal": [
+              {
+                "modes": 10000,
+                "value": {
+                  "re": 0.5407319834294991,
+                  "im": -0.34483616438405024
+                },
+                "abs_discrepancy": 6.0789670651373306e-05,
+                "tail_bound": 6.078967070186757e-05,
+                "rounding_allowance": 3.645679735439211e-14,
+                "consistent": true,
+                "tolerance_met": true
+              }
+            ]
+          },
+          {
+            "z": {
+              "re": 0.0,
+              "im": 6283.185307179586
+            },
+            "analytic": {
+              "re": 0.16925688411913375,
+              "im": -0.15015827869415865
+            },
+            "modal": [
+              {
+                "modes": 10000,
+                "value": {
+                  "re": 0.16919609444848255,
+                  "im": -0.15015827869093398
+                },
+                "abs_discrepancy": 6.078967065120686e-05,
+                "tail_bound": 6.078967070186757e-05,
+                "rounding_allowance": 1.2860327461516619e-14,
+                "consistent": true,
+                "tolerance_met": true
+              }
+            ]
+          }
+        ],
+        "summary": {
+          "levels": [
+            {
+              "modes": 10000,
+              "max_abs_discrepancy": 6.0789670651373306e-05,
+              "max_tail_bound": 6.078967070186757e-05,
+              "all_consistent": true,
+              "tolerance_met": true
+            }
+          ],
+          "all_consistent": true,
+          "tolerance_met": true,
+          "smallest_modes_meeting_tolerance": 10000,
+          "modes_required_by_bound": 6079
+        },
+        "messages": [],
+        "notes": [
+          "g(z) is the volume-mean sphere temperature divided by the surface temperature for signals exp(z t) (Laplace transform, zero initial state); dimensionless.",
+          "tail_bound is a rigorous upper bound of the modal truncation error |sum_{n>N} w_n/(1+z tau_n)| in exact arithmetic for Re z >= 0; it does not include floating-point rounding.",
+          "rounding_allowance = 128*eps*(|analytic| + |modal|) is a heuristic estimate of floating-point error, not a proven bound.",
+          "abs_discrepancy = |analytic - modal| is observed; it contains truncation and rounding of both methods. consistent means abs_discrepancy <= tail_bound + rounding_allowance.",
+          "tolerance_met means tail_bound + rounding_allowance <= tolerance for the modal value.",
+          "The analytic and modal values are two representations of one model computed independently; their agreement verifies the implementation, not the physics."
+        ]
+      },
+      "diagnostics": "sphere-thermal: mode=compare points=4 spheres=1 modes=[10000] status=ok time=0.004s\n"
+    },
+    {
+      "exit_code": 0,
+      "response": {
+        "schema_version": "1.0",
+        "tool": {
+          "name": "sphere-thermal-cli",
+          "version": "0.1.0"
+        },
+        "status": "ok",
+        "mode": "compare",
+        "input": {
+          "mode": "compare",
+          "modes": 10000,
+          "points": [
+            {
+              "im": 0.0,
+              "re": 0.0
+            },
+            {
+              "im": 0.0,
+              "re": 600.0
+            },
+            {
+              "im": 628.3185307179587,
+              "re": 0.0
+            },
+            {
+              "im": 6283.185307179586,
+              "re": 0.0
+            }
+          ],
+          "schema_version": "1.0",
+          "spheres": [
+            {
+              "diffusivity": 10.0,
+              "radius": 0.5
+            }
+          ],
+          "tolerance": 0.0001,
+          "units": {
+            "length": "mm",
+            "time": "s"
+          }
+        },
+        "model": {
+          "quantity": "g(z) = mean sphere temperature / surface temperature, signals exp(z t)",
+          "assumptions": "passive conduction in a homogeneous inert sphere, ideal thermal contact, prescribed surface temperature, zero initial state",
+          "analytic": "g(z;T) = 3 (q coth q - 1)/q^2, q = sqrt(15 T z), T = R^2/(15 kappa); Taylor series in 15 T z for |15 T z| <= 1",
+          "modal": "g_N(z;T) = sum_{n=1..N} w_n/(1 + z tau_n), w_n = 6/(pi^2 n^2), tau_n = 15 T/(pi^2 n^2); weights not renormalized",
+          "mixture": "g(z) = sum_j a_j g(z;T_j), a_j > 0, sum_j a_j = 1; the same N modes are used for every sphere",
+          "domain": "Re z >= 0",
+          "source": "dissertation manuscript, section 3.2"
+        },
+        "units": {
+          "time": "s",
+          "z": "1/s",
+          "mean_time": "s",
+          "g": "1 (dimensionless)",
+          "abs_discrepancy": "1",
+          "tail_bound": "1",
+          "radius": "mm",
+          "diffusivity": "mm^2/s"
+        },
+        "medium": {
+          "spheres": [
+            {
+              "weight": 1.0,
+              "mean_time": 0.0016666666666666668
+            }
+          ],
+          "weight_sum": 1.0,
+          "mean_relaxation_time": 0.0016666666666666668
+        },
+        "modes": [
+          10000
+        ],
+        "tolerance": 0.0001,
+        "results": [
+          {
+            "z": {
+              "re": 0.0,
+              "im": 0.0
+            },
+            "analytic": {
+              "re": 1.0,
+              "im": 0.0
+            },
+            "modal": [
+              {
+                "modes": 10000,
+                "value": {
+                  "re": 0.9999392103293491,
+                  "im": 0.0
+                },
+                "abs_discrepancy": 6.078967065092922e-05,
+                "tail_bound": 6.078967070186757e-05,
+                "rounding_allowance": 5.68416911144524e-14,
+                "consistent": true,
+                "tolerance_met": true
+              }
+            ]
+          },
+          {
+            "z": {
+              "re": 600.0,
+              "im": 0.0
+            },
+            "analytic": {
+              "re": 0.5752669594804959,
+              "im": 0.0
+            },
+            "modal": [
+              {
+                "modes": 10000,
+                "value": {
+                  "re": 0.5752061698101527,
+                  "im": 0.0
+                },
+                "abs_discrepancy": 6.0789670343175395e-05,
+                "tail_bound": 6.078967070186757e-05,
+                "rounding_allowance": 3.269841298818644e-14,
+                "consistent": true,
+                "tolerance_met": true
+              }
+            ]
+          },
+          {
+            "z": {
+              "re": 0.0,
+              "im": 628.3185307179587
+            },
+            "analytic": {
+              "re": 0.5407927731001505,
+              "im": -0.34483616438437276
+            },
+            "modal": [
+              {
+                "modes": 10000,
+                "value": {
+                  "re": 0.5407319834294991,
+                  "im": -0.34483616438405024
+                },
+                "abs_discrepancy": 6.0789670651373306e-05,
+                "tail_bound": 6.078967070186757e-05,
+                "rounding_allowance": 3.645679735439211e-14,
+                "consistent": true,
+                "tolerance_met": true
+              }
+            ]
+          },
+          {
+            "z": {
+              "re": 0.0,
+              "im": 6283.185307179586
+            },
+            "analytic": {
+              "re": 0.16925688411913375,
+              "im": -0.15015827869415865
+            },
+            "modal": [
+              {
+                "modes": 10000,
+                "value": {
+                  "re": 0.16919609444848255,
+                  "im": -0.15015827869093398
+                },
+                "abs_discrepancy": 6.078967065120686e-05,
+                "tail_bound": 6.078967070186757e-05,
+                "rounding_allowance": 1.2860327461516619e-14,
+                "consistent": true,
+                "tolerance_met": true
+              }
+            ]
+          }
+        ],
+        "summary": {
+          "levels": [
+            {
+              "modes": 10000,
+              "max_abs_discrepancy": 6.0789670651373306e-05,
+              "max_tail_bound": 6.078967070186757e-05,
+              "all_consistent": true,
+              "tolerance_met": true
+            }
+          ],
+          "all_consistent": true,
+          "tolerance_met": true,
+          "smallest_modes_meeting_tolerance": 10000,
+          "modes_required_by_bound": 6079
+        },
+        "messages": [],
+        "notes": [
+          "g(z) is the volume-mean sphere temperature divided by the surface temperature for signals exp(z t) (Laplace transform, zero initial state); dimensionless.",
+          "tail_bound is a rigorous upper bound of the modal truncation error |sum_{n>N} w_n/(1+z tau_n)| in exact arithmetic for Re z >= 0; it does not include floating-point rounding.",
+          "rounding_allowance = 128*eps*(|analytic| + |modal|) is a heuristic estimate of floating-point error, not a proven bound.",
+          "abs_discrepancy = |analytic - modal| is observed; it contains truncation and rounding of both methods. consistent means abs_discrepancy <= tail_bound + rounding_allowance.",
+          "tolerance_met means tail_bound + rounding_allowance <= tolerance for the modal value.",
+          "The analytic and modal values are two representations of one model computed independently; their agreement verifies the implementation, not the physics."
+        ]
+      },
+      "diagnostics": "sphere-thermal: mode=compare points=4 spheres=1 modes=[10000] status=ok time=0.004s\n"
+    },
+    {
+      "exit_code": 0,
+      "response": {
+        "schema_version": "1.0",
+        "tool": {
+          "name": "sphere-thermal-cli",
+          "version": "0.1.0"
+        },
+        "status": "ok",
+        "mode": "compare",
+        "input": {
+          "mode": "compare",
+          "modes": 10000,
+          "points": [
+            {
+              "im": 0.0,
+              "re": 0.0
+            },
+            {
+              "im": 0.0,
+              "re": 600.0
+            },
+            {
+              "im": 628.3185307179587,
+              "re": 0.0
+            },
+            {
+              "im": 6283.185307179586,
+              "re": 0.0
+            }
+          ],
+          "schema_version": "1.0",
+          "spheres": [
+            {
+              "diffusivity": 10.0,
+              "radius": 0.5
+            }
+          ],
+          "tolerance": 0.0001,
+          "units": {
+            "length": "mm",
+            "time": "s"
+          }
+        },
+        "model": {
+          "quantity": "g(z) = mean sphere temperature / surface temperature, signals exp(z t)",
+          "assumptions": "passive conduction in a homogeneous inert sphere, ideal thermal contact, prescribed surface temperature, zero initial state",
+          "analytic": "g(z;T) = 3 (q coth q - 1)/q^2, q = sqrt(15 T z), T = R^2/(15 kappa); Taylor series in 15 T z for |15 T z| <= 1",
+          "modal": "g_N(z;T) = sum_{n=1..N} w_n/(1 + z tau_n), w_n = 6/(pi^2 n^2), tau_n = 15 T/(pi^2 n^2); weights not renormalized",
+          "mixture": "g(z) = sum_j a_j g(z;T_j), a_j > 0, sum_j a_j = 1; the same N modes are used for every sphere",
+          "domain": "Re z >= 0",
+          "source": "dissertation manuscript, section 3.2"
+        },
+        "units": {
+          "time": "s",
+          "z": "1/s",
+          "mean_time": "s",
+          "g": "1 (dimensionless)",
+          "abs_discrepancy": "1",
+          "tail_bound": "1",
+          "radius": "mm",
+          "diffusivity": "mm^2/s"
+        },
+        "medium": {
+          "spheres": [
+            {
+              "weight": 1.0,
+              "mean_time": 0.0016666666666666668
+            }
+          ],
+          "weight_sum": 1.0,
+          "mean_relaxation_time": 0.0016666666666666668
+        },
+        "modes": [
+          10000
+        ],
+        "tolerance": 0.0001,
+        "results": [
+          {
+            "z": {
+              "re": 0.0,
+              "im": 0.0
+            },
+            "analytic": {
+              "re": 1.0,
+              "im": 0.0
+            },
+            "modal": [
+              {
+                "modes": 10000,
+                "value": {
+                  "re": 0.9999392103293491,
+                  "im": 0.0
+                },
+                "abs_discrepancy": 6.078967065092922e-05,
+                "tail_bound": 6.078967070186757e-05,
+                "rounding_allowance": 5.68416911144524e-14,
+                "consistent": true,
+                "tolerance_met": true
+              }
+            ]
+          },
+          {
+            "z": {
+              "re": 600.0,
+              "im": 0.0
+            },
+            "analytic": {
+              "re": 0.5752669594804959,
+              "im": 0.0
+            },
+            "modal": [
+              {
+                "modes": 10000,
+                "value": {
+                  "re": 0.5752061698101527,
+                  "im": 0.0
+                },
+                "abs_discrepancy": 6.0789670343175395e-05,
+                "tail_bound": 6.078967070186757e-05,
+                "rounding_allowance": 3.269841298818644e-14,
+                "consistent": true,
+                "tolerance_met": true
+              }
+            ]
+          },
+          {
+            "z": {
+              "re": 0.0,
+              "im": 628.3185307179587
+            },
+            "analytic": {
+              "re": 0.5407927731001505,
+              "im": -0.34483616438437276
+            },
+            "modal": [
+              {
+                "modes": 10000,
+                "value": {
+                  "re": 0.5407319834294991,
+                  "im": -0.34483616438405024
+                },
+                "abs_discrepancy": 6.0789670651373306e-05,
+                "tail_bound": 6.078967070186757e-05,
+                "rounding_allowance": 3.645679735439211e-14,
+                "consistent": true,
+                "tolerance_met": true
+              }
+            ]
+          },
+          {
+            "z": {
+              "re": 0.0,
+              "im": 6283.185307179586
+            },
+            "analytic": {
+              "re": 0.16925688411913375,
+              "im": -0.15015827869415865
+            },
+            "modal": [
+              {
+                "modes": 10000,
+                "value": {
+                  "re": 0.16919609444848255,
+                  "im": -0.15015827869093398
+                },
+                "abs_discrepancy": 6.078967065120686e-05,
+                "tail_bound": 6.078967070186757e-05,
+                "rounding_allowance": 1.2860327461516619e-14,
+                "consistent": true,
+                "tolerance_met": true
+              }
+            ]
+          }
+        ],
+        "summary": {
+          "levels": [
+            {
+              "modes": 10000,
+              "max_abs_discrepancy": 6.0789670651373306e-05,
+              "max_tail_bound": 6.078967070186757e-05,
+              "all_consistent": true,
+              "tolerance_met": true
+            }
+          ],
+          "all_consistent": true,
+          "tolerance_met": true,
+          "smallest_modes_meeting_tolerance": 10000,
+          "modes_required_by_bound": 6079
+        },
+        "messages": [],
+        "notes": [
+          "g(z) is the volume-mean sphere temperature divided by the surface temperature for signals exp(z t) (Laplace transform, zero initial state); dimensionless.",
+          "tail_bound is a rigorous upper bound of the modal truncation error |sum_{n>N} w_n/(1+z tau_n)| in exact arithmetic for Re z >= 0; it does not include floating-point rounding.",
+          "rounding_allowance = 128*eps*(|analytic| + |modal|) is a heuristic estimate of floating-point error, not a proven bound.",
+          "abs_discrepancy = |analytic - modal| is observed; it contains truncation and rounding of both methods. consistent means abs_discrepancy <= tail_bound + rounding_allowance.",
+          "tolerance_met means tail_bound + rounding_allowance <= tolerance for the modal value.",
+          "The analytic and modal values are two representations of one model computed independently; their agreement verifies the implementation, not the physics."
+        ]
+      },
+      "diagnostics": "sphere-thermal: mode=compare points=4 spheres=1 modes=[10000] status=ok time=0.004s\n"
+    }
+  ]
+}

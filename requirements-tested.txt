@@ -1,0 +1,2 @@
+# Tested with Python 3.12.14; only runtime dependency needed for baseline.
+numpy==2.3.5

@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sphere-thermal-cli"
+version = "0.1.0"
+description = "Passive thermal response of an inert sphere and of sphere mixtures (JSON CLI)"
+requires-python = ">=3.10"
+dependencies = ["numpy>=2.0"]
+
+[project.scripts]
+sphere-thermal = "sphere_thermal.cli:main"
+
+[tool.setuptools]
+packages = ["sphere_thermal"]

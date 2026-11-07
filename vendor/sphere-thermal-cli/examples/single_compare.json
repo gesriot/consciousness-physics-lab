@@ -1,0 +1,14 @@
+{
+  "schema_version": "1.0",
+  "mode": "compare",
+  "units": {"time": "s", "length": "mm"},
+  "spheres": [{"radius": 0.5, "diffusivity": 10.0}],
+  "points": [
+    {"re": 0.0, "im": 0.0},
+    {"re": 600.0, "im": 0.0},
+    {"re": 0.0, "im": 628.3185307179587},
+    {"re": 0.0, "im": 6283.185307179586}
+  ],
+  "modes": 10000,
+  "tolerance": 1e-4
+}

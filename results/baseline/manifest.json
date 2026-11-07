@@ -1,0 +1,25 @@
+{
+  "recorded_utc": "2026-11-07T10:11:47.780806+00:00",
+  "code_commit": "64d9e135609a0191b0996d1ef2437761e173778e",
+  "source_sha256": {
+    "lab/__init__.py": "6edba301d6dfceed77af18ed48802ee6736429fe36055ab92d90b48a8a809dce",
+    "lab/runner.py": "3ff5e56940d181dd3b9ffff186f44fdfc30830c1820dca5a1f439fb39961bbdc",
+    "vendor/sphere-thermal-cli/sphere_thermal/__init__.py": "0601d436ea1bf41e3964defd4175f12f827e90db7ecb3bfa19db0f8c766a74ae",
+    "vendor/sphere-thermal-cli/sphere_thermal/__main__.py": "935a1c1166b0c1ea35a82256345000bf2c73ded718d77773bc27a71ecce28f7d",
+    "vendor/sphere-thermal-cli/sphere_thermal/cli.py": "61b5dff45720c939a14aea2946baa20430ecf727929db7dd98555c1ef9052e41",
+    "vendor/sphere-thermal-cli/sphere_thermal/response.py": "27e9e1180a686c3a8f11d611b0f2e2c267a098011ccc92389ae6dce3fe48bc32"
+  },
+  "checks": {
+    "original_unittest": 30,
+    "runner_unittest": 3,
+    "passed": 33,
+    "compileall": "passed"
+  },
+  "limitations": [
+    "No experimental validation of physical material",
+    "No consciousness experiment executed",
+    "NumPy 2.5.4 archive pin not tested",
+    "No independent PDE solver yet",
+    "No dependency vulnerability audit performed"
+  ]
+}
