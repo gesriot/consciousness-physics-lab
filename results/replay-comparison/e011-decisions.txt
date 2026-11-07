@@ -111,6 +111,6 @@ Numerical differences by field:
   $.tasks[].shadow_values.slab[][]: {"changed": 0, "count": 2688, "max_abs": 0.0, "max_rel": 0.0, "nonfinite": 0}
   $.tasks[].shadow_values.sphere[][]: {"changed": 0, "count": 2688, "max_abs": 0.0, "max_rel": 0.0, "nonfinite": 0}
 Diagnostic differences: 0 (not operational failures)
-E007/E009 full shadow trajectories and coverage summaries are diagnostic. Order estimation is unstable near rounded differences; shadow verdicts, convergence flags and coverage fallback counts may change without altering operational decisions. Other differences still require scientific review.
+E007/E009/E011 full shadow trajectories and coverage summaries are diagnostic. Order estimation is unstable near rounded differences; shadow verdicts, convergence flags and coverage fallback counts may change without altering operational decisions. E011 shadow work counters are diagnostic too; its frozen verifier does not use order estimation. Other diagnostic differences still require scientific review.
 PASS: operational decisions identical; measured floats reported without a pass/fail threshold; authoritative integers, booleans, strings, structure, protocol identity and canonical inputs exact.
 Diagnostic differences and execution provenance are reported separately; this is not an exact reproduction or complete scientific-equivalence claim.

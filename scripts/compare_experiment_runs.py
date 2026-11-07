@@ -61,11 +61,15 @@ def separate_diagnostics(data):
             for key, item in value.items():
                 current = path + '.' + key
                 selected = (
-                    (path == '$' and key == 'coverage_steps' and experiment in ('E007', 'E009')) or
-                    (path.startswith('$.runs[') and key == 'shadow' and experiment in ('E007', 'E009')) or
-                    (path.startswith('$.tasks[') and key == 'shadow_values' and experiment in ('E007', 'E009')) or
-                    (path.startswith('$.summary.') and experiment in ('E007', 'E009') and
-                     (key == 'coverage' or key in SHADOW_SUMMARIES)))
+                    (path == '$' and key == 'coverage_steps' and experiment in ('E007', 'E009', 'E011')) or
+                    (path.startswith('$.runs[') and key == 'shadow' and experiment in ('E007', 'E009', 'E011')) or
+                    (path.startswith('$.tasks[') and key == 'shadow_values' and experiment in ('E007', 'E009', 'E011')) or
+                    (path.startswith('$.summary.') and experiment in ('E007', 'E009', 'E011') and
+                     (key == 'coverage' or key in SHADOW_SUMMARIES)) or
+                    (experiment == 'E011' and path.startswith('$.tasks[') and
+                     key in ('shadow_cells', 'shadow_work')) or
+                    (experiment == 'E011' and path == '$.work' and
+                     key in ('shadow_cells', 'shadow_by_model')))
                 if selected:
                     diagnostic[current] = item
                 else:
@@ -195,10 +199,12 @@ def main():
         for field, summary in numeric_summary(original, repeat).items():
             print('  ' + field + ': ' + json.dumps(summary, sort_keys=True))
         print(f'Diagnostic differences: {len(diagnostic)} (not operational failures)')
-        print('E007/E009 full shadow trajectories and coverage summaries are diagnostic. '
+        print('E007/E009/E011 full shadow trajectories and coverage summaries are diagnostic. '
               'Order estimation is unstable near rounded differences; shadow verdicts, '
               'convergence flags and coverage fallback counts may change without altering '
-              'operational decisions. Other differences still require scientific review.')
+              'operational decisions. E011 shadow work counters are diagnostic too; its '
+              'frozen verifier does not use order estimation. Other diagnostic differences '
+              'still require scientific review.')
         for issue in diagnostic:
             print('  ' + issue)
     if failures:

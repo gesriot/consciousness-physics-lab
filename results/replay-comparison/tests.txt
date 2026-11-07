@@ -3,6 +3,7 @@ test_archives_and_controlled_lower_bit_changes (tests.test_experiment_replay.Com
 test_canonical_hash_ignores_object_order_not_content (tests.test_experiment_replay.ComparisonTests.test_canonical_hash_ignores_object_order_not_content) ... ok
 test_decisions_counts_hashes_protocols_never_relaxed (tests.test_experiment_replay.ComparisonTests.test_decisions_counts_hashes_protocols_never_relaxed) ... ok
 test_diagnostic_changes_do_not_mask_operational_changes (tests.test_experiment_replay.ComparisonTests.test_diagnostic_changes_do_not_mask_operational_changes) ... ok
+test_e011_diagnostics_are_separate_and_operational_controls_remain_exact (tests.test_experiment_replay.ComparisonTests.test_e011_diagnostics_are_separate_and_operational_controls_remain_exact) ... ok
 test_exact_inputs_even_when_numeric_outputs_are_unrestricted (tests.test_experiment_replay.ComparisonTests.test_exact_inputs_even_when_numeric_outputs_are_unrestricted) ... ok
 test_exact_retained_and_timing_excluded (tests.test_experiment_replay.ComparisonTests.test_exact_retained_and_timing_excluded) ... ok
 test_numeric_summary_has_no_hidden_threshold (tests.test_experiment_replay.ComparisonTests.test_numeric_summary_has_no_hidden_threshold) ... ok
@@ -14,6 +15,6 @@ test_invalid_archive_and_overwrite_rejected (tests.test_experiment_replay.Replay
 test_runners_use_saved_requests_before_evaluation (tests.test_experiment_replay.ReplayTests.test_runners_use_saved_requests_before_evaluation) ... ok
 
 ----------------------------------------------------------------------
-Ran 14 tests in 12.559s
+Ran 15 tests in 19.513s
 
 OK

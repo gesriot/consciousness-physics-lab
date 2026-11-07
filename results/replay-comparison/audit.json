@@ -440,7 +440,7 @@
       "synthetic_failures": 0,
       "changed_numeric_fields": 126469,
       "exact_synthetic_failures": 126469,
-      "synthetic_diagnostic_differences": 0,
+      "synthetic_diagnostic_differences": 36522,
       "changed_decision_detected": true,
       "canonical_inputs_equal": true,
       "synthetic_numeric_summary": {

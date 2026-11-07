@@ -79,6 +79,33 @@ class ComparisonTests(unittest.TestCase):
         repeat['summary']['cells']['uniform/order']['decision_cells'] = 513
         self.assertTrue(compare_details(original, repeat, 'decisions')[0])
 
+    def test_e011_diagnostics_are_separate_and_operational_controls_remain_exact(self):
+        original = json.loads((ROOT / 'results/E011-extrapolation/results.json').read_text())
+        repeat = copy.deepcopy(original)
+        repeat['runs'][0]['shadow']['steps'][0]['verdict'] = 'changed diagnostic verdict'
+        repeat['runs'][0]['shadow']['steps'][0]['converging'] = not repeat['runs'][0]['shadow']['steps'][0]['converging']
+        repeat['coverage_steps'][0]['covered'] = not repeat['coverage_steps'][0]['covered']
+        repeat['summary']['A']['coverage']['misses'] += 1
+        repeat['tasks'][0]['shadow_cells'] += 1
+        repeat['tasks'][0]['shadow_work']['sphere']['cells'] += 1
+        repeat['work']['shadow_cells'] += 1
+        repeat['work']['shadow_by_model']['sphere']['cells'] += 1
+        failures, _, diagnostics = compare_details(original, repeat, 'decisions')
+        self.assertFalse(failures)
+        self.assertEqual(len(diagnostics), 8)
+        self.assertTrue(compare(original, repeat, 'exact')[0])
+        for key in ('converging', 'cells_solved'):
+            control = copy.deepcopy(repeat)
+            independent = control['runs'][0]['independent']
+            if key == 'converging':
+                independent['steps'][0][key] = not independent['steps'][0][key]
+            else:
+                independent[key] += 1
+            self.assertTrue(compare(original, control, 'decisions')[0])
+        control = copy.deepcopy(repeat)
+        control['work']['decision_cells'] += 1
+        self.assertTrue(compare(original, control, 'decisions')[0])
+
     def test_absolute_tolerance_is_additive_finite_and_does_not_relax_counts(self):
         self.original['runs'][0]['value'] = 1.0
         self.repeat['runs'][0]['value'] = 1.15
