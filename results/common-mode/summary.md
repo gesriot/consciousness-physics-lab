@@ -76,3 +76,17 @@ see reproduction.txt. Run: python3 -m lab.common_mode --output results/local/e00
 No conclusions about consciousness follow from these operational fault tests.
 
 Both standalone defenses pass the 4 inaccurate clean outcomes rejected by D. Exact reproduction comparator: scripts/compare_experiment_runs.py; use --ignore-git-head only when running from a later results/documentation commit.
+
+## Standalone checks without D
+
+Each entry is (inaccurate artifacts passed, accurate artifacts rejected);
+these are defenses alone, not the combined D policies above.
+
+- Clean: hash (4,0), invariants (4,0), both anchors (4,0).
+- Shared time: hash (0,17), invariants (0,17), both anchors (0,17).
+- Conjugated request: hash (0,47), invariants (49,0), both anchors (0,47).
+- Model scale: hash (79,0), invariants (0,17), both anchors (0,17).
+
+These checks enforce independent anchors; D is still needed for numerical
+accuracy of otherwise clean artifacts. Scale-condition outcomes are identical
+on the same tasks, so their counts must not be read as independent replication.
