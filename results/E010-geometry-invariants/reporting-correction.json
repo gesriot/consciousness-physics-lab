@@ -1,0 +1,80 @@
+{
+  "note": "The archived clean_false_rejected field counts all clean rejections, including inaccurate artifacts. This supplement disambiguates it without changing archived decisions or data.",
+  "policies": {
+    "D": {
+      "clean_rejected": 7,
+      "clean_accurate_false_rejected": 1,
+      "clean_inaccurate_correctly_rejected": 6
+    },
+    "hash": {
+      "clean_rejected": 0,
+      "clean_accurate_false_rejected": 0,
+      "clean_inaccurate_correctly_rejected": 0
+    },
+    "normalization": {
+      "clean_rejected": 0,
+      "clean_accurate_false_rejected": 0,
+      "clean_inaccurate_correctly_rejected": 0
+    },
+    "first_moment": {
+      "clean_rejected": 0,
+      "clean_accurate_false_rejected": 0,
+      "clean_inaccurate_correctly_rejected": 0
+    },
+    "old_invariants": {
+      "clean_rejected": 0,
+      "clean_accurate_false_rejected": 0,
+      "clean_inaccurate_correctly_rejected": 0
+    },
+    "second_moment": {
+      "clean_rejected": 0,
+      "clean_accurate_false_rejected": 0,
+      "clean_inaccurate_correctly_rejected": 0
+    },
+    "high_frequency": {
+      "clean_rejected": 0,
+      "clean_accurate_false_rejected": 0,
+      "clean_inaccurate_correctly_rejected": 0
+    },
+    "all": {
+      "clean_rejected": 0,
+      "clean_accurate_false_rejected": 0,
+      "clean_inaccurate_correctly_rejected": 0
+    },
+    "D_hash": {
+      "clean_rejected": 7,
+      "clean_accurate_false_rejected": 1,
+      "clean_inaccurate_correctly_rejected": 6
+    },
+    "D_normalization": {
+      "clean_rejected": 7,
+      "clean_accurate_false_rejected": 1,
+      "clean_inaccurate_correctly_rejected": 6
+    },
+    "D_first_moment": {
+      "clean_rejected": 7,
+      "clean_accurate_false_rejected": 1,
+      "clean_inaccurate_correctly_rejected": 6
+    },
+    "D_old_invariants": {
+      "clean_rejected": 7,
+      "clean_accurate_false_rejected": 1,
+      "clean_inaccurate_correctly_rejected": 6
+    },
+    "D_second_moment": {
+      "clean_rejected": 7,
+      "clean_accurate_false_rejected": 1,
+      "clean_inaccurate_correctly_rejected": 6
+    },
+    "D_high_frequency": {
+      "clean_rejected": 7,
+      "clean_accurate_false_rejected": 1,
+      "clean_inaccurate_correctly_rejected": 6
+    },
+    "D_all": {
+      "clean_rejected": 7,
+      "clean_accurate_false_rejected": 1,
+      "clean_inaccurate_correctly_rejected": 6
+    }
+  }
+}

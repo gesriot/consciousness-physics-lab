@@ -1,0 +1,240 @@
+{
+  "decisive_coverage": {
+    "uniform/frozen": {
+      "unique_decisive_steps": 189,
+      "max_ratio": 0.21726230722072523,
+      "strata": {
+        "broad:[0,.5)": {
+          "steps": 0,
+          "misses": 0,
+          "max_ratio": null
+        },
+        "broad:[.5,1)": {
+          "steps": 0,
+          "misses": 0,
+          "max_ratio": null
+        },
+        "broad:[1,2)": {
+          "steps": 11,
+          "misses": 0,
+          "max_ratio": 0.20804950247936888
+        },
+        "broad:[2,4)": {
+          "steps": 20,
+          "misses": 0,
+          "max_ratio": 0.19606492618707635
+        },
+        "broad:[4,infinity)": {
+          "steps": 87,
+          "misses": 0,
+          "max_ratio": 0.17411550981050247
+        },
+        "high:[0,.5)": {
+          "steps": 0,
+          "misses": 0,
+          "max_ratio": null
+        },
+        "high:[.5,1)": {
+          "steps": 0,
+          "misses": 0,
+          "max_ratio": null
+        },
+        "high:[1,2)": {
+          "steps": 38,
+          "misses": 0,
+          "max_ratio": 0.21726230722072523
+        },
+        "high:[2,4)": {
+          "steps": 33,
+          "misses": 0,
+          "max_ratio": 0.19256602614072124
+        },
+        "high:[4,infinity)": {
+          "steps": 0,
+          "misses": 0,
+          "max_ratio": null
+        }
+      }
+    },
+    "surface/frozen": {
+      "unique_decisive_steps": 236,
+      "max_ratio": 0.20451589621026198,
+      "strata": {
+        "broad:[0,.5)": {
+          "steps": 0,
+          "misses": 0,
+          "max_ratio": null
+        },
+        "broad:[.5,1)": {
+          "steps": 0,
+          "misses": 0,
+          "max_ratio": null
+        },
+        "broad:[1,2)": {
+          "steps": 3,
+          "misses": 0,
+          "max_ratio": 0.1996503416333252
+        },
+        "broad:[2,4)": {
+          "steps": 9,
+          "misses": 0,
+          "max_ratio": 0.19636652193277362
+        },
+        "broad:[4,infinity)": {
+          "steps": 94,
+          "misses": 0,
+          "max_ratio": 0.17355454332486758
+        },
+        "high:[0,.5)": {
+          "steps": 0,
+          "misses": 0,
+          "max_ratio": null
+        },
+        "high:[.5,1)": {
+          "steps": 0,
+          "misses": 0,
+          "max_ratio": null
+        },
+        "high:[1,2)": {
+          "steps": 9,
+          "misses": 0,
+          "max_ratio": 0.20451589621026198
+        },
+        "high:[2,4)": {
+          "steps": 60,
+          "misses": 0,
+          "max_ratio": 0.19212469403660437
+        },
+        "high:[4,infinity)": {
+          "steps": 61,
+          "misses": 0,
+          "max_ratio": 0.17394003937149613
+        }
+      }
+    },
+    "uniform/order": {
+      "unique_decisive_steps": 118,
+      "max_ratio": 0.49986319284184316,
+      "strata": {
+        "broad:[0,.5)": {
+          "steps": 0,
+          "misses": 0,
+          "max_ratio": null
+        },
+        "broad:[.5,1)": {
+          "steps": 0,
+          "misses": 0,
+          "max_ratio": null
+        },
+        "broad:[1,2)": {
+          "steps": 0,
+          "misses": 0,
+          "max_ratio": null
+        },
+        "broad:[2,4)": {
+          "steps": 19,
+          "misses": 0,
+          "max_ratio": 0.45902734107491805
+        },
+        "broad:[4,infinity)": {
+          "steps": 75,
+          "misses": 0,
+          "max_ratio": 0.49986319284184316
+        },
+        "high:[0,.5)": {
+          "steps": 0,
+          "misses": 0,
+          "max_ratio": null
+        },
+        "high:[.5,1)": {
+          "steps": 0,
+          "misses": 0,
+          "max_ratio": null
+        },
+        "high:[1,2)": {
+          "steps": 2,
+          "misses": 0,
+          "max_ratio": 0.32750209320552764
+        },
+        "high:[2,4)": {
+          "steps": 22,
+          "misses": 0,
+          "max_ratio": 0.4500696150015749
+        },
+        "high:[4,infinity)": {
+          "steps": 0,
+          "misses": 0,
+          "max_ratio": null
+        }
+      }
+    },
+    "surface/order": {
+      "unique_decisive_steps": 207,
+      "max_ratio": 0.4997018608557472,
+      "strata": {
+        "broad:[0,.5)": {
+          "steps": 0,
+          "misses": 0,
+          "max_ratio": null
+        },
+        "broad:[.5,1)": {
+          "steps": 0,
+          "misses": 0,
+          "max_ratio": null
+        },
+        "broad:[1,2)": {
+          "steps": 0,
+          "misses": 0,
+          "max_ratio": null
+        },
+        "broad:[2,4)": {
+          "steps": 6,
+          "misses": 0,
+          "max_ratio": 0.43652369687954573
+        },
+        "broad:[4,infinity)": {
+          "steps": 91,
+          "misses": 0,
+          "max_ratio": 0.4997018608557472
+        },
+        "high:[0,.5)": {
+          "steps": 0,
+          "misses": 0,
+          "max_ratio": null
+        },
+        "high:[.5,1)": {
+          "steps": 0,
+          "misses": 0,
+          "max_ratio": null
+        },
+        "high:[1,2)": {
+          "steps": 0,
+          "misses": 0,
+          "max_ratio": null
+        },
+        "high:[2,4)": {
+          "steps": 60,
+          "misses": 0,
+          "max_ratio": 0.47479829800142465
+        },
+        "high:[4,infinity)": {
+          "steps": 50,
+          "misses": 0,
+          "max_ratio": 0.4939083575792065
+        }
+      }
+    }
+  },
+  "work": {
+    "shadow_cells_per_mesh": {
+      "uniform": 1560576,
+      "surface": 1560576
+    },
+    "initial_stale_execution_modal_terms": 122,
+    "total_execution_modal_terms": 241222,
+    "additional_injection_modal_terms": 482200,
+    "base_execution_seconds": 0.01780501902612741,
+    "deduplicated_injection_seconds": 0.04300303803029237,
+    "timing_limits": "Per-mesh shadow times and initial stale execution time were not retained; only pooled shadow and per-task execution times are available."
+  }
+}
