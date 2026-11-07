@@ -223,7 +223,9 @@ def run(output, replay=None, runtime_override=None):
     intake, requests, replay_metadata = make_intake(replay)
     output.parent.mkdir(parents=True, exist_ok=True)
     write_json(intake_path, dict(experiment='E011', intake_channel=intake, **audit))
+    reference_started = time.perf_counter()
     reference_check = reference_audit(intake, requests)
+    reference_audit_seconds = time.perf_counter() - reference_started
     write_json(audit_path, reference_check)
     # Both file handles are closed before ANY operational evaluation starts.
     reference_by_id = {r['task_id']: r for r in reference_check['records']}
@@ -261,14 +263,16 @@ def run(output, replay=None, runtime_override=None):
         reference = (complex(*map(float, audit_row['high_precision'])) if audit_row and reference_check['fallback_all_AB']
                      else complex(analytic(request.z, request.mean_time)))
         reference_kind = 'high_precision' if audit_row and reference_check['fallback_all_AB'] else 'analytic'
-        paths, shadow_seconds = {}, 0.
+        paths, shadow_seconds, shadow_work = {}, 0., {}
         model_references = {'sphere': reference}
         for model in MODELS:
             if model != 'sphere':
                 model_references[model] = complex(*map(float, high_precision(request, model)))
             started = time.perf_counter()
             values = [graded_model(request.z, request.mean_time, n, model) for n in GRIDS]
-            shadow_seconds += time.perf_counter() - started
+            elapsed = time.perf_counter() - started
+            shadow_seconds += elapsed
+            shadow_work[model] = dict(cells=sum(GRIDS), seconds=elapsed)
             paths[model] = values
             dimension, scale = model_parameters(model)
             kappa = 1 / (dimension * (dimension + 2) * request.mean_time * scale)
@@ -296,9 +300,10 @@ def run(output, replay=None, runtime_override=None):
             model_references={k: pair(v) for k, v in model_references.items()},
             base_modes=receipt.modes, base_execution_seconds=receipt.kernel_seconds,
             shadow_values={k: [pair(v) for v in values] for k, values in paths.items()},
-            shadow_cells=3 * sum(GRIDS), shadow_seconds=shadow_seconds))
+            shadow_cells=3 * sum(GRIDS), shadow_seconds=shadow_seconds, shadow_work=shadow_work))
         previous = receipt.value
-    work = dict(initial_stale_modes=stale_receipt.modes,
+    work = dict(reference_audit_seconds=reference_audit_seconds,
+        initial_stale_modes=stale_receipt.modes,
         initial_stale_seconds=stale_receipt.kernel_seconds,
         base_execution_modes=sum(t['base_modes'] for t in tasks),
         base_execution_seconds=sum(t['base_execution_seconds'] for t in tasks),
@@ -309,6 +314,8 @@ def run(output, replay=None, runtime_override=None):
         hash_seconds=sum(r['hash_seconds'] for r in rows),
         shadow_cells=sum(t['shadow_cells'] for t in tasks),
         shadow_seconds=sum(t['shadow_seconds'] for t in tasks),
+        shadow_by_model={model: dict(cells=sum(t['shadow_work'][model]['cells'] for t in tasks),
+            seconds=sum(t['shadow_work'][model]['seconds'] for t in tasks)) for model in MODELS},
         operational_and_diagnostic_wall_seconds=time.perf_counter() - started_all)
     for group in ('old', 'second_moment', 'high_frequency'):
         work[group] = {k: sum(r['probes'][group][k] for r in rows)
