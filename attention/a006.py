@@ -4,6 +4,7 @@ import copy
 import hashlib
 import gzip
 import json
+import math
 from pathlib import Path
 import numpy as np
 from attention import agent, s2, s3, monitor_planning
@@ -11,7 +12,8 @@ from attention.active_monitor import State, POLICIES, run_batch, family, target
 from attention.calibration_samples import FAMILIES
 from attention.a001 import reference_audit
 from attention.a005 import SOURCES as OLD_SOURCES
-from attention.io import read_json, write_json as write, load_replay, source_bytes
+from attention.io import read_json, write_json as write, source_path
+from attention.compare_a004 import Archive, HEADER, _loads, MAX_METADATA_CHARS
 from lab import frozen_pipeline as P
 from lab.common_mode import encode
 from lab.executor import execute, request_hash
@@ -43,9 +45,76 @@ def validate(records, permutations):
             raise ValueError('Global action permutation mismatch')
 
 
+def read_root_fields(path,fields):
+    """Read selected canonical root members without materializing result bodies.
+
+    Unselected containers are skipped by the existing indent=2 archive framing.
+    Their nested semantics belong to the separate result auditor, not the intake
+    reader. Root delimiters, selected JSON and complete gzip integrity are checked.
+    """
+    reader=Archive(path);wanted=set(fields);result={};seen=set();need_member=False;size=0
+    opener=gzip.open if reader.path.suffix=='.gz' else open
+    with opener(reader.path,'rt',encoding='utf-8',newline='') as stream:
+        if reader._line(stream)!='{\n':raise ValueError('Archive is not in canonical root framing')
+        while True:
+            line=reader._line(stream)
+            if line=='}\n':
+                if need_member:raise ValueError('Trailing comma in root object')
+                if stream.read(1):raise ValueError('Trailing content after JSON archive')
+                missing=wanted-set(result)
+                if missing:raise ValueError('Missing root fields: '+', '.join(sorted(missing)))
+                return result
+            if seen and not need_member:raise ValueError('Missing comma between root members')
+            match=HEADER.fullmatch(line)
+            if match is None:raise ValueError('Archive is not in canonical member framing')
+            key,first=_loads(match.group(1)),match.group(2)
+            if key in seen:raise ValueError('Duplicate root key: '+key)
+            seen.add(key)
+            if key in wanted:
+                value,need_member,length=reader._value(stream,first,2)
+                size+=length
+                if size>MAX_METADATA_CHARS:raise ValueError('Selected metadata exceeds bounded reader limit')
+                result[key]=value
+            elif first in ('{','['):
+                closing='  '+('}' if first=='{' else ']')
+                while True:
+                    line=reader._line(stream)
+                    if line in (closing+'\n',closing+',\n'):
+                        need_member=line.endswith(',\n');break
+                    if not line.startswith('    '):raise ValueError('Unclosed skipped root container')
+            else:
+                _,need_member,_=reader._value(stream,first,2)
+
+
+def source_sha256(path,resolve_historical=True):
+    """Hash exactly source_bytes semantics, with bounded 1 MiB reads."""
+    requested=Path(path);actual=source_path(requested)
+    opener=gzip.open if resolve_historical and actual!=requested else open
+    digest=hashlib.sha256()
+    with opener(actual,'rb') as stream:
+        for block in iter(lambda:stream.read(1024*1024),b''):digest.update(block)
+    return digest.hexdigest()
+
+
+def load_a006_replay(path):
+    saved=read_root_fields(path,('experiment','intake_channel','global_permutations','intake_sha256'))
+    records=saved['intake_channel']
+    if saved['experiment']!='A006' or len(records)!=60:raise ValueError('Replay experiment or task count mismatch')
+    requests=[]
+    for index,record in enumerate(records):
+        if record['task_id']!=index:raise ValueError('Replay task order mismatch')
+        fields=dict(record['request']);fields['z']=complex(*fields['z']);request=Request(**fields)
+        if not all(math.isfinite(v) for v in (request.z.real,request.z.imag,request.mean_time,request.tolerance)):
+            raise ValueError('Nonfinite replay input')
+        if 'request_sha256' in record and request_hash(request)!=record['request_sha256']:
+            raise ValueError('Replay input digest mismatch')
+        requests.append(request)
+    return saved,requests,dict(source_sha256=source_sha256(path,False),experiment='A006',task_count=60)
+
+
 def intake(replay=None):
     if replay is not None:
-        saved,requests,provenance=load_replay(replay,'A006',60)
+        saved,requests,provenance=load_a006_replay(replay)
         records=copy.deepcopy(saved['intake_channel'])
         permutations=copy.deepcopy(saved['global_permutations'])
         validate(records,permutations)
@@ -190,8 +259,8 @@ def run(output,replay=None,noise=False,runtime_override=None):
         print('Completed package',package_id+1,'of 12',flush=True)
     overlap={}
     for experiment,path in [('A001','attention/results/A001/results.json'),('A002','attention/results/A002/results.json.gz'),('A003','attention/results/A003/results.json.gz'),('A004','attention/results/A004/results.json.gz'),('A005','attention/results/A005/results.json.gz')]:
-        earlier=read_json(ROOT/path);keys={request_key(r) for r in earlier['intake_channel']}
-        overlap[experiment]=dict(exact_request_matches=sum(request_key(r) in keys for r in records),source_sha256=hashlib.sha256(source_bytes(ROOT/path)).hexdigest())
+        earlier=read_root_fields(ROOT/path,('intake_channel',));keys={request_key(r) for r in earlier['intake_channel']}
+        overlap[experiment]=dict(exact_request_matches=sum(request_key(r) in keys for r in records),source_sha256=source_sha256(ROOT/path))
         del earlier
     out=dict(experiment='A006' ,**audit,task_seed=20261145,order_seed=20261146,random_policy_seed=20261147,onset_seed=20261148,
         onset_package=onset,last_bit_noise=noise,request_overlap=overlap,intake_channel=records,global_permutations=permutations,

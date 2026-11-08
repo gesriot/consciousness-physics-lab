@@ -128,3 +128,59 @@ class CalibrationTests(unittest.TestCase):
             value={'example':[1,2.,True,'calibration']}
             write_result(a,value);write_json(b,value)
             self.assertEqual(a.read_bytes(),b.read_bytes())
+
+    def test_selected_root_fields_match_full_reader(self):
+        import tempfile
+        from pathlib import Path
+        from attention.a006 import read_root_fields
+        from attention.io import write_json
+        for large_name in ('runs','packages'):
+            with tempfile.TemporaryDirectory() as directory:
+                path=Path(directory)/'fixture.json.gz'
+                value={'experiment':'A006','intake_channel':[{'a':1}],large_name:[{'nested':{'a':[1,2,3]}}]*100,'tail':{'last':True}}
+                write_json(path,value)
+                self.assertEqual(read_root_fields(path,('experiment','intake_channel','tail')),
+                    {k:value[k] for k in ('experiment','intake_channel','tail')})
+
+    def test_selective_reader_rejects_duplicate_and_truncated_roots(self):
+        import tempfile
+        from pathlib import Path
+        from attention.a006 import read_root_fields
+        examples=['{\n  "x": 1,\n  "x": 2\n}\n','{\n  "x": 1,\n  "packages": [\n    {\n      "a": 2\n',
+            '{\n  "x": 1,\n}\n','{\n  "x": 1\n}\ntrailing']
+        with tempfile.TemporaryDirectory() as directory:
+            path=Path(directory)/'bad.json'
+            for raw in examples:
+                path.write_text(raw)
+                with self.assertRaises(ValueError):read_root_fields(path,('x',))
+
+    def test_streamed_source_hash_preserves_historical_semantics(self):
+        import tempfile,hashlib
+        from pathlib import Path
+        from attention.a006 import source_sha256
+        from attention.io import source_bytes,write_json
+        with tempfile.TemporaryDirectory() as directory:
+            compressed=Path(directory)/'fixture.json.gz';historical=Path(directory)/'fixture.json'
+            write_json(compressed,{'x':list(range(10000))})
+            for path in (compressed,historical):
+                self.assertEqual(source_sha256(path),hashlib.sha256(source_bytes(path)).hexdigest())
+                self.assertEqual(source_sha256(path,False),hashlib.sha256(compressed.read_bytes()).hexdigest())
+
+    def test_selective_replay_matches_full_loader(self):
+        import tempfile,copy
+        from pathlib import Path
+        from attention.a006 import load_a006_replay
+        from attention.io import write_json,load_replay
+        from lab.executor import request_hash
+        from lab.common_mode import encode
+        with tempfile.TemporaryDirectory() as directory:
+            path=Path(directory)/'fixture.json.gz';request=Request(1,1,.01)
+            records=[dict(task_id=i,request=encode(request),request_sha256=request_hash(request)) for i in range(60)]
+            value=dict(experiment='A006',intake_channel=records,global_permutations=[],intake_sha256='fixture',packages=[{'large':[1]*10000}])
+            write_json(path,value)
+            old,old_requests,old_provenance=load_replay(path,'A006',60)
+            new,new_requests,new_provenance=load_a006_replay(path)
+            self.assertEqual(new,{k:old[k] for k in new})
+            self.assertEqual(new_requests,old_requests);self.assertEqual(new_provenance,old_provenance)
+            value['intake_channel'][0]['request_sha256']='wrong';write_json(path,value)
+            with self.assertRaises(ValueError):load_a006_replay(path)
