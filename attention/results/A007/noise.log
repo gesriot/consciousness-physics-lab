@@ -1,0 +1,90 @@
+Completed and saved package 1 of 12
+Completed and saved package 2 of 12
+Completed and saved package 3 of 12
+Completed and saved package 4 of 12
+Completed and saved package 5 of 12
+Completed and saved package 6 of 12
+Completed and saved package 7 of 12
+Completed and saved package 8 of 12
+Completed and saved package 9 of 12
+Completed and saved package 10 of 12
+Completed and saved package 11 of 12
+Completed and saved package 12 of 12
+{
+  "stopping_rule": {
+    "budgets": [
+      {
+        "fraction": "0.2",
+        "totals": {
+          "BA": {
+            "false_accepts_after": 0,
+            "delay_inputs_penalized": 1571
+          },
+          "BU": {
+            "false_accepts_after": 0,
+            "delay_inputs_penalized": 1578
+          },
+          "C2A": {
+            "false_accepts_after": 0,
+            "delay_inputs_penalized": 1655
+          }
+        },
+        "wins": {
+          "false_accepts_after": false,
+          "delay_inputs_penalized": true
+        },
+        "passes": true
+      },
+      {
+        "fraction": "0.4",
+        "totals": {
+          "BA": {
+            "false_accepts_after": 1,
+            "delay_inputs_penalized": 1517
+          },
+          "BU": {
+            "false_accepts_after": 1,
+            "delay_inputs_penalized": 1482
+          },
+          "C2A": {
+            "false_accepts_after": 0,
+            "delay_inputs_penalized": 1650
+          }
+        },
+        "wins": {
+          "false_accepts_after": false,
+          "delay_inputs_penalized": false
+        },
+        "passes": false
+      },
+      {
+        "fraction": "0.6",
+        "totals": {
+          "BA": {
+            "false_accepts_after": 1,
+            "delay_inputs_penalized": 1471
+          },
+          "BU": {
+            "false_accepts_after": 1,
+            "delay_inputs_penalized": 1463
+          },
+          "C2A": {
+            "false_accepts_after": 0,
+            "delay_inputs_penalized": 1645
+          }
+        },
+        "wins": {
+          "false_accepts_after": false,
+          "delay_inputs_penalized": false
+        },
+        "passes": false
+      }
+    ],
+    "passing_limited_budgets": 1,
+    "series_closed": true,
+    "criterion": "BA strictly beats both BU and C2A on the same endpoint in at least two limited budgets"
+  },
+  "output": "results/local/a007-noise.json.gz",
+  "sha256": "c5fe0191e600bedca56cdbb0d6494df18dcabfbca10ec154e8180b44da7e1234"
+}
+{"wall_seconds": 1066.867404144, "maximum_rss_kib": 266168}

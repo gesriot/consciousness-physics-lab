@@ -1,0 +1,37 @@
+{
+  "source": "results.json.gz",
+  "source_sha256": "909076d0ea7f8ebddd5700454a1c44f007399b42782e693719b90b6f687a0849",
+  "unit": "Dependent repeated replacement records across policies, faults and budgets",
+  "records": 313,
+  "raw_to_guarded": {
+    "accept_to_inconclusive": 256,
+    "violation_to_inconclusive": 3,
+    "inconclusive_to_inconclusive": 54
+  },
+  "selected_groups": [
+    {
+      "fault": "permissive",
+      "fraction": 0.6,
+      "policy": "BA",
+      "records": 7,
+      "accept_to_inconclusive": 4,
+      "inconclusive_to_inconclusive": 3
+    },
+    {
+      "fault": "compressed",
+      "fraction": 1.0,
+      "policy": "BA",
+      "records": 28,
+      "accept_to_inconclusive": 28,
+      "inconclusive_to_inconclusive": 0
+    },
+    {
+      "fault": "compressed",
+      "fraction": 1.0,
+      "policy": "BU",
+      "records": 28,
+      "accept_to_inconclusive": 28,
+      "inconclusive_to_inconclusive": 0
+    }
+  ]
+}
