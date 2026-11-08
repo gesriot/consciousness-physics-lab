@@ -19,3 +19,14 @@ edited record IDs, future-record invariance and distinct sample/action chronolog
 The interrupted artifacts and log are retained. The same registered development
 seeds are restarted in development-complete after this separate correction commit.
 Only development-complete supplies the committed freeze and confirmation choice.
+
+## Archive-only improvement before confirmation
+
+Development recall archives retain exact edge edit audits but not duplicate
+per-notice corrupted-memory snapshots. The registered requirement to save both is
+implemented before confirmation: every notice now archives the actual policy-visible
+record view, including Gx/Gxprime altered links and T/A/N's id/time-only journal.
+Development views can be reconstructed from the retained original ledger and edits.
+This logging-only addition does not alter selection, budgets or numerical results;
+regression tests verify snapshots reproduce the original selected IDs. Development
+keeps its original source hash; confirmation records the logging-enhanced version.

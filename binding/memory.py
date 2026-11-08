@@ -24,7 +24,7 @@ def corrupt(records, notified, irrelevant=False, last_success=float('-inf')):
     return result, edits
 
 
-def select(records, notice, memory, reviewed=(), noise=False):
+def visible_memory(records, notice, memory, reviewed=()):
     if memory not in MEMORIES:
         raise ValueError('Unknown memory')
     visible = [r for r in records if r['time'] < notice['time'] and r['id'] not in reviewed]
@@ -32,10 +32,15 @@ def select(records, notice, memory, reviewed=(), noise=False):
     if memory in ('Gx', 'Gxprime'):
         visible, edits = corrupt(visible, notice['channel'], memory == 'Gxprime', notice['last_success'])
     if memory in ('T', 'A', 'N'):
-        visible = [dict(id=r['id'], time=r['time'], links=[]) for r in visible]
+        visible = [dict(id=r['id'], time=r['time']) for r in visible]
+    return visible, edits
+
+
+def select(records, notice, memory, reviewed=(), noise=False):
+    visible, edits = visible_memory(records, notice, memory, reviewed)
     selected = []
     for record in visible:
-        linked = [e['time'] for e in record['links']
+        linked = [e['time'] for e in record.get('links', [])
                   if e['channel'] == notice['channel'] and e['time'] > notice['last_success']]
         if memory == 'N' or (memory == 'T' and record['time'] <= notice['last_success']):
             continue
@@ -55,7 +60,10 @@ def recall(records, notices, memory, units, replace, price, noise=False):
     for notice in notices:
         selected, edits = select(records, notice, memory, reviewed, noise)
         selected_all.update(selected)
-        interventions.append(dict(notice=notice, edits=edits, changed_edges=len(edits),
+        snapshot, snapshot_edits = visible_memory(records, notice, memory, reviewed)
+        if edits != snapshot_edits:
+            raise AssertionError('Memory snapshot differs from selection')
+        interventions.append(dict(notice=notice, records=snapshot, edits=edits, changed_edges=len(edits),
                                   l1=sum(e['l1'] for e in edits)))
         for record_id in selected[:max(0, units-len(reviewed))]:
             result = replace(record_id)

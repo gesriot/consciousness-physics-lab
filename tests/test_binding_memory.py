@@ -167,3 +167,16 @@ class ChronologyTests(unittest.TestCase):
                 corrected_selected, corrected_edits = select(records, notice, memory)
                 self.assertEqual(old_selected, corrected_selected)
                 self.assertLessEqual(len(corrected_edits), len(old_edits))
+
+    def test_saved_memory_is_exact_policy_view(self):
+        notice = dict(channel='collocation:0', time=20, last_success=5)
+        records = [record()]
+        expected = {p: select(records, notice, p)[0] for p in ('G','T','A','N','Gx','Gxprime')}
+        for policy in expected:
+            result = recall(records, [notice], policy, 32, lambda _: {'verdict':'accept'}, 1.)
+            snapshot = result['interventions'][0]['records']
+            actual = select(snapshot, notice, 'G' if policy.startswith('G') else policy)[0]
+            self.assertEqual(actual, expected[policy])
+            self.assertEqual(result['selected'], sorted(expected[policy]))
+            if policy in ('T','A','N'):
+                self.assertEqual(set(snapshot[0]), {'id','time'})
