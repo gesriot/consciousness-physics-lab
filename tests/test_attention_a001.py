@@ -126,6 +126,24 @@ class AttentionTests(unittest.TestCase):
         changed['runs'][0]['full']['spent']=2
         self.assertFalse(compare(original,changed)['numeric_diagnostics_pass'])
 
+    def test_comparison_rejects_flags_and_missing_structure(self):
+        observed=dict(verdict='inconclusive',terminal=False,step=dict(converging=False,futile=False))
+        result=dict(verdict='inconclusive',spent=1,correct=False,
+            actions=[dict(action='v2_512',observation=observed)])
+        row=dict(task_id=0,condition='clean',accurate=True,
+            full=dict(verdict='inconclusive',spent=1),policies={'1.0':{'B':result}})
+        original=dict(runs=[row])
+        for alteration in ('flag','missing_step','missing_action','added_key'):
+            changed=copy.deepcopy(original)
+            action=changed['runs'][0]['policies']['1.0']['B']['actions'][0]
+            if alteration=='flag':action['observation']['step']['converging']=True
+            elif alteration=='missing_step':del action['observation']['step']
+            elif alteration=='missing_action':changed['runs'][0]['policies']['1.0']['B']['actions']=[]
+            else:action['observation']['new_diagnostic']=1.
+            comparison=compare(original,changed)
+            self.assertFalse(comparison['numeric_diagnostics_pass'])
+            if alteration!='added_key':self.assertFalse(comparison['decisions_pass'])
+
     def test_collocation_below_floor_not_skipped(self):
         r=Request(1,1,1e-7)
         observed={'modal':{'verdict':'inconclusive'}}

@@ -116,14 +116,22 @@ def summary(rows):
     return result
 
 
+def control_flags(value, path=''):
+    """All discrete boolean decisions, including nested gate and grid flags."""
+    if isinstance(value,dict):
+        return {p:v for k,item in value.items() for p,v in control_flags(item,path+'/'+k).items()}
+    if isinstance(value,list):
+        return {p:v for i,item in enumerate(value) for p,v in control_flags(item,path+'/'+str(i)).items()}
+    return {path:value} if isinstance(value,bool) else {}
+
+
 def decision_view(result):
     return [dict(task_id=r['task_id'],condition=r['condition'],accurate=r['accurate'],
-       reference_verdict=r['full']['verdict'],full_cost=r['full']['spent'],
+       reference_verdict=r['full']['verdict'],full_cost=r['full']['spent'],full_flags=control_flags(r['full']),
        policies={f:{p:dict(verdict=x['verdict'],spent=x['spent'],correct=x['correct'],
           actions=[a['action'] for a in x['actions']],
           component_verdicts=[a.get('observation',{}).get('verdict',a.get('verdict')) for a in x['actions']],
-          control_flags=[{k:v for k,v in a.get('observation',{}).items() if k=='terminal'} |
-              {k:v for k,v in a.get('observation',{}).get('step',{}).items() if isinstance(v,bool)} for a in x['actions']])
+          control_flags=control_flags(x))
           for p,x in ps.items()} for f,ps in r['policies'].items()}) for r in result['runs']]
 
 
