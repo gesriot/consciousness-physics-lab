@@ -1,0 +1,301 @@
+{
+  "passed": true,
+  "failures": [],
+  "max_model_80_vs_60_digit_difference": 1.4168149750966945e-56,
+  "audited_request_count": 60,
+  "endpoints": {
+    "all": {
+      "tasks": 240,
+      "rows": 2160,
+      "clean_accurate": 185,
+      "policies": {
+        "strict": {
+          "verdicts": {
+            "violation_detected": 1179,
+            "accept": 626,
+            "inconclusive": 355
+          },
+          "false_acceptances": 0,
+          "clean_accurate_acceptances": 138,
+          "accurate_numerical_violations": 0,
+          "accurate_model_violations": 216
+        },
+        "soft": {
+          "verdicts": {
+            "violation_detected": 1179,
+            "accept": 669,
+            "inconclusive": 312
+          },
+          "false_acceptances": 0,
+          "clean_accurate_acceptances": 145,
+          "accurate_numerical_violations": 0,
+          "accurate_model_violations": 216
+        }
+      },
+      "V2_decisive_rows": 1766,
+      "V2_unique_decisive": 782,
+      "V2_sphere_misses": 0,
+      "V2_intrinsic_misses": 0,
+      "V2_original_sphere_discrepancies": 439,
+      "third_decisive_rows": 1845,
+      "third_unique_decisive": 207,
+      "third_misses": 0,
+      "operational_steps": 3742,
+      "noise_decisive": 88,
+      "C1_C2_disagreements": 0,
+      "component_work": {
+        "verification_fv_cells": 6171648,
+        "probe_modal_terms": 49152000,
+        "probe_fv_cells": 31948800,
+        "third_matrix_solves": 4320,
+        "third_sum_degrees": 414720
+      },
+      "clean_strictness_cost": 7
+    },
+    "W": {
+      "tasks": 48,
+      "rows": 432,
+      "clean_accurate": 45,
+      "policies": {
+        "strict": {
+          "verdicts": {
+            "violation_detected": 214,
+            "accept": 208,
+            "inconclusive": 10
+          },
+          "false_acceptances": 0,
+          "clean_accurate_acceptances": 45,
+          "accurate_numerical_violations": 0,
+          "accurate_model_violations": 39
+        },
+        "soft": {
+          "verdicts": {
+            "violation_detected": 214,
+            "accept": 208,
+            "inconclusive": 10
+          },
+          "false_acceptances": 0,
+          "clean_accurate_acceptances": 45,
+          "accurate_numerical_violations": 0,
+          "accurate_model_violations": 39
+        }
+      },
+      "V2_decisive_rows": 424,
+      "V2_unique_decisive": 187,
+      "V2_sphere_misses": 0,
+      "V2_intrinsic_misses": 0,
+      "V2_original_sphere_discrepancies": 98,
+      "third_decisive_rows": 421,
+      "third_unique_decisive": 47,
+      "third_misses": 0,
+      "operational_steps": 480,
+      "noise_decisive": 16,
+      "C1_C2_disagreements": 0,
+      "component_work": {
+        "verification_fv_cells": 565248,
+        "probe_modal_terms": 9830400,
+        "probe_fv_cells": 6389760,
+        "third_matrix_solves": 864,
+        "third_sum_degrees": 82944
+      },
+      "clean_strictness_cost": 0
+    },
+    "H": {
+      "tasks": 48,
+      "rows": 432,
+      "clean_accurate": 48,
+      "policies": {
+        "strict": {
+          "verdicts": {
+            "inconclusive": 219,
+            "violation_detected": 125,
+            "accept": 88
+          },
+          "false_acceptances": 0,
+          "clean_accurate_acceptances": 15,
+          "accurate_numerical_violations": 0,
+          "accurate_model_violations": 96
+        },
+        "soft": {
+          "verdicts": {
+            "inconclusive": 197,
+            "violation_detected": 125,
+            "accept": 110
+          },
+          "false_acceptances": 0,
+          "clean_accurate_acceptances": 18,
+          "accurate_numerical_violations": 0,
+          "accurate_model_violations": 96
+        }
+      },
+      "V2_decisive_rows": 146,
+      "V2_unique_decisive": 61,
+      "V2_sphere_misses": 0,
+      "V2_intrinsic_misses": 0,
+      "V2_original_sphere_discrepancies": 20,
+      "third_decisive_rows": 254,
+      "third_unique_decisive": 29,
+      "third_misses": 0,
+      "operational_steps": 1504,
+      "noise_decisive": 0,
+      "C1_C2_disagreements": 0,
+      "component_work": {
+        "verification_fv_cells": 3112960,
+        "probe_modal_terms": 9830400,
+        "probe_fv_cells": 6389760,
+        "third_matrix_solves": 864,
+        "third_sum_degrees": 82944
+      },
+      "clean_strictness_cost": 3
+    },
+    "M": {
+      "tasks": 48,
+      "rows": 432,
+      "clean_accurate": 46,
+      "policies": {
+        "strict": {
+          "verdicts": {
+            "accept": 175,
+            "violation_detected": 253,
+            "inconclusive": 4
+          },
+          "false_acceptances": 0,
+          "clean_accurate_acceptances": 46,
+          "accurate_numerical_violations": 0,
+          "accurate_model_violations": 11
+        },
+        "soft": {
+          "verdicts": {
+            "accept": 175,
+            "violation_detected": 253,
+            "inconclusive": 4
+          },
+          "false_acceptances": 0,
+          "clean_accurate_acceptances": 46,
+          "accurate_numerical_violations": 0,
+          "accurate_model_violations": 11
+        }
+      },
+      "V2_decisive_rows": 432,
+      "V2_unique_decisive": 193,
+      "V2_sphere_misses": 0,
+      "V2_intrinsic_misses": 0,
+      "V2_original_sphere_discrepancies": 144,
+      "third_decisive_rows": 432,
+      "third_unique_decisive": 48,
+      "third_misses": 0,
+      "operational_steps": 435,
+      "noise_decisive": 0,
+      "C1_C2_disagreements": 0,
+      "component_work": {
+        "verification_fv_cells": 464896,
+        "probe_modal_terms": 9830400,
+        "probe_fv_cells": 6389760,
+        "third_matrix_solves": 864,
+        "third_sum_degrees": 82944
+      },
+      "clean_strictness_cost": 0
+    },
+    "O": {
+      "tasks": 48,
+      "rows": 432,
+      "clean_accurate": 46,
+      "policies": {
+        "strict": {
+          "verdicts": {
+            "accept": 155,
+            "violation_detected": 188,
+            "inconclusive": 89
+          },
+          "false_acceptances": 0,
+          "clean_accurate_acceptances": 32,
+          "accurate_numerical_violations": 0,
+          "accurate_model_violations": 65
+        },
+        "soft": {
+          "verdicts": {
+            "accept": 176,
+            "violation_detected": 188,
+            "inconclusive": 68
+          },
+          "false_acceptances": 0,
+          "clean_accurate_acceptances": 36,
+          "accurate_numerical_violations": 0,
+          "accurate_model_violations": 65
+        }
+      },
+      "V2_decisive_rows": 338,
+      "V2_unique_decisive": 149,
+      "V2_sphere_misses": 0,
+      "V2_intrinsic_misses": 0,
+      "V2_original_sphere_discrepancies": 76,
+      "third_decisive_rows": 341,
+      "third_unique_decisive": 38,
+      "third_misses": 0,
+      "operational_steps": 866,
+      "noise_decisive": 16,
+      "C1_C2_disagreements": 0,
+      "component_work": {
+        "verification_fv_cells": 1533952,
+        "probe_modal_terms": 9830400,
+        "probe_fv_cells": 6389760,
+        "third_matrix_solves": 864,
+        "third_sum_degrees": 82944
+      },
+      "clean_strictness_cost": 4
+    },
+    "S": {
+      "tasks": 48,
+      "rows": 432,
+      "clean_accurate": 0,
+      "policies": {
+        "strict": {
+          "verdicts": {
+            "violation_detected": 399,
+            "inconclusive": 33
+          },
+          "false_acceptances": 0,
+          "clean_accurate_acceptances": 0,
+          "accurate_numerical_violations": 0,
+          "accurate_model_violations": 5
+        },
+        "soft": {
+          "verdicts": {
+            "violation_detected": 399,
+            "inconclusive": 33
+          },
+          "false_acceptances": 0,
+          "clean_accurate_acceptances": 0,
+          "accurate_numerical_violations": 0,
+          "accurate_model_violations": 5
+        }
+      },
+      "V2_decisive_rows": 426,
+      "V2_unique_decisive": 192,
+      "V2_sphere_misses": 0,
+      "V2_intrinsic_misses": 0,
+      "V2_original_sphere_discrepancies": 101,
+      "third_decisive_rows": 397,
+      "third_unique_decisive": 45,
+      "third_misses": 0,
+      "operational_steps": 457,
+      "noise_decisive": 56,
+      "C1_C2_disagreements": 0,
+      "component_work": {
+        "verification_fv_cells": 494592,
+        "probe_modal_terms": 9830400,
+        "probe_fv_cells": 6389760,
+        "third_matrix_solves": 864,
+        "third_sum_degrees": 82944
+      },
+      "clean_strictness_cost": 0
+    }
+  },
+  "total_modal_terms": 52139267,
+  "method": "Independent formulas and raw rows; no production summary function invoked",
+  "repeat_scientific_exact": true,
+  "source_sha256": {
+    "results/E016-frozen-pipeline/results.json": "9498d924554d2f5881742624e4d7bbb53eb7997d256f1449af1950844926af51",
+    "results/E016-frozen-pipeline/repeat.json": "e5cd2d72fd4d8af2b650317a8060c747c3c98f91e6b57b4eb96a99ae67f2009e"
+  }
+}
