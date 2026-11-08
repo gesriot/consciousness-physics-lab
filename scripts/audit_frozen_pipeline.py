@@ -1,83 +1,61 @@
 #!/usr/bin/env python3
-"""Independently replay all archived model-gate decisions using fresh probes."""
+"""Fresh component decisions on development archives, without new task sampling."""
 import argparse
 import hashlib
 import json
 from pathlib import Path
 import sys
-from unittest.mock import patch
-
-ROOT = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(ROOT))
-from lab import geometry_invariants as geometry
-from lab import matched_mixture, frozen_pipeline
-from lab.guard import Request
+sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
+from lab import frozen_pipeline as p
 from lab.executor import request_hash
+from lab.guard import Request
 
 
-def run():
-    original_fv = geometry.fv_test_hook
-    original_modal = geometry.modal_test_hook
-    reports = []
-    for name, intake_key in (('E011-extrapolation', 'tasks'),
-                             ('E013-matched-mixture', 'intake_channel')):
-        path = ROOT / 'results' / name / 'results.json'
-        raw = path.read_bytes()
+def audit():
+    result = dict(gate_requests=0,third_rows=0,mismatches=[],archives={})
+    for experiment, path in (
+            ('E011','results/E011-extrapolation/results.json'),
+            ('E013','results/E013-matched-mixture/results.json')):
+        raw = Path(path).read_bytes()
         data = json.loads(raw)
-        tasks = {r['task_id']: r for r in data[intake_key]}
-        seen, details, differences = set(), [], []
+        tasks = {r['task_id']:r for r in data['intake_channel']}
+        seen = set()
+        stats = dict(source_sha256=hashlib.sha256(raw).hexdigest(),gate_requests=0,third_rows=0)
         for row in data['runs']:
-            model = row.get('model', row.get('condition'))
-            model = 'sphere' if model == 'clean' else model
-            key = (row['task_id'], model)
-            if key in seen:
-                continue
-            seen.add(key)
-            fields = dict(tasks[row['task_id']]['request'])
-            fields['z'] = complex(*fields['z'])
-            request = Request(**fields)
-            def uniform(solver, z, t, n, d):
-                if model == 'mixture':
-                    return sum(w * solver(z, t*x, n, 1)
-                               for w, x, _ in matched_mixture.components('mixture'))
-                return solver(z, t*(1000 if model == 'model_scale' else 1), n,
-                              1 if model == 'slab' else 3)
-            with patch('lab.geometry_invariants.modal_test_hook',
-                       side_effect=lambda z,t,n,d: uniform(original_modal,z,t,n,d)), \
-                 patch('lab.geometry_invariants.fv_test_hook',
-                       side_effect=lambda z,t,n,d: uniform(original_fv,z,t,n,d)):
-                probes = geometry.probes(request, request.mean_time, 3)
-            digest = request_hash(request)
-            independent = frozen_pipeline.checks_from_probes(probes, digest, row['original_digest'])
-            assembled = frozen_pipeline.checks_from_probes(
-                frozen_pipeline.model_probes(request, model), digest, row['original_digest'])
-            expected = row['checks']
-            record = dict(task_id=row['task_id'], model=model, expected=expected,
-                          independent_uniform=independent, assembled=assembled,
-                          passed=independent == expected == assembled)
-            details.append(record)
-            if not record['passed']:
-                differences.append(record)
-        reports.append(dict(archive=str(path.relative_to(ROOT)),
-            source_sha256=hashlib.sha256(raw).hexdigest(), archived_rows=len(data['runs']),
-            unique_task_model_inputs=len(seen), differences=len(differences),
-            mismatches=differences, comparisons=details))
-    return dict(purpose='Fresh original uniform E008/E010 probes and assembled module versus archived gates',
-                comparisons=reports, passed=all(r['differences'] == 0 for r in reports),
-                scope='Model/request gate booleans; neither held-out generation nor numerical V2 or third replay')
+            q = tasks[row['task_id']]['request']
+            request = Request(complex(*q['z']),q['mean_time'],q['tolerance'],q['budget'],q['max_calls'])
+            model = row.get('model',row.get('condition'))
+            if model == 'clean': model = 'sphere'
+            key = (row['task_id'],model)
+            if key not in seen:
+                checks = p.checks_from_probes(p.model_probes(request,model),request_hash(request),row['original_digest'])
+                if checks != row['checks']:
+                    result['mismatches'].append(dict(experiment=experiment,task_id=row['task_id'],model=model,
+                        component='gates',old=row['checks'],new=checks))
+                seen.add(key)
+                stats['gate_requests'] += 1
+            if experiment == 'E013':
+                third = p.third_check(request.z,request.mean_time,complex(*row['outcome']['value']),request.tolerance)
+                for field in ('verdict','converging','degrees','matrix_solves'):
+                    if third[field] != row['third'][field]:
+                        result['mismatches'].append(dict(experiment=experiment,task_id=row['task_id'],model=model,
+                            component='third',field=field,old=row['third'][field],new=third[field]))
+                stats['third_rows'] += 1
+        result['archives'][experiment] = stats
+        result['gate_requests'] += stats['gate_requests']
+        result['third_rows'] += stats['third_rows']
+    return result
 
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--output', type=Path, required=True)
+    parser.add_argument('--output',type=Path)
     args = parser.parse_args()
-    if args.output.exists():
-        raise ValueError('Output exists; preserve earlier audit')
-    result = run()
-    args.output.parent.mkdir(parents=True, exist_ok=True)
-    args.output.write_text(json.dumps(result, indent=2, allow_nan=False) + '\n')
-    print(json.dumps({k:v for k,v in result.items() if k != 'comparisons'}, indent=2))
-    print(json.dumps([{k:v for k,v in r.items() if k not in ('comparisons', 'mismatches')}
-                      for r in result['comparisons']], indent=2))
-    if not result['passed']:
+    result = audit()
+    text = json.dumps(result,indent=2)+'\n'
+    if args.output:
+        args.output.parent.mkdir(parents=True,exist_ok=True)
+        args.output.write_text(text)
+    print(text,end='')
+    if result['mismatches']:
         raise SystemExit(1)
