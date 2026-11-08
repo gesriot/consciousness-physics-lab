@@ -1,0 +1,26 @@
+{
+  "passed": true,
+  "archive_unchanged": true,
+  "detected": {
+    "correct total": true,
+    "action price": true,
+    "expected verdict table": true,
+    "allocation executed": true
+  },
+  "audit_result": {
+    "passed": false,
+    "checks": 10087256,
+    "errors": [
+      "0/none/0.2/B: action price",
+      "0/none/0.2/B: correct total",
+      "0/none/0.2/BA: expected verdict table",
+      "0/none/0.2/C2A: allocation executed",
+      "0/none/0.2/Dprime: paired sample counts",
+      "0/none/0.2/Dprime: irrelevant intervention unchanged"
+    ],
+    "audit_source_sha256": "80f37f6738b7f8579615d4671efedddf5c5207e491164b77d229f753596a0ea9",
+    "generation_audit_source_sha256": "df898c0532407894bd7df9fee19fcf290ab3f5e9cfe7d47ea31173939aca53aa",
+    "auditor_matches_generation": false,
+    "scope": "Independent frozen-sample, numerical-hook, calibration-choice, budget, evidence, monitor, intervention and summary reconstruction; including pre-sample two-stage timing choice; no fresh physical execution or exhaustive ordinary-planner optimality proof"
+  }
+}

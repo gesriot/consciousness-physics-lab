@@ -550,3 +550,43 @@ python3 -m attention.audit_a005 attention/results/A005/results.json.gz --output 
 проверке; четыре мутации отрицательного контроля обнаружены. Общий check:
 226 основных + 30 vendor-тестов PASS ([журнал](attention/results/A005/check.log)).
 Полные повторные архивы не дублируются; их SHA-256 и сводки сохранены.
+
+## A006: активная самопроверка образцами
+
+[Протокол](attention/protocols/A006-active-calibration.md) и уточнение
+предшествуют коду и новым данным. [Отчёт](attention/results/A006/report.md).
+Заморожены 115 development-образцов восьми семейств проверок; активные
+политики проверяют коллокацию, второй момент и V2. Все образцы оплачены
+из бюджета пакета, BA/C2A имеют одинаковые квоты 3/6/9/15.
+
+При всегда принимающей коллокации обе активные схемы обнаруживают сбой
+за 1–2 целевых образца и не имеют ложных принятий. BA даёт
+180/285/361/392 верных итога, C2A – 244/281/348/392: общего превосходства
+самомодели нет. При втором моменте образцы проявляют сбой, не меняющий
+рабочих наблюдений. Поздние тревоги BM здесь совпадают с чистыми ложными
+тревогами и не являются свидетельством обнаружения повреждения.
+Новый сбой V2 реально меняет численные и часть категориальных рабочих
+наблюдений, но не замечен библиотекой образцов. D заранее вызывает ложные
+тревоги и защиту, поэтому не выделяет вред маскирования; Dprime сохраняет BA.
+
+BA/C2A различаются также порядком обычных действий: разности правильности
+не изолируют чистый эффект выбора образцов. Нулевая задержка в обычных
+входах означает оплаченный образец в начале пакета. Рукопись 0.17 сохраняет
+эти ограничения; это функциональный результат, не теория сознания.
+
+```sh
+OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 python3 -m attention.a006 --replay attention/results/A006/results.json.gz --output results/local/a006-repeat.json.gz
+OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 python3 -m attention.a006 --replay attention/results/A006/results.json.gz --last-bit-noise --output results/local/a006-noise.json.gz
+python3 -m attention.compare_a006 attention/results/A006/results.json.gz results/local/a006-repeat.json.gz --output results/local/a006-comparison.json
+python3 -m attention.compare_a006 attention/results/A006/results.json.gz results/local/a006-noise.json.gz --output results/local/a006-noise-comparison.json
+python3 -m attention.audit_a006 attention/results/A006/results.json.gz --output results/local/a006-audit.json
+python3 -m attention.audit_a006 attention/results/A006/results.json.gz --negative-control --output results/local/a006-negative-audit.json
+./scripts/check.sh
+```
+
+Для отличающейся среды добавляется содержательный `--runtime-override`;
+сравнение – отдельный модуль `attention.compare_a006`, не флаг `--compare`.
+Чтение входов replay и пересечений архивов ограничено по памяти;
+полная семантическая проверка результатов остаётся задачей аудитора.
+История двух прерванных запусков и восстановления точных входов
+сохранена в [отчёте прерывания](attention/results/A006/interruption.md).
