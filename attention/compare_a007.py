@@ -1,4 +1,5 @@
 """Bounded-memory exact decision and accounting comparison for A007."""
+from attention.comparison_diagnostics import SHADOW_FIELDS, shadow_differences
 import argparse
 from itertools import zip_longest
 from attention.compare_a004 import Archive
@@ -15,7 +16,7 @@ PROVENANCE={'environment','runtime_override','git_head','source_sha256','replay'
 def decision_view(value):
     if isinstance(value,dict):
         return {k:(v if k in EXACT_NUMBERS else decision_view(v)) for k,v in value.items()
-                if not k.endswith('seconds')}
+                if k not in SHADOW_FIELDS and not k.endswith('seconds')}
     if isinstance(value,list):return [decision_view(v) for v in value]
     if isinstance(value,float):return '<numeric diagnostic>'
     return value
@@ -23,10 +24,11 @@ def decision_view(value):
 
 def compare_paths(first,second):
     left,right=Archive(first),Archive(second);missing=object()
-    different=[];diagnostics={}
+    different=[];diagnostics={};shadows=[]
     for index,(a,b) in enumerate(zip_longest(left.packages(),right.packages(),fillvalue=missing)):
         if a is missing or b is missing:
             different.append(index);continue
+        shadows.extend(shadow_differences(a,b,'/packages/'+str(index)))
         if decision_view(a)!=decision_view(b):different.append(index)
         for key,row in numeric_summary([a],[b]).items():
             entry=diagnostics.setdefault(key,dict(count=0,changed=0,max_abs=0.,max_rel=0.,nonfinite=0))
@@ -35,7 +37,7 @@ def compare_paths(first,second):
     keys=(set(left.metadata)|set(right.metadata))-PROVENANCE
     root=[key for key in sorted(keys) if left.metadata.get(key,missing)!=right.metadata.get(key,missing)]
     return dict(decisions_pass=not different and not root,differing_packages=different,
-        root_mismatches=root,numeric_diagnostics=diagnostics,numeric_diagnostics_informational=True)
+        root_mismatches=root,numeric_diagnostics=diagnostics,numeric_diagnostics_informational=True,shadow_diagnostics=shadows)
 
 if __name__=='__main__':
     parser=argparse.ArgumentParser();parser.add_argument('first');parser.add_argument('second')

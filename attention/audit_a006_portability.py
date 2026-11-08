@@ -12,26 +12,48 @@ from lab import frozen_pipeline as P
 from lab.finite_volume import response as uniform_response
 from lab.guard import Request
 
-# A forward diagnostic allowance, not an uncertainty guarantee for the solver.
-# Differences amplify two endpoint errors; the second moment amplifies them by
-# 2 / (h**2 * (20/7)). Ratios need their own denominator-dependent allowance.
+# Diagnostic forward-error budget, not a solver accuracy guarantee. A uniform
+# second-order grid has O(n**2) conditioning. Scale unit roundoff by that grid
+# and the response magnitude, then propagate through each probe expression.
+# Working verdicts, accepted flags, budgets and costs are never approximated.
 ENDPOINT_ALLOWANCE = 1e-11
 
 
+def endpoint_allowance(family, container):
+    grid = (P.CONFIG.old_probe_cells if family in ('normalization','first_moment')
+            else P.CONFIG.other_probe_cells)
+    if family == 'v2':
+        grid = container.get('last_grid', P.CONFIG.first_decisive_grid)
+    if family == 'collocation':
+        grid = max(container.get('degrees', P.CONFIG.third_degrees))
+    values = [container[k] for k in ('value','zero','shifted') if k in container]
+    scale = max([1.] + [abs(complex(*v)) for v in values if isinstance(v,list) and len(v)==2])
+    return max(ENDPOINT_ALLOWANCE, np.finfo(float).eps * grid**2 * scale)
+
+
 def diagnostic_atol(family, key, container):
-    if family == 'second_moment' and key == 'error':
-        return 4 * ENDPOINT_ALLOWANCE / (.01**2 * (20/7))
+    endpoint = endpoint_allowance(family, container)
+    if key == 'error':
+        if family == 'first_moment':
+            return endpoint / P.CONFIG.old_probe_step
+        if family == 'second_moment':
+            return 4 * endpoint / (P.CONFIG.second_probe_step**2 * (20/7))
+        if family == 'high_frequency':
+            return 100 * endpoint / np.sqrt(3/5)
     if family == 'v2' and key == 'antecedent_ratio':
         ratio = container[key]
         if ratio > 0:
             denominator = container['previous_difference'] / ratio
-            error = 2 * ENDPOINT_ALLOWANCE
+            error = 2 * endpoint
             if denominator > error:
                 return error * (1 + abs(ratio)) / (denominator - error)
+        # A zero denominator has no finite ratio conditioning allowance.
         return ENDPOINT_ALLOWANCE
-    if family == 'v2' and key == 'uncertainty_estimate':
-        return 4 * ENDPOINT_ALLOWANCE
-    return ENDPOINT_ALLOWANCE
+    if key in ('last_difference','previous_difference','difference','discrepancy'):
+        return 2 * endpoint
+    if key in ('uncertainty_estimate','uncertainty'):
+        return 4 * endpoint
+    return endpoint
 
 
 def numerical_margin(observation, tolerance, kind='v2'):
@@ -72,7 +94,7 @@ def library_audit(library):
             row['numerical']=numerical_margin(o,r.tolerance,family)
             # A category is stable if both interval boundaries and convergence
             # have more margin than propagated endpoint perturbations.
-            m=row['numerical'];a=ENDPOINT_ALLOWANCE
+            m=row['numerical'];a=endpoint_allowance(family,o.get('step',o))
             row['diagnostic_drift_may_flip']=(m['nearest_decision_boundary']<=5*a or abs(m['contraction_margin'])<=3*a)
         else:
             row['diagnostic_drift_may_flip']=False

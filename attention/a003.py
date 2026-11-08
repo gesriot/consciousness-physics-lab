@@ -1,4 +1,5 @@
 """A003 observation-updated allocation with exact archived-input replay."""
+from attention.comparison_diagnostics import SHADOW_FIELDS, shadow_differences
 import argparse
 import copy
 import hashlib
@@ -137,7 +138,7 @@ def calibration_summary(packages):
 def decision_view(data):
     def walk(x):
         if isinstance(x,dict):
-            return {k:(v if k in ('spent','cost','budget','full_cost','reference_cost','spent_by_package','allocation_by_initial_prediction','expected_cost','upper_cost') else walk(v)) for k,v in x.items() if not k.endswith('seconds')}
+            return {k:(v if k in ('spent','cost','budget','full_cost','reference_cost','spent_by_package','allocation_by_initial_prediction','expected_cost','upper_cost') else walk(v)) for k,v in x.items() if k not in SHADOW_FIELDS and not k.endswith('seconds')}
         if isinstance(x,list):return [walk(v) for v in x]
         if isinstance(x,float):return '<numeric diagnostic>'
         return x
@@ -154,7 +155,7 @@ def compare(first,second):
     a,b=decision_view(first),decision_view(second)
     mismatches=[i for i,(x,y) in enumerate(zip(a['packages'],b['packages'])) if x!=y]
     return dict(decisions_pass=a==b,differing_packages=mismatches,numeric_diagnostics=numeric_summary(first['packages'],second['packages']),
-                numeric_diagnostics_informational=True)
+                numeric_diagnostics_informational=True,shadow_diagnostics=shadow_differences(first,second))
 
 
 def run(output,replay=None,runtime_override=None):
