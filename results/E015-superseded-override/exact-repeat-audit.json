@@ -1,0 +1,14 @@
+{
+  "exact_scientific_repeat": true,
+  "points": 21587,
+  "classifications_checked": 151109,
+  "reference_batches_equal": 4,
+  "source_hashes_match": true,
+  "excluded_fields": [
+    "seconds",
+    "git_head",
+    "environment",
+    "runtime_override",
+    "protocol_commit"
+  ]
+}

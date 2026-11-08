@@ -128,3 +128,16 @@ run. `primary/` and `repeat/` include full compressed maps, per-batch reference
 audits, dimensionless checks, summaries, all-miss CSVs and run logs.
 `repeat-comparison.json` records the exact comparison, `tests.log` the six
 focused tests and `check.log` the full repository check at this stage.
+
+## Сообщение владельца о межплатформенном повторе
+
+Владелец сообщил о проверке на macOS arm64, Python 3.12.13, NumPy 2.3.5,
+SciPy 1.17.0. Карта E012 совпала по всем 36 022 промахам покрытия, всем
+10 468 опасным промахам и всем флагам сходимости. В уточняющих партиях число
+сверяемых узлов составило 1117/1120, 2247/2249 и 4482/4484: сравнение
+вещественного модуля с 10⁸ по-разному классифицировало граничные узлы.
+Для новых карт используется точная целочисленная координата log10; архив E012
+не изменён. Добавлен явный параметр отклонения среды --runtime-override.
+E013 с --replay дал PASS: все рабочие решения совпали. Обновлённое сравнение
+decisions также дало PASS на прежних повторах E009 и E011. Это сообщение
+владельца; исходные macOS-файлы здесь не получены и заново не проверены.

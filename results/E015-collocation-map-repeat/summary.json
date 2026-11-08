@@ -1,0 +1,557 @@
+{
+  "points": 21587,
+  "planes": {
+    "1e-07": {
+      "dangerous_misses": {
+        "count": 0,
+        "log10_min": null,
+        "log10_max": null,
+        "phase_min": null,
+        "phase_max": null,
+        "levels": {
+          "0": 0,
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
+      },
+      "nonconverging": {
+        "count": 13519,
+        "log10_min": 3.8312500000000007,
+        "log10_max": 12.0,
+        "phase_min": -1.5707963267948966,
+        "phase_max": 1.5707963267948966,
+        "levels": {
+          "0": 5937,
+          "1": 1069,
+          "2": 2178,
+          "3": 4335
+        }
+      },
+      "covered_nonconverging": {
+        "count": 13519,
+        "log10_min": 3.8312500000000007,
+        "log10_max": 12.0,
+        "phase_min": -1.5707963267948966,
+        "phase_max": 1.5707963267948966,
+        "levels": {
+          "0": 5937,
+          "1": 1069,
+          "2": 2178,
+          "3": 4335
+        }
+      },
+      "rounding_only": {
+        "count": 631,
+        "log10_min": -5.95,
+        "log10_max": 3.0999999999999996,
+        "phase_min": -1.5707963267948966,
+        "phase_max": 1.5707963267948966,
+        "levels": {
+          "0": 631,
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
+      },
+      "floor_blocks_acceptance": {
+        "count": 21587,
+        "log10_min": -6.0,
+        "log10_max": 12.0,
+        "phase_min": -1.5707963267948966,
+        "phase_max": 1.5707963267948966,
+        "levels": {
+          "0": 13357,
+          "1": 1164,
+          "2": 2357,
+          "3": 4709
+        }
+      },
+      "oracle_verdicts": {
+        "accept": 0,
+        "inconclusive": 21587,
+        "violation_detected": 0
+      }
+    },
+    "1e-06": {
+      "dangerous_misses": {
+        "count": 0,
+        "log10_min": null,
+        "log10_max": null,
+        "phase_min": null,
+        "phase_max": null,
+        "levels": {
+          "0": 0,
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
+      },
+      "nonconverging": {
+        "count": 12084,
+        "log10_min": 4.06875,
+        "log10_max": 12.0,
+        "phase_min": -1.5707963267948966,
+        "phase_max": 1.5707963267948966,
+        "levels": {
+          "0": 5768,
+          "1": 895,
+          "2": 1808,
+          "3": 3613
+        }
+      },
+      "covered_nonconverging": {
+        "count": 12084,
+        "log10_min": 4.06875,
+        "log10_max": 12.0,
+        "phase_min": -1.5707963267948966,
+        "phase_max": 1.5707963267948966,
+        "levels": {
+          "0": 5768,
+          "1": 895,
+          "2": 1808,
+          "3": 3613
+        }
+      },
+      "rounding_only": {
+        "count": 631,
+        "log10_min": -5.95,
+        "log10_max": 3.0999999999999996,
+        "phase_min": -1.5707963267948966,
+        "phase_max": 1.5707963267948966,
+        "levels": {
+          "0": 631,
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
+      },
+      "floor_blocks_acceptance": {
+        "count": 21587,
+        "log10_min": -6.0,
+        "log10_max": 12.0,
+        "phase_min": -1.5707963267948966,
+        "phase_max": 1.5707963267948966,
+        "levels": {
+          "0": 13357,
+          "1": 1164,
+          "2": 2357,
+          "3": 4709
+        }
+      },
+      "oracle_verdicts": {
+        "accept": 0,
+        "inconclusive": 21587,
+        "violation_detected": 0
+      }
+    },
+    "1e-05": {
+      "dangerous_misses": {
+        "count": 0,
+        "log10_min": null,
+        "log10_max": null,
+        "phase_min": null,
+        "phase_max": null,
+        "levels": {
+          "0": 0,
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
+      },
+      "nonconverging": {
+        "count": 10593,
+        "log10_min": 4.375,
+        "log10_max": 12.0,
+        "phase_min": -1.5707963267948966,
+        "phase_max": 1.5707963267948966,
+        "levels": {
+          "0": 5567,
+          "1": 699,
+          "2": 1455,
+          "3": 2872
+        }
+      },
+      "covered_nonconverging": {
+        "count": 10593,
+        "log10_min": 4.375,
+        "log10_max": 12.0,
+        "phase_min": -1.5707963267948966,
+        "phase_max": 1.5707963267948966,
+        "levels": {
+          "0": 5567,
+          "1": 699,
+          "2": 1455,
+          "3": 2872
+        }
+      },
+      "rounding_only": {
+        "count": 631,
+        "log10_min": -5.95,
+        "log10_max": 3.0999999999999996,
+        "phase_min": -1.5707963267948966,
+        "phase_max": 1.5707963267948966,
+        "levels": {
+          "0": 631,
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
+      },
+      "floor_blocks_acceptance": {
+        "count": 9837,
+        "log10_min": 4.550000000000001,
+        "log10_max": 12.0,
+        "phase_min": -1.5707963267948966,
+        "phase_max": 1.5707963267948966,
+        "levels": {
+          "0": 5440,
+          "1": 617,
+          "2": 1258,
+          "3": 2522
+        }
+      },
+      "oracle_verdicts": {
+        "accept": 10994,
+        "inconclusive": 10593,
+        "violation_detected": 0
+      }
+    },
+    "0.0001": {
+      "dangerous_misses": {
+        "count": 0,
+        "log10_min": null,
+        "log10_max": null,
+        "phase_min": null,
+        "phase_max": null,
+        "levels": {
+          "0": 0,
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
+      },
+      "nonconverging": {
+        "count": 8834,
+        "log10_min": 4.6625,
+        "log10_max": 12.0,
+        "phase_min": -1.5707963267948966,
+        "phase_max": 1.5707963267948966,
+        "levels": {
+          "0": 5286,
+          "1": 506,
+          "2": 1009,
+          "3": 2033
+        }
+      },
+      "covered_nonconverging": {
+        "count": 8834,
+        "log10_min": 4.6625,
+        "log10_max": 12.0,
+        "phase_min": -1.5707963267948966,
+        "phase_max": 1.5707963267948966,
+        "levels": {
+          "0": 5286,
+          "1": 506,
+          "2": 1009,
+          "3": 2033
+        }
+      },
+      "rounding_only": {
+        "count": 631,
+        "log10_min": -5.95,
+        "log10_max": 3.0999999999999996,
+        "phase_min": -1.5707963267948966,
+        "phase_max": 1.5707963267948966,
+        "levels": {
+          "0": 631,
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
+      },
+      "floor_blocks_acceptance": {
+        "count": 7500,
+        "log10_min": 4.949999999999999,
+        "log10_max": 12.0,
+        "phase_min": -1.5707963267948966,
+        "phase_max": 1.5707963267948966,
+        "levels": {
+          "0": 4841,
+          "1": 377,
+          "2": 761,
+          "3": 1521
+        }
+      },
+      "oracle_verdicts": {
+        "accept": 12753,
+        "inconclusive": 8834,
+        "violation_detected": 0
+      }
+    },
+    "0.001": {
+      "dangerous_misses": {
+        "count": 0,
+        "log10_min": null,
+        "log10_max": null,
+        "phase_min": null,
+        "phase_max": null,
+        "levels": {
+          "0": 0,
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
+      },
+      "nonconverging": {
+        "count": 5491,
+        "log10_min": 5.275,
+        "log10_max": 12.0,
+        "phase_min": -1.5707963267948966,
+        "phase_max": 1.5707963267948966,
+        "levels": {
+          "0": 4208,
+          "1": 170,
+          "2": 370,
+          "3": 743
+        }
+      },
+      "covered_nonconverging": {
+        "count": 5491,
+        "log10_min": 5.275,
+        "log10_max": 12.0,
+        "phase_min": -1.5707963267948966,
+        "phase_max": 1.5707963267948966,
+        "levels": {
+          "0": 4208,
+          "1": 170,
+          "2": 370,
+          "3": 743
+        }
+      },
+      "rounding_only": {
+        "count": 631,
+        "log10_min": -5.95,
+        "log10_max": 3.0999999999999996,
+        "phase_min": -1.5707963267948966,
+        "phase_max": 1.5707963267948966,
+        "levels": {
+          "0": 631,
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
+      },
+      "floor_blocks_acceptance": {
+        "count": 0,
+        "log10_min": null,
+        "log10_max": null,
+        "phase_min": null,
+        "phase_max": null,
+        "levels": {
+          "0": 0,
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
+      },
+      "oracle_verdicts": {
+        "accept": 16096,
+        "inconclusive": 5491,
+        "violation_detected": 0
+      }
+    },
+    "0.01": {
+      "dangerous_misses": {
+        "count": 0,
+        "log10_min": null,
+        "log10_max": null,
+        "phase_min": null,
+        "phase_max": null,
+        "levels": {
+          "0": 0,
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
+      },
+      "nonconverging": {
+        "count": 0,
+        "log10_min": null,
+        "log10_max": null,
+        "phase_min": null,
+        "phase_max": null,
+        "levels": {
+          "0": 0,
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
+      },
+      "covered_nonconverging": {
+        "count": 0,
+        "log10_min": null,
+        "log10_max": null,
+        "phase_min": null,
+        "phase_max": null,
+        "levels": {
+          "0": 0,
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
+      },
+      "rounding_only": {
+        "count": 631,
+        "log10_min": -5.95,
+        "log10_max": 3.0999999999999996,
+        "phase_min": -1.5707963267948966,
+        "phase_max": 1.5707963267948966,
+        "levels": {
+          "0": 631,
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
+      },
+      "floor_blocks_acceptance": {
+        "count": 0,
+        "log10_min": null,
+        "log10_max": null,
+        "phase_min": null,
+        "phase_max": null,
+        "levels": {
+          "0": 0,
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
+      },
+      "oracle_verdicts": {
+        "accept": 21587,
+        "inconclusive": 0,
+        "violation_detected": 0
+      }
+    },
+    "0.1": {
+      "dangerous_misses": {
+        "count": 0,
+        "log10_min": null,
+        "log10_max": null,
+        "phase_min": null,
+        "phase_max": null,
+        "levels": {
+          "0": 0,
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
+      },
+      "nonconverging": {
+        "count": 0,
+        "log10_min": null,
+        "log10_max": null,
+        "phase_min": null,
+        "phase_max": null,
+        "levels": {
+          "0": 0,
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
+      },
+      "covered_nonconverging": {
+        "count": 0,
+        "log10_min": null,
+        "log10_max": null,
+        "phase_min": null,
+        "phase_max": null,
+        "levels": {
+          "0": 0,
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
+      },
+      "rounding_only": {
+        "count": 631,
+        "log10_min": -5.95,
+        "log10_max": 3.0999999999999996,
+        "phase_min": -1.5707963267948966,
+        "phase_max": 1.5707963267948966,
+        "levels": {
+          "0": 631,
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
+      },
+      "floor_blocks_acceptance": {
+        "count": 0,
+        "log10_min": null,
+        "log10_max": null,
+        "phase_min": null,
+        "phase_max": null,
+        "levels": {
+          "0": 0,
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
+      },
+      "oracle_verdicts": {
+        "accept": 21587,
+        "inconclusive": 0,
+        "violation_detected": 0
+      }
+    }
+  },
+  "uncovered": {
+    "count": 0,
+    "log10_min": null,
+    "log10_max": null,
+    "phase_min": null,
+    "phase_max": null,
+    "levels": {
+      "0": 0,
+      "1": 0,
+      "2": 0,
+      "3": 0
+    }
+  },
+  "max_error_over_U": 0.28860307684076564,
+  "batches": [
+    {
+      "level": 0,
+      "new_points": 13357,
+      "audit_count": 3999,
+      "reference_failures": 0,
+      "fallback": false,
+      "max_reference_error": 9.520509789948165e-16
+    },
+    {
+      "level": 1,
+      "new_points": 1164,
+      "audit_count": 116,
+      "reference_failures": 0,
+      "fallback": false,
+      "max_reference_error": 1.802761617295874e-18
+    },
+    {
+      "level": 2,
+      "new_points": 2357,
+      "audit_count": 235,
+      "reference_failures": 0,
+      "fallback": false,
+      "max_reference_error": 1.9140700225363502e-18
+    },
+    {
+      "level": 3,
+      "new_points": 4709,
+      "audit_count": 470,
+      "reference_failures": 0,
+      "fallback": false,
+      "max_reference_error": 2.3702137490005284e-18
+    }
+  ]
+}

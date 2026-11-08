@@ -81,9 +81,9 @@ def precise(q):
 
 
 def reference_batch(keys, rng):
-    low = [k for k in keys if abs(coordinate(k)[2])<=1e8]
+    low = [k for k in keys if k[0]<=2240]
     selected = {low[i] for i in rng.choice(len(low),size=len(low)//10,replace=False)}
-    selected.update(k for k in keys if abs(coordinate(k)[2])>1e8)
+    selected.update(k for k in keys if k[0]>2240)
     refs = {k:complex(analytic(coordinate(k)[2],1.)) for k in keys}
     audits = {}
     def check(k):
@@ -155,11 +155,11 @@ def summarize(records):
     return result
 
 
-def run(directory):
+def run(directory, runtime_override=None):
     output = Path(directory)
     if output.exists():
         raise ValueError('Output directory already exists')
-    meta = metadata(PROTOCOL,SOURCES)
+    meta = metadata(PROTOCOL,SOURCES,runtime_override)
     output.mkdir(parents=True)
     dimensions = dimensionless_check()
     write(output/'dimensionless.json',dimensions)
@@ -204,5 +204,6 @@ def run(directory):
 if __name__=='__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('directory')
+    parser.add_argument('--runtime-override')
     args = parser.parse_args()
-    print(json.dumps(run(args.directory),indent=2))
+    print(json.dumps(run(args.directory,args.runtime_override),indent=2))

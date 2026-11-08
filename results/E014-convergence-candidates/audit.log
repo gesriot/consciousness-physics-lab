@@ -1,0 +1,27 @@
+{
+  "passed": true,
+  "exact_fields": {
+    "experiment": true,
+    "protocol_sha256": true,
+    "source_sha256": true,
+    "points": true,
+    "batches": true,
+    "refinements": true,
+    "summary": true,
+    "cost-replay.json.gz": true,
+    "reference-level-0.json.gz": true,
+    "reference-level-1.json.gz": true,
+    "reference-level-2.json.gz": true,
+    "reference-level-3.json.gz": true,
+    "dimensionless.json": true,
+    "summary.json": true,
+    "recomputed_summary": true,
+    "recomputed_selection": true
+  },
+  "excluded": [
+    "elapsed seconds",
+    "git head and environment provenance"
+  ],
+  "points": 62451,
+  "selected_V2": "C1"
+}
