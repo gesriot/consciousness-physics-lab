@@ -1,0 +1,13 @@
+test_constructed_empty_archive_passes (test_audit_a006.ActiveAuditTests.test_constructed_empty_archive_passes) ... ok
+test_family_and_base_requirements (test_audit_a006.ActiveAuditTests.test_family_and_base_requirements) ... ok
+test_library_label_tampering_fails (test_audit_a006.ActiveAuditTests.test_library_label_tampering_fails) ... ok
+test_quota_tampering_fails (test_audit_a006.ActiveAuditTests.test_quota_tampering_fails) ... ok
+test_summary_tampering_fails (test_audit_a006.ActiveAuditTests.test_summary_tampering_fails) ... ok
+test_uncertainty_reduction_preserves_decisive_labels (test_audit_a006.ActiveAuditTests.test_uncertainty_reduction_preserves_decisive_labels) ... ok
+test_unsupported_acceptance_fails (test_audit_a006.ActiveAuditTests.test_unsupported_acceptance_fails) ... ok
+test_v2_algebra_detects_modified_uncertainty (test_audit_a006.ActiveAuditTests.test_v2_algebra_detects_modified_uncertainty) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 21.075s
+
+OK

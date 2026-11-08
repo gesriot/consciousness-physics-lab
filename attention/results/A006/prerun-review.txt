@@ -1,0 +1,82 @@
+A006 independent pre-execution implementation review
+
+Scope: protocol 4e82f21, clarification 58fe837, and the uncommitted A006
+implementation inspected before any A006 held-out inputs or outcomes.
+Reviewed a006.py, active_monitor.py, calibration_samples.py,
+build_a006_library.py, compare_a006.py, the frozen library, and 13 tests.
+No lab files were changed. No new A006 request generation was performed.
+
+The library uses actual A005 archived requests, independent reference
+values, recorded candidate values and model variants. Selection is first
+intact response per family/condition/verdict, not selection on responses to
+the new V2 corruption. The eight-family inventory honestly includes absent
+reject classes for structural checks that do not validate scalar accuracy.
+Actual sample execution never reads stored expected outcomes. The modal
+candidate is supplied as a known instrument input; all newly executed V2
+grids, feature probes and collocation calculations are charged.
+
+V2 corruption divides the uncertainty estimate and recomputes classification,
+futility and terminal status. Its private execution state follows the delivered
+terminal status, allowing continuation after a clean futile stop when the
+corrupted channel continues. Original numeric observations remain confined
+to the audit trail. Schedulers receive requests and categorical paid evidence.
+Replacement V2 recomputes the entire clean sequence and charges each grid;
+collocation and second-moment replacements preserve A005 semantics. These
+are independent channels, not independent physical theories.
+
+Active policies reserve the worst possible cost of every remaining sample.
+Their quotas are fixed from package budget and library prices before any
+outcome. C2A uses the frozen threshold k/q times initial ordinary budget;
+BA can advance timing based on expected dependency, with scores quantized
+to 1e-9 and deterministic family ties. Per-family alternating sample counters
+persist between packages. Equal count does not imply equal computation cost.
+No future BA outcomes are used to set C2A quotas.
+
+Inputs with completed ordinary verdicts cannot be selected again by U0T.
+Additional checks are required for future acceptances after alarms; already
+closed verdicts are not retracted. Replacements and samples share the same
+budget. Passive BM retains the old statistic and threshold. D and Dprime
+alter matched fixed expectation tables, not exposure-dependent subsets.
+
+The important limitations are registered before outcomes. Reducing V2
+uncertainty cannot change already decisive clean labels; a previously
+inconclusive path may still remain inconclusive. D's symmetric mismatch
+can trigger false alarms and protective replacement before fault onset, so
+it is not a clean ablation of harmful missed-failure detection. Null findings
+must not be tuned away or presented as confirmation of consciousness theories.
+
+Independent development-only intact-channel smoke checks confirmed B, BM and
+C2 match A005 action-by-action including cost and delivered observations on
+five conditions of an existing archived request. BA and Dprime were identical
+except policy name. BA and C2A each executed the reserved 15 samples, stayed
+within budget, and had zero clean alarms. The accompanying script and log
+are a006-independent-prerun-smoke.py and .log outside the repository.
+All 13 A006 focused tests also passed independently, logged in
+a006-independent-focused-tests.log.
+
+Two non-scientific follow-ups were sent to the implementer: frozen diagnostic
+floats in tests should use numerical tolerance while discrete decisions and
+charged prices remain exact; comparison tests should demonstrate rejection
+of changed sample cost and identity. Also, changed_sample_verdicts compares
+same-step clean versus hooked observations, not the complete frozen sample
+path. Full sample mismatch must be reported from the monitor expectation
+comparison, and these distinct metrics should be labelled accurately.
+
+Conclusion: no remaining blocking execution or preregistration issue found
+in the reviewed core. Main execution remains conditional on committed code,
+complete repository checks, the independently authored auditor and its
+negative controls. Exact-input replay, last-bit replay, and post-result audit
+remain required before final scientific clearance.
+
+Follow-up before main: the diagnostic-tolerance test and comparator controls
+were added and inspected. All 13 calibration and 6 comparator tests passed
+independently. Full sample expectation mismatches and separate ordinary/sample
+V2 numerical corruption exposure are now retained explicitly. The reporting
+and portability follow-ups above are resolved in the inspected code.
+
+Final commit 09ffa59 writer follow-up: streaming JSON emission preserves the
+existing indentation, nonfinite rejection, trailing newline and deterministic
+gzip parameters. All 14 calibration tests passed, including the small byte
+regression. An independent larger Unicode-containing fixture crossing several
+1 MiB emission boundaries also produced byte-identical gzip output to the
+existing writer. No additional issue was found.
