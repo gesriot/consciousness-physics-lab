@@ -1,0 +1,54 @@
+{
+  "repeat": {
+    "decisions_pass": true,
+    "differing_packages": [],
+    "root_mismatches": [],
+    "numeric_count": 10272467,
+    "numeric_changed": 0,
+    "max_abs": 0.0
+  },
+  "noise": {
+    "decisions_pass": true,
+    "differing_packages": [],
+    "root_mismatches": [],
+    "numeric_count": 10272467,
+    "numeric_changed": 2370201,
+    "max_abs": 9.999894245993346e-10
+  },
+  "independent_audits": {
+    "main": {
+      "passed": true,
+      "checks": 10087256,
+      "errors": [],
+      "audit_source_sha256": "80f37f6738b7f8579615d4671efedddf5c5207e491164b77d229f753596a0ea9",
+      "generation_audit_source_sha256": "80f37f6738b7f8579615d4671efedddf5c5207e491164b77d229f753596a0ea9",
+      "auditor_matches_generation": true,
+      "scope": "Independent frozen-sample, numerical-hook, calibration-choice, budget, evidence, monitor, intervention and summary reconstruction; including pre-sample two-stage timing choice; no fresh physical execution or exhaustive ordinary-planner optimality proof"
+    },
+    "repeat": {
+      "passed": true,
+      "checks": 10087256,
+      "errors": [],
+      "audit_source_sha256": "80f37f6738b7f8579615d4671efedddf5c5207e491164b77d229f753596a0ea9",
+      "generation_audit_source_sha256": "80f37f6738b7f8579615d4671efedddf5c5207e491164b77d229f753596a0ea9",
+      "auditor_matches_generation": true,
+      "scope": "Independent frozen-sample, numerical-hook, calibration-choice, budget, evidence, monitor, intervention and summary reconstruction; including pre-sample two-stage timing choice; no fresh physical execution or exhaustive ordinary-planner optimality proof"
+    },
+    "noise": {
+      "passed": true,
+      "checks": 10087256,
+      "errors": [],
+      "audit_source_sha256": "80f37f6738b7f8579615d4671efedddf5c5207e491164b77d229f753596a0ea9",
+      "generation_audit_source_sha256": "df898c0532407894bd7df9fee19fcf290ab3f5e9cfe7d47ea31173939aca53aa",
+      "auditor_matches_generation": false,
+      "scope": "Independent frozen-sample, numerical-hook, calibration-choice, budget, evidence, monitor, intervention and summary reconstruction; including pre-sample two-stage timing choice; no fresh physical execution or exhaustive ordinary-planner optimality proof"
+    }
+  },
+  "tests": {
+    "primary": 263,
+    "vendor": 30,
+    "passed": true
+  },
+  "source_policy_changes_after_results": false,
+  "io_recovery": "Bounded archive reads only; identical intake and overlap records; two initial interrupted runs retained."
+}

@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "checks": 10087256,
+  "errors": [],
+  "audit_source_sha256": "80f37f6738b7f8579615d4671efedddf5c5207e491164b77d229f753596a0ea9",
+  "generation_audit_source_sha256": "80f37f6738b7f8579615d4671efedddf5c5207e491164b77d229f753596a0ea9",
+  "auditor_matches_generation": true,
+  "scope": "Independent frozen-sample, numerical-hook, calibration-choice, budget, evidence, monitor, intervention and summary reconstruction; including pre-sample two-stage timing choice; no fresh physical execution or exhaustive ordinary-planner optimality proof"
+}
