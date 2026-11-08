@@ -1,0 +1,16 @@
+{
+  "decisions_pass": true,
+  "differing_packages": [],
+  "numeric_paths": 3897,
+  "numeric_comparisons": 5986550,
+  "numeric_changes": 0,
+  "maximum_absolute_difference": 0.0,
+  "maximum_relative_difference": 0.0,
+  "nonfinite": 0,
+  "repeat_sha256": "c9553c789bf6b8d08130d3cc7b1857abe32e15a0629c0dde89399e1cf646ffac",
+  "repeat_size_bytes": 21981816,
+  "main_sha256": "22f01782e782022f20038fc709e8b0f2abd6ff2a51f19e675b201fe5ab5eded7",
+  "comparison_implementation_commit": "9481111",
+  "replay_audit_checks": 642095,
+  "replay_audit_passed": true
+}

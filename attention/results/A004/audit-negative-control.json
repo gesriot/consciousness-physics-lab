@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "mutation": "Increment H primary summary at 20% by one in a deep-copied summary only",
+  "checks": 642036,
+  "detected_failures": [
+    "policy summary 0.2/H",
+    "summaries, calibration and stopping rule"
+  ],
+  "source": "results.json.gz"
+}
