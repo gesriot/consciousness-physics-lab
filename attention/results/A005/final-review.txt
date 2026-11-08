@@ -62,3 +62,35 @@ original observation inconsistent with its clean path, and corrupted
 replacement uncertainty were all rejected. The negative-control result is
 PASS; the intentionally altered data correctly fail their audit. Reproduce
 with attention.audit_a005 and its --negative-control option.
+
+Completed repeat audit stage
+
+The exact-input clean repeat passed 3,202,431 independent checks with zero
+errors. The separate last-bit perturbation repeat passed 3,202,431 checks
+with zero errors. Each completed archive was independently audited once;
+no repeat execution or experimental source modification was requested by
+this review. Their findings are saved in repeat-audit.json and noise-audit.json.
+
+The report and the new scientific manuscript section were independently
+reviewed against the audited totals, delay definition and intervention
+exposure. No numerical or interpretive mismatch was found. The manuscript
+preserves the source-based sections and gives the A005 episode one details
+link, retaining the negative prediction and the remaining uncertainty.
+
+The saved final check log reports 226 primary tests and 30 vendor tests,
+all passing. Audit scope remains the same: independent evidence and
+accounting verification, plus separately executed physical repeats; not
+an independent exhaustive proof of B's tree-search optimality.
+
+Both saved replay comparisons were inspected. Discrete decisions, package
+structure, authoritative costs, alarms and summaries match in every package,
+with no root mismatches. The clean repeat has 5,034,639 numeric comparisons
+and zero changes. The perturbation repeat has the same 5,034,639 comparisons;
+1,885,532 diagnostic values change, with maximum absolute difference
+1.2878587085651816e-14. Thus the perturbation actually affected numerical
+forecasts while preserving the registered decisions. This establishes
+stability to the specified perturbation on the tested platform, not a
+universal cross-platform theorem.
+
+Final independent conclusion: verification passed within the stated scope.
+No outcomes, thresholds or policies were selected again after the result.
