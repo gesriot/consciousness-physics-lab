@@ -1,0 +1,3 @@
+B2 140 165.324462890625 {'expansions': [], 'expanded_inputs': 0, 'package_fallback': False, 'fallback_trigger': None, 'missing_predictions': 0} elapsed 2.0405194249979104
+D 384 164.78955078125 {'expansions': [{'input_index': 36, 'step': 1, 'action': 'normalization'}], 'expanded_inputs': 1, 'package_fallback': True, 'fallback_trigger': {'input_index': 36, 'step': 1, 'action': 'normalization', 'category': 0, 'global_action_index': 0}, 'missing_predictions': 384} elapsed 0.19078248200094094
+Dprime 140 165.324462890625 {'expansions': [], 'expanded_inputs': 0, 'package_fallback': False, 'fallback_trigger': None, 'missing_predictions': 0} elapsed 0.23539154600075562

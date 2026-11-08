@@ -1,0 +1,118 @@
+A003 independent prerelease review
+Status: PASS for implementation commit 936acf1, before any A003 held-out generation.
+
+Reviewed protocol 19cef65 and prior development commits on exact base 238c5b5.
+The preregistered new seeds have not been generated during this review.
+
+Registration and design:
+- Protocol follows A002 post-result oracle/factorial analysis and precedes implementation.
+- A002 headroom 102/85/0/0 is not represented as the numerical ceiling for A003.
+- Dependency of 540 inputs and adjacent stale requests is disclosed.
+- Logical action costs and complete P-strict acceptance remain unchanged.
+- Frozen B/C2/C4 controls, matched active/unused intervention, exact-input replay,
+  zero false-accept control, per-package differences and all budgets are specified.
+- Joint hard-conditioned traces avoid treating unobserved terminal V2 tails as data;
+  code must enforce availability from actual observations, and assert trace coverage.
+- Local support expansion and global support failure/C2 fallback are explicit model
+  limitations, not silently repaired probabilities.
+- Two-stage branch-dependent continuation is an information-sensitive approximation,
+  not a Bellman-optimal policy; conservative FULL costs are disclosed.
+
+Interpretation limits:
+- B2 differs from B in training archives, joint model, updating and planner.
+  B2 minus B does not identify the unique causal contribution of updating alone.
+- D versus Dprime tests observation-model semantics within B2, not every possible
+  update mechanism. D can trigger fallback, which must be reported with results.
+- Conditional per-step Brier values use selected populations; sample counts/missing
+  predictions are required and apparent calibration improvements are not causal.
+- Planning runtime is separate from the logical prices of physical checks.
+
+Implementation and verification:
+- Read s3.py, build_s3.py, updated_batch.py, a003.py and their tests.
+- Training schema contains only development group, accuracy, full verdict and
+  categorical outcomes; 120 groups/1080 traces; no current condition labels.
+- Independently verified all 1080 derived full verdicts equal archived labels.
+- Model rebuild equality passed in development-only tests.
+- Scheduler receives requests/model, remaining budget and opened observations.
+  The execution wrapper does not pass full paths, truth or hidden conditions.
+- Hard conditioning, permanent support widening, persistent package C2 fallback,
+  null forecasts after failure, legal action dependencies and terminal-tail
+  assertions are implemented and tested.
+- FULL reward agrees with complete mapped traces under compatible evidence;
+  its charge is the registered upper bound. Branch continuation respects the
+  post-first-action budget. Cached plans invalidate at affordability thresholds.
+- D changes four categorical mapping entries with L1 four; Dprime changes only
+  unused entries. Derived full forecasts use mapped trajectories, so predicted
+  observations and predicted full verdicts are internally consistent.
+- An independent two-trace fixture chose an informative modal TREE rather than
+  a directly detecting high-frequency check. The modal branches chose collocation
+  versus high-frequency continuation. Expected gain 1, price 2.5, ratio 0.4,
+  compared with immediate high-frequency ratio 0.25. This is real conditional
+  continuation value, not an entropy label on an unchanged ordering.
+- Nine updated-scheduler tests and five runner tests passed independently in
+  3.632 seconds. No new task sampling or held-out experiment was invoked.
+- The aggregate pre-run log reports 177 primary and 30 original solver tests PASS.
+- lab/ diff from 238c5b5 is empty. The reference and strict acceptance machinery
+  are unchanged. Replay reads exact compressed archives and checks canonical
+  input/model/protocol identity; logical costs and decisions remain exact.
+
+Pre-run correction:
+- Initially the changed-action package measure compared forecast plan metadata
+  as well as executed actions. It now compares only (input index, action) pairs,
+  with a regression test. This was corrected before all new A003 outcomes.
+- The separate result-audit utility was still being finalized during this review;
+  its analogous comparison was flagged for the same correction. It cannot alter
+  policies or outcomes and requires its own result verification.
+
+Conclusion:
+No unresolved prerelease blocker in the reviewed implementation. Freeze the code
+before generation. Retain the limitations above and run the registered replay,
+independent result audit and final aggregate checks before claiming completion.
+This review is not a claim that the empirical model is well calibrated or that
+B2 will improve correctness. Negative results and support failures remain valid.
+
+
+Reviewed source SHA-256:
+bdf3ef7a753aac6c653d31d2feb1306324742cf5648343c27997b14c2dc0f4e3  attention/a003.py
+80c539bf2a5d18fc58dcd003027d47d904871105a910dfeb020c1f5557406c16  attention/s3.py
+a606a2904462a97758a16f2f2cf19233b1aefd51a65e44a5c207abf877d01aac  attention/build_s3.py
+3b4bbbaf60f42310db5cab23e82db84c60429f0709c32a4ab1df462ef2be49f7  attention/updated_batch.py
+3bdbfd5ae352092ee0f96ba7f18380a1fa0a497da323b31f3977e5207693f7fb  attention/self_model_s3.json
+50955766ceb81ca1bf0e8485785dc48002bbd56079247d1591ab1b480ba27d0f  tests/test_attention_a003.py
+2b2e9503fed0092481bf147a2fcdfef68c76df433a472da0f28f4fc69d46afcb  tests/test_attention_updated.py
+
+Pre-outcome development smoke addendum:
+Reviewed after implementation commit 936acf1 and result-audit commit 705fd77,
+before A003 held-out inputs or outcomes. The smoke used only an archived A002
+package. No parameters or policies were changed in response.
+
+Independent inspection of all 1080 S3 development traces finds normalization
+accepted in 1080 and violated in zero. High-frequency accepted in 840 and
+violated in 240. D's active mapping therefore predicts normalization violation
+in all 1080 traces. Any actual normalization acceptance has zero likelihood
+under both its local and expanded global support, necessarily activating the
+registered permanent package-wide C2 fallback. This is structural, not merely
+a small-sample event in the smoke.
+
+The development smoke records this on D's first selected action, normalization
+at input 36: local support expands, global support remains empty, and all
+subsequent forecasts are missing under C2 fallback. B2 has no support failure
+on that smoke, and Dprime has exactly the same actions as B2. These are
+post-registration development observations, not A003 results or independent
+confirmation of performance.
+
+Interpretive consequence:
+D versus Dprime remains a matched causal intervention on the observation model,
+but its executed consequence is a corrupted-model-plus-fallback composite.
+It does not provide a sustained comparison between two Bayesian update rules.
+If D improves correctness, that can be C2 rescue after model failure, rather
+than evidence that incorrect beliefs are useful. If D loses, the result cannot
+be attributed uniquely to reversed in-support interpretation. Report the
+trigger action, fallback timing, missing forecasts and whole-package prevalence
+alongside D performance. The primary B2/C2 comparison remains interpretable.
+
+Final prerelease status: PASS with this substantive limitation disclosed.
+The existing registered fallback makes execution well-defined. Changing the
+corruption or smoothing now to obtain a more favorable effect is not advised;
+preserve the negative or mixed result and defer any revised control to a future
+separately registered study.

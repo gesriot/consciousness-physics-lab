@@ -1,0 +1,14 @@
+test_budget_envelope_rechecks_thresholds (test_attention_updated.UpdatedTests.test_budget_envelope_rechecks_thresholds) ... ok
+test_conditional_branches_choose_different_continuations (test_attention_updated.UpdatedTests.test_conditional_branches_choose_different_continuations) ... ok
+test_corruption_equal_and_irrelevant_invariance (test_attention_updated.UpdatedTests.test_corruption_equal_and_irrelevant_invariance) ... ok
+test_decisive_v2_requires_terminal (test_attention_updated.UpdatedTests.test_decisive_v2_requires_terminal) ... ok
+test_hard_bayes_and_relevant_mapping (test_attention_updated.UpdatedTests.test_hard_bayes_and_relevant_mapping) ... ok
+test_missing_v2_is_excluded_not_imputed (test_attention_updated.UpdatedTests.test_missing_v2_is_excluded_not_imputed) ... ok
+test_model_trace_contract_and_rebuild (test_attention_updated.UpdatedTests.test_model_trace_contract_and_rebuild) ... ok
+test_scheduler_boundary_excludes_hidden_values (test_attention_updated.UpdatedTests.test_scheduler_boundary_excludes_hidden_values) ... ok
+test_support_expansion_and_package_fallback (test_attention_updated.UpdatedTests.test_support_expansion_and_package_fallback) ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 3.600s
+
+OK
