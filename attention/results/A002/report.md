@@ -192,3 +192,10 @@ python3 -m attention.audit_s2_portability attention/results/A002/results.json.gz
 python3 -m attention.a002 --compare attention/results/A002/results.json.gz attention/results/A002/repeat.json.gz --output results/local/a002-compressed-comparison.json
 python3 -m attention.audit_a002 attention/results/A002/results.json.gz --output results/local/a002-compressed-audit.txt
 ```
+
+Свежий запуск после добавления чтения gzip также прочитал `results.json.gz`
+непосредственно, заново исполнил все 12 пакетов и сохранил выход сразу в gzip.
+Рабочие решения, структура, флаги и цены совпали точно; по 2867 путям числовых
+диагностик изменений нет. Повтор прошёл независимый аудит. В репозитории
+сохранены только `compressed-fresh-replay-summary.json` и
+`compressed-fresh-replay-audit.txt`, без второй полной копии нового повтора.
