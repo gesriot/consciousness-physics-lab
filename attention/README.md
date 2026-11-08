@@ -51,3 +51,31 @@ python3 -m attention.build_model --output results/local/a001-reconstructed-model
 с допуском 1e-12 сохранены для сопоставления аудитов, но не определяют успех.
 Совпадение решений не означает точного численного воспроизведения. Политики заново исполняют только выбранные
 действия; подготовка полного эталона стендом не включена в экономию политики.
+
+## A002
+
+[Протокол](protocols/A002-shared-budget.md), [S2](self_model_s2.json),
+[отчёт](results/A002/report.md). Общий бюджет 12 пакетов по 45 входов позволяет
+полное принятие части входов уже при 20%. B: 153/275/390/422 верных;
+C2: 261/335/422/422, поэтому общий прогноз преимущества не подтвердился.
+C4: 72/257/319/319; преимущество над этой эвристикой не обобщается на всю
+адаптивность. D теряет 36/82/71 при ограничении, D′ сохраняет B. Ложных принятий 0.
+S2 Brier 0.3940477476 против базового 0.5543755805. Полное правило P не меняется.
+Архивы результатов A002 хранятся сжатыми (`results/A002/results.json.gz` и `repeat.json.gz`);
+перед повтором по ним распаковать `gunzip -k`.
+
+```sh
+OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 python3 -m attention.a002 --output results/local/a002.json
+OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 python3 -m attention.a002 --replay results/local/a002.json --output results/local/a002-repeat.json
+python3 -m attention.a002 --compare results/local/a002.json results/local/a002-repeat.json --output results/local/a002-comparison.json
+python3 -m attention.build_s2 --output results/local/a002-reconstructed-model.json
+./scripts/check.sh
+```
+
+При другой среде используется содержательный `--runtime-override`, исходник
+не перезаписывается. Совпадение решений включает структуру, дискретные флаги
+и логические цены, числовой дрейф диагностик сводится отдельно. Предсказания
+сохраняются до вычислений; повтор читает точные входы и глобальный порядок.
+
+Независимый пересчёт архивного результата:
+`python3 -m attention.audit_a002 results/local/a002.json --output results/local/a002-audit.txt`.

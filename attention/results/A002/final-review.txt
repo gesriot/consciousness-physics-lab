@@ -1,0 +1,25 @@
+A002 independent final review
+Disposition: READY. No remaining scientific-reporting or replay blocker found.
+
+Fresh replay verification:
+- Original and replay requests and global permutations are exactly equal.
+- Replay source SHA256 equals the actual original archive hash: 0e6eda9c65a227b90a9b07663868a5c4ccbfc4d90421d8b6a95f8a6b7bce2aca.
+- Frozen model and implementation source hashes agree.
+- Independently compared packages, summary, calibration, intervention audit, reference audit, overlap audit and full-pipeline parity failures; all are exactly equal, including floating values.
+- Archived comparison reports decisions_pass=true, zero differing packages, 2867 numerical field paths, zero changed numerical values, zero nonfinite values, and maximum absolute/relative drift zero.
+
+Report and manuscript verification:
+- Reviewed attention/results/A002/report.md, root README additions, attention/README.md additions and the new MANUSCRIPT.md version 0.11 section.
+- Main count tables, Brier values, per-package C2 wins, acceptance counts, intervention losses/allocation, and full-P counts agree with independent recomputation.
+- C4 drops 178 inputs at full budget, accounting for 103 missed numerically correct violation verdicts. B and D never trigger their permanent-abandonment threshold.
+- D changes action order in all twelve packages at all four budgets; D-prime exactly preserves B.
+- The all-control superiority prediction is explicitly rejected; the full-budget equality exception for C4 is retained. Superiority over this particular C4 is not overgeneralized.
+- Manuscript prose is scientific and readable without implementation clutter. It distinguishes predictive quality, causal influence and planning performance, and retains dependence, modeled-cost and consciousness limitations.
+- The S2 builder reproduces the frozen JSON byte for byte.
+
+Repository and checks:
+- git diff e7ee44f -- lab/ is empty: no laboratory implementation changes.
+- Archived post-run check.log ends in successful tests, with no failure shown.
+- Review performed without changes to implementation, protocol, model or manuscript and without new task generation.
+
+The independent result review and its source audit script contain the detailed recomputation. Remaining repository staging/commit and final delivery are administrative completion steps, not scientific validation gaps.
