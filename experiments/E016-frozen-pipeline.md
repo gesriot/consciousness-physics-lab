@@ -127,3 +127,22 @@ thread. Commit protocol, implementation/tests, then outcomes/report separately.
 Run ./scripts/check.sh and retain the full log. Update README and the manuscript
 with actual results; reproducibility machinery belongs in reports, not the
 scientific narrative. No post-outcome tuning or silent data exclusion.
+
+## Pre-outcome assembly clarification
+
+Before any E016 input generation, assembly review fixed the fingerprint route:
+use the original uniform-grid E008/E010/E013 probes for every model; the graded
+grid belongs to V2. E011 had evaluated the same probe formulas on a graded grid,
+so fresh archived gate comparisons must document whether the requested original
+probe implementation preserves those archived decisions. This resolves component
+assembly, not a parameter selection based on held-out outcomes.
+
+For wrong-model V2 paths retain both discrepancy against the original sphere
+and intrinsic error against the solved model. Compute the latter with the
+60-digit model formula only after component decisions; for the mixture use the
+same binary64 component weights and time multipliers as its solver calls. These
+intrinsic references do not replace original-sphere truth for artifact accuracy
+or enter any decision. Tabulate sphere coverage, intrinsic coverage for each
+wrong model, and original-sphere discrepancy separately. Also report unique
+(task, model, grid) coverage counts alongside evaluation counts, and total
+per-cohort generation and component work. This clarification precedes data.
