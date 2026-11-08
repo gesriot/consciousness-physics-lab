@@ -3,6 +3,8 @@ import copy
 import inspect
 import json
 import tempfile
+import subprocess
+import sys
 import unittest
 from pathlib import Path
 from unittest.mock import patch
@@ -124,7 +126,7 @@ class AttentionTests(unittest.TestCase):
         self.assertFalse(compare(original,changed)['decisions_pass'])
         changed=copy.deepcopy(original)
         changed['runs'][0]['full']['spent']=2
-        self.assertFalse(compare(original,changed)['numeric_diagnostics_pass'])
+        self.assertFalse(compare(original,changed)['passed'])
 
     def test_comparison_rejects_flags_and_missing_structure(self):
         observed=dict(verdict='inconclusive',terminal=False,step=dict(converging=False,futile=False))
@@ -143,6 +145,55 @@ class AttentionTests(unittest.TestCase):
             comparison=compare(original,changed)
             self.assertFalse(comparison['numeric_diagnostics_pass'])
             if alteration!='added_key':self.assertFalse(comparison['decisions_pass'])
+
+    def test_comparison_float_drift_is_informational_but_costs_are_exact(self):
+        row=dict(task_id=0,condition='clean',accurate=True,
+            full=dict(verdict='accept',spent=1.,actions=[dict(action='modal',cost=1.)]),policies={'1.0':{'B':dict(
+                verdict='accept',spent=1.,correct=True,actions=[dict(
+                    action='modal',cost=1.,observation=dict(value=2.,zero=0.))])}})
+        original=dict(runs=[row])
+        changed=copy.deepcopy(original)
+        changed['runs'][0]['policies']['1.0']['B']['actions'][0]['observation']['value']=4.
+        comparison=compare(original,changed)
+        self.assertTrue(comparison['passed'])
+        self.assertFalse(comparison['numeric_diagnostics_pass'])
+        self.assertTrue(comparison['numeric_diagnostics_informational'])
+        metrics=comparison['numeric_diagnostic_summary']['$[].policies.1.0.B.actions[].observation.value']
+        self.assertEqual(metrics,dict(count=1,changed=1,max_abs=2.,max_rel=.5,nonfinite=0))
+        zero=comparison['numeric_diagnostic_summary']['$[].policies.1.0.B.actions[].observation.zero']
+        self.assertEqual(zero['max_rel'],0.)
+        for field in ('spent','cost','full_cost','full_action_cost','flag_type','integer','structure','list_length','numeric_type'):
+            changed=copy.deepcopy(original)
+            policy=changed['runs'][0]['policies']['1.0']['B']
+            if field=='spent':policy['spent']+=1e-10
+            elif field=='cost':policy['actions'][0]['cost']+=1e-10
+            elif field=='full_cost':changed['runs'][0]['full']['spent']+=1e-10
+            elif field=='full_action_cost':changed['runs'][0]['full']['actions'][0]['cost']+=1e-10
+            elif field=='flag_type':policy['correct']=1
+            elif field=='integer':changed['runs'][0]['task_id']=1
+            elif field=='list_length':changed['runs'].append(copy.deepcopy(row))
+            elif field=='numeric_type':policy['actions'][0]['observation']['value']=2
+            else:policy['actions'][0]['observation']['extra']=0.
+            self.assertFalse(compare(original,changed)['passed'],field)
+
+    def test_comparison_cli_uses_decisions_and_structure(self):
+        row=dict(task_id=0,condition='clean',accurate=True,
+            full=dict(verdict='accept',spent=1.,diagnostic=1.),policies={})
+        with tempfile.TemporaryDirectory() as tmp:
+            first,second,output=[Path(tmp)/name for name in ('first.json','second.json','out.json')]
+            first.write_text(json.dumps(dict(runs=[row])))
+            row['full']['diagnostic']=2.
+            second.write_text(json.dumps(dict(runs=[row])))
+            command=[sys.executable,'-m','attention.a001','--compare',str(first),str(second),'--output',str(output)]
+            run=subprocess.run(command,cwd=ROOT,capture_output=True,text=True)
+            self.assertEqual(run.returncode,0,run.stderr)
+            self.assertFalse(json.loads(output.read_text())['numeric_diagnostics_pass'])
+            output.unlink()
+            row['full']['new_flag']=False
+            second.write_text(json.dumps(dict(runs=[row])))
+            run=subprocess.run(command,cwd=ROOT,capture_output=True,text=True)
+            self.assertEqual(run.returncode,1,run.stderr)
+            self.assertFalse(json.loads(output.read_text())['passed'])
 
     def test_collocation_below_floor_not_skipped(self):
         r=Request(1,1,1e-7)

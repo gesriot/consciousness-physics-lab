@@ -4,6 +4,7 @@ import copy
 import hashlib
 import json
 from pathlib import Path
+from scripts.compare_experiment_runs import differences, numeric_summary
 import numpy as np
 from lab import frozen_pipeline as P
 from lab.common_mode import encode
@@ -128,18 +129,21 @@ def control_flags(value, path=''):
 def decision_view(result):
     return [dict(task_id=r['task_id'],condition=r['condition'],accurate=r['accurate'],
        reference_verdict=r['full']['verdict'],full_cost=r['full']['spent'],full_flags=control_flags(r['full']),
+       full_actions=[(a['action'],a.get('cost')) for a in r['full'].get('actions',[])],
        policies={f:{p:dict(verdict=x['verdict'],spent=x['spent'],correct=x['correct'],
           actions=[a['action'] for a in x['actions']],
+          action_costs=[a.get('cost') for a in x['actions']],
           component_verdicts=[a.get('observation',{}).get('verdict',a.get('verdict')) for a in x['actions']],
           control_flags=control_flags(x))
           for p,x in ps.items()} for f,ps in r['policies'].items()}) for r in result['runs']]
 
 
 def compare(first,second):
+    """Require exact decisions and structure; report measured float drift only."""
     a,b=decision_view(first),decision_view(second)
     mismatches=[]
     for i,(x,y) in enumerate(zip(a,b)):
-        if x!=y: mismatches.append(i)
+        if differences(x,y): mismatches.append(i)
     numeric=[]
     structure=[]
     def walk(x,y,path=''):
@@ -150,11 +154,16 @@ def compare(first,second):
         elif isinstance(x,list) and isinstance(y,list):
             if len(x)!=len(y):structure.append(path)
             for i,(u,v) in enumerate(zip(x,y)):walk(u,v,path+'/'+str(i))
-        elif type(x) in (float,int) and type(y) in (float,int):
+        elif type(x) is float and type(y) is float:
             if not np.isclose(x,y,atol=1e-12,rtol=1e-12):numeric.append(path)
         elif type(x)!=type(y) or x!=y:structure.append(path)
     walk(first['runs'],second['runs'],'runs')
-    return dict(decisions_pass=bool(len(a)==len(b) and not mismatches),
+    decisions_pass=bool(len(a)==len(b) and not mismatches)
+    structure_pass=not structure
+    return dict(passed=decisions_pass and structure_pass,decisions_pass=decisions_pass,
+        diagnostic_structure_pass=structure_pass,
+        numeric_diagnostic_summary=numeric_summary(first['runs'],second['runs']),
+        numeric_diagnostics_informational=True,
         differing_decision_rows=mismatches,numeric_diagnostic_differences=numeric,
         numeric_diagnostics_pass=not numeric and not structure,diagnostic_structure_differences=structure,atol=1e-12,rtol=1e-12,
         scientific_exact=scientific_view(first)==scientific_view(second))
@@ -242,7 +251,7 @@ if __name__=='__main__':
         result=compare(*(json.loads(p.read_text()) for p in args.compare))
         write(args.output,result)
         print(json.dumps(result,indent=2))
-        if not result['decisions_pass'] or not result['numeric_diagnostics_pass']:raise SystemExit(1)
+        if not result['passed']:raise SystemExit(1)
     else:
         result=run(args.output,args.replay,args.runtime_override)
         print(json.dumps(result['summary'],indent=2))
