@@ -1,0 +1,38 @@
+A001 independent final review
+Reviewed scientific report/manuscript commit: e055352
+Main data and fresh replay reviewed without changing experimental parameters.
+
+PASS: independently reconstructed every scheduler choice from the archived
+request, available observations, fixed self-model and remaining budget across
+all 9720 policy-budget paths. Recomputed every action charge, total expenditure,
+budget fraction, evidence-based verdict, primary correctness and false-accept
+classification. No excess budget or unsupported acceptance found.
+PASS: all current source SHA-256 values match the main archive provenance.
+PASS: fresh replay comparison recomputed; decisions, diagnostics and scientific
+exact equality match the saved comparison. All 60 reference audits pass without
+fallback. Main archive reports zero full-pipeline parity discrepancies.
+PASS: raw-row aggregates match the report: B/C1/C2 give 245,245,419 correct
+outcomes; C3 gives 186,245,419. D changes 346 sequences at every budget and zero
+primary outcomes; Dprime changes neither. At 60%, C3 has one paired improvement
+and one paired loss relative to B. All false-accept counts are zero.
+PASS: intervention ordering independently checked. Both target probes occur in
+187/229 B/D paths at 30%, 243/243 at 60%, and 236/236 at 100%. B always puts the
+high-frequency probe first; D always puts normalization first in those paths.
+PASS: early-stopping counts and absence of futility stops match the report.
+Full P cost 9824.31884765625; B costs 1665.001953125,2716.001953125,4867.126953125.
+Full truth breakdown: 163 accurate accepts, 52 accurate violations, 66 accurate
+inconclusive, 256 inaccurate violations, 3 inaccurate inconclusive.
+PASS: reported archived-request overlap counts are zero; report correctly
+retains paired conditions/budgets and adjacent stale-value dependence.
+
+Scientific reading: report and manuscript clearly preserve the negative
+correctness hypothesis, distinguish causal action changes from outcome gain,
+explain structurally impossible acceptance at 30%/60%, and restrict cost gains
+to the registered logical-cost model rather than wall-clock or harness savings.
+No claim about consciousness or universal numerical safety is inferred.
+
+Repository checks: lab/ and vendor/ unchanged against c9817e2; one author and
+committer identity; requested forbidden-marker and Markdown typography searches
+empty. Final aggregate test log reports 139 laboratory and 30 vendor tests PASS.
+No remaining blocking discrepancy identified. Delivery packaging still requires
+its own final bundle/manifest verification after all final commits.
