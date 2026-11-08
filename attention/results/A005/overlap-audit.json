@@ -1,0 +1,86 @@
+{
+  "definition": "Exact binary64 real/imaginary z, mean_time and tolerance",
+  "comparisons": {
+    "E005": {
+      "status": "checked",
+      "source": "results/tolerance-allocation/results.json",
+      "source_sha256": "99fab0bbf4ee728513f1ad5905f6382f7b598e9ee6e0793cb1767ca3a1f22dff",
+      "earlier_unique_requests": 96,
+      "exact_request_matches": 0,
+      "matches": []
+    },
+    "E006": {
+      "status": "checked",
+      "source": "results/fault-heldout/results.json",
+      "source_sha256": "99dbe4921688046904c9dd918670c8777f1366416690446cbd2bcc77635720d6",
+      "earlier_unique_requests": 96,
+      "exact_request_matches": 0,
+      "matches": []
+    },
+    "E007": {
+      "status": "checked",
+      "source": "results/verifier-stress/results.json",
+      "source_sha256": "5456868e98d4744fe42c0fb4257510e700e03f3d6bec1f9078d63098c94d5863",
+      "earlier_unique_requests": 192,
+      "exact_request_matches": 0,
+      "matches": []
+    },
+    "E008": {
+      "status": "checked",
+      "source": "results/common-mode/results.json",
+      "source_sha256": "2da2aa8da03b47836fdc9686ab04250f779757e78028c6bfadac87d2136c4742",
+      "earlier_unique_requests": 96,
+      "exact_request_matches": 0,
+      "matches": []
+    },
+    "E009": {
+      "status": "checked",
+      "source": "results/surface-order/results.json",
+      "source_sha256": "3b2ea8af0a5a9c045d0dc43cb0339c6d3eda4287fbd151c9c4fc162311bc2c8a",
+      "earlier_unique_requests": 192,
+      "exact_request_matches": 0,
+      "matches": []
+    },
+    "E010": {
+      "status": "checked",
+      "source": "results/E010-geometry-invariants/results.json",
+      "source_sha256": "243b48caa9dbedc13c13045987104148b426fb582baaa76824c87e5d15616b43",
+      "earlier_unique_requests": 96,
+      "exact_request_matches": 0,
+      "matches": []
+    },
+    "E011": {
+      "status": "checked",
+      "source": "results/E011-extrapolation/results.json",
+      "source_sha256": "8496518e76e7170ff8a62ced12f89b29dd08bfa3c84dee1a59a3b788eb5e545a",
+      "earlier_unique_requests": 192,
+      "exact_request_matches": 0,
+      "matches": []
+    },
+    "E013": {
+      "status": "checked",
+      "source": "results/E013-matched-mixture/results.json",
+      "source_sha256": "ed9c52a4d62780985db91ea87067d253cdb422157f7c08143e7620306025170b",
+      "earlier_unique_requests": 96,
+      "exact_request_matches": 0,
+      "matches": []
+    },
+    "E012": {
+      "status": "not_task_intake",
+      "explanation": "Registered development coordinate map, not an independent task sample"
+    },
+    "E014": {
+      "status": "not_task_intake",
+      "explanation": "Registered development coordinate map, not an independent task sample"
+    },
+    "E015": {
+      "status": "not_task_intake",
+      "explanation": "Registered development coordinate map, not an independent task sample"
+    },
+    "E016": {
+      "exact_request_matches": 0,
+      "source_sha256": "9498d924554d2f5881742624e4d7bbb53eb7997d256f1449af1950844926af51"
+    }
+  },
+  "within_A005_duplicate_requests": 0
+}

@@ -1,0 +1,26 @@
+{
+  "source": "attention/results/A004/results.json.gz",
+  "source_sha256": "22f01782e782022f20038fc709e8b0f2abd6ff2a51f19e675b201fe5ab5eded7",
+  "maximum": 28.904027777777802,
+  "threshold": 29.904027777777802,
+  "drift": 0.02,
+  "budgets": {
+    "0.2": {
+      "maximum": 18.520000000000014,
+      "observations": 2766
+    },
+    "0.4": {
+      "maximum": 28.379861111111136,
+      "observations": 3952
+    },
+    "0.6": {
+      "maximum": 28.904027777777802,
+      "observations": 4986
+    },
+    "1.0": {
+      "maximum": 28.904027777777802,
+      "observations": 5077
+    }
+  },
+  "interpretation": "Empirical development calibration, not a probabilistic false-alarm guarantee"
+}

@@ -1,0 +1,6 @@
+{
+  "passed": true,
+  "checks": 3202431,
+  "errors": [],
+  "scope": "Independent saved-action accounting, evidence, static forecasts, monitor, interventions and summary audit; no physical re-execution or exhaustive planner optimality proof"
+}
