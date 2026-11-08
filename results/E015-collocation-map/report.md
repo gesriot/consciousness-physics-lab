@@ -126,3 +126,14 @@ The committed map and audit files retain all point coordinates, degrees,
 responses, uncertainty components, tolerance flags, region extrema by level,
 and parent refinements. Reruns require a clean tracked tree. No solver changes,
 production V2 integration, or claims about consciousness are made here.
+
+## Owner's macOS replay observation
+
+The owner repeated E015 with `--runtime-override` on macOS arm64, Python 3.12.13,
+NumPy 2.3.5 and SciPy 1.17.0. All principal measures agreed: zero dangerous
+misses and uncovered nodes, the same nonconvergence and acceptance-impossible
+counts, and the same reference-audit subset. Only the diagnostic count of nodes
+whose coverage depends solely on the rounding term differed: 393 rather than
+631. That comparison involves rounding-scale quantities and is platform
+dependent; it is diagnostic, not a primary safety endpoint. These are reported
+owner observations, not a new run performed for this report.

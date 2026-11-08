@@ -1,0 +1,153 @@
+{
+  "source_sha256": {
+    "results/surface-order/results.json": "3b2ea8af0a5a9c045d0dc43cb0339c6d3eda4287fbd151c9c4fc162311bc2c8a",
+    "results/E011-extrapolation/results.json": "8496518e76e7170ff8a62ced12f89b29dd08bfa3c84dee1a59a3b788eb5e545a"
+  },
+  "baseline_rows_exact": 2688,
+  "baseline_comparison": {
+    "discrete": "exact",
+    "numerical_atol": 1e-12,
+    "numerical_rtol": 1e-12,
+    "legacy_counter": "baseline_rows_exact counts exact discrete decisions, not exact floats"
+  },
+  "summary": {
+    "E009": {
+      "C0": {
+        "rows": 1152,
+        "accurate_accepts": 721,
+        "lost_accurate_accepts": 0,
+        "gained_accurate_accepts": 0,
+        "false_accepts": 0,
+        "new_false_accepts": 0,
+        "violation_verdict_changes": 0,
+        "numerical_violation_changes": 0,
+        "decision_cells": 1271808
+      },
+      "C1": {
+        "rows": 1152,
+        "accurate_accepts": 721,
+        "lost_accurate_accepts": 0,
+        "gained_accurate_accepts": 0,
+        "false_accepts": 0,
+        "new_false_accepts": 0,
+        "violation_verdict_changes": 0,
+        "numerical_violation_changes": 0,
+        "decision_cells": 1271808
+      },
+      "C2": {
+        "rows": 1152,
+        "accurate_accepts": 721,
+        "lost_accurate_accepts": 0,
+        "gained_accurate_accepts": 0,
+        "false_accepts": 0,
+        "new_false_accepts": 0,
+        "violation_verdict_changes": 0,
+        "numerical_violation_changes": 0,
+        "decision_cells": 1271808
+      },
+      "C3": {
+        "rows": 1152,
+        "accurate_accepts": 721,
+        "lost_accurate_accepts": 0,
+        "gained_accurate_accepts": 0,
+        "false_accepts": 0,
+        "new_false_accepts": 0,
+        "violation_verdict_changes": 0,
+        "numerical_violation_changes": 0,
+        "decision_cells": 1271808
+      }
+    },
+    "E011": {
+      "C0": {
+        "rows": 1536,
+        "accurate_accepts": 560,
+        "lost_accurate_accepts": 0,
+        "gained_accurate_accepts": 0,
+        "false_accepts": 0,
+        "new_false_accepts": 0,
+        "violation_verdict_changes": 0,
+        "numerical_violation_changes": 0,
+        "decision_cells": 3286016
+      },
+      "C1": {
+        "rows": 1536,
+        "accurate_accepts": 560,
+        "lost_accurate_accepts": 0,
+        "gained_accurate_accepts": 0,
+        "false_accepts": 0,
+        "new_false_accepts": 0,
+        "violation_verdict_changes": 0,
+        "numerical_violation_changes": 0,
+        "decision_cells": 3286016
+      },
+      "C2": {
+        "rows": 1536,
+        "accurate_accepts": 560,
+        "lost_accurate_accepts": 0,
+        "gained_accurate_accepts": 0,
+        "false_accepts": 0,
+        "new_false_accepts": 0,
+        "violation_verdict_changes": 0,
+        "numerical_violation_changes": 0,
+        "decision_cells": 3286016
+      },
+      "C3": {
+        "rows": 1536,
+        "accurate_accepts": 560,
+        "lost_accurate_accepts": 0,
+        "gained_accurate_accepts": 0,
+        "false_accepts": 0,
+        "new_false_accepts": 0,
+        "violation_verdict_changes": 0,
+        "numerical_violation_changes": 0,
+        "decision_cells": 3286016
+      }
+    },
+    "combined": {
+      "C0": {
+        "rows": 2688,
+        "accurate_accepts": 1281,
+        "lost_accurate_accepts": 0,
+        "gained_accurate_accepts": 0,
+        "false_accepts": 0,
+        "new_false_accepts": 0,
+        "violation_verdict_changes": 0,
+        "numerical_violation_changes": 0,
+        "decision_cells": 4557824
+      },
+      "C1": {
+        "rows": 2688,
+        "accurate_accepts": 1281,
+        "lost_accurate_accepts": 0,
+        "gained_accurate_accepts": 0,
+        "false_accepts": 0,
+        "new_false_accepts": 0,
+        "violation_verdict_changes": 0,
+        "numerical_violation_changes": 0,
+        "decision_cells": 4557824
+      },
+      "C2": {
+        "rows": 2688,
+        "accurate_accepts": 1281,
+        "lost_accurate_accepts": 0,
+        "gained_accurate_accepts": 0,
+        "false_accepts": 0,
+        "new_false_accepts": 0,
+        "violation_verdict_changes": 0,
+        "numerical_violation_changes": 0,
+        "decision_cells": 4557824
+      },
+      "C3": {
+        "rows": 2688,
+        "accurate_accepts": 1281,
+        "lost_accurate_accepts": 0,
+        "gained_accurate_accepts": 0,
+        "false_accepts": 0,
+        "new_false_accepts": 0,
+        "violation_verdict_changes": 0,
+        "numerical_violation_changes": 0,
+        "decision_cells": 4557824
+      }
+    }
+  }
+}

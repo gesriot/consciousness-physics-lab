@@ -1,4 +1,6 @@
 import unittest
+import tempfile
+from pathlib import Path
 from unittest.mock import patch
 import numpy as np
 from lab import convergence_candidates as m
@@ -71,3 +73,33 @@ class CandidateTests(unittest.TestCase):
         self.assertEqual(m.select(summary,costs),'C1')
         costs['combined']['C1']['lost_accurate_accepts']=1
         self.assertEqual(m.select(summary,costs),'C3')
+
+    def test_archived_step_tolerance_and_exact_discrete_fields(self):
+        row=dict(last_grid=512, converging=True, verdict='accept', futile=False,
+                 uncertainty_estimate=1e-4, discrepancy=2e-5)
+        close=dict(row, uncertainty_estimate=np.nextafter(1e-4, 1.),
+                   discrepancy=2e-5+5e-13)
+        m.check_archived_step(close, row)
+        for key, value in (('last_grid', 513), ('converging', False),
+                           ('verdict', 'inconclusive'), ('futile', True),
+                           ('last_grid', 512.), ('converging', 1),
+                           ('uncertainty_estimate', 1.01e-4),
+                           ('discrepancy', float('nan')),
+                           ('uncertainty_estimate', float('inf'))):
+            with self.subTest(key=key, value=value):
+                with self.assertRaises(AssertionError):
+                    m.check_archived_step(dict(row, **{key: value}), row)
+
+    def test_map_survives_cost_failure_and_runtime_override_is_forwarded(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            output=Path(tmp)/'run'
+            with patch.object(m, 'metadata', return_value={}) as meta, \
+                 patch.object(base, 'dimensionless_check', return_value=[dict(passed=True)]), \
+                 patch.object(m, 'base_cells', return_value=[]), \
+                 patch.object(m, 'reference_batch', return_value=({}, dict(audited=0, failed=0, fallback=False))), \
+                 patch.object(m, 'cost_replay', side_effect=AssertionError('cost mismatch')):
+                with self.assertRaisesRegex(AssertionError, 'cost mismatch'):
+                    m.run(output, 'Cross-platform owner audit')
+            meta.assert_called_once_with(m.PROTOCOL, m.SOURCES, 'Cross-platform owner audit')
+            self.assertTrue((output/'map.json.gz').exists())
+            self.assertFalse((output/'summary.json').exists())

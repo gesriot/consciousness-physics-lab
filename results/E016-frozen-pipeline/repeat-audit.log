@@ -1,0 +1,18 @@
+{
+  "original_summary_mismatches": [],
+  "repeat_summary_mismatches": [],
+  "scientific_mismatches": [],
+  "excluded_provenance": [
+    "environment",
+    "git_head",
+    "source_sha256",
+    "runtime_override",
+    "replay"
+  ],
+  "excluded_measures": "Keys ending in seconds only; all other scientific fields compared exactly",
+  "passed": true,
+  "source_sha256": {
+    "results/E016-frozen-pipeline/results.json": "9498d924554d2f5881742624e4d7bbb53eb7997d256f1449af1950844926af51",
+    "results/E016-frozen-pipeline/repeat.json": "e5cd2d72fd4d8af2b650317a8060c747c3c98f91e6b57b4eb96a99ae67f2009e"
+  }
+}

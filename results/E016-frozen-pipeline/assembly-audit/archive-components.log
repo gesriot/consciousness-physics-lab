@@ -1,0 +1,17 @@
+{
+  "gate_requests": 864,
+  "third_rows": 288,
+  "mismatches": [],
+  "archives": {
+    "E011": {
+      "source_sha256": "8496518e76e7170ff8a62ced12f89b29dd08bfa3c84dee1a59a3b788eb5e545a",
+      "gate_requests": 576,
+      "third_rows": 0
+    },
+    "E013": {
+      "source_sha256": "ed9c52a4d62780985db91ea87067d253cdb422157f7c08143e7620306025170b",
+      "gate_requests": 288,
+      "third_rows": 288
+    }
+  }
+}

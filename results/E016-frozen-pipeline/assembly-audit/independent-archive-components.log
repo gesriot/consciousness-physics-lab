@@ -1,0 +1,33 @@
+{
+  "purpose": "Fresh original uniform E008/E010 probes and assembled module versus archived gates",
+  "passed": true,
+  "scope": "Fresh archived model gates and E011 V2; no held-out generation"
+}
+[
+  {
+    "archive": "results/E011-extrapolation/results.json",
+    "source_sha256": "8496518e76e7170ff8a62ced12f89b29dd08bfa3c84dee1a59a3b788eb5e545a",
+    "archived_rows": 1536,
+    "unique_task_model_inputs": 576,
+    "differences": 0
+  },
+  {
+    "archive": "results/E013-matched-mixture/results.json",
+    "source_sha256": "ed9c52a4d62780985db91ea87067d253cdb422157f7c08143e7620306025170b",
+    "archived_rows": 288,
+    "unique_task_model_inputs": 288,
+    "differences": 0
+  }
+]
+{
+  "source": "results/E011-extrapolation/results.json",
+  "source_sha256": "8496518e76e7170ff8a62ced12f89b29dd08bfa3c84dee1a59a3b788eb5e545a",
+  "expected_source": "results/E014-convergence-candidates/first/cost-replay.json.gz",
+  "expected_sha256": "4055d97c01e1fb38cf300db528d3d2993a3b86cb59a34494edd23530f3609f80",
+  "rows": 1536,
+  "discrete_mismatches": 0,
+  "numerical_fields": 4892,
+  "nonexact_numerical_fields": 0,
+  "numerical_fields_outside_tolerance": 0,
+  "max_absolute_difference": 0.0
+}

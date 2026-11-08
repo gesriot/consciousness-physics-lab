@@ -42,3 +42,45 @@ The exact repeat audit compares all points, references, candidate flags, refinem
 Files: first/ and repeat/ contain full compressed maps and cost replays, compressed reference batches, dimensionless checks and summaries. first-run.log and repeat-run.log retain execution output. check.log retains the complete repository check.
 
 Adaptive corner testing cannot exclude isolated interior transitions. The shifted map and historical replay are dependent development evidence. Independent held-out validation must follow selection. No conclusions about consciousness follow from these numerical results.
+
+## Owner's macOS replay observation
+
+The owner repeated the experiment on macOS arm64 with Python 3.12.13,
+NumPy 2.3.5 and SciPy 1.17.0. The unmodified run stopped during cost replay:
+exact equality of recomputed `uncertainty_estimate` and `discrepancy` failed
+because complex magnitude (`hypot`) can differ in its last bit across platforms.
+The map had not yet been written, so that failure also prevented its retention.
+
+With numerical comparisons relaxed to 1e-12 while flags and verdicts remained
+exact, the principal result agreed: C0 had 10,715 dangerous misses, C1–C3 had
+zero, C1 was selected, and none of the 2,688 cost-replay decisions changed.
+The adaptive map nevertheless differed: 53,304 macOS nodes versus 62,451 Linux
+nodes. On 41,482 common nodes, C0 flags and coverage agreed, but C1 flags differed
+on 6,209 steps and C2 flags on 74 steps.
+
+In the fully resolved region both intergrid differences can be rounding noise.
+For example, at |zT| = 1e-5 and grid 4,096 the Linux differences were
+2.04e-11 and 1.97e-11, giving a ratio of 1.03, whereas macOS noise produced a
+ratio no greater than 0.5. All these steps were covered: the observed coverage
+safety result did not change. C1 convergence and therefore adaptive refinement
+can nevertheless be controlled by rounding noise in this region. This is an
+owner-reported cross-platform observation, not an independent random sample or
+a reason to modify the selected C1 rule after seeing these results.
+
+### Portability correction
+
+Cost replay now compares finite floating measurements with
+|a - b| <= 1e-12 + 1e-12 max(|a|, |b|). Flags, verdicts, cell counts, step
+counts and archived input prefixes remain exact. The legacy counter
+`baseline_rows_exact` denotes exact discrete reproduction, not bitwise equality
+of floating measurements; new replay output records this distinction explicitly.
+The completed map is written before the cost audit, and `--runtime-override`
+records an explicit reason through the shared environment gate. No candidate
+rule, uncertainty formula, refinement rule or selection criterion changes.
+
+The correction passes eight focused tests, including rejection of changed
+flags and nonfinite measurements and preservation of a map after simulated
+cost failure. Replaying all 2,688 archived inputs retains 1,281 accurate accepts,
+zero false accepts and 4,557,824 decision cells for each candidate. The retained
+portability-fix cost summary and test log document this check; it is not a newly
+generated map or a replacement for the owner's macOS observation.
