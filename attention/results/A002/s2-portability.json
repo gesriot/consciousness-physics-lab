@@ -1,0 +1,435 @@
+{
+  "analysis": "Post-result A002 portability sensitivity, not prospective evidence",
+  "tolerance": 1e-12,
+  "feature_count": 1800,
+  "changed_features": 0,
+  "maximum_feature_difference": 0.0,
+  "features_within_tolerance": true,
+  "nonfeature_content_equal": true,
+  "queries": 60,
+  "neighbors": 16,
+  "rounded_feature_precision": 12,
+  "checks": [
+    {
+      "task_id": 0,
+      "model_only_neighbor_order_equal": true,
+      "rounded_query_neighbor_order_equal": true,
+      "neighbor_sets_equal": true,
+      "predictions_equal": true
+    },
+    {
+      "task_id": 1,
+      "model_only_neighbor_order_equal": true,
+      "rounded_query_neighbor_order_equal": true,
+      "neighbor_sets_equal": true,
+      "predictions_equal": true
+    },
+    {
+      "task_id": 2,
+      "model_only_neighbor_order_equal": true,
+      "rounded_query_neighbor_order_equal": true,
+      "neighbor_sets_equal": true,
+      "predictions_equal": true
+    },
+    {
+      "task_id": 3,
+      "model_only_neighbor_order_equal": true,
+      "rounded_query_neighbor_order_equal": true,
+      "neighbor_sets_equal": true,
+      "predictions_equal": true
+    },
+    {
+      "task_id": 4,
+      "model_only_neighbor_order_equal": true,
+      "rounded_query_neighbor_order_equal": true,
+      "neighbor_sets_equal": true,
+      "predictions_equal": true
+    },
+    {
+      "task_id": 5,
+      "model_only_neighbor_order_equal": true,
+      "rounded_query_neighbor_order_equal": true,
+      "neighbor_sets_equal": true,
+      "predictions_equal": true
+    },
+    {
+      "task_id": 6,
+      "model_only_neighbor_order_equal": true,
+      "rounded_query_neighbor_order_equal": true,
+      "neighbor_sets_equal": true,
+      "predictions_equal": true
+    },
+    {
+      "task_id": 7,
+      "model_only_neighbor_order_equal": true,
+      "rounded_query_neighbor_order_equal": true,
+      "neighbor_sets_equal": true,
+      "predictions_equal": true
+    },
+    {
+      "task_id": 8,
+      "model_only_neighbor_order_equal": true,
+      "rounded_query_neighbor_order_equal": true,
+      "neighbor_sets_equal": true,
+      "predictions_equal": true
+    },
+    {
+      "task_id": 9,
+      "model_only_neighbor_order_equal": true,
+      "rounded_query_neighbor_order_equal": true,
+      "neighbor_sets_equal": true,
+      "predictions_equal": true
+    },
+    {
+      "task_id": 10,
+      "model_only_neighbor_order_equal": true,
+      "rounded_query_neighbor_order_equal": true,
+      "neighbor_sets_equal": true,
+      "predictions_equal": true
+    },
+    {
+      "task_id": 11,
+      "model_only_neighbor_order_equal": true,
+      "rounded_query_neighbor_order_equal": true,
+      "neighbor_sets_equal": true,
+      "predictions_equal": true
+    },
+    {
+      "task_id": 12,
+      "model_only_neighbor_order_equal": true,
+      "rounded_query_neighbor_order_equal": true,
+      "neighbor_sets_equal": true,
+      "predictions_equal": true
+    },
+    {
+      "task_id": 13,
+      "model_only_neighbor_order_equal": true,
+      "rounded_query_neighbor_order_equal": true,
+      "neighbor_sets_equal": true,
+      "predictions_equal": true
+    },
+    {
+      "task_id": 14,
+      "model_only_neighbor_order_equal": true,
+      "rounded_query_neighbor_order_equal": true,
+      "neighbor_sets_equal": true,
+      "predictions_equal": true
+    },
+    {
+      "task_id": 15,
+      "model_only_neighbor_order_equal": true,
+      "rounded_query_neighbor_order_equal": true,
+      "neighbor_sets_equal": true,
+      "predictions_equal": true
+    },
+    {
+      "task_id": 16,
+      "model_only_neighbor_order_equal": true,
+      "rounded_query_neighbor_order_equal": true,
+      "neighbor_sets_equal": true,
+      "predictions_equal": true
+    },
+    {
+      "task_id": 17,
+      "model_only_neighbor_order_equal": true,
+      "rounded_query_neighbor_order_equal": true,
+      "neighbor_sets_equal": true,
+      "predictions_equal": true
+    },
+    {
+      "task_id": 18,
+      "model_only_neighbor_order_equal": true,
+      "rounded_query_neighbor_order_equal": true,
+      "neighbor_sets_equal": true,
+      "predictions_equal": true
+    },
+    {
+      "task_id": 19,
+      "model_only_neighbor_order_equal": true,
+      "rounded_query_neighbor_order_equal": true,
+      "neighbor_sets_equal": true,
+      "predictions_equal": true
+    },
+    {
+      "task_id": 20,
+      "model_only_neighbor_order_equal": true,
+      "rounded_query_neighbor_order_equal": true,
+      "neighbor_sets_equal": true,
+      "predictions_equal": true
+    },
+    {
+      "task_id": 21,
+      "model_only_neighbor_order_equal": true,
+      "rounded_query_neighbor_order_equal": true,
+      "neighbor_sets_equal": true,
+      "predictions_equal": true
+    },
+    {
+      "task_id": 22,
+      "model_only_neighbor_order_equal": true,
+      "rounded_query_neighbor_order_equal": true,
+      "neighbor_sets_equal": true,
+      "predictions_equal": true
+    },
+    {
+      "task_id": 23,
+      "model_only_neighbor_order_equal": true,
+      "rounded_query_neighbor_order_equal": true,
+      "neighbor_sets_equal": true,
+      "predictions_equal": true
+    },
+    {
+      "task_id": 24,
+      "model_only_neighbor_order_equal": true,
+      "rounded_query_neighbor_order_equal": true,
+      "neighbor_sets_equal": true,
+      "predictions_equal": true
+    },
+    {
+      "task_id": 25,
+      "model_only_neighbor_order_equal": true,
+      "rounded_query_neighbor_order_equal": true,
+      "neighbor_sets_equal": true,
+      "predictions_equal": true
+    },
+    {
+      "task_id": 26,
+      "model_only_neighbor_order_equal": true,
+      "rounded_query_neighbor_order_equal": true,
+      "neighbor_sets_equal": true,
+      "predictions_equal": true
+    },
+    {
+      "task_id": 27,
+      "model_only_neighbor_order_equal": true,
+      "rounded_query_neighbor_order_equal": true,
+      "neighbor_sets_equal": true,
+      "predictions_equal": true
+    },
+    {
+      "task_id": 28,
+      "model_only_neighbor_order_equal": true,
+      "rounded_query_neighbor_order_equal": true,
+      "neighbor_sets_equal": true,
+      "predictions_equal": true
+    },
+    {
+      "task_id": 29,
+      "model_only_neighbor_order_equal": true,
+      "rounded_query_neighbor_order_equal": true,
+      "neighbor_sets_equal": true,
+      "predictions_equal": true
+    },
+    {
+      "task_id": 30,
+      "model_only_neighbor_order_equal": true,
+      "rounded_query_neighbor_order_equal": true,
+      "neighbor_sets_equal": true,
+      "predictions_equal": true
+    },
+    {
+      "task_id": 31,
+      "model_only_neighbor_order_equal": true,
+      "rounded_query_neighbor_order_equal": true,
+      "neighbor_sets_equal": true,
+      "predictions_equal": true
+    },
+    {
+      "task_id": 32,
+      "model_only_neighbor_order_equal": true,
+      "rounded_query_neighbor_order_equal": true,
+      "neighbor_sets_equal": true,
+      "predictions_equal": true
+    },
+    {
+      "task_id": 33,
+      "model_only_neighbor_order_equal": true,
+      "rounded_query_neighbor_order_equal": true,
+      "neighbor_sets_equal": true,
+      "predictions_equal": true
+    },
+    {
+      "task_id": 34,
+      "model_only_neighbor_order_equal": true,
+      "rounded_query_neighbor_order_equal": true,
+      "neighbor_sets_equal": true,
+      "predictions_equal": true
+    },
+    {
+      "task_id": 35,
+      "model_only_neighbor_order_equal": true,
+      "rounded_query_neighbor_order_equal": true,
+      "neighbor_sets_equal": true,
+      "predictions_equal": true
+    },
+    {
+      "task_id": 36,
+      "model_only_neighbor_order_equal": true,
+      "rounded_query_neighbor_order_equal": true,
+      "neighbor_sets_equal": true,
+      "predictions_equal": true
+    },
+    {
+      "task_id": 37,
+      "model_only_neighbor_order_equal": true,
+      "rounded_query_neighbor_order_equal": true,
+      "neighbor_sets_equal": true,
+      "predictions_equal": true
+    },
+    {
+      "task_id": 38,
+      "model_only_neighbor_order_equal": true,
+      "rounded_query_neighbor_order_equal": true,
+      "neighbor_sets_equal": true,
+      "predictions_equal": true
+    },
+    {
+      "task_id": 39,
+      "model_only_neighbor_order_equal": true,
+      "rounded_query_neighbor_order_equal": true,
+      "neighbor_sets_equal": true,
+      "predictions_equal": true
+    },
+    {
+      "task_id": 40,
+      "model_only_neighbor_order_equal": true,
+      "rounded_query_neighbor_order_equal": true,
+      "neighbor_sets_equal": true,
+      "predictions_equal": true
+    },
+    {
+      "task_id": 41,
+      "model_only_neighbor_order_equal": true,
+      "rounded_query_neighbor_order_equal": true,
+      "neighbor_sets_equal": true,
+      "predictions_equal": true
+    },
+    {
+      "task_id": 42,
+      "model_only_neighbor_order_equal": true,
+      "rounded_query_neighbor_order_equal": true,
+      "neighbor_sets_equal": true,
+      "predictions_equal": true
+    },
+    {
+      "task_id": 43,
+      "model_only_neighbor_order_equal": true,
+      "rounded_query_neighbor_order_equal": true,
+      "neighbor_sets_equal": true,
+      "predictions_equal": true
+    },
+    {
+      "task_id": 44,
+      "model_only_neighbor_order_equal": true,
+      "rounded_query_neighbor_order_equal": true,
+      "neighbor_sets_equal": true,
+      "predictions_equal": true
+    },
+    {
+      "task_id": 45,
+      "model_only_neighbor_order_equal": true,
+      "rounded_query_neighbor_order_equal": true,
+      "neighbor_sets_equal": true,
+      "predictions_equal": true
+    },
+    {
+      "task_id": 46,
+      "model_only_neighbor_order_equal": true,
+      "rounded_query_neighbor_order_equal": true,
+      "neighbor_sets_equal": true,
+      "predictions_equal": true
+    },
+    {
+      "task_id": 47,
+      "model_only_neighbor_order_equal": true,
+      "rounded_query_neighbor_order_equal": true,
+      "neighbor_sets_equal": true,
+      "predictions_equal": true
+    },
+    {
+      "task_id": 48,
+      "model_only_neighbor_order_equal": true,
+      "rounded_query_neighbor_order_equal": true,
+      "neighbor_sets_equal": true,
+      "predictions_equal": true
+    },
+    {
+      "task_id": 49,
+      "model_only_neighbor_order_equal": true,
+      "rounded_query_neighbor_order_equal": true,
+      "neighbor_sets_equal": true,
+      "predictions_equal": true
+    },
+    {
+      "task_id": 50,
+      "model_only_neighbor_order_equal": true,
+      "rounded_query_neighbor_order_equal": true,
+      "neighbor_sets_equal": true,
+      "predictions_equal": true
+    },
+    {
+      "task_id": 51,
+      "model_only_neighbor_order_equal": true,
+      "rounded_query_neighbor_order_equal": true,
+      "neighbor_sets_equal": true,
+      "predictions_equal": true
+    },
+    {
+      "task_id": 52,
+      "model_only_neighbor_order_equal": true,
+      "rounded_query_neighbor_order_equal": true,
+      "neighbor_sets_equal": true,
+      "predictions_equal": true
+    },
+    {
+      "task_id": 53,
+      "model_only_neighbor_order_equal": true,
+      "rounded_query_neighbor_order_equal": true,
+      "neighbor_sets_equal": true,
+      "predictions_equal": true
+    },
+    {
+      "task_id": 54,
+      "model_only_neighbor_order_equal": true,
+      "rounded_query_neighbor_order_equal": true,
+      "neighbor_sets_equal": true,
+      "predictions_equal": true
+    },
+    {
+      "task_id": 55,
+      "model_only_neighbor_order_equal": true,
+      "rounded_query_neighbor_order_equal": true,
+      "neighbor_sets_equal": true,
+      "predictions_equal": true
+    },
+    {
+      "task_id": 56,
+      "model_only_neighbor_order_equal": true,
+      "rounded_query_neighbor_order_equal": true,
+      "neighbor_sets_equal": true,
+      "predictions_equal": true
+    },
+    {
+      "task_id": 57,
+      "model_only_neighbor_order_equal": true,
+      "rounded_query_neighbor_order_equal": true,
+      "neighbor_sets_equal": true,
+      "predictions_equal": true
+    },
+    {
+      "task_id": 58,
+      "model_only_neighbor_order_equal": true,
+      "rounded_query_neighbor_order_equal": true,
+      "neighbor_sets_equal": true,
+      "predictions_equal": true
+    },
+    {
+      "task_id": 59,
+      "model_only_neighbor_order_equal": true,
+      "rounded_query_neighbor_order_equal": true,
+      "neighbor_sets_equal": true,
+      "predictions_equal": true
+    }
+  ],
+  "passed": true
+}

@@ -6,7 +6,8 @@ import json
 from pathlib import Path
 import numpy as np
 from attention import agent, s2
-from attention.a001 import reference_audit, write, control_flags
+from attention.a001 import reference_audit, control_flags
+from attention.io import read_json, write_json as write, load_replay
 from attention.batch import run_batch
 from lab import frozen_pipeline as P
 from lab.common_mode import encode
@@ -14,7 +15,7 @@ from lab.executor import execute, request_hash
 from lab.experiment_audit import metadata
 from lab.guard import Request
 from lab.pipeline_holdout import CONDITIONS, COHORTS, LOG_RANGES, overlap_audit, request_key
-from lab.replay import canonical_sha256, load_replay, protect_output
+from lab.replay import canonical_sha256, protect_output
 from lab.scientist import ROOT
 from scripts.compare_experiment_runs import numeric_summary
 
@@ -23,7 +24,7 @@ MODEL = 'attention/self_model_s2.json'
 POLICIES = ('B','C1','C2','C3','C4','D','Dprime')
 FRACTIONS = (.2,.4,.6,1.)
 from attention.a001 import SOURCES as OLD_SOURCES
-SOURCES = sorted(set(OLD_SOURCES + [MODEL,'attention/a002.py','attention/batch.py','attention/s2.py','attention/build_s2.py']))
+SOURCES = sorted(set(OLD_SOURCES + [MODEL,'attention/a002.py','attention/batch.py','attention/s2.py','attention/build_s2.py','attention/io.py']))
 
 
 def validate(records, permutations):
@@ -207,7 +208,7 @@ if __name__=='__main__':
     args=parser.parse_args()
     if args.compare:
         protect_output(args.output,None)
-        result=compare(*(json.loads(p.read_text()) for p in args.compare)); write(args.output,result)
+        result=compare(*(read_json(p) for p in args.compare)); write(args.output,result)
         print(json.dumps(result,indent=2))
         if not result['decisions_pass']:raise SystemExit(1)
     else:

@@ -1,6 +1,7 @@
 """Independently recompute A002 archived counts, costs and calibration."""
 import argparse
 import json, math, sys
+from attention.io import read_json
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
 parser=argparse.ArgumentParser(description=__doc__)
@@ -12,7 +13,7 @@ OUT=args.output
 if OUT.exists():raise ValueError('Refuse to overwrite an audit')
 if not PATH.exists():
  raise FileNotFoundError(PATH)
-d=json.loads(PATH.read_text()); failures=[]; lines=[]
+d=read_json(PATH); failures=[]; lines=[]
 def check(ok, message):
  if not ok: failures.append(message)
 def same(a,b): return abs(a-b)<=1e-12
