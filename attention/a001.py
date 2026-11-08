@@ -121,7 +121,9 @@ def decision_view(result):
        reference_verdict=r['full']['verdict'],full_cost=r['full']['spent'],
        policies={f:{p:dict(verdict=x['verdict'],spent=x['spent'],correct=x['correct'],
           actions=[a['action'] for a in x['actions']],
-          component_verdicts=[a.get('observation',{}).get('verdict',a.get('verdict')) for a in x['actions']])
+          component_verdicts=[a.get('observation',{}).get('verdict',a.get('verdict')) for a in x['actions']],
+          control_flags=[{k:v for k,v in a.get('observation',{}).items() if k=='terminal'} |
+              {k:v for k,v in a.get('observation',{}).get('step',{}).items() if isinstance(v,bool)} for a in x['actions']])
           for p,x in ps.items()} for f,ps in r['policies'].items()}) for r in result['runs']]
 
 
@@ -131,18 +133,22 @@ def compare(first,second):
     for i,(x,y) in enumerate(zip(a,b)):
         if x!=y: mismatches.append(i)
     numeric=[]
+    structure=[]
     def walk(x,y,path=''):
         if isinstance(x,dict) and isinstance(y,dict):
+            if x.keys()!=y.keys():structure.append(path)
             for k in x.keys()&y.keys():
                 walk(x[k],y[k],path+'/'+k)
         elif isinstance(x,list) and isinstance(y,list):
+            if len(x)!=len(y):structure.append(path)
             for i,(u,v) in enumerate(zip(x,y)):walk(u,v,path+'/'+str(i))
         elif type(x) in (float,int) and type(y) in (float,int):
             if not np.isclose(x,y,atol=1e-12,rtol=1e-12):numeric.append(path)
+        elif type(x)!=type(y) or x!=y:structure.append(path)
     walk(first['runs'],second['runs'],'runs')
     return dict(decisions_pass=bool(len(a)==len(b) and not mismatches),
         differing_decision_rows=mismatches,numeric_diagnostic_differences=numeric,
-        numeric_diagnostics_pass=not numeric,atol=1e-12,rtol=1e-12,
+        numeric_diagnostics_pass=not numeric and not structure,diagnostic_structure_differences=structure,atol=1e-12,rtol=1e-12,
         scientific_exact=scientific_view(first)==scientific_view(second))
 
 
