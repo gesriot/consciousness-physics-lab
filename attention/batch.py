@@ -52,10 +52,10 @@ def choose(policy, requests, observed, remaining, model, permutation, state):
             continue
         if policy in ('B', 'D', 'Dprime'):
             prediction = state['predictions'][i]
-            solvable = prediction['solvable_probability']
+            decisive = prediction['decisive_probability']
             if completed_inconclusive(evidence):
-                solvable = max(0., solvable-prediction['full_probabilities']['accept'])
-            if solvable < .10 and not any(
+                decisive = max(0., decisive-prediction['full_probabilities']['accept'])
+            if decisive < .10 and not any(
                     prediction['actions'][a]['detection_probability'] >= .05
                     for a in options):
                 dropped[i] = 'predicted_unresolvable'

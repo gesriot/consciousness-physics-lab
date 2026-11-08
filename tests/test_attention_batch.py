@@ -21,7 +21,7 @@ class BatchTests(unittest.TestCase):
         return [(i, a) for i in reversed(range(count)) for a in reversed(agent.ORDER)]
 
     def prediction(self, solvable=.8, detect=.2):
-        return dict(solvable_probability=solvable,
+        return dict(solvable_probability=solvable, decisive_probability=solvable,
                     full_probabilities=dict(accept=solvable, violation_detected=0., inconclusive=1-solvable),
                     actions={a: dict(detection_probability=detect, accept_probability=.5)
                              for a in agent.ORDER})
@@ -91,6 +91,32 @@ class BatchTests(unittest.TestCase):
         with patch.object(batch, 'predict', return_value=self.prediction(.01, 0.)):
             state = {}
             self.assertIsNone(batch.choose('B', [self.request], evidence, 100., self.model, self.permutation(1), state))
+            self.assertEqual(state['dropped'][0], 'predicted_unresolvable')
+
+    def test_drop_threshold_uses_decisiveness_not_correctness(self):
+        prediction = self.prediction(.01, 0.)
+        prediction['decisive_probability'] = .8
+        prediction['full_probabilities'] = dict(accept=0., violation_detected=.8, inconclusive=.2)
+        with patch.object(batch, 'predict', return_value=prediction):
+            state = {}
+            selected = batch.choose('B', [self.request], [{}], 100., self.model,
+                                    self.permutation(1), state)
+            self.assertIsNotNone(selected)
+            self.assertEqual(state['dropped'], {})
+            # Acceptance is removed after a completed inconclusive check,
+            # but the substantial violation probability still prevents a drop.
+            selected = batch.choose('B', [self.request],
+                                    [dict(modal=dict(verdict='inconclusive'))],
+                                    100., self.model, self.permutation(1), state)
+            self.assertIsNotNone(selected)
+            self.assertEqual(state['dropped'], {})
+        prediction['full_probabilities'] = dict(accept=.75, violation_detected=.05, inconclusive=.2)
+        with patch.object(batch, 'predict', return_value=prediction):
+            state = {}
+            selected = batch.choose('B', [self.request],
+                                    [dict(modal=dict(verdict='inconclusive'))],
+                                    100., self.model, self.permutation(1), state)
+            self.assertIsNone(selected)
             self.assertEqual(state['dropped'][0], 'predicted_unresolvable')
 
     def test_hidden_interface_and_cached_predictions(self):
