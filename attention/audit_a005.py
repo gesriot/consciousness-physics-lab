@@ -5,6 +5,7 @@ implementation. Physical values require the separate fresh execution repeat.
 """
 import argparse
 import math
+from itertools import chain
 from collections import defaultdict
 from pathlib import Path
 import numpy as np
@@ -87,7 +88,7 @@ class Audit:
 def audit(data):
     check=Audit();check.equal(data['experiment'],'A005','experiment')
     records=data['intake_channel'];packages=data['packages'];onset=data['onset_package']
-    check.equal(len(records),60,'request count');check.equal(len(packages),12,'package count')
+    check.equal(len(records),60,'request count')
     check.equal(onset,int(np.random.default_rng(20261144).integers(4,9)),'onset')
     check.equal(data['intake_sha256'],canonical_sha256([records,data['global_permutations']]),'intake digest')
     check.equal(data['full_pipeline_parity_failures'],[],'full strict parity')
@@ -103,8 +104,10 @@ def audit(data):
             forecasts[index][a]=p
     threshold=data['calibration']['threshold'];check.near(threshold,data['calibration']['maximum']+1,'threshold')
     streams={};derived=defaultdict(list)
+    package_count=0
     for package in packages:
-        package_id=package['package_id'];infos=package['inputs'];check.equal(len(infos),45,f'{package_id}: input count')
+        package_count+=1
+        package_id=package['package_id'];infos=package['inputs'];clean_paths=[{r['action']:r['observation'] for r in x['full']['actions'] if r['action']!='declare'} for x in infos];check.equal(len(infos),45,f'{package_id}: input count')
         full_cost=sum(sum(row['cost'] for row in x['full']['actions']) for x in infos)
         check.near(package['reference_cost'],full_cost,f'{package_id}: full cost')
         for x in infos:
@@ -130,15 +133,47 @@ def audit(data):
                     for step,row in enumerate(run['actions']):
                         close_ready();i=row['input_index'];a=row['action'];extra=row['replacement'];request=requests[infos[i]['task_id']]
                         check.check(i not in closed,tag+': action after closure');touched.add(i)
+                        insurance=[]
+                        for j,e in enumerate(evidence):
+                            if j not in closed and base_verdict(e)=='accept':
+                                for name in suspect-set(extras[j]):
+                                    cost=price(name,requests[infos[j]['task_id']],weights,True)
+                                    if cost<=run['budget']-spent:insurance.append((cost,j,ORDER.index(name),name))
+                        if insurance:
+                            expected=min(insurance)
+                            check.equal((extra,i,a),(True,expected[1],expected[3]),tag+': insurance priority')
+                        elif policy=='C2':
+                            candidates=[]
+                            for j,e in enumerate(evidence):
+                                if j not in closed and base_verdict(e)=='inconclusive':
+                                    for name in available(e):
+                                        cost=price(name,requests[infos[j]['task_id']],weights)
+                                        if cost<=run['budget']-spent:candidates.append((cost,j,ORDER.index(name),name))
+                            check.check(bool(candidates),tag+': C2 available')
+                            if candidates:
+                                expected=min(candidates);check.equal((extra,i,a),(False,expected[1],expected[3]),tag+': C2 greedy choice')
                         charge=price(a,request,weights,extra);check.near(row['cost'],charge,tag+': price')
                         spent+=charge;spent_by[i]+=charge;check.check(spent<=run['budget'],tag+': running budget')
                         if extra:
                             check.check(active and a in suspect and a not in extras[i] and base_verdict(evidence[i])=='accept',tag+': replacement eligibility')
                             check.equal(row['forecast'],None,tag+': extra forecast');check.equal(row['monitor'],None,tag+': extra monitor')
                             extras[i][a]=row['observation'];extra_cost+=charge
+                            if a=='collocation':
+                                observation=row['observation'];check.equal(observation['grids'],[4096,8192,16384,32768],tag+': replacement grids')
+                                values=[complex(*v) for v in observation['values']];ds=[abs(b-a) for a,b in zip(values,values[1:])]
+                                rounding=32*np.finfo(float).eps*32768**2*max(1,abs(values[-1]));uncertainty=2*ds[-1]+rounding
+                                discrepancy=abs(complex(*infos[i]['outcome']['value'])-values[-1]);converging=ds[-1]<=.5*ds[-2]
+                                expected='accept' if converging and discrepancy+uncertainty<=request.tolerance else 'violation_detected' if converging and discrepancy-uncertainty>request.tolerance else 'inconclusive'
+                                check.equal(observation['verdict'],expected,tag+': replacement classification')
+                                check.equal(observation['step']['converging'],converging,tag+': replacement convergence')
+                                check.near(observation['step']['uncertainty_estimate'],uncertainty,tag+': replacement uncertainty')
+                                check.near(observation['step']['discrepancy'],discrepancy,tag+': replacement discrepancy')
+                            elif a in clean_paths[i]:check.equal(row['observation'],clean_paths[i][a],tag+': clean replacement observation')
                         else:
                             check.check(base_verdict(evidence[i])=='inconclusive' and a in available(evidence[i]),tag+': action eligibility')
                             spoiled=package_id>=onset and ((fault=='permissive' and a=='collocation') or (fault=='uninformative' and a=='second_moment'))
+                            check.check(a in clean_paths[i],tag+': clean original exists')
+                            if a in clean_paths[i]:check.equal(row['original_observation'],clean_paths[i][a],tag+': original matches full clean path')
                             obs=category(a,row['original_observation'],spoiled)
                             check.equal(row['observation'],obs,tag+': observed channel');evidence[i][a]=obs
                             p=forecasts[infos[i]['task_id']][a]
@@ -170,6 +205,7 @@ def audit(data):
                 action_view=lambda r:[(x['input_index'],x['action'],x['replacement'],x['observation'],x['cost']) for x in r['actions']]
                 check.equal(action_view(left),action_view(right),f'{package_id}/{fault}/{f}: Dprime actions')
                 check.equal(left['inputs'],right['inputs'],f'{package_id}/{fault}/{f}: Dprime inputs')
+    check.equal(package_count,12,'package count')
     for (fault,f,policy),runs in derived.items():
         saved=data['summary'][fault][f][policy];all_alerts=[a for r in runs for a in r['alerts']];target='second_moment' if fault=='uninformative' else 'collocation'
         before=[a for a in all_alerts if a['package_id']<onset and a['action']==target];after=[a for a in all_alerts if a['package_id']>=onset and a['action']==target];delay=None
@@ -186,7 +222,42 @@ def audit(data):
     return dict(passed=not check.errors,checks=check.checks,errors=check.errors,scope='Independent saved-action accounting, evidence, static forecasts, monitor, interventions and summary audit; no physical re-execution or exhaustive planner optimality proof')
 
 
+def audit_path(path, mutate=None):
+    from attention.compare_a004 import Archive
+    archive=Archive(path);iterator=archive.packages();first=next(iterator)
+    def packages():
+        for index,package in enumerate(chain((first,),iterator)):
+            if mutate:mutate(package,index)
+            yield package
+    archive.metadata['packages']=packages()
+    result=audit(archive.metadata)
+    if not archive.finished:raise ValueError('Archive not completely consumed')
+    return result
+
+
+def negative_control(path):
+    """Mutate parsed copies only; never rewrite the source archive."""
+    seen=set()
+    def mutate(package,index):
+        if index==0:
+            run=package['conditions']['none']['0.2']['B']
+            run['correct']+=1
+            run['actions'][0]['original_observation']['audit_mutation']=True
+            run['actions'][0]['cost']+=1
+            seen.update(('aggregate','clean_original','actual_cost'))
+        if 'replacement' not in seen:
+            for row in package['conditions']['permissive']['1.0']['BM']['actions']:
+                if row['replacement'] and row['action']=='collocation':
+                    row['observation']['step']['uncertainty_estimate']+=1
+                    seen.add('replacement');break
+    result=audit_path(path,mutate)
+    expected=('correct total','original matches full clean path',': price','replacement uncertainty')
+    found={s:any(s in e for e in result['errors']) for s in expected}
+    return dict(passed=not result['passed'] and all(found.values()),archive_unchanged=True,
+                mutations=sorted(seen),detected=found,audit_result=result)
+
+
 if __name__=='__main__':
-    parser=argparse.ArgumentParser();parser.add_argument('archive',type=Path);parser.add_argument('--output',required=True,type=Path);args=parser.parse_args()
-    result=audit(read_json(args.archive));write_json(args.output,result);print(result)
+    parser=argparse.ArgumentParser();parser.add_argument('archive',type=Path);parser.add_argument('--negative-control',action='store_true');parser.add_argument('--output',required=True,type=Path);args=parser.parse_args()
+    result=(negative_control if args.negative_control else audit_path)(args.archive);write_json(args.output,result);print(result)
     if not result['passed']:raise SystemExit(1)

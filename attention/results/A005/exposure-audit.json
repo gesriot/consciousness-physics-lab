@@ -1,0 +1,358 @@
+{
+  "permissive/0.2/C2": {
+    "executed_after": 0,
+    "changed_outcomes": 0,
+    "original_verdicts": {},
+    "replacements": 0
+  },
+  "permissive/0.2/B": {
+    "executed_after": 30,
+    "changed_outcomes": 7,
+    "original_verdicts": {
+      "inconclusive": 2,
+      "violation_detected": 5,
+      "accept": 23
+    },
+    "replacements": 0
+  },
+  "permissive/0.2/BM": {
+    "executed_after": 30,
+    "changed_outcomes": 7,
+    "original_verdicts": {
+      "inconclusive": 2,
+      "violation_detected": 5,
+      "accept": 23
+    },
+    "replacements": 0
+  },
+  "permissive/0.2/D": {
+    "executed_after": 30,
+    "changed_outcomes": 7,
+    "original_verdicts": {
+      "inconclusive": 2,
+      "violation_detected": 5,
+      "accept": 23
+    },
+    "replacements": 0
+  },
+  "permissive/0.2/Dprime": {
+    "executed_after": 30,
+    "changed_outcomes": 7,
+    "original_verdicts": {
+      "inconclusive": 2,
+      "violation_detected": 5,
+      "accept": 23
+    },
+    "replacements": 0
+  },
+  "permissive/0.4/C2": {
+    "executed_after": 65,
+    "changed_outcomes": 25,
+    "original_verdicts": {
+      "violation_detected": 4,
+      "accept": 40,
+      "inconclusive": 21
+    },
+    "replacements": 0
+  },
+  "permissive/0.4/B": {
+    "executed_after": 90,
+    "changed_outcomes": 12,
+    "original_verdicts": {
+      "inconclusive": 2,
+      "violation_detected": 10,
+      "accept": 78
+    },
+    "replacements": 0
+  },
+  "permissive/0.4/BM": {
+    "executed_after": 86,
+    "changed_outcomes": 11,
+    "original_verdicts": {
+      "inconclusive": 2,
+      "violation_detected": 9,
+      "accept": 75
+    },
+    "replacements": 5
+  },
+  "permissive/0.4/D": {
+    "executed_after": 90,
+    "changed_outcomes": 12,
+    "original_verdicts": {
+      "inconclusive": 2,
+      "violation_detected": 10,
+      "accept": 78
+    },
+    "replacements": 0
+  },
+  "permissive/0.4/Dprime": {
+    "executed_after": 86,
+    "changed_outcomes": 11,
+    "original_verdicts": {
+      "inconclusive": 2,
+      "violation_detected": 9,
+      "accept": 75
+    },
+    "replacements": 5
+  },
+  "permissive/0.6/C2": {
+    "executed_after": 164,
+    "changed_outcomes": 58,
+    "original_verdicts": {
+      "violation_detected": 15,
+      "accept": 106,
+      "inconclusive": 43
+    },
+    "replacements": 0
+  },
+  "permissive/0.6/B": {
+    "executed_after": 155,
+    "changed_outcomes": 46,
+    "original_verdicts": {
+      "inconclusive": 31,
+      "violation_detected": 15,
+      "accept": 109
+    },
+    "replacements": 0
+  },
+  "permissive/0.6/BM": {
+    "executed_after": 147,
+    "changed_outcomes": 39,
+    "original_verdicts": {
+      "inconclusive": 24,
+      "violation_detected": 15,
+      "accept": 108
+    },
+    "replacements": 10
+  },
+  "permissive/0.6/D": {
+    "executed_after": 155,
+    "changed_outcomes": 46,
+    "original_verdicts": {
+      "inconclusive": 31,
+      "violation_detected": 15,
+      "accept": 109
+    },
+    "replacements": 0
+  },
+  "permissive/0.6/Dprime": {
+    "executed_after": 147,
+    "changed_outcomes": 39,
+    "original_verdicts": {
+      "inconclusive": 24,
+      "violation_detected": 15,
+      "accept": 108
+    },
+    "replacements": 10
+  },
+  "permissive/1.0/C2": {
+    "executed_after": 169,
+    "changed_outcomes": 59,
+    "original_verdicts": {
+      "violation_detected": 16,
+      "accept": 110,
+      "inconclusive": 43
+    },
+    "replacements": 0
+  },
+  "permissive/1.0/B": {
+    "executed_after": 169,
+    "changed_outcomes": 59,
+    "original_verdicts": {
+      "inconclusive": 43,
+      "violation_detected": 16,
+      "accept": 110
+    },
+    "replacements": 0
+  },
+  "permissive/1.0/BM": {
+    "executed_after": 169,
+    "changed_outcomes": 59,
+    "original_verdicts": {
+      "inconclusive": 43,
+      "violation_detected": 16,
+      "accept": 110
+    },
+    "replacements": 34
+  },
+  "permissive/1.0/D": {
+    "executed_after": 169,
+    "changed_outcomes": 59,
+    "original_verdicts": {
+      "inconclusive": 43,
+      "violation_detected": 16,
+      "accept": 110
+    },
+    "replacements": 0
+  },
+  "permissive/1.0/Dprime": {
+    "executed_after": 169,
+    "changed_outcomes": 59,
+    "original_verdicts": {
+      "inconclusive": 43,
+      "violation_detected": 16,
+      "accept": 110
+    },
+    "replacements": 34
+  },
+  "uninformative/0.2/C2": {
+    "executed_after": 8,
+    "changed_outcomes": 0,
+    "original_verdicts": {
+      "accept": 8
+    },
+    "replacements": 0
+  },
+  "uninformative/0.2/B": {
+    "executed_after": 85,
+    "changed_outcomes": 0,
+    "original_verdicts": {
+      "accept": 85
+    },
+    "replacements": 0
+  },
+  "uninformative/0.2/BM": {
+    "executed_after": 85,
+    "changed_outcomes": 0,
+    "original_verdicts": {
+      "accept": 85
+    },
+    "replacements": 0
+  },
+  "uninformative/0.2/D": {
+    "executed_after": 85,
+    "changed_outcomes": 0,
+    "original_verdicts": {
+      "accept": 85
+    },
+    "replacements": 0
+  },
+  "uninformative/0.2/Dprime": {
+    "executed_after": 85,
+    "changed_outcomes": 0,
+    "original_verdicts": {
+      "accept": 85
+    },
+    "replacements": 0
+  },
+  "uninformative/0.4/C2": {
+    "executed_after": 169,
+    "changed_outcomes": 0,
+    "original_verdicts": {
+      "accept": 169
+    },
+    "replacements": 0
+  },
+  "uninformative/0.4/B": {
+    "executed_after": 176,
+    "changed_outcomes": 0,
+    "original_verdicts": {
+      "accept": 176
+    },
+    "replacements": 0
+  },
+  "uninformative/0.4/BM": {
+    "executed_after": 176,
+    "changed_outcomes": 0,
+    "original_verdicts": {
+      "accept": 176
+    },
+    "replacements": 0
+  },
+  "uninformative/0.4/D": {
+    "executed_after": 176,
+    "changed_outcomes": 0,
+    "original_verdicts": {
+      "accept": 176
+    },
+    "replacements": 0
+  },
+  "uninformative/0.4/Dprime": {
+    "executed_after": 176,
+    "changed_outcomes": 0,
+    "original_verdicts": {
+      "accept": 176
+    },
+    "replacements": 0
+  },
+  "uninformative/0.6/C2": {
+    "executed_after": 169,
+    "changed_outcomes": 0,
+    "original_verdicts": {
+      "accept": 169
+    },
+    "replacements": 0
+  },
+  "uninformative/0.6/B": {
+    "executed_after": 256,
+    "changed_outcomes": 0,
+    "original_verdicts": {
+      "accept": 256
+    },
+    "replacements": 0
+  },
+  "uninformative/0.6/BM": {
+    "executed_after": 256,
+    "changed_outcomes": 0,
+    "original_verdicts": {
+      "accept": 256
+    },
+    "replacements": 0
+  },
+  "uninformative/0.6/D": {
+    "executed_after": 256,
+    "changed_outcomes": 0,
+    "original_verdicts": {
+      "accept": 256
+    },
+    "replacements": 0
+  },
+  "uninformative/0.6/Dprime": {
+    "executed_after": 256,
+    "changed_outcomes": 0,
+    "original_verdicts": {
+      "accept": 256
+    },
+    "replacements": 0
+  },
+  "uninformative/1.0/C2": {
+    "executed_after": 169,
+    "changed_outcomes": 0,
+    "original_verdicts": {
+      "accept": 169
+    },
+    "replacements": 0
+  },
+  "uninformative/1.0/B": {
+    "executed_after": 259,
+    "changed_outcomes": 0,
+    "original_verdicts": {
+      "accept": 259
+    },
+    "replacements": 0
+  },
+  "uninformative/1.0/BM": {
+    "executed_after": 259,
+    "changed_outcomes": 0,
+    "original_verdicts": {
+      "accept": 259
+    },
+    "replacements": 0
+  },
+  "uninformative/1.0/D": {
+    "executed_after": 259,
+    "changed_outcomes": 0,
+    "original_verdicts": {
+      "accept": 259
+    },
+    "replacements": 0
+  },
+  "uninformative/1.0/Dprime": {
+    "executed_after": 259,
+    "changed_outcomes": 0,
+    "original_verdicts": {
+      "accept": 259
+    },
+    "replacements": 0
+  }
+}

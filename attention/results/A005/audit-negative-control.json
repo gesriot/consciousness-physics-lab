@@ -1,0 +1,29 @@
+{
+  "passed": true,
+  "archive_unchanged": true,
+  "mutations": [
+    "actual_cost",
+    "aggregate",
+    "clean_original",
+    "replacement"
+  ],
+  "detected": {
+    "correct total": true,
+    "original matches full clean path": true,
+    ": price": true,
+    "replacement uncertainty": true
+  },
+  "audit_result": {
+    "passed": false,
+    "checks": 3202431,
+    "errors": [
+      "0/none/0.2/B: price",
+      "0/none/0.2/B: original matches full clean path",
+      "0/none/0.2/B: correct total",
+      "9/permissive/1.0/BM: replacement uncertainty",
+      "9/permissive/1.0/BM: final extras",
+      "9/permissive/1.0: Dprime actions"
+    ],
+    "scope": "Independent saved-action accounting, evidence, static forecasts, monitor, interventions and summary audit; no physical re-execution or exhaustive planner optimality proof"
+  }
+}

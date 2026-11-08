@@ -1,0 +1,64 @@
+A005 independent result review
+
+Main-result stage
+
+The saved main archive passed 3,202,431 independent checks with no errors.
+The auditor reconstructs action eligibility, exact C2 greedy choice, paid
+replacement priority, charges and package budgets, irreversible closures,
+P-strict evidence, independent truth labels, frozen S3 category forecasts,
+monitor residuals, alert locations, onset-relative exposures and delays,
+per-package outcomes, summary arithmetic, and Dprime equivalence.
+Ordinary original observations match the corresponding complete clean paths.
+Replacement classification and uncertainty are reconstructed from saved FV
+values without invoking the experiment's classification function.
+
+The auditor was extended after main execution only to strengthen verification:
+streaming archive input, C2 choice, replacement priority, original-observation
+crosschecks, and replacement arithmetic. These changes do not modify the
+experimental scheduler, thresholds, numerical executors, or saved outcomes.
+The independently authored auditor already existed before main execution.
+Physical values are not recomputed by this accounting audit. Full physical
+replay remains separate. Exhaustive B tree optimality is not independently
+recomputed, and numerical solver agreement is not physical validation.
+
+At 20/40/60/100% under permissive collocation, B has 3/7/7/7 false acceptances
+and BM has 3/5/5/4. BM's correct verdicts are 211/324/380/374, versus
+211/329/380/381 for B and 233/303/381/381 for C2. Thus the monitor decreases
+some false acceptances but does not improve correct-verdict totals against B;
+at 40% and 100% it loses 5 and 7 correct verdicts. Actual replacement charges
+are 0/75/150/510. D suppresses these alarms and reproduces B; Dprime exactly
+preserves BM's actions, costs and verdicts.
+
+No target alarm occurs at 20%; detection at 40/60/100% takes 360/315/225
+newly exposed inputs, exceeding the registered limit of 90 in every detected
+stream. The 20% stream is censored, not assigned zero or infinite delay.
+There are no clean-condition false alarms in 48 dependent package/budget
+combinations or in the four whole budget streams. This small, dependent
+sample is not a probabilistic false-alarm guarantee.
+
+The second-moment intervention changes zero observed ordinary outcomes for
+every tested policy and budget. BM executes 85/176/256/259 second-moment
+checks after onset; all already return accept before corruption. C2 executes
+8/169/169/169, also all accept. Therefore this intervention is inert on the
+visited paths. Its identical costs and outcomes cannot establish successful
+recognition of an uninformative check. This is a substantive exposure limit,
+not grounds to change the hook or rerun a selected hypothesis.
+
+No false acceptances occur before onset. There is no claim about subjective
+experience or a theory of consciousness. The supported functional result is
+late partial reduction of erroneous acceptance with an unfavorable accuracy
+or cost tradeoff at important budgets, plus a failed exposure test for the
+second fault. Frozen parameters must remain unchanged.
+
+Repeat and final-check stage
+
+Exact-input replay and last-bit perturbation verification are pending at the
+time of this initial independent result review. Their actual results and
+negative-control outcomes will be appended after inspection.
+
+Negative controls: the unchanged source archive was reparsed with four
+in-memory mutations. An incorrect aggregate, a changed actual charge, an
+original observation inconsistent with its clean path, and corrupted
+replacement uncertainty were all rejected. The negative-control result is
+PASS; the intentionally altered data correctly fail their audit. Reproduce
+with attention.audit_a005 and its --negative-control option.
