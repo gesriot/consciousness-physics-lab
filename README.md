@@ -506,3 +506,33 @@ S3 не изменена. Пересборка её признаков допу�
 Экспериментальные исходники не менялись. Общий check: 209 основных и
 30 vendor-тестов PASS ([журнал](attention/results/A004/check.log)).
 Полный повтор не дублируется: его SHA-256, сводка, сравнение и аудит сохранены.
+
+
+## A005: порча собственной проверки
+
+[Протокол](attention/protocols/A005-monitor-failure.md) и уточнение FV-страховки
+предшествуют новым данным. [Отчёт](attention/results/A005/report.md): при
+уступчивой коллокации BM снизила ложные принятия B 3/7/7/7 до 3/5/5/4 на
+20/40/60/100%, но верные итоги 211/329/380/381 стали 211/324/380/374.
+Задержки 360/315/225 входов при 40/60/100% превышают заданные 90; при 20%
+тревоги не было. D маскирует тревогу, Dprime сохраняет BM. Без порчи ложных
+тревог 0/48 зависимых сочетаний пакет/бюджет. Неинформативный второй момент
+не меняет ни одного реально посещённого исхода: обнаружение такого сбоя
+по этому условию оценить нельзя. Рукопись 0.16 сохраняет частичную
+пользу механизма и отрицательный прогноз скорости/общей правильности.
+
+```sh
+OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 python3 -m attention.a005 --replay attention/results/A005/results.json.gz --output results/local/a005-repeat.json.gz
+OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 python3 -m attention.a005 --replay attention/results/A005/results.json.gz --last-bit-noise --output results/local/a005-noise.json.gz
+python3 -m attention.compare_a005 attention/results/A005/results.json.gz results/local/a005-repeat.json.gz --output results/local/a005-comparison.json
+python3 -m attention.compare_a005 attention/results/A005/results.json.gz results/local/a005-noise.json.gz --output results/local/a005-noise-comparison.json
+python3 -m attention.audit_a005 attention/results/A005/results.json.gz --output results/local/a005-audit.json
+./scripts/check.sh
+```
+
+Оценки планов округляются до 1e-9, равенства разрешаются детерминированно.
+Наблюдение владельца о межплатформенном расхождении A004 записано отдельно
+в прежнем отчёте; A004 не пересчитан и его исторические результаты не заменены.
+
+Повтор с шумом последнего бита проверяет устойчивость к заданному возмущению
+прогнозов, но не доказывает переносимость на все платформы.
