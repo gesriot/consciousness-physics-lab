@@ -103,8 +103,13 @@ def decision_view(data):
         if isinstance(x,list):return [walk(v) for v in x]
         if isinstance(x,float):return '<numeric diagnostic>'
         return x
-    return dict(intake=data['intake_channel'],permutations=data['global_permutations'],packages=walk(data['packages']),
+    result = dict(intake=data['intake_channel'],permutations=data['global_permutations'],packages=walk(data['packages']),
                 intake_sha256=data['intake_sha256'],self_model_sha256=data['self_model_sha256'])
+    for key in ('experiment','task_seed','order_seed','random_policy_seed','summary','calibration',
+                'full_pipeline_parity_failures','reference_audit','request_overlap','sampling_unit'):
+        if key in data:
+            result[key] = walk(data[key])
+    return result
 
 
 def compare(first,second):

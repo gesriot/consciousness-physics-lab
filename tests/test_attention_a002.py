@@ -30,6 +30,14 @@ class A002Tests(unittest.TestCase):
         other=copy.deepcopy(d);other['intake_channel'][0]['request']=2.
         self.assertFalse(a002.compare(d,other)['decisions_pass'])
 
+    def test_comparison_preserves_audit_and_summary(self):
+        d=dict(intake_channel=[],global_permutations=[],intake_sha256='x',self_model_sha256='s',packages=[],
+               summary={'correct':2},full_pipeline_parity_failures=[],reference_audit={'fallback_all':False})
+        for key,value in [('summary',{'correct':3}),('full_pipeline_parity_failures',[[1,'clean']]),
+                          ('reference_audit',{'fallback_all':True})]:
+            other=copy.deepcopy(d);other[key]=value
+            self.assertFalse(a002.compare(d,other)['decisions_pass'])
+
     def test_frozen_s2_probability_and_corruption(self):
         m=s2.load_model(); r=Request(1+1j,1,.01)
         original=s2.predict(r,model=m)
