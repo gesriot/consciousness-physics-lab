@@ -23,7 +23,7 @@ from lab.scientist import ROOT
 PROTOCOL='attention/protocols/A006-active-calibration.md'
 LIBRARY='attention/sample_library_a006.json'
 CALIBRATION='attention/results/A005/calibration.json'
-SOURCES=sorted(set(OLD_SOURCES+['attention/a006.py','attention/active_monitor.py','attention/calibration_samples.py','attention/build_a006_library.py','attention/compare_a006.py',LIBRARY]))
+SOURCES=sorted(set(OLD_SOURCES+['attention/a006.py','attention/active_monitor.py','attention/calibration_samples.py','attention/build_a006_library.py','attention/compare_a006.py','attention/audit_a006.py',LIBRARY]))
 FRACTIONS=(.2,.4,.6,1.)
 FAULTS=('none','permissive','uninformative','underestimated')
 
