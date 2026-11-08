@@ -1,0 +1,25 @@
+{
+  "passed": true,
+  "checks": 12203321,
+  "errors": [],
+  "packages": 12,
+  "negative_controls": [
+    {
+      "mutation": "operation_price",
+      "detected": true
+    },
+    {
+      "mutation": "final_verdict",
+      "detected": true
+    },
+    {
+      "mutation": "sample_channel",
+      "detected": true
+    },
+    {
+      "mutation": "detection",
+      "detected": true
+    }
+  ],
+  "scope": "Independent action accounting, cheapest ordinary and replacement choice, sample timing, weighted-usage scores, categorical hooks, guarded replacement, truth labels, quotas, closure timing, summaries and stopping rule. Learned posterior risk and model-free usage are independently reconstructed from frozen categorical trajectories; no experimental planner is called. Fresh physics is checked by replay."
+}
