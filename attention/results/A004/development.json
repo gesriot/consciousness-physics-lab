@@ -1,0 +1,771 @@
+{
+  "passed": true,
+  "failures": [],
+  "source": "attention/results/A003/results.json.gz",
+  "source_sha256": "6e19edf677a8d91936adf4c3d309de7468effa804d0901f7e34c140096dc59ac",
+  "package_id": 0,
+  "preregistered_parameters": {
+    "epsilon": 0.02,
+    "alpha": 0.25,
+    "threshold": 0.05
+  },
+  "alphabets": {
+    "modal": 3,
+    "v2_64": 4,
+    "v2_128": 4,
+    "v2_256": 4,
+    "v2_512": 4,
+    "v2_1024": 4,
+    "v2_2048": 4,
+    "v2_4096": 4,
+    "binding": 2,
+    "normalization": 2,
+    "first_moment": 2,
+    "second_moment": 2,
+    "high_frequency": 2,
+    "collocation": 3
+  },
+  "ties": "Global score descending, input index, action index, ATOMIC/TREE/FULL; C2/H price, input index, action index.",
+  "intervention_audit": {
+    "epsilon": 0.02,
+    "alpha": 0.25,
+    "hybrid_threshold": 0.05,
+    "D_changed_numbers": 960,
+    "Dprime_changed_numbers": 960,
+    "D_L1": 235.20000000000005,
+    "Dprime_L1": 235.20000000000005,
+    "equal_changes": true,
+    "Dprime_active_unchanged": true,
+    "D_unused_unchanged": true
+  },
+  "initial_prediction_count": 45,
+  "outcomes": {
+    "0.2": {
+      "U0O": {
+        "action_count": 180,
+        "spent": 167.88037109375,
+        "support": {
+          "prior_resets": 0,
+          "minimum_support": 144,
+          "missing_predictions": 0,
+          "real_prediction_extensions": 0,
+          "hypothetical_prediction_queries": 975,
+          "hypothetical_prediction_extensions": 0
+        },
+        "correct": 12
+      },
+      "U1O": {
+        "action_count": 177,
+        "spent": 167.84912109375,
+        "support": {
+          "prior_resets": 0,
+          "minimum_support": 144,
+          "missing_predictions": 0,
+          "real_prediction_extensions": 0,
+          "hypothetical_prediction_queries": 1024,
+          "hypothetical_prediction_extensions": 0
+        },
+        "correct": 15
+      },
+      "U0T": {
+        "action_count": 211,
+        "spent": 167.83447265625,
+        "support": {
+          "prior_resets": 0,
+          "minimum_support": 144,
+          "missing_predictions": 0,
+          "real_prediction_extensions": 0,
+          "hypothetical_prediction_queries": 7748,
+          "hypothetical_prediction_extensions": 9
+        },
+        "correct": 15
+      },
+      "U1T": {
+        "action_count": 142,
+        "spent": 167.78955078125,
+        "support": {
+          "prior_resets": 0,
+          "minimum_support": 144,
+          "missing_predictions": 0,
+          "real_prediction_extensions": 0,
+          "hypothetical_prediction_queries": 6618,
+          "hypothetical_prediction_extensions": 5
+        },
+        "correct": 13
+      },
+      "D": {
+        "action_count": 146,
+        "spent": 167.5791015625,
+        "support": {
+          "prior_resets": 0,
+          "minimum_support": 144,
+          "missing_predictions": 0,
+          "real_prediction_extensions": 0,
+          "hypothetical_prediction_queries": 6541,
+          "hypothetical_prediction_extensions": 5
+        },
+        "correct": 12
+      },
+      "Dprime": {
+        "action_count": 142,
+        "spent": 167.78955078125,
+        "support": {
+          "prior_resets": 0,
+          "minimum_support": 144,
+          "missing_predictions": 0,
+          "real_prediction_extensions": 0,
+          "hypothetical_prediction_queries": 6618,
+          "hypothetical_prediction_extensions": 5
+        },
+        "correct": 13
+      },
+      "H": {
+        "action_count": 85,
+        "spent": 130.625,
+        "support": {
+          "prior_resets": 0,
+          "minimum_support": 144,
+          "missing_predictions": 0,
+          "real_prediction_extensions": 0,
+          "hypothetical_prediction_queries": 9522,
+          "hypothetical_prediction_extensions": 0
+        },
+        "correct": 6
+      },
+      "HD": {
+        "action_count": 123,
+        "spent": 167.25,
+        "support": {
+          "prior_resets": 0,
+          "minimum_support": 144,
+          "missing_predictions": 0,
+          "real_prediction_extensions": 0,
+          "hypothetical_prediction_queries": 10379,
+          "hypothetical_prediction_extensions": 0
+        },
+        "correct": 5
+      },
+      "HDprime": {
+        "action_count": 85,
+        "spent": 130.625,
+        "support": {
+          "prior_resets": 0,
+          "minimum_support": 144,
+          "missing_predictions": 0,
+          "real_prediction_extensions": 0,
+          "hypothetical_prediction_queries": 9522,
+          "hypothetical_prediction_extensions": 0
+        },
+        "correct": 6
+      }
+    },
+    "0.4": {
+      "U0O": {
+        "action_count": 264,
+        "spent": 335.47412109375,
+        "support": {
+          "prior_resets": 0,
+          "minimum_support": 144,
+          "missing_predictions": 0,
+          "real_prediction_extensions": 0,
+          "hypothetical_prediction_queries": 1216,
+          "hypothetical_prediction_extensions": 0
+        },
+        "correct": 26
+      },
+      "U1O": {
+        "action_count": 304,
+        "spent": 335.28662109375,
+        "support": {
+          "prior_resets": 0,
+          "minimum_support": 42,
+          "missing_predictions": 0,
+          "real_prediction_extensions": 0,
+          "hypothetical_prediction_queries": 1486,
+          "hypothetical_prediction_extensions": 0
+        },
+        "correct": 27
+      },
+      "U0T": {
+        "action_count": 290,
+        "spent": 335.03662109375,
+        "support": {
+          "prior_resets": 0,
+          "minimum_support": 144,
+          "missing_predictions": 0,
+          "real_prediction_extensions": 0,
+          "hypothetical_prediction_queries": 8499,
+          "hypothetical_prediction_extensions": 9
+        },
+        "correct": 26
+      },
+      "U1T": {
+        "action_count": 244,
+        "spent": 334.80224609375,
+        "support": {
+          "prior_resets": 0,
+          "minimum_support": 144,
+          "missing_predictions": 0,
+          "real_prediction_extensions": 0,
+          "hypothetical_prediction_queries": 7373,
+          "hypothetical_prediction_extensions": 5
+        },
+        "correct": 24
+      },
+      "D": {
+        "action_count": 244,
+        "spent": 335.05224609375,
+        "support": {
+          "prior_resets": 0,
+          "minimum_support": 144,
+          "missing_predictions": 0,
+          "real_prediction_extensions": 0,
+          "hypothetical_prediction_queries": 7326,
+          "hypothetical_prediction_extensions": 5
+        },
+        "correct": 24
+      },
+      "Dprime": {
+        "action_count": 244,
+        "spent": 334.80224609375,
+        "support": {
+          "prior_resets": 0,
+          "minimum_support": 144,
+          "missing_predictions": 0,
+          "real_prediction_extensions": 0,
+          "hypothetical_prediction_queries": 7373,
+          "hypothetical_prediction_extensions": 5
+        },
+        "correct": 24
+      },
+      "H": {
+        "action_count": 85,
+        "spent": 130.625,
+        "support": {
+          "prior_resets": 0,
+          "minimum_support": 144,
+          "missing_predictions": 0,
+          "real_prediction_extensions": 0,
+          "hypothetical_prediction_queries": 9522,
+          "hypothetical_prediction_extensions": 0
+        },
+        "correct": 6
+      },
+      "HD": {
+        "action_count": 130,
+        "spent": 181.25,
+        "support": {
+          "prior_resets": 0,
+          "minimum_support": 144,
+          "missing_predictions": 0,
+          "real_prediction_extensions": 0,
+          "hypothetical_prediction_queries": 10943,
+          "hypothetical_prediction_extensions": 0
+        },
+        "correct": 6
+      },
+      "HDprime": {
+        "action_count": 85,
+        "spent": 130.625,
+        "support": {
+          "prior_resets": 0,
+          "minimum_support": 144,
+          "missing_predictions": 0,
+          "real_prediction_extensions": 0,
+          "hypothetical_prediction_queries": 9522,
+          "hypothetical_prediction_extensions": 0
+        },
+        "correct": 6
+      }
+    },
+    "0.6": {
+      "U0O": {
+        "action_count": 372,
+        "spent": 502.70849609375,
+        "support": {
+          "prior_resets": 0,
+          "minimum_support": 144,
+          "missing_predictions": 0,
+          "real_prediction_extensions": 0,
+          "hypothetical_prediction_queries": 1547,
+          "hypothetical_prediction_extensions": 0
+        },
+        "correct": 27
+      },
+      "U1O": {
+        "action_count": 405,
+        "spent": 499.91162109375,
+        "support": {
+          "prior_resets": 0,
+          "minimum_support": 20,
+          "missing_predictions": 0,
+          "real_prediction_extensions": 0,
+          "hypothetical_prediction_queries": 1840,
+          "hypothetical_prediction_extensions": 0
+        },
+        "correct": 28
+      },
+      "U0T": {
+        "action_count": 403,
+        "spent": 503.50537109375,
+        "support": {
+          "prior_resets": 0,
+          "minimum_support": 144,
+          "missing_predictions": 0,
+          "real_prediction_extensions": 0,
+          "hypothetical_prediction_queries": 9618,
+          "hypothetical_prediction_extensions": 9
+        },
+        "correct": 27
+      },
+      "U1T": {
+        "action_count": 349,
+        "spent": 503.53662109375,
+        "support": {
+          "prior_resets": 0,
+          "minimum_support": 42,
+          "missing_predictions": 0,
+          "real_prediction_extensions": 0,
+          "hypothetical_prediction_queries": 8345,
+          "hypothetical_prediction_extensions": 5
+        },
+        "correct": 27
+      },
+      "D": {
+        "action_count": 343,
+        "spent": 502.80224609375,
+        "support": {
+          "prior_resets": 0,
+          "minimum_support": 42,
+          "missing_predictions": 0,
+          "real_prediction_extensions": 0,
+          "hypothetical_prediction_queries": 8142,
+          "hypothetical_prediction_extensions": 5
+        },
+        "correct": 27
+      },
+      "Dprime": {
+        "action_count": 349,
+        "spent": 503.53662109375,
+        "support": {
+          "prior_resets": 0,
+          "minimum_support": 42,
+          "missing_predictions": 0,
+          "real_prediction_extensions": 0,
+          "hypothetical_prediction_queries": 8345,
+          "hypothetical_prediction_extensions": 5
+        },
+        "correct": 27
+      },
+      "H": {
+        "action_count": 85,
+        "spent": 130.625,
+        "support": {
+          "prior_resets": 0,
+          "minimum_support": 144,
+          "missing_predictions": 0,
+          "real_prediction_extensions": 0,
+          "hypothetical_prediction_queries": 9522,
+          "hypothetical_prediction_extensions": 0
+        },
+        "correct": 6
+      },
+      "HD": {
+        "action_count": 130,
+        "spent": 181.25,
+        "support": {
+          "prior_resets": 0,
+          "minimum_support": 144,
+          "missing_predictions": 0,
+          "real_prediction_extensions": 0,
+          "hypothetical_prediction_queries": 10943,
+          "hypothetical_prediction_extensions": 0
+        },
+        "correct": 6
+      },
+      "HDprime": {
+        "action_count": 85,
+        "spent": 130.625,
+        "support": {
+          "prior_resets": 0,
+          "minimum_support": 144,
+          "missing_predictions": 0,
+          "real_prediction_extensions": 0,
+          "hypothetical_prediction_queries": 9522,
+          "hypothetical_prediction_extensions": 0
+        },
+        "correct": 6
+      }
+    },
+    "1.0": {
+      "U0O": {
+        "action_count": 399,
+        "spent": 530.91162109375,
+        "support": {
+          "prior_resets": 0,
+          "minimum_support": 144,
+          "missing_predictions": 0,
+          "real_prediction_extensions": 0,
+          "hypothetical_prediction_queries": 1637,
+          "hypothetical_prediction_extensions": 0
+        },
+        "correct": 28
+      },
+      "U1O": {
+        "action_count": 408,
+        "spent": 521.91162109375,
+        "support": {
+          "prior_resets": 0,
+          "minimum_support": 20,
+          "missing_predictions": 0,
+          "real_prediction_extensions": 0,
+          "hypothetical_prediction_queries": 1842,
+          "hypothetical_prediction_extensions": 0
+        },
+        "correct": 28
+      },
+      "U0T": {
+        "action_count": 428,
+        "spent": 539.59912109375,
+        "support": {
+          "prior_resets": 0,
+          "minimum_support": 144,
+          "missing_predictions": 0,
+          "real_prediction_extensions": 0,
+          "hypothetical_prediction_queries": 9784,
+          "hypothetical_prediction_extensions": 9
+        },
+        "correct": 28
+      },
+      "U1T": {
+        "action_count": 420,
+        "spent": 613.06787109375,
+        "support": {
+          "prior_resets": 0,
+          "minimum_support": 20,
+          "missing_predictions": 0,
+          "real_prediction_extensions": 0,
+          "hypothetical_prediction_queries": 8830,
+          "hypothetical_prediction_extensions": 5
+        },
+        "correct": 28
+      },
+      "D": {
+        "action_count": 422,
+        "spent": 621.56787109375,
+        "support": {
+          "prior_resets": 0,
+          "minimum_support": 20,
+          "missing_predictions": 0,
+          "real_prediction_extensions": 0,
+          "hypothetical_prediction_queries": 8819,
+          "hypothetical_prediction_extensions": 5
+        },
+        "correct": 28
+      },
+      "Dprime": {
+        "action_count": 420,
+        "spent": 613.06787109375,
+        "support": {
+          "prior_resets": 0,
+          "minimum_support": 20,
+          "missing_predictions": 0,
+          "real_prediction_extensions": 0,
+          "hypothetical_prediction_queries": 8830,
+          "hypothetical_prediction_extensions": 5
+        },
+        "correct": 28
+      },
+      "H": {
+        "action_count": 85,
+        "spent": 130.625,
+        "support": {
+          "prior_resets": 0,
+          "minimum_support": 144,
+          "missing_predictions": 0,
+          "real_prediction_extensions": 0,
+          "hypothetical_prediction_queries": 9522,
+          "hypothetical_prediction_extensions": 0
+        },
+        "correct": 6
+      },
+      "HD": {
+        "action_count": 130,
+        "spent": 181.25,
+        "support": {
+          "prior_resets": 0,
+          "minimum_support": 144,
+          "missing_predictions": 0,
+          "real_prediction_extensions": 0,
+          "hypothetical_prediction_queries": 10943,
+          "hypothetical_prediction_extensions": 0
+        },
+        "correct": 6
+      },
+      "HDprime": {
+        "action_count": 85,
+        "spent": 130.625,
+        "support": {
+          "prior_resets": 0,
+          "minimum_support": 144,
+          "missing_predictions": 0,
+          "real_prediction_extensions": 0,
+          "hypothetical_prediction_queries": 9522,
+          "hypothetical_prediction_extensions": 0
+        },
+        "correct": 6
+      }
+    }
+  },
+  "action_differences": {
+    "0.2": {
+      "U1T_versus_D": {
+        "changed": true,
+        "first_different_index": 63,
+        "left_action": [
+          36,
+          "high_frequency"
+        ],
+        "right_action": [
+          36,
+          "first_moment"
+        ]
+      },
+      "H_versus_HD": {
+        "changed": true,
+        "first_different_index": 0,
+        "left_action": [
+          0,
+          "first_moment"
+        ],
+        "right_action": [
+          0,
+          "normalization"
+        ]
+      },
+      "U1T_versus_Dprime": {
+        "changed": false,
+        "first_different_index": null,
+        "left_action": null,
+        "right_action": null
+      },
+      "H_versus_HDprime": {
+        "changed": false,
+        "first_different_index": null,
+        "left_action": null,
+        "right_action": null
+      },
+      "U0O_versus_U1O": {
+        "changed": true,
+        "first_different_index": 72,
+        "left_action": [
+          36,
+          "first_moment"
+        ],
+        "right_action": [
+          18,
+          "high_frequency"
+        ]
+      },
+      "U0T_versus_U1T": {
+        "changed": true,
+        "first_different_index": 72,
+        "left_action": [
+          36,
+          "first_moment"
+        ],
+        "right_action": [
+          18,
+          "high_frequency"
+        ]
+      }
+    },
+    "0.4": {
+      "U1T_versus_D": {
+        "changed": true,
+        "first_different_index": 63,
+        "left_action": [
+          36,
+          "high_frequency"
+        ],
+        "right_action": [
+          36,
+          "first_moment"
+        ]
+      },
+      "H_versus_HD": {
+        "changed": true,
+        "first_different_index": 0,
+        "left_action": [
+          0,
+          "first_moment"
+        ],
+        "right_action": [
+          0,
+          "normalization"
+        ]
+      },
+      "U1T_versus_Dprime": {
+        "changed": false,
+        "first_different_index": null,
+        "left_action": null,
+        "right_action": null
+      },
+      "H_versus_HDprime": {
+        "changed": false,
+        "first_different_index": null,
+        "left_action": null,
+        "right_action": null
+      },
+      "U0O_versus_U1O": {
+        "changed": true,
+        "first_different_index": 72,
+        "left_action": [
+          36,
+          "first_moment"
+        ],
+        "right_action": [
+          18,
+          "high_frequency"
+        ]
+      },
+      "U0T_versus_U1T": {
+        "changed": true,
+        "first_different_index": 72,
+        "left_action": [
+          36,
+          "first_moment"
+        ],
+        "right_action": [
+          18,
+          "high_frequency"
+        ]
+      }
+    },
+    "0.6": {
+      "U1T_versus_D": {
+        "changed": true,
+        "first_different_index": 63,
+        "left_action": [
+          36,
+          "high_frequency"
+        ],
+        "right_action": [
+          36,
+          "first_moment"
+        ]
+      },
+      "H_versus_HD": {
+        "changed": true,
+        "first_different_index": 0,
+        "left_action": [
+          0,
+          "first_moment"
+        ],
+        "right_action": [
+          0,
+          "normalization"
+        ]
+      },
+      "U1T_versus_Dprime": {
+        "changed": false,
+        "first_different_index": null,
+        "left_action": null,
+        "right_action": null
+      },
+      "H_versus_HDprime": {
+        "changed": false,
+        "first_different_index": null,
+        "left_action": null,
+        "right_action": null
+      },
+      "U0O_versus_U1O": {
+        "changed": true,
+        "first_different_index": 72,
+        "left_action": [
+          36,
+          "first_moment"
+        ],
+        "right_action": [
+          18,
+          "high_frequency"
+        ]
+      },
+      "U0T_versus_U1T": {
+        "changed": true,
+        "first_different_index": 72,
+        "left_action": [
+          36,
+          "first_moment"
+        ],
+        "right_action": [
+          18,
+          "high_frequency"
+        ]
+      }
+    },
+    "1.0": {
+      "U1T_versus_D": {
+        "changed": true,
+        "first_different_index": 63,
+        "left_action": [
+          36,
+          "high_frequency"
+        ],
+        "right_action": [
+          36,
+          "first_moment"
+        ]
+      },
+      "H_versus_HD": {
+        "changed": true,
+        "first_different_index": 0,
+        "left_action": [
+          0,
+          "first_moment"
+        ],
+        "right_action": [
+          0,
+          "normalization"
+        ]
+      },
+      "U1T_versus_Dprime": {
+        "changed": false,
+        "first_different_index": null,
+        "left_action": null,
+        "right_action": null
+      },
+      "H_versus_HDprime": {
+        "changed": false,
+        "first_different_index": null,
+        "left_action": null,
+        "right_action": null
+      },
+      "U0O_versus_U1O": {
+        "changed": true,
+        "first_different_index": 72,
+        "left_action": [
+          36,
+          "first_moment"
+        ],
+        "right_action": [
+          18,
+          "high_frequency"
+        ]
+      },
+      "U0T_versus_U1T": {
+        "changed": true,
+        "first_different_index": 72,
+        "left_action": [
+          36,
+          "first_moment"
+        ],
+        "right_action": [
+          18,
+          "high_frequency"
+        ]
+      }
+    }
+  },
+  "prediction": "D should change normalization/high_frequency priorities and their continuations. HD should cross the threshold for normalization; Dprime and HDprime must leave actions identical. No retuning follows these checks."
+}
