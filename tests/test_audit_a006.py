@@ -88,3 +88,55 @@ class ActiveAuditTests(unittest.TestCase):
         self.assertEqual(audit.verdict({}, {'v2':{'verdict':'accept'}}, {'v2'}),'inconclusive')
         self.assertNotIn('collocation',audit.available({}))
         self.assertNotIn('v2_128',audit.available({'modal':{'verdict':'accept'}}))
+
+
+class AuditTimingAndPortabilityTests(unittest.TestCase):
+    def test_timing_reasons_and_negative_controls(self):
+        choose=audit.expected_sample_reason
+        self.assertEqual(choose('BA',0,0,0,-1,'v2',[],[],(0,'binding')),'deadline')
+        self.assertEqual(choose('C2A',1,10,1,0,'v2',[],[],None),'exhausted')
+        self.assertEqual(choose('BA',1,10,1,0,'v2',[],[],(0,'v2_512')),'anticipated_dependency')
+        self.assertIsNone(choose('BA',1,10,1,1,'v2',[],[],(0,'v2_512')))
+        self.assertIsNone(choose('C2A',1,10,1,0,'v2',[],[],(0,'v2_512')))
+        self.assertIsNone(choose('BA',1,10,1,0,'v2',[],[],(0,'binding')))
+        insurance=[(100.,0,14,'collocation')]
+        self.assertEqual(choose('BA',1,10,1,0,'v2',insurance,[],(0,'binding')),'anticipated_dependency')
+        self.assertEqual(choose('BA',1,10,1,0,'v2',insurance,insurance,None),'anticipated_dependency')
+
+    def test_diagnostic_drift_allowed_but_decisions_and_prices_exact(self):
+        expected=dict(value=[.2,.3],verdict='accept',cost=1.)
+        actual=copy.deepcopy(expected);actual['value'][0]=float(np.nextafter(.2,np.inf))
+        good=audit.Audit();audit.compare_diagnostics(good,actual,expected,'numeric')
+        self.assertFalse(good.errors)
+        actual['cost']=float(np.nextafter(1.,np.inf))
+        bad=audit.Audit();audit.compare_diagnostics(bad,actual,expected,'numeric')
+        self.assertTrue(any('cost' in e for e in bad.errors))
+        actual['cost']=1.;actual['verdict']='inconclusive'
+        bad=audit.Audit();audit.compare_diagnostics(bad,actual,expected,'numeric')
+        self.assertTrue(any('verdict' in e for e in bad.errors))
+
+    def test_independent_timing_planner_on_constructed_evidence(self):
+        from attention import monitor_planning
+        model=audit.s3.load_model();weights=model['action_model']['cost_weights']
+        library=read_json(ROOT/audit.LIBRARY)
+        recipes=[s for s in library['samples'] if s['family']=='collocation'][:3]
+        records=[dict(task_id=i,request=s['request']) for i,s in enumerate(recipes)]
+        requests={r['task_id']:audit.decode(r['request']) for r in records}
+        infos=[dict(task_id=i) for i in requests]
+        for noise in (False,True):
+            independent=audit.TimingPlanner(audit.forecasts(model,records,noise),requests,weights)
+            with patch.object(monitor_planning,'NOISE',noise):
+                schedule=monitor_planning.Scheduler(list(requests.values()),model,'U0T')
+                for step in range(12):
+                    for remaining in (1.,20.,100.,1000.):
+                        actual=schedule.choose(remaining)
+                        expected=independent.choose(schedule.evidence,infos,remaining)
+                        self.assertEqual(expected,None if actual is None else actual[:2])
+                    chosen=schedule.choose(1000.)
+                    if chosen is None:break
+                    i,action,_=chosen
+                    observation=dict(verdict='accept')
+                    if action.startswith('v2_'):
+                        terminal=int(action[3:])>=512
+                        observation=dict(verdict='accept' if terminal else 'inconclusive',terminal=terminal)
+                    schedule.update(i,action,observation)

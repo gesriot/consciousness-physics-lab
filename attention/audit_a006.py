@@ -100,7 +100,7 @@ def verify_trace(check,trace,candidate,tolerance,weights,spoiled,tag):
     check.check(bool(trace),tag+': nonempty trace')
     for i,row in enumerate(trace):
         grid=GRIDS[i];check.equal(row['action'],'v2_'+str(grid),tag+': trace order')
-        check.near(row['cost'],grid*weights['fv_cell'],tag+': trace cost');total+=grid*weights['fv_cell']
+        check.equal(row['cost'],grid*weights['fv_cell'],tag+': trace cost');total+=grid*weights['fv_cell']
         values.append(complex(*row['original']['value']))
         verify_v2(check,row['original'],row['observed'],values,grid,candidate,tolerance,spoiled,tag+': step '+str(grid))
         check.equal(row['observed']['terminal'],i==len(trace)-1,tag+': trace termination')
@@ -118,7 +118,7 @@ def forecasts(model,records,noise):
             probabilities=[float((.98*np.count_nonzero(present==j)+.02/k*len(present))/len(present)) if len(present) else 1/k for j in range(k)]
             if noise:probabilities=[float(np.nextafter(v,np.inf if j%2 else -np.inf)) if v>0 else v for j,v in enumerate(probabilities)]
             prior[a]=probabilities
-        result[record['task_id']]=dict(actions=prior,full_accept=float(np.mean(runtime.full[ids]==0)))
+        result[record['task_id']]=dict(actions=prior,full_accept=float(np.mean(runtime.full[ids]==0)),accuracy=float(np.mean(runtime.accurate[ids])),full_correct=float(np.mean(runtime.correct[ids])))
     return result
 
 
@@ -155,6 +155,106 @@ def development_inputs(source,digest):
     return result
 
 
+def compare_diagnostics(check,actual,expected,tag,key=None):
+    """Discrete fields and logical prices are exact; finite diagnostics may drift."""
+    exact={'cost','spent','budget','reference_cost','replacement_cost','sample_cost','ordinary_cost','maximum_cost','maximum_price','initial_reserve','ordinary_budget'}
+    if isinstance(expected,dict):
+        check.check(isinstance(actual,dict),tag+': mapping type')
+        if not isinstance(actual,dict):return
+        check.equal(set(actual),set(expected),tag+': keys')
+        for name in expected.keys()&actual.keys():compare_diagnostics(check,actual[name],expected[name],tag+'/'+name,name)
+    elif isinstance(expected,list):
+        check.check(isinstance(actual,list),tag+': list type')
+        if not isinstance(actual,list):return
+        check.equal(len(actual),len(expected),tag+': length')
+        for i,(a,b) in enumerate(zip(actual,expected)):compare_diagnostics(check,a,b,tag+'/'+str(i),key)
+    elif isinstance(expected,float) and key not in exact:
+        check.near(actual,expected,tag)
+    else:check.equal(actual,expected,tag)
+
+
+class TimingPlanner:
+    """Independent U0T envelope for the unrecorded pre-sample action choice.
+
+    U0T never updates the prior, so branch rewards are fixed accuracy means.
+    This implementation uses only categorical evidence, frozen probabilities,
+    action prices and remaining budget, not the production planning classes.
+    """
+    def __init__(self,predictions,requests,weights):
+        self.predictions=predictions
+        self.prices={i:{a:price(a,r,weights) for a in ORDER} for i,r in requests.items()}
+        self.envelope=lru_cache(maxsize=4096)(self._envelope)
+
+    @staticmethod
+    def option(kind,action,gain,cost):
+        return dict(kind=kind,action=action,gain=gain,cost=cost,score=round(gain/cost,9) if cost else 0.)
+
+    @staticmethod
+    def tie(option):
+        return (-option['score'],ORDER.index(option['action']),{'ATOMIC':0,'TREE':1,'FULL':2}[option['kind']])
+
+    def _envelope(self,task,key):
+        evidence={a:dict(verdict=v,**({'terminal':t} if t is not None else {})) for a,v,t in key}
+        prior=self.predictions[task];prices=self.prices[task]
+        def reward(v):
+            return prior['accuracy'] if v=='accept' else 1-prior['accuracy'] if v=='violation_detected' else 0.
+        def branches(e,a):
+            for category,p in enumerate(prior['actions'][a]):
+                if p<=0:continue
+                out=dict(verdict=('accept' if category==0 else 'violation_detected' if category==1 else 'inconclusive'))
+                if a.startswith('v2_'):out['terminal']=category!=2
+                yield p,dict(e,**{a:out})
+        def direct(e):
+            if base_verdict(e)!='inconclusive':return []
+            choices=available(e);out=[]
+            for a in choices:
+                gain=sum(p*reward(base_verdict(b)) for p,b in branches(e,a))
+                out.append(self.option('ATOMIC',a,gain,prices[a]))
+            if choices:
+                first=min(choices,key=lambda a:(prices[a],ORDER.index(a)))
+                terminal=any(a.startswith('v2_') and v.get('terminal',False) for a,v in e.items())
+                remaining=[a for a in ORDER if a not in e and not (terminal and a.startswith('v2_'))]
+                out.append(self.option('FULL',first,prior['full_correct'],sum(prices[a] for a in remaining)))
+            return out
+        trees=[]
+        for a in available(evidence):
+            trees.append((a,[(p,reward(base_verdict(b)),direct(b)) for p,b in branches(evidence,a)]))
+        return direct(evidence),trees
+
+    def choose(self,evidence,infos,remaining):
+        pairs=[(self.prices[infos[i]['task_id']][a],i,ORDER.index(a),a) for i,e in enumerate(evidence) if base_verdict(e)=='inconclusive' for a in available(e) if self.prices[infos[i]['task_id']][a]<=remaining]
+        if not pairs:return None
+        candidates=[]
+        for i in sorted({row[1] for row in pairs}):
+            task=infos[i]['task_id'];key=tuple((a,v['verdict'],v.get('terminal')) for a,v in evidence[i].items())
+            direct,trees=self.envelope(task,key);choices=[o for o in direct if o['cost']<=remaining]
+            for a,branches in trees:
+                charge=self.prices[task][a]
+                if charge>remaining:continue
+                gain=0.;cost=charge
+                for probability,reward,continuations in branches:
+                    options=[o for o in continuations if charge+o['cost']<=remaining and o['gain']>0]
+                    continuation=min(options,key=self.tie) if options else None
+                    gain+=probability*reward
+                    if continuation:
+                        gain+=probability*continuation['gain'];cost+=probability*continuation['cost']
+                choices.append(self.option('TREE',a,gain,cost))
+            if choices:candidates.append((i,min(choices,key=self.tie)))
+        if not candidates or max(o['score'] for _,o in candidates)<=0:
+            cheap=min(pairs);return cheap[1],cheap[3]
+        i,o=min(candidates,key=lambda pair:(-pair[1]['score'],pair[0],*self.tie(pair[1])[1:]))
+        return i,o['action']
+
+
+def expected_sample_reason(policy,ordinary_cost,deadline,ordinary_since,last_sample_ordinary,chosen_family,insurance,affordable,pending):
+    if ordinary_cost>=deadline:return 'deadline'
+    if not affordable and pending is None:return 'exhausted'
+    choice=affordable[0][3] if affordable else pending[1]
+    if policy!='C2A' and ordinary_since>last_sample_ordinary and (family(choice)==chosen_family or bool(insurance)):
+        return 'anticipated_dependency'
+    return None
+
+
 def audit_library(check,library,weights):
     samples=library['samples'];check.equal(library['samples_sha256'],canonical_sha256(samples),'sample recipes digest')
     check.equal(len({s['sample_id'] for s in samples}),len(samples),'unique sample ids')
@@ -174,18 +274,18 @@ def audit_library(check,library,weights):
             if sample['family'] not in ('collocation','v2'):
                 expected=origin['actions'][sample['family']]
                 if sample['family']=='modal':expected={k:v for k,v in expected.items() if k!='outcome'}
-                check.equal(sample['clean_result']['original'],expected,'sample original from development')
+                compare_diagnostics(check,sample['clean_result']['original'],expected,'sample original from development')
         tag='library '+str(sample['sample_id']);clean=sample['clean_result']
         check.equal(sample['expected'],clean['verdict'],tag+': label')
         check.equal(clean['verdict'],clean['observed']['verdict'],tag+': clean verdict')
-        check.near(sample['maximum_cost'],max_price(sample,weights),tag+': maximum cost')
+        check.equal(sample['maximum_cost'],max_price(sample,weights),tag+': maximum cost')
         if sample['family']=='v2':
             cost=verify_trace(check,clean['trace'],complex(*sample['candidate']),sample['request']['tolerance'],weights,False,tag)
             check.equal(clean['original'],clean['trace'][-1]['original'],tag+': last original')
             check.equal(clean['observed'],clean['trace'][-1]['observed'],tag+': last observed')
         else:
             cost=max_price(sample,weights);check.equal(clean['original'],clean['observed'],tag+': intact channel')
-        check.near(clean['cost'],cost,tag+': cost')
+        check.equal(clean['cost'],cost,tag+': cost')
     return samples
 
 
@@ -205,6 +305,7 @@ def audit(data,library=None):
     check.equal(data['self_model_sha256'],canonical_sha256(model),'frozen model digest')
     check.equal(data['full_pipeline_parity_failures'],[],'full pipeline parity')
     predictions=forecasts(model,records,data.get('last_bit_noise',False))
+    timing=TimingPlanner(predictions,requests,weights)
     threshold=data['calibration']['threshold'];check.near(threshold,data['calibration']['maximum']+1,'passive threshold')
     intervention=data['intervention_audit'];codes={'accept':0,'violation_detected':1,'inconclusive':2}
     changes=[codes[s['expected']] for s in samples if s['family'] in FAMILIES[:2] and s['expected']!='accept']
@@ -218,13 +319,13 @@ def audit(data,library=None):
         infos=package['inputs'];check.equal(len(infos),45,'package input count')
         clean_paths=[{r['action']:r['observation'] for r in x['full']['actions'] if r['action']!='declare'} for x in infos]
         full_cost=sum(sum(row['cost'] for row in x['full']['actions']) for x in infos)
-        check.near(package['reference_cost'],full_cost,'full reference cost')
+        check.equal(package['reference_cost'],full_cost,'full reference cost')
         for info in infos:
             request=requests[info['task_id']];full_spent=0.
             for row in info['full']['actions']:
                 charge=0. if row['action']=='declare' else price(row['action'],request,weights)
-                check.near(row['cost'],charge,'full reference action price');full_spent+=charge
-            if 'spent' in info['full']:check.near(info['full']['spent'],full_spent,'full path sum')
+                check.equal(row['cost'],charge,'full reference action price');full_spent+=charge
+            if 'spent' in info['full']:check.equal(info['full']['spent'],full_spent,'full path sum')
             error=abs(complex(*info['outcome']['value'])-complex(*info['reference']))
             check.near(info['absolute_error'],error,'reference error');check.equal(info['accurate'],error<=info['tolerance'],'reference accuracy')
         for fault in FAULTS:
@@ -243,7 +344,7 @@ def audit(data,library=None):
                         check.equal(allocation[key],value,tag+': allocation '+key)
                     evidence=[{} for _ in infos];extras=[{} for _ in infos];closed={};spent_by=[0.]*len(infos);values=[[] for _ in infos]
                     spent=0.;sample_cost=0.;ordinary_cost=0.;extra_cost=0.;count=0;target_samples=0;target_observations=0;ordinary_actions=0
-                    touched=set();alerts=[];history=[];changed_samples=0;changed_steps=0;changed_ordinary=0;changed_ordinary_steps=0;mismatches=0
+                    touched=set();alerts=[];history=[];changed_samples=0;changed_steps=0;changed_ordinary=0;changed_ordinary_steps=0;mismatches=0;last_sample_ordinary=-1
                     def close_ready():
                         for i,e in enumerate(evidence):
                             if i in closed:continue
@@ -254,7 +355,7 @@ def audit(data,library=None):
                                 if result!='inconclusive' or not (required-set(extras[i])):closed[i]=result
                     for index,row in enumerate(run['actions']):
                         close_ready();a=row['action'];reserve=(quota-count)*maximum
-                        check.near(row['reserve_before'],reserve,tag+': reserve')
+                        check.equal(row['reserve_before'],reserve,tag+': reserve')
                         corrupted=package_id>=onset
                         if row['sample']:
                             check.check(active and count<quota,tag+': sample eligibility');check.equal(row['input_index'],None,tag+': sample input boundary')
@@ -269,11 +370,21 @@ def audit(data,library=None):
                                 check.equal(a,selected,tag+': selected calibration family')
                                 for name,value in scores.items():check.near(row['sample_scores'][name],value,tag+': calibration score '+name)
                                 for value in row['sample_scores'].values():check.equal(value,round(value,9),tag+': quantized calibration score')
-                            check.near(row['sample_deadline'],count/quota*ordinary_budget,tag+': fixed deadline')
-                            check.near(row['ordinary_cost_before'],ordinary_cost,tag+': ordinary cost before sample')
-                            if row['sample_reason']=='deadline':check.check(ordinary_cost>=count/quota*ordinary_budget,tag+': reached deadline')
-                            elif row['sample_reason']=='anticipated_dependency':check.check(policy!='C2A',tag+': fixed schedule cannot anticipate')
-                            else:check.equal(row['sample_reason'],'exhausted',tag+': sample timing reason')
+                            check.equal(row['sample_deadline'],count/quota*ordinary_budget,tag+': fixed deadline')
+                            check.equal(row['ordinary_cost_before'],ordinary_cost,tag+': ordinary cost before sample')
+                            deadline=count/quota*ordinary_budget;remaining=max(0.,budget-spent-reserve)
+                            insurance=[]
+                            for j,e in enumerate(evidence):
+                                if j not in closed and base_verdict(e)=='accept':
+                                    for name in required-set(extras[j]):
+                                        insurance.append((replacement_max(name,requests[infos[j]['task_id']],weights),j,ORDER.index(name) if name in ORDER else len(ORDER),name))
+                            affordable=sorted(x for x in insurance if x[0]<=remaining)
+                            pending=None
+                            if ordinary_cost<deadline and not affordable:
+                                pending=timing.choose(evidence,infos,remaining)
+                            reason=expected_sample_reason(policy,ordinary_cost,deadline,state['ordinary'],last_sample_ordinary,a,insurance,affordable,pending)
+                            check.equal(row['sample_reason'],reason,tag+': reconstructed sample timing')
+                            last_sample_ordinary=state['ordinary']
                             expected='accept' if policy=='D' and a in FAMILIES[:2] else sample['expected']
                             check.equal(row['expected'],expected,tag+': expected verdict table')
                             original=row['original_observation'];observed=row['observation']
@@ -281,10 +392,10 @@ def audit(data,library=None):
                                 charge=verify_trace(check,row['sample_trace'],complex(*sample['candidate']),sample['request']['tolerance'],weights,corrupted and fault=='underestimated',tag+': sample')
                                 check.equal(original,row['sample_trace'][-1]['original'],tag+': sample final original');check.equal(observed,row['sample_trace'][-1]['observed'],tag+': sample final observed')
                                 for j,t in enumerate(row['sample_trace']):
-                                    if j<len(sample['clean_result']['trace']):check.equal(t['original']['value'],sample['clean_result']['trace'][j]['original']['value'],tag+': frozen sample numerical value')
+                                    if j<len(sample['clean_result']['trace']):compare_diagnostics(check,t['original']['value'],sample['clean_result']['trace'][j]['original']['value'],tag+': frozen sample numerical value')
                                 changed_steps+=sum(t['original'].get('step',{}).get('uncertainty_estimate')!=t['observed'].get('step',{}).get('uncertainty_estimate') for t in row['sample_trace'])
                             else:
-                                charge=max_price(sample,weights);check.equal(original,sample['clean_result']['original'],tag+': sample clean original')
+                                charge=max_price(sample,weights);compare_diagnostics(check,original,sample['clean_result']['original'],tag+': sample clean original')
                                 spoilt=corrupted and ((fault=='permissive' and a=='collocation') or (fault=='uninformative' and a=='second_moment'))
                                 check.equal(observed,{'verdict':'accept'} if spoilt else original,tag+': sample fault channel')
                             count+=1;target_samples+=int(a==target(fault));changed_samples+=int(original['verdict']!=observed['verdict'])
@@ -295,6 +406,7 @@ def audit(data,library=None):
                             if mismatch and a not in suspect:suspect.add(a);alerts.append(event)
                             sample_cost+=charge
                         else:
+                            if active and count<quota:check.check(ordinary_cost<count/quota*ordinary_budget,tag+': no missed sample deadline')
                             i=row['input_index'];request=requests[infos[i]['task_id']]
                             check.check(i not in closed,tag+': action after closure');touched.add(i)
                             insurance=[];remaining=max(0.,budget-spent-reserve)
@@ -362,7 +474,7 @@ def audit(data,library=None):
                                 else:check.equal(row['monitor'],None,tag+': no passive monitor')
                                 check.check(charge<=remaining,tag+': reserved ordinary affordability')
                             ordinary_actions+=1;state['ordinary']+=1;ordinary_cost+=charge;spent_by[i]+=charge
-                        check.near(row['cost'],charge,tag+': action price');spent+=charge
+                        check.equal(row['cost'],charge,tag+': action price');spent+=charge
                         check.check(spent<=budget,tag+': running budget')
                     close_ready()
                     for key,value in dict(executed=count,counts_after=state['counts']).items():check.equal(allocation[key],value,tag+': allocation '+key)
@@ -370,12 +482,12 @@ def audit(data,library=None):
                     exposure=dict(ordinary_target_actions=target_observations,target_samples=target_samples,changed_ordinary_categories=changed_ordinary,changed_sample_categories=changed_samples,changed_ordinary_v2_steps=changed_ordinary_steps,changed_sample_v2_steps=changed_steps)
                     check.equal(run['fault_exposure'],exposure,tag+': fault exposure')
                     for key,value in dict(monitor_history=history,alerts=alerts,suspect=sorted(suspect),touched_inputs=len(touched),target_exposures=target_observations,target_samples=target_samples).items():check.equal(run[key],value,tag+': '+key)
-                    for key,value in dict(spent=spent,sample_cost=sample_cost,ordinary_cost=ordinary_cost,replacement_cost=extra_cost,budget=budget).items():check.near(run[key],value,tag+': '+key)
+                    for key,value in dict(spent=spent,sample_cost=sample_cost,ordinary_cost=ordinary_cost,replacement_cost=extra_cost,budget=budget).items():check.equal(run[key],value,tag+': '+key)
                     correct=false=0
                     for i,(saved,truth) in enumerate(zip(run['inputs'],infos)):
                         v=closed.get(i,verdict(evidence[i],extras[i],required));c=(truth['accurate'] and v=='accept') or (not truth['accurate'] and v=='violation_detected');fa=not truth['accurate'] and v=='accept'
                         for key,value in dict(input_index=i,verdict=v,observed=evidence[i],replacements=extras[i],already_closed=i in closed,correct=c,false_accept=fa).items():check.equal(saved[key],value,tag+': final '+key)
-                        check.near(saved['spent'],spent_by[i],tag+': input price');correct+=c;false+=fa
+                        check.equal(saved['spent'],spent_by[i],tag+': input price');correct+=c;false+=fa
                     check.equal(run['correct'],correct,tag+': correct total');check.equal(run['false_accepts'],false,tag+': false total')
                     if package_id<onset or fault=='none':check.equal(false,0,tag+': clean false acceptance')
                     derived[fault,fraction,policy].append(dict(correct=correct,false=false,spent=spent,extra=extra_cost,sample_cost=sample_cost,samples=count,alerts=alerts,touched=len(touched),actions=len(run['actions']),target_observations=target_observations,target_samples=target_samples,changed_samples=changed_samples,changed_steps=changed_steps,mismatches=mismatches))
@@ -394,7 +506,9 @@ def audit(data,library=None):
         expected['followup']=dict(inputs=sum(r['touched'] for r in runs[onset:]),actions=sum(r['actions'] for r in runs[onset:]),target_observations=sum(r['target_observations'] for r in runs[onset:]),target_samples=sum(r['target_samples'] for r in runs[onset:]))
         if fault=='none':expected.update(detected=None,delay=None,censored=None,detected_within_90=None)
         for key,value in expected.items():check.equal(saved[key],value,f'{fault}/{fraction}/{policy}: summary {key}')
-    return dict(passed=not check.errors,checks=check.checks,errors=check.errors,scope='Independent frozen-sample, numerical-hook, calibration-choice, budget, evidence, monitor, intervention and summary reconstruction; no fresh physical execution or exhaustive ordinary-planner optimality proof')
+    audit_digest=hashlib.sha256((ROOT/'attention/audit_a006.py').read_bytes()).hexdigest()
+    generation_digest=data.get('source_sha256',{}).get('attention/audit_a006.py')
+    return dict(passed=not check.errors,checks=check.checks,errors=check.errors,audit_source_sha256=audit_digest,generation_audit_source_sha256=generation_digest,auditor_matches_generation=audit_digest==generation_digest if generation_digest else None,scope='Independent frozen-sample, numerical-hook, calibration-choice, budget, evidence, monitor, intervention and summary reconstruction; including pre-sample two-stage timing choice; no fresh physical execution or exhaustive ordinary-planner optimality proof')
 
 
 def audit_path(path,mutate=None):
