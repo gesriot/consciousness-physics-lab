@@ -1,0 +1,10 @@
+{
+  "decisions_pass": true,
+  "differing_decision_rows": [],
+  "numeric_diagnostic_differences": [],
+  "numeric_diagnostics_pass": true,
+  "diagnostic_structure_differences": [],
+  "atol": 1e-12,
+  "rtol": 1e-12,
+  "scientific_exact": true
+}
