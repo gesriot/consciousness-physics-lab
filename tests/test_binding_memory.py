@@ -156,3 +156,14 @@ class ChronologyTests(unittest.TestCase):
         self.assertEqual(records[0]['links'][0]['time'], 3)
         self.assertEqual(records[0]['time'], 4)
         self.assertEqual(last['collocation:0'], 5)
+
+    def test_eligibility_fix_preserves_selected_ids(self):
+        for last_success in (-1, 4, 5, 6, 12):
+            notice = dict(channel='collocation:0', time=20, last_success=last_success)
+            records = [record('before', support=4), record('equal', support=5), record('after', support=6)]
+            for irrelevant, memory in ((False, 'Gx'), (True, 'Gxprime')):
+                old_records, old_edits = corrupt(records, notice['channel'], irrelevant)
+                old_selected = select(old_records, notice, 'G')[0]
+                corrected_selected, corrected_edits = select(records, notice, memory)
+                self.assertEqual(old_selected, corrected_selected)
+                self.assertLessEqual(len(corrected_edits), len(old_edits))

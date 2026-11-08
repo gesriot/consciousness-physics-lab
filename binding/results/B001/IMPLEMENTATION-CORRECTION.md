@@ -1,7 +1,7 @@
 # Preconfirmation implementation correction
 
 The first implementation was committed as 92950d2 before generation. Development
-was interrupted after three complete series and the first package of series 3.
+was interrupted after three complete series and three packages of series 3.
 Review found that the equal-volume link interventions included pre-notice records
 whose target support was at or before the last successful sample. Such records
 were already ineligible for G, so the edits did not change its candidate ranking,
