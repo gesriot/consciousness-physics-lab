@@ -1,0 +1,15 @@
+Independent preregistration and implementation review for A004
+
+Reviewed the committed protocol 839f036 and its pre-data clarification 657e5da, factorial.py, a004.py, the development audit and the new independent audit. No held-out A004 inputs were generated or executed during this review.
+
+No material blocker found. All four cells use the frozen S3 and the same direct ATOMIC/FULL option set. The tree factor adds branches without replacing that set. U0 keeps prior weights after real and imagined observations. Actual verdicts remain functions of opened executor evidence, including every required basis for acceptance. The scheduling boundary accepts requests, the frozen model, policy and opened observations, not current hidden accuracy or condition labels.
+
+Relevant corruption softly mixes two emission channels; its inactive counterpart changes only unused entries. Development records equal corruption volume, nonempty support, no real prior resets or real predictive extensions, identical inactive-control actions and changed relevant-control actions. Hypothetical missing-trace predictive extensions exist and are explicitly disclosed. Their uniform distribution is not claimed to be learned from S3. The literal hybrid threshold can suppress prerequisites of acceptance; this limitation was registered before the outcomes and is not tuned away.
+
+Implemented an independent archived-evidence audit in attention/audit_a004.py. It reconstructs categorical likelihoods and real posterior updates without importing the factorial scheduler, checks initial neighbors and forecasts, prior resets, hybrid threshold and skip sequence, cheap-control ordering, tree arithmetic, full evidence, prices, budgets, oracle certificates, primary and secondary counts, paired summaries, calibration, corruption volume, source hashes, request overlap, and all registered stopping-rule views.
+
+Seven audit tests pass, including synthetic runs of all nine schema policies and deliberately altered probabilities, reset flags, support totals, hybrid skips, result summaries and stopping decisions. Tests use synthetic or already-opened development material only.
+
+Limits: the audit reuses the unchanged feature extractor, but independently orders neighbors and reconstructs forecasts. It checks archived tree arithmetic and option-family restrictions, not an independent exhaustive optimization over every candidate tree. It does not regenerate physical solver values or high-precision references; the separate full replay is required for that purpose. Hypothetical extension totals are bounded and real extension totals are reconstructed; every hypothetical planning query is not independently re-executed.
+
+Recommendation: run the complete repository checks, commit implementation and development evidence, then execute the fixed main run and replay. Preserve negative results, all extension diagnostics and the prospectively registered stopping decision.
