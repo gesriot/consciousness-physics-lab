@@ -124,3 +124,35 @@ class IsolationTests(unittest.TestCase):
             first = guarded_uniform(e)
             e.observed = {'v2_2048': {'verdict':'accept', 'step': {'uncertainty_estimate':0}}}
             self.assertEqual(first, guarded_uniform(e))
+
+class ChronologyTests(unittest.TestCase):
+    def test_corruption_only_eligible_edges(self):
+        notice = dict(channel='collocation:0', time=20, last_success=5)
+        records = [record('before', support=4), record('equal', support=5), record('after', support=6)]
+        left, le = select(records, notice, 'Gx')
+        right, re = select(records, notice, 'Gxprime')
+        self.assertEqual(left, [])
+        self.assertEqual(right, ['after'])
+        self.assertEqual([x['record_id'] for x in le], ['after'])
+        self.assertEqual([x['record_id'] for x in re], ['after'])
+        self.assertEqual(sum(x['l1'] for x in le), sum(x['l1'] for x in re))
+
+    def test_future_records_do_not_change_past_notice(self):
+        notice = dict(channel='collocation:0', time=20, last_success=5)
+        original = [record()]
+        extended = original+[record('future', time=21, support=21)]
+        for policy in ('G','T','A','N','Gx','Gxprime'):
+            self.assertEqual(select(original, notice, policy), select(extended, notice, policy))
+
+    def test_sample_same_ordinary_counter_still_ordered(self):
+        last = {c:-1 for c in CHANNELS}
+        sample = dict(sample=True, channel='collocation:0', expected='accept', observation={'verdict':'accept'})
+        action = dict(sample=False, replacement=False, input_index=0, channel='collocation:0',
+                      observation={'verdict':'accept'}, fault_applied=True)
+        trace = dict(actions=[sample, action, sample], inputs=[dict(verdict='accept', closure_action_index=2)])
+        records, evaluator = [], {}
+        append_ledger(trace, 0, last, records, evaluator, [{'accurate':False}], 0)
+        self.assertEqual(records[0]['links'][0]['last_success'], 1)
+        self.assertEqual(records[0]['links'][0]['time'], 3)
+        self.assertEqual(records[0]['time'], 4)
+        self.assertEqual(last['collocation:0'], 5)

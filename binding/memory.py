@@ -7,13 +7,13 @@ MEMORIES = ('G', 'T', 'A', 'N', 'Gx', 'Gxprime')
 BUDGETS = (2, 8, 32)
 
 
-def corrupt(records, notified, irrelevant=False):
+def corrupt(records, notified, irrelevant=False, last_success=float('-inf')):
     result = copy.deepcopy(records)
     edits = []
     j = CHANNELS.index(notified)
     neighbor = j + 1 if j % 6 < 5 else j - 1
     for record in result:
-        relevant = [e for e in record['links'] if e['channel'] == notified]
+        relevant = [e for e in record['links'] if e['channel'] == notified and e['time'] > last_success]
         if not relevant:
             continue
         edge = next(e for e in record['links'] if e['channel'].removeprefix('independent:') == 'normalization') if irrelevant else relevant[-1]
@@ -30,7 +30,7 @@ def select(records, notice, memory, reviewed=(), noise=False):
     visible = [r for r in records if r['time'] < notice['time'] and r['id'] not in reviewed]
     edits = []
     if memory in ('Gx', 'Gxprime'):
-        visible, edits = corrupt(visible, notice['channel'], memory == 'Gxprime')
+        visible, edits = corrupt(visible, notice['channel'], memory == 'Gxprime', notice['last_success'])
     if memory in ('T', 'A', 'N'):
         visible = [dict(id=r['id'], time=r['time'], links=[]) for r in visible]
     selected = []
