@@ -106,7 +106,7 @@ def decision_view(data):
     result = dict(intake=data['intake_channel'],permutations=data['global_permutations'],packages=walk(data['packages']),
                 intake_sha256=data['intake_sha256'],self_model_sha256=data['self_model_sha256'])
     for key in ('experiment','task_seed','order_seed','random_policy_seed','summary','calibration',
-                'full_pipeline_parity_failures','reference_audit','request_overlap','sampling_unit'):
+                'full_pipeline_parity_failures','reference_audit','request_overlap','sampling_unit','intervention_audit'):
         if key in data:
             result[key] = walk(data[key])
     return result
@@ -130,11 +130,24 @@ def run(output,replay=None,runtime_override=None):
     models={p:s2.corrupt(model,p) for p in POLICIES}
     predictions=[s2.predict(r,model=model) for r in requests]
     corrupt_predictions=[s2.predict(r,model=models['D']) for r in requests]
+    differences=lambda key,changed:[abs(x-y) for a,b in zip(model[key],changed[key]) for x,y in zip(a['counts'],b['counts']) if x!=y]
+    d_changes=differences('records',models['D'])
+    dp_changes=differences('unused_records',models['Dprime'])
+    direction=[]
+    for i,(p,d,r) in enumerate(zip(predictions,corrupt_predictions,requests)):
+        total=sum(agent.cost(a,r,model['action_model']) for a in agent.ORDER)
+        expected=p['full_probabilities']['inconclusive']-p['full_probabilities']['accept']
+        actual=d['solvable_probability']-p['solvable_probability']
+        direction.append(dict(task_id=i,expected_score_change=expected/total,actual_score_change=actual/total,
+                              direction_pass=bool(abs(actual-expected)<=1e-14)))
+    intervention=dict(D_changed_numbers=len(d_changes),Dprime_changed_numbers=len(dp_changes),
+                      D_L1=sum(d_changes),Dprime_L1=sum(dp_changes),equal_changes=d_changes==dp_changes,
+                      initial_priority_checks=direction)
     output.parent.mkdir(parents=True,exist_ok=True)
     digest=canonical_sha256([records,permutations])
     write(paths['intake'],dict(experiment='A002',**audit,intake_channel=records,global_permutations=permutations,intake_sha256=digest))
     # Persist predictions before any full pipeline or budgeted numerical outcome.
-    write(paths['predictions'],dict(intake_sha256=digest,self_model_sha256=canonical_sha256(model),predictions=predictions,D_predictions=corrupt_predictions))
+    write(paths['predictions'],dict(intake_sha256=digest,self_model_sha256=canonical_sha256(model),predictions=predictions,D_predictions=corrupt_predictions,intervention_audit=intervention))
     references,reference=reference_audit(requests)
     write(paths['reference-audit'],reference)
     previous_request=Request(1,1,.01)
@@ -178,7 +191,7 @@ def run(output,replay=None,runtime_override=None):
         overlap['comparisons'][experiment]=dict(exact_request_matches=sum(request_key(r) in keys for r in records),source_sha256=hashlib.sha256((ROOT/path).read_bytes()).hexdigest())
     result=dict(experiment='A002',**audit,task_seed=20261132,order_seed=20261133,random_policy_seed=20261134,
         intake_channel=records,global_permutations=permutations,intake_sha256=digest,self_model_sha256=canonical_sha256(model),
-        reference_audit=reference,request_overlap=overlap,full_pipeline_parity_failures=parity,
+        reference_audit=reference,request_overlap=overlap,full_pipeline_parity_failures=parity,intervention_audit=intervention,
         sampling_unit='12 paired packages, 60 requests, 540 dependent inputs; adjacent stale values connect packages',packages=packages,summary=summarize(packages),
         calibration={p:sum(b['calibration'][p] for b in packages)/12 for p in ('S2','base')})
     write(output,result)
