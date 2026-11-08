@@ -1,0 +1,47 @@
+A006 independent scientific and documentation review
+
+Reviewed the completed ordinary primary and noisy result comparison records,
+independent audits, README additions, attention README, MANUSCRIPT version
+0.17 and the A006 report draft. The additional ordinary replay was still in
+progress at this review; its final technical verification must be appended
+before delivery. No scientific or implementation changes were made here.
+
+The direct primary/noise comparison reports decisions_pass true, no differing
+packages and no root mismatches. Both independent audits report 10087256
+checks and no errors. Thus the earlier provisional noise interpretation now
+agrees with an ordinary primary rather than standing alone as a noisy result.
+
+All 112 primary result-table rows were programmatically checked against the
+saved primary summary, including correct verdicts, false acceptances,
+pre-onset/total alarms, latency and target-sample counts. No numerical mismatch
+was found. The narrative accurately distinguishes active fault exposure from
+BM's coincident clean-condition alarms, preserves the V2 negative result,
+and does not interpret D's pre-onset protective alarms as harmful masking.
+BA/C2A ordinary-order confounding, sample versus replacement costs, dependent
+sampling units, and paid zero-input latency are all stated clearly.
+
+The report's single field-name typo was sent to the author: exposure_audit
+should read fault_exposure. Also recommended changing the prospective phrase
+that Dprime should preserve BA to an observed statement that it did preserve
+BA, now established by the comparisons and independent accounting audit.
+These are documentation-only corrections.
+
+MANUSCRIPT sections 3 and 4 are byte-identical to base 4b2e290. The lab tree
+is unchanged. The new manuscript material is connected scientific prose,
+with one report-detail link, without seeds, hashes, test counts, environment
+history or implementation labels in the narrative. The substantive result
+justifies version 0.17 without suggesting publication readiness at 1.0.
+The conclusion remains appropriately restricted: known-answer testing helps
+with two fail-open channels, a fixed schedule already provides the key benefit,
+and no general necessity or superiority of a self-model was established.
+Consciousness theories are treated as analogies, not validated claims.
+
+The interruption account preserves both exit-137 failures and their lack of
+completed archives, distinguishes a plausible memory-pressure explanation
+from proof, and records recovery from the identical frozen intake. Technical
+reader changes do not conceal a scientific retuning. Original and recovered
+provenance remain distinct.
+
+Conclusion: scientific and manuscript content cleared after the noted field
+name correction. Final delivery remains conditional on the completed ordinary
+replay comparison/audit, full final repository checks, and package verification.

@@ -1,0 +1,35 @@
+A006 final technical clearance
+
+Verified the completed repeat-comparison.json, noise-comparison.json,
+verification.json, all three audit records, negative control, repeat/noise
+provenance records, final check.log, report verification section and README.
+No heavy experiment rerun was performed for this final document check.
+
+Ordinary replay: decisions_pass true; no differing packages or root
+mismatches; all 10272467 numerical comparisons identical, with zero changes.
+Noise replay: decisions_pass true; no differing packages or root mismatches;
+2370201 of 10272467 diagnostics changed, maximum absolute difference
+9.999894245993346e-10. Aggregating the comparator's own diagnostic records
+reproduces verification.json exactly. The report correctly identifies this
+as a changed rounded sample score, not a changed selected action or price.
+
+Main, ordinary repeat and noise each passed 10087256 independent checks
+with no errors. The negative-control record passed. The full check log
+contains 263 primary tests and 30 vendor tests, both OK.
+
+The repeat record identifies the full completed primary archive as input.
+The noisy record correctly identifies the original exact frozen intake.
+Its saved size 40171664 bytes and SHA256 match the independently recorded
+successful noise output. Historical and current auditor hashes are openly
+distinguished rather than described as identical across all executions.
+
+Previously flagged documentation corrections are present: fault_exposure
+is the actual field name; Dprime is stated as having preserved BA; the
+manuscript's risk proxy is described as the cost of an additional check.
+The final verification section no longer contains a pending placeholder.
+The scientific limitations and the earlier exit-137 failures remain visible.
+
+Conclusion: technical and scientific documentation cleared. Final delivery
+still requires the parent's bundle restoration, manifest/hash verification,
+clean final commit state, and archive packaging checks. This note does not
+claim those later packaging operations have already completed.

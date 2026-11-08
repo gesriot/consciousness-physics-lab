@@ -1,0 +1,28 @@
+A006 bounded metadata-reader review
+
+After two concurrent unperturbed processes exited 137 following package 12,
+the independent noisy replay completed successfully from the original exact
+intake, at code eaa9da0. Its output is a006-noise.json.gz, 40171664 bytes,
+SHA256 db4bb3dbd93e6619d61a237977696d8a36bcb521ef090ee03f7e38038807abd1.
+The two interrupted runs are not complete results. No outcome-dependent
+scientific change is justified by this technical failure.
+
+Reviewed the later reader-only a006.py changes. Historical .json references
+resolved to .json.gz retain decompressed-byte hashes; explicit compressed
+references and replay provenance retain compressed-byte hashes. Requested
+root fields are parsed with bounded storage, duplicate-key and delimiter
+checks, and full gzip integrity validation. Unrequested large containers
+are skipped by the documented canonical indentation, not interpreted as
+validated scientific results; the full independent auditor remains required.
+
+Replay preserves the same request-count, order, finite-value and digest
+checks. Existing downstream intake validation and digest checks remain.
+Overlap reads the same archived intake fields, preserving match computation.
+The scheduler, samples, faults, costs, seeds and decision rules are unchanged.
+
+All 18 calibration tests passed independently, including synthetic full-reader
+versus selected-reader equivalence, raw-versus-historical source hash equality,
+and malformed/truncated/duplicate root cases. This review clears the memory
+handling change, with actual archive equivalence checked separately before
+new executions. It does not assert agreement of scientific results; completed
+unperturbed primary, exact replay and noise comparison remain required.

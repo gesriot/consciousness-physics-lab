@@ -1,0 +1,29 @@
+test_all_check_families_and_models (tests.test_attention_a006.CalibrationTests.test_all_check_families_and_models) ... ok
+test_all_frozen_samples_execute_clean (tests.test_attention_a006.CalibrationTests.test_all_frozen_samples_execute_clean) ... ok
+test_d_clean_false_alarm_is_preserved (tests.test_attention_a006.CalibrationTests.test_d_clean_false_alarm_is_preserved) ... ok
+test_expected_intervention_volume (tests.test_attention_a006.CalibrationTests.test_expected_intervention_volume) ... ok
+test_frozen_library_digest (tests.test_attention_a006.CalibrationTests.test_frozen_library_digest) ... ok
+test_persistent_alternation (tests.test_attention_a006.CalibrationTests.test_persistent_alternation) ... ok
+test_reject_sample_detects_fail_open (tests.test_attention_a006.CalibrationTests.test_reject_sample_detects_fail_open) ... ok
+test_runtime_override_flag (tests.test_attention_a006.CalibrationTests.test_runtime_override_flag) ... ok
+test_sample_expectation_not_used_for_execution (tests.test_attention_a006.CalibrationTests.test_sample_expectation_not_used_for_execution) ... ok
+test_selected_root_fields_match_full_reader (tests.test_attention_a006.CalibrationTests.test_selected_root_fields_match_full_reader) ... ok
+test_selection_has_no_fault_feedback (tests.test_attention_a006.CalibrationTests.test_selection_has_no_fault_feedback) ... ok
+test_selective_reader_rejects_duplicate_and_truncated_roots (tests.test_attention_a006.CalibrationTests.test_selective_reader_rejects_duplicate_and_truncated_roots) ... ok
+test_selective_replay_matches_full_loader (tests.test_attention_a006.CalibrationTests.test_selective_replay_matches_full_loader) ... ok
+test_stream_writer_matches_canonical_gzip (tests.test_attention_a006.CalibrationTests.test_stream_writer_matches_canonical_gzip) ... ok
+test_streamed_source_hash_preserves_historical_semantics (tests.test_attention_a006.CalibrationTests.test_streamed_source_hash_preserves_historical_semantics) ... ok
+test_v2_decisive_monotonicity (tests.test_attention_a006.CalibrationTests.test_v2_decisive_monotonicity) ... ok
+test_v2_hook_reclassifies_without_changing_truth (tests.test_attention_a006.CalibrationTests.test_v2_hook_reclassifies_without_changing_truth) ... ok
+test_zero_budget_and_equal_quota (tests.test_attention_a006.CalibrationTests.test_zero_budget_and_equal_quota) ... ok
+test_changed_cost_fails (tests.test_compare_a006.ReplayComparisonTests.test_changed_cost_fails) ... ok
+test_changed_library_fails (tests.test_compare_a006.ReplayComparisonTests.test_changed_library_fails) ... ok
+test_changed_verdict_fails (tests.test_compare_a006.ReplayComparisonTests.test_changed_verdict_fails) ... ok
+test_expected_plan_cost_is_diagnostic (tests.test_compare_a006.ReplayComparisonTests.test_expected_plan_cost_is_diagnostic) ... ok
+test_float_diagnostic_is_not_a_decision (tests.test_compare_a006.ReplayComparisonTests.test_float_diagnostic_is_not_a_decision) ... ok
+test_sample_count_and_identity_fail (tests.test_compare_a006.ReplayComparisonTests.test_sample_count_and_identity_fail) ... ok
+
+----------------------------------------------------------------------
+Ran 24 tests in 0.710s
+
+OK

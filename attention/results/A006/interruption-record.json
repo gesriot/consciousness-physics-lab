@@ -1,0 +1,15 @@
+{
+  "initial_main": {
+    "exit_code": 137,
+    "last_progress": "Completed package 12 of 12",
+    "completed_archive": false
+  },
+  "initial_exact_repeat": {
+    "exit_code": 137,
+    "last_progress": "Completed package 12 of 12",
+    "completed_archive": false
+  },
+  "hypothesis": "memory pressure during historical archive overlap audit under parallel execution",
+  "input_preserved": "attention/results/A006/results-intake.json",
+  "scientific_parameters_changed": false
+}

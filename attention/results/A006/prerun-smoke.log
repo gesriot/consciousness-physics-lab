@@ -1,0 +1,32 @@
+{
+  "B": {
+    "baseline_match": true,
+    "actions": 44
+  },
+  "C2": {
+    "baseline_match": true,
+    "actions": 48
+  },
+  "BM": {
+    "baseline_match": true,
+    "actions": 44
+  },
+  "BA": {
+    "quota": 15,
+    "samples": 15,
+    "spent": 161.705078125,
+    "alerts": 0
+  },
+  "C2A": {
+    "quota": 15,
+    "samples": 15,
+    "spent": 113.642578125,
+    "alerts": 0
+  },
+  "Dprime": {
+    "quota": 15,
+    "samples": 15,
+    "spent": 161.705078125,
+    "alerts": 0
+  }
+}
