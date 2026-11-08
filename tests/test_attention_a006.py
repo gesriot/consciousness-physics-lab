@@ -28,19 +28,36 @@ class CalibrationTests(unittest.TestCase):
             with self.subTest(sample=row['sample_id']):
                 actual=samples.execute_sample(row,self.weights)
                 self.assertEqual(actual['verdict'],row['expected'])
-                self.assert_diagnostics_close(actual,row['clean_result'])
+                self.assert_diagnostics_close(actual,row['clean_result'],row['family'])
                 self.assertLessEqual(actual['cost'],row['maximum_cost'])
 
-    def assert_diagnostics_close(self,actual,expected):
+    def assert_diagnostics_close(self,actual,expected,family=None,atol=1e-11):
+        from attention.audit_a006_portability import diagnostic_atol
         if isinstance(expected,dict):
             self.assertEqual(set(actual),set(expected))
-            for key in expected:self.assert_diagnostics_close(actual[key],expected[key])
+            for key in expected:self.assert_diagnostics_close(actual[key],expected[key],family,diagnostic_atol(family,key,expected))
         elif isinstance(expected,list):
             self.assertEqual(len(actual),len(expected))
-            for a,b in zip(actual,expected):self.assert_diagnostics_close(a,b)
+            for a,b in zip(actual,expected):self.assert_diagnostics_close(a,b,family,atol)
         elif isinstance(expected,float):
-            self.assertTrue(math.isclose(actual,expected,rel_tol=1e-9,abs_tol=1e-11),(actual,expected))
+            self.assertTrue(math.isclose(actual,expected,rel_tol=1e-9,abs_tol=atol),(actual,expected))
         else:self.assertEqual(actual,expected)
+
+    def test_conditioned_diagnostics_keep_verdicts_exact(self):
+        row=copy.deepcopy(self.library['samples'][80])
+        changed=copy.deepcopy(row['clean_result'])
+        changed['original']['probes']['fv']['error']=0.00022717023440055328
+        self.assert_diagnostics_close(changed,row['clean_result'],row['family'])
+        changed['verdict']='inconclusive'
+        with self.assertRaises(AssertionError):
+            self.assert_diagnostics_close(changed,row['clean_result'],row['family'])
+        row=copy.deepcopy(self.library['samples'][108])
+        changed=copy.deepcopy(row['clean_result'])
+        changed['original']['step']['antecedent_ratio']=0.249999450922046
+        self.assert_diagnostics_close(changed,row['clean_result'],row['family'])
+        changed['original']['step']['antecedent_ratio']=.3
+        with self.assertRaises(AssertionError):
+            self.assert_diagnostics_close(changed,row['clean_result'],row['family'])
 
     def test_selection_has_no_fault_feedback(self):
         import inspect
