@@ -1,0 +1,7 @@
+{
+  "passed": true,
+  "failures_detected": [
+    "policy summary 0.2/B2"
+  ],
+  "perturbation": "Incremented the stored B2 total at 20% by one; original archive unchanged."
+}
