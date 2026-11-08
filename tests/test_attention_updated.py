@@ -63,6 +63,12 @@ class UpdatedTests(unittest.TestCase):
                 self.assertIn(action,agent.available(evidence))
                 evidence[action]=s3.observation(action,value)
         rebuilt=build()
+        # libm can change only the last bits of request-derived coordinates.
+        for actual, expected in zip(rebuilt['groups'], self.model['groups']):
+            self.assertEqual(len(actual['features']), len(expected['features']))
+            for x, y in zip(actual['features'], expected['features']):
+                self.assertLessEqual(abs(x-y), 1e-12)
+            actual['features'] = expected['features']
         self.assertEqual(rebuilt,self.model)
 
     def test_hard_bayes_and_relevant_mapping(self):
