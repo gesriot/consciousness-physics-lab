@@ -66,3 +66,21 @@ safety result did not change. C1 convergence and therefore adaptive refinement
 can nevertheless be controlled by rounding noise in this region. This is an
 owner-reported cross-platform observation, not an independent random sample or
 a reason to modify the selected C1 rule after seeing these results.
+
+### Portability correction
+
+Cost replay now compares finite floating measurements with
+|a - b| <= 1e-12 + 1e-12 max(|a|, |b|). Flags, verdicts, cell counts, step
+counts and archived input prefixes remain exact. The legacy counter
+`baseline_rows_exact` denotes exact discrete reproduction, not bitwise equality
+of floating measurements; new replay output records this distinction explicitly.
+The completed map is written before the cost audit, and `--runtime-override`
+records an explicit reason through the shared environment gate. No candidate
+rule, uncertainty formula, refinement rule or selection criterion changes.
+
+The correction passes eight focused tests, including rejection of changed
+flags and nonfinite measurements and preservation of a map after simulated
+cost failure. Replaying all 2,688 archived inputs retains 1,281 accurate accepts,
+zero false accepts and 4,557,824 decision cells for each candidate. The retained
+portability-fix cost summary and test log document this check; it is not a newly
+generated map or a replacement for the owner's macOS observation.

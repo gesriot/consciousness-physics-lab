@@ -113,6 +113,16 @@ def evaluate(key,level,reference):
     return row
 
 
+def check_archived_step(actual, archived, context=None):
+    """Keep discrete decisions exact; allow only finite rounding-scale drift."""
+    for key in ('last_grid', 'converging', 'verdict', 'futile'):
+        assert type(actual[key]) is type(archived[key]) and actual[key] == archived[key], (context, key)
+    for key in ('uncertainty_estimate', 'discrepancy'):
+        a, b = actual[key], archived[key]
+        assert (math.isfinite(a) and math.isfinite(b)
+                and abs(a-b) <= 1e-12 + 1e-12*max(abs(a), abs(b))), (context, key)
+
+
 def cost_replay():
     rows=[];hashes={};baseline_checks=0
     for name in ARCHIVES:
@@ -142,9 +152,9 @@ def cost_replay():
             assert values[:count]==[complex(*v) for v in ind['values']], 'Archived shadow/operational prefix differs'
             assert c0['verdict']==ind['verdict'] and c0['cells_solved']==ind['cells_solved']
             assert c0['accepted']==old['accepted'] and c0['combined_verdict']==old['verdict']
+            assert len(c0['steps']) == len(ind['steps']), 'Archived step count differs'
             for a,b in zip(c0['steps'],ind['steps']):
-                for key in ('last_grid','converging','uncertainty_estimate','discrepancy','verdict','futile'):
-                    assert a[key]==b[key], (experiment,old['task_id'],key)
+                check_archived_step(a, b, (experiment, old['task_id']))
             baseline_checks+=1
             rows.append(dict(experiment=experiment,task_id=old['task_id'],cohort=old['cohort'],
                 fault=old['fault'],accurate=old['accurate'],candidates=candidates))
@@ -164,7 +174,10 @@ def cost_replay():
                 violation_verdict_changes=sum((got(r)['combined_verdict']=='violation_detected')!=(old(r)['combined_verdict']=='violation_detected') for r in subset),
                 numerical_violation_changes=sum((got(r)['verdict']=='violation_detected')!=(old(r)['verdict']=='violation_detected') for r in subset),
                 decision_cells=sum(got(r)['cells_solved'] for r in subset))
-    return dict(source_sha256=hashes,baseline_rows_exact=baseline_checks,rows=rows,summary=summaries)
+    return dict(source_sha256=hashes,baseline_rows_exact=baseline_checks,
+        baseline_comparison=dict(discrete='exact', numerical_atol=1e-12, numerical_rtol=1e-12,
+            legacy_counter='baseline_rows_exact counts exact discrete decisions, not exact floats'),
+        rows=rows,summary=summaries)
 
 
 def summarize(points):
@@ -185,10 +198,10 @@ def select(summary,cost):
     return min(eligible,key=lambda c:(cost['combined'][c]['lost_accurate_accepts'],simplicity.index(c))) if eligible else None
 
 
-def run(directory):
+def run(directory, runtime_override=None):
     output=Path(directory)
     if output.exists(): raise ValueError('Output exists')
-    meta=metadata(PROTOCOL,SOURCES);output.mkdir(parents=True)
+    meta=metadata(PROTOCOL,SOURCES,runtime_override);output.mkdir(parents=True)
     dimensions=base.dimensionless_check();base.write(output/'dimensionless.json',dimensions)
     if not all(r['passed'] for r in dimensions): raise RuntimeError('Dimensionless check failed')
     rng=np.random.default_rng(20261127);records={};active=base_cells();batches=[];refinements=[]
@@ -204,11 +217,12 @@ def run(directory):
             flagged=[c for c in active if needs_refinement(c,records)] if level<3 else []
             refinements.append(dict(level=level,cells_tested=len(active),refined_cells=flagged))
             active=[child for c in flagged for child in base.children(c)]
-        cost=cost_replay()
     points=[records[k] for k in sorted(records)];summary=summarize(points)
-    selected=select(summary,cost['summary'])
     base.write(output/'map.json.gz',dict(experiment='E014',**meta,points=points,batches=batches,
         refinements=refinements,summary=summary,seconds=time.perf_counter()-started))
+    # Retain the completed map even if the independent cost audit fails.
+    cost=cost_replay()
+    selected=select(summary,cost['summary'])
     base.write(output/'cost-replay.json.gz',cost)
     result=dict(points=len(points),batches=batches,map=summary,cost=cost['summary'],selected_V2=selected,
                 baseline_rows_exact=cost['baseline_rows_exact'])
@@ -217,5 +231,7 @@ def run(directory):
 
 
 if __name__=='__main__':
-    p=argparse.ArgumentParser();p.add_argument('directory');args=p.parse_args()
-    print(json.dumps(run(args.directory),indent=2))
+    p=argparse.ArgumentParser();p.add_argument('directory')
+    p.add_argument('--runtime-override')
+    args=p.parse_args()
+    print(json.dumps(run(args.directory,args.runtime_override),indent=2))

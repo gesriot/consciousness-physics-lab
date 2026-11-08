@@ -1,0 +1,17 @@
+test_archived_step_tolerance_and_exact_discrete_fields (test_convergence_candidates.CandidateTests.test_archived_step_tolerance_and_exact_discrete_fields) ... ok
+test_candidate_negative_controls (test_convergence_candidates.CandidateTests.test_candidate_negative_controls) ... ok
+test_frozen_exact_and_local_refinement (test_convergence_candidates.CandidateTests.test_frozen_exact_and_local_refinement) ... ok
+test_map_survives_cost_failure_and_runtime_override_is_forwarded (test_convergence_candidates.CandidateTests.test_map_survives_cost_failure_and_runtime_override_is_forwarded) ... {"level": 0, "new_points": 0, "audited": 0, "failed": 0, "fallback": false}
+{"level": 1, "new_points": 0, "audited": 0, "failed": 0, "fallback": false}
+{"level": 2, "new_points": 0, "audited": 0, "failed": 0, "fallback": false}
+{"level": 3, "new_points": 0, "audited": 0, "failed": 0, "fallback": false}
+ok
+test_prefix_and_futility (test_convergence_candidates.CandidateTests.test_prefix_and_futility) ... ok
+test_reference_threshold_and_fallback (test_convergence_candidates.CandidateTests.test_reference_threshold_and_fallback) ... ok
+test_selection (test_convergence_candidates.CandidateTests.test_selection) ... ok
+test_shift_and_bounds (test_convergence_candidates.CandidateTests.test_shift_and_bounds) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.024s
+
+OK
