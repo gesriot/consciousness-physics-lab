@@ -99,7 +99,7 @@ def summarize(packages):
 def decision_view(data):
     def walk(x):
         if isinstance(x,dict):
-            return {k:(v if k in ('spent','cost','budget','full_cost','reference_cost') else walk(v)) for k,v in x.items()}
+            return {k:(v if k in ('spent','cost','budget','full_cost','reference_cost','spent_by_package','allocation_by_initial_prediction') else walk(v)) for k,v in x.items()}
         if isinstance(x,list):return [walk(v) for v in x]
         if isinstance(x,float):return '<numeric diagnostic>'
         return x

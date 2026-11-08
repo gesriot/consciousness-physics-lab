@@ -32,8 +32,8 @@ class A002Tests(unittest.TestCase):
 
     def test_comparison_preserves_audit_and_summary(self):
         d=dict(intake_channel=[],global_permutations=[],intake_sha256='x',self_model_sha256='s',packages=[],
-               summary={'correct':2},full_pipeline_parity_failures=[],reference_audit={'fallback_all':False})
-        for key,value in [('summary',{'correct':3}),('full_pipeline_parity_failures',[[1,'clean']]),
+               summary={'correct':2,'spent_by_package':[1.]},full_pipeline_parity_failures=[],reference_audit={'fallback_all':False})
+        for key,value in [('summary',{'correct':3}),('summary',{'correct':2,'spent_by_package':[1.1]}),('full_pipeline_parity_failures',[[1,'clean']]),
                           ('reference_audit',{'fallback_all':True})]:
             other=copy.deepcopy(d);other[key]=value
             self.assertFalse(a002.compare(d,other)['decisions_pass'])
