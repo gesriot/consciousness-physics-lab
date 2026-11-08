@@ -210,3 +210,12 @@ has fixed resolution and a nonzero rounding floor, and the original request,
 physical definition and decision logic remain trusted. No component was tuned
 from E016 and no inference about consciousness follows.
 
+
+## Наблюдение владельца после поставки
+
+Владелец сообщил о повторе через `--replay` на macOS arm64, Python 3.12.13,
+NumPy 2.3.5 и SciPy 1.17.0: PASS – все рабочие решения совпали, расхождений
+в диагностике ноль. В том числе не изменились 88 решающих вычислений, у которых
+обе межсеточные разности были на уровне округления. Это сообщение владельца
+об одной платформе, не новый сохранённый прогон здесь и не доказательство
+переносимости шумовых решений вообще.
