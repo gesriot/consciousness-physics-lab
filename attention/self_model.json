@@ -1,0 +1,582 @@
+{
+  "version": 1,
+  "development_sources_sha256": {
+    "results/E012-coverage-map/report.md": "2c3ad722c3ce1c3ab55e044d26d48cb16cb560ec8c07a43324b93a72cc315285",
+    "results/E015-collocation-map/report.md": "1bc546314b3f6a2d93e77a5f53c5fdcb50884768ac85ab128b1378c19990df64",
+    "results/E016-frozen-pipeline/report.md": "83148332b857d93de7d2403393f8b48988568eb705b55f853af3af88efb6cd4a",
+    "results/E010-geometry-invariants/summary.md": "71c30b0581c7b728cee53a86b9e62f063008c2af8e34dcfe1ed1513e4aa1d4fc",
+    "results/E011-extrapolation/summary.md": "1087f56d4ecc70d60a5e85ef199c8b8133e2f83d2bb93090c28a4425309a84cc",
+    "results/E013-matched-mixture/summary.md": "1116671bd5f7ca059d6827d7d959c2ac0101ad97fa881f97609a7b9a7a3ea560",
+    "results/E014-convergence-candidates/summary.md": "1bb64ef8316d3be900590201fcff786ee0c3d66ca149d2e24a92c1c90218784f",
+    "results/common-mode/summary.md": "04088e8a1dc09d6eb3d035ef0e7160698601fd338bfc7e0b0d0c395e88e781e1",
+    "results/fault-heldout/summary.md": "8e47e19081a1c3165a64fbb232707074f971a2372721d86d7ad81e15362b6496",
+    "results/surface-order/summary.md": "ef36eb5a019740ce86b590ec380be29675d0a988b5f2b919fc59df3c14b110c3",
+    "results/tolerance-allocation/summary.md": "a2ad14f930c7d952a57092df8f6d448d232582beaf49d33afae0b0eacfe897e4",
+    "results/verifier-stress/summary.md": "d09a20f4da18e297034f865cd202bf9fc9d4330480e7d12188c24163df4c5d6f",
+    "results/E016-frozen-pipeline/results.json": "9498d924554d2f5881742624e4d7bbb53eb7997d256f1449af1950844926af51"
+  },
+  "training_source": "results/E016-frozen-pipeline/results.json",
+  "training_rows": 2160,
+  "bands_abs_zT_upper": [
+    0.1,
+    1000.0,
+    1000000.0,
+    null
+  ],
+  "profiles": {
+    "0": {
+      "binding": {
+        "detection_probability": 0.0,
+        "accept_probability": 1.0,
+        "development_records": 549
+      },
+      "normalization": {
+        "detection_probability": 0.0,
+        "accept_probability": 1.0,
+        "development_records": 549
+      },
+      "first_moment": {
+        "detection_probability": 0.1111111111111111,
+        "accept_probability": 0.8888888888888888,
+        "development_records": 549
+      },
+      "second_moment": {
+        "detection_probability": 0.2222222222222222,
+        "accept_probability": 0.7777777777777778,
+        "development_records": 549
+      },
+      "high_frequency": {
+        "detection_probability": 0.2222222222222222,
+        "accept_probability": 0.7777777777777778,
+        "development_records": 549
+      },
+      "collocation": {
+        "detection_probability": 0.5664845173041895,
+        "accept_probability": 0.4207650273224044,
+        "development_records": 549
+      },
+      "v2_64": {
+        "detection_probability": 0.5154826958105647,
+        "accept_probability": 0.48451730418943534,
+        "development_records": 549
+      },
+      "v2_128": {
+        "detection_probability": 0.5154826958105647,
+        "accept_probability": 0.48451730418943534,
+        "development_records": 549
+      },
+      "v2_256": {
+        "detection_probability": 0.5154826958105647,
+        "accept_probability": 0.48451730418943534,
+        "development_records": 549
+      },
+      "v2_512": {
+        "detection_probability": 0.5154826958105647,
+        "accept_probability": 0.48451730418943534,
+        "development_records": 549
+      },
+      "v2_1024": {
+        "detection_probability": 0.5154826958105647,
+        "accept_probability": 0.48451730418943534,
+        "development_records": 549
+      },
+      "v2_2048": {
+        "detection_probability": 0.5154826958105647,
+        "accept_probability": 0.48451730418943534,
+        "development_records": 549
+      },
+      "v2_4096": {
+        "detection_probability": 0.5154826958105647,
+        "accept_probability": 0.48451730418943534,
+        "development_records": 549
+      }
+    },
+    "1": {
+      "binding": {
+        "detection_probability": 0.0,
+        "accept_probability": 1.0,
+        "development_records": 720
+      },
+      "normalization": {
+        "detection_probability": 0.0,
+        "accept_probability": 1.0,
+        "development_records": 720
+      },
+      "first_moment": {
+        "detection_probability": 0.1111111111111111,
+        "accept_probability": 0.8888888888888888,
+        "development_records": 720
+      },
+      "second_moment": {
+        "detection_probability": 0.2222222222222222,
+        "accept_probability": 0.7777777777777778,
+        "development_records": 720
+      },
+      "high_frequency": {
+        "detection_probability": 0.2222222222222222,
+        "accept_probability": 0.7777777777777778,
+        "development_records": 720
+      },
+      "collocation": {
+        "detection_probability": 0.6222222222222222,
+        "accept_probability": 0.3763888888888889,
+        "development_records": 720
+      },
+      "v2_64": {
+        "detection_probability": 0.41944444444444445,
+        "accept_probability": 0.5805555555555556,
+        "development_records": 720
+      },
+      "v2_128": {
+        "detection_probability": 0.41944444444444445,
+        "accept_probability": 0.5805555555555556,
+        "development_records": 720
+      },
+      "v2_256": {
+        "detection_probability": 0.41944444444444445,
+        "accept_probability": 0.5805555555555556,
+        "development_records": 720
+      },
+      "v2_512": {
+        "detection_probability": 0.41944444444444445,
+        "accept_probability": 0.5805555555555556,
+        "development_records": 720
+      },
+      "v2_1024": {
+        "detection_probability": 0.41944444444444445,
+        "accept_probability": 0.5805555555555556,
+        "development_records": 720
+      },
+      "v2_2048": {
+        "detection_probability": 0.41944444444444445,
+        "accept_probability": 0.5805555555555556,
+        "development_records": 720
+      },
+      "v2_4096": {
+        "detection_probability": 0.41944444444444445,
+        "accept_probability": 0.5805555555555556,
+        "development_records": 720
+      }
+    },
+    "2": {
+      "binding": {
+        "detection_probability": 0.0,
+        "accept_probability": 1.0,
+        "development_records": 306
+      },
+      "normalization": {
+        "detection_probability": 0.0,
+        "accept_probability": 1.0,
+        "development_records": 306
+      },
+      "first_moment": {
+        "detection_probability": 0.1111111111111111,
+        "accept_probability": 0.8888888888888888,
+        "development_records": 306
+      },
+      "second_moment": {
+        "detection_probability": 0.2222222222222222,
+        "accept_probability": 0.7777777777777778,
+        "development_records": 306
+      },
+      "high_frequency": {
+        "detection_probability": 0.2222222222222222,
+        "accept_probability": 0.7777777777777778,
+        "development_records": 306
+      },
+      "collocation": {
+        "detection_probability": 0.369281045751634,
+        "accept_probability": 0.4738562091503268,
+        "development_records": 306
+      },
+      "v2_64": {
+        "detection_probability": 0.4150326797385621,
+        "accept_probability": 0.5294117647058824,
+        "development_records": 306
+      },
+      "v2_128": {
+        "detection_probability": 0.4150326797385621,
+        "accept_probability": 0.5294117647058824,
+        "development_records": 306
+      },
+      "v2_256": {
+        "detection_probability": 0.4150326797385621,
+        "accept_probability": 0.5294117647058824,
+        "development_records": 306
+      },
+      "v2_512": {
+        "detection_probability": 0.4150326797385621,
+        "accept_probability": 0.5294117647058824,
+        "development_records": 306
+      },
+      "v2_1024": {
+        "detection_probability": 0.4150326797385621,
+        "accept_probability": 0.5294117647058824,
+        "development_records": 306
+      },
+      "v2_2048": {
+        "detection_probability": 0.4150326797385621,
+        "accept_probability": 0.5294117647058824,
+        "development_records": 306
+      },
+      "v2_4096": {
+        "detection_probability": 0.4150326797385621,
+        "accept_probability": 0.5294117647058824,
+        "development_records": 306
+      }
+    },
+    "3": {
+      "binding": {
+        "detection_probability": 0.0,
+        "accept_probability": 1.0,
+        "development_records": 585
+      },
+      "normalization": {
+        "detection_probability": 0.0,
+        "accept_probability": 1.0,
+        "development_records": 585
+      },
+      "first_moment": {
+        "detection_probability": 0.1111111111111111,
+        "accept_probability": 0.8888888888888888,
+        "development_records": 585
+      },
+      "second_moment": {
+        "detection_probability": 0.2222222222222222,
+        "accept_probability": 0.7777777777777778,
+        "development_records": 585
+      },
+      "high_frequency": {
+        "detection_probability": 0.2222222222222222,
+        "accept_probability": 0.7777777777777778,
+        "development_records": 585
+      },
+      "collocation": {
+        "detection_probability": 0.06324786324786325,
+        "accept_probability": 0.49401709401709404,
+        "development_records": 585
+      },
+      "v2_64": {
+        "detection_probability": 0.04786324786324787,
+        "accept_probability": 0.3076923076923077,
+        "development_records": 585
+      },
+      "v2_128": {
+        "detection_probability": 0.04786324786324787,
+        "accept_probability": 0.3076923076923077,
+        "development_records": 585
+      },
+      "v2_256": {
+        "detection_probability": 0.04786324786324787,
+        "accept_probability": 0.3076923076923077,
+        "development_records": 585
+      },
+      "v2_512": {
+        "detection_probability": 0.04786324786324787,
+        "accept_probability": 0.3076923076923077,
+        "development_records": 585
+      },
+      "v2_1024": {
+        "detection_probability": 0.04786324786324787,
+        "accept_probability": 0.3076923076923077,
+        "development_records": 585
+      },
+      "v2_2048": {
+        "detection_probability": 0.04786324786324787,
+        "accept_probability": 0.3076923076923077,
+        "development_records": 585
+      },
+      "v2_4096": {
+        "detection_probability": 0.04786324786324787,
+        "accept_probability": 0.3076923076923077,
+        "development_records": 585
+      }
+    }
+  },
+  "unused_profiles": {
+    "0": {
+      "binding": {
+        "detection_probability": 0.0,
+        "accept_probability": 1.0,
+        "development_records": 549
+      },
+      "normalization": {
+        "detection_probability": 0.0,
+        "accept_probability": 1.0,
+        "development_records": 549
+      },
+      "first_moment": {
+        "detection_probability": 0.1111111111111111,
+        "accept_probability": 0.8888888888888888,
+        "development_records": 549
+      },
+      "second_moment": {
+        "detection_probability": 0.2222222222222222,
+        "accept_probability": 0.7777777777777778,
+        "development_records": 549
+      },
+      "high_frequency": {
+        "detection_probability": 0.2222222222222222,
+        "accept_probability": 0.7777777777777778,
+        "development_records": 549
+      },
+      "collocation": {
+        "detection_probability": 0.5664845173041895,
+        "accept_probability": 0.4207650273224044,
+        "development_records": 549
+      },
+      "v2_64": {
+        "detection_probability": 0.5154826958105647,
+        "accept_probability": 0.48451730418943534,
+        "development_records": 549
+      },
+      "v2_128": {
+        "detection_probability": 0.5154826958105647,
+        "accept_probability": 0.48451730418943534,
+        "development_records": 549
+      },
+      "v2_256": {
+        "detection_probability": 0.5154826958105647,
+        "accept_probability": 0.48451730418943534,
+        "development_records": 549
+      },
+      "v2_512": {
+        "detection_probability": 0.5154826958105647,
+        "accept_probability": 0.48451730418943534,
+        "development_records": 549
+      },
+      "v2_1024": {
+        "detection_probability": 0.5154826958105647,
+        "accept_probability": 0.48451730418943534,
+        "development_records": 549
+      },
+      "v2_2048": {
+        "detection_probability": 0.5154826958105647,
+        "accept_probability": 0.48451730418943534,
+        "development_records": 549
+      },
+      "v2_4096": {
+        "detection_probability": 0.5154826958105647,
+        "accept_probability": 0.48451730418943534,
+        "development_records": 549
+      }
+    },
+    "1": {
+      "binding": {
+        "detection_probability": 0.0,
+        "accept_probability": 1.0,
+        "development_records": 720
+      },
+      "normalization": {
+        "detection_probability": 0.0,
+        "accept_probability": 1.0,
+        "development_records": 720
+      },
+      "first_moment": {
+        "detection_probability": 0.1111111111111111,
+        "accept_probability": 0.8888888888888888,
+        "development_records": 720
+      },
+      "second_moment": {
+        "detection_probability": 0.2222222222222222,
+        "accept_probability": 0.7777777777777778,
+        "development_records": 720
+      },
+      "high_frequency": {
+        "detection_probability": 0.2222222222222222,
+        "accept_probability": 0.7777777777777778,
+        "development_records": 720
+      },
+      "collocation": {
+        "detection_probability": 0.6222222222222222,
+        "accept_probability": 0.3763888888888889,
+        "development_records": 720
+      },
+      "v2_64": {
+        "detection_probability": 0.41944444444444445,
+        "accept_probability": 0.5805555555555556,
+        "development_records": 720
+      },
+      "v2_128": {
+        "detection_probability": 0.41944444444444445,
+        "accept_probability": 0.5805555555555556,
+        "development_records": 720
+      },
+      "v2_256": {
+        "detection_probability": 0.41944444444444445,
+        "accept_probability": 0.5805555555555556,
+        "development_records": 720
+      },
+      "v2_512": {
+        "detection_probability": 0.41944444444444445,
+        "accept_probability": 0.5805555555555556,
+        "development_records": 720
+      },
+      "v2_1024": {
+        "detection_probability": 0.41944444444444445,
+        "accept_probability": 0.5805555555555556,
+        "development_records": 720
+      },
+      "v2_2048": {
+        "detection_probability": 0.41944444444444445,
+        "accept_probability": 0.5805555555555556,
+        "development_records": 720
+      },
+      "v2_4096": {
+        "detection_probability": 0.41944444444444445,
+        "accept_probability": 0.5805555555555556,
+        "development_records": 720
+      }
+    },
+    "2": {
+      "binding": {
+        "detection_probability": 0.0,
+        "accept_probability": 1.0,
+        "development_records": 306
+      },
+      "normalization": {
+        "detection_probability": 0.0,
+        "accept_probability": 1.0,
+        "development_records": 306
+      },
+      "first_moment": {
+        "detection_probability": 0.1111111111111111,
+        "accept_probability": 0.8888888888888888,
+        "development_records": 306
+      },
+      "second_moment": {
+        "detection_probability": 0.2222222222222222,
+        "accept_probability": 0.7777777777777778,
+        "development_records": 306
+      },
+      "high_frequency": {
+        "detection_probability": 0.2222222222222222,
+        "accept_probability": 0.7777777777777778,
+        "development_records": 306
+      },
+      "collocation": {
+        "detection_probability": 0.369281045751634,
+        "accept_probability": 0.4738562091503268,
+        "development_records": 306
+      },
+      "v2_64": {
+        "detection_probability": 0.4150326797385621,
+        "accept_probability": 0.5294117647058824,
+        "development_records": 306
+      },
+      "v2_128": {
+        "detection_probability": 0.4150326797385621,
+        "accept_probability": 0.5294117647058824,
+        "development_records": 306
+      },
+      "v2_256": {
+        "detection_probability": 0.4150326797385621,
+        "accept_probability": 0.5294117647058824,
+        "development_records": 306
+      },
+      "v2_512": {
+        "detection_probability": 0.4150326797385621,
+        "accept_probability": 0.5294117647058824,
+        "development_records": 306
+      },
+      "v2_1024": {
+        "detection_probability": 0.4150326797385621,
+        "accept_probability": 0.5294117647058824,
+        "development_records": 306
+      },
+      "v2_2048": {
+        "detection_probability": 0.4150326797385621,
+        "accept_probability": 0.5294117647058824,
+        "development_records": 306
+      },
+      "v2_4096": {
+        "detection_probability": 0.4150326797385621,
+        "accept_probability": 0.5294117647058824,
+        "development_records": 306
+      }
+    },
+    "3": {
+      "binding": {
+        "detection_probability": 0.0,
+        "accept_probability": 1.0,
+        "development_records": 585
+      },
+      "normalization": {
+        "detection_probability": 0.0,
+        "accept_probability": 1.0,
+        "development_records": 585
+      },
+      "first_moment": {
+        "detection_probability": 0.1111111111111111,
+        "accept_probability": 0.8888888888888888,
+        "development_records": 585
+      },
+      "second_moment": {
+        "detection_probability": 0.2222222222222222,
+        "accept_probability": 0.7777777777777778,
+        "development_records": 585
+      },
+      "high_frequency": {
+        "detection_probability": 0.2222222222222222,
+        "accept_probability": 0.7777777777777778,
+        "development_records": 585
+      },
+      "collocation": {
+        "detection_probability": 0.06324786324786325,
+        "accept_probability": 0.49401709401709404,
+        "development_records": 585
+      },
+      "v2_64": {
+        "detection_probability": 0.04786324786324787,
+        "accept_probability": 0.3076923076923077,
+        "development_records": 585
+      },
+      "v2_128": {
+        "detection_probability": 0.04786324786324787,
+        "accept_probability": 0.3076923076923077,
+        "development_records": 585
+      },
+      "v2_256": {
+        "detection_probability": 0.04786324786324787,
+        "accept_probability": 0.3076923076923077,
+        "development_records": 585
+      },
+      "v2_512": {
+        "detection_probability": 0.04786324786324787,
+        "accept_probability": 0.3076923076923077,
+        "development_records": 585
+      },
+      "v2_1024": {
+        "detection_probability": 0.04786324786324787,
+        "accept_probability": 0.3076923076923077,
+        "development_records": 585
+      },
+      "v2_2048": {
+        "detection_probability": 0.04786324786324787,
+        "accept_probability": 0.3076923076923077,
+        "development_records": 585
+      },
+      "v2_4096": {
+        "detection_probability": 0.04786324786324787,
+        "accept_probability": 0.3076923076923077,
+        "development_records": 585
+      }
+    }
+  },
+  "cost_weights": {
+    "modal_term": 0.000244140625,
+    "fv_cell": 0.000244140625,
+    "collocation_degree_cubed": 3.814697265625e-06,
+    "binding": 0.000244140625
+  },
+  "score_accept_weight": 0.05,
+  "reliability_notes": {
+    "V2": "E012/E014: roundoff exception unsafe; P uses C1 contraction and existing futility. Band frequencies are predictions, not guaranteed reliability.",
+    "collocation": "E015: uncertainty floor 1.9073486328125e-6 blocks acceptance below that tolerance, not detection; no frequency cutoff justified.",
+    "binding": "E008 request binding detects altered requests; E016 nine conditions do not exercise request swaps.",
+    "features": "E010 scale/geometry discrepancies; E013 matched mixture escapes four probes. Detection probabilities are empirical E016 marginals, never task labels."
+  },
+  "collocation_accept_floor": 1.9073486328125e-06,
+  "D": "Swap high_frequency and normalization detection_probability in all profiles.",
+  "Dprime": "Identical swaps in unused_profiles only."
+}

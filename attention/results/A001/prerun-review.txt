@@ -1,0 +1,34 @@
+A001 independent pre-run review
+Reviewed implementation commit: 3fbcd59
+No A001 held-out intake was generated during review.
+
+PASS: 12 attention-focused unit tests.
+PASS: scheduler arguments exclude harness condition, hidden physical model,
+      reference truth and unreached observations. Per-action probes are lazy.
+PASS: all self-model source SHA-256 hashes match the frozen source files.
+PASS: independently recomputed all four bands' detection and acceptance
+      probabilities and record counts from the 2160 archived E016 rows.
+PASS: full lazy strict-P verdict and each model-feature verdict match the frozen
+      laboratory pipeline on 54 development cases: archived E016 task IDs
+      0, 48, 96, 144, 192, 239 crossed with all nine conditions. The previous
+      stale-value input was fixed to zero for this integration parity test.
+PASS: D and Dprime operate on matched active versus unused entries; the
+      registered direction of priority changes is supported by the source.
+
+PRE-RUN BLOCKER: replay comparison at reviewed commit does not check all
+working discrete flags or evidence structure. Flipping a synthetic V2
+converging flag or deleting the step evidence returns decisions_pass=true
+and numeric_diagnostics_pass=true. scientific_exact=false alone does not fail
+its command. A corrective commit and regressions are required before main run.
+
+Limitations: self-model uses coarse E016 marginal probabilities plus qualitative
+map notes, not a fully conditioned phase/tolerance reliability model. Full-P
+cost normalizes budgets and thereby indirectly conveys aggregate full-path
+cost; the protocol explicitly discloses this harness-level conditioning.
+
+Correction review, before main generation:
+Commits 5a021d5 and 44eae8b add recursive boolean decision capture and exact
+structure checks alongside tolerant floating-point diagnostics. Reviewed the
+actual patch and reran all 13 attention tests: PASS, including four corrupt
+comparison fixtures. The identified pre-run blocker is resolved. No remaining
+blocking discrepancy found in the reviewed implementation versus preregistration.

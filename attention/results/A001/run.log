@@ -1,0 +1,368 @@
+Completed request 1 of 60
+Completed request 2 of 60
+Completed request 3 of 60
+Completed request 4 of 60
+Completed request 5 of 60
+Completed request 6 of 60
+Completed request 7 of 60
+Completed request 8 of 60
+Completed request 9 of 60
+Completed request 10 of 60
+Completed request 11 of 60
+Completed request 12 of 60
+Completed request 13 of 60
+Completed request 14 of 60
+Completed request 15 of 60
+Completed request 16 of 60
+Completed request 17 of 60
+Completed request 18 of 60
+Completed request 19 of 60
+Completed request 20 of 60
+Completed request 21 of 60
+Completed request 22 of 60
+Completed request 23 of 60
+Completed request 24 of 60
+Completed request 25 of 60
+Completed request 26 of 60
+Completed request 27 of 60
+Completed request 28 of 60
+Completed request 29 of 60
+Completed request 30 of 60
+Completed request 31 of 60
+Completed request 32 of 60
+Completed request 33 of 60
+Completed request 34 of 60
+Completed request 35 of 60
+Completed request 36 of 60
+Completed request 37 of 60
+Completed request 38 of 60
+Completed request 39 of 60
+Completed request 40 of 60
+Completed request 41 of 60
+Completed request 42 of 60
+Completed request 43 of 60
+Completed request 44 of 60
+Completed request 45 of 60
+Completed request 46 of 60
+Completed request 47 of 60
+Completed request 48 of 60
+Completed request 49 of 60
+Completed request 50 of 60
+Completed request 51 of 60
+Completed request 52 of 60
+Completed request 53 of 60
+Completed request 54 of 60
+Completed request 55 of 60
+Completed request 56 of 60
+Completed request 57 of 60
+Completed request 58 of 60
+Completed request 59 of 60
+Completed request 60 of 60
+{
+  "0.3": {
+    "policies": {
+      "B": {
+        "n": 540,
+        "correct": 245,
+        "false_accepts": 0,
+        "accepts": 0,
+        "violations": 297,
+        "inconclusive": 243,
+        "total_cost": 1665.001953125,
+        "early_violations": 297,
+        "futile_v2": 0
+      },
+      "C1": {
+        "n": 540,
+        "correct": 245,
+        "false_accepts": 0,
+        "accepts": 0,
+        "violations": 291,
+        "inconclusive": 249,
+        "total_cost": 1727.76953125,
+        "early_violations": 291,
+        "futile_v2": 0
+      },
+      "C2": {
+        "n": 540,
+        "correct": 245,
+        "false_accepts": 0,
+        "accepts": 0,
+        "violations": 291,
+        "inconclusive": 249,
+        "total_cost": 1727.81884765625,
+        "early_violations": 291,
+        "futile_v2": 0
+      },
+      "C3": {
+        "n": 540,
+        "correct": 186,
+        "false_accepts": 0,
+        "accepts": 0,
+        "violations": 238,
+        "inconclusive": 302,
+        "total_cost": 2486.4296875,
+        "early_violations": 238,
+        "futile_v2": 0
+      },
+      "D": {
+        "n": 540,
+        "correct": 245,
+        "false_accepts": 0,
+        "accepts": 0,
+        "violations": 291,
+        "inconclusive": 249,
+        "total_cost": 1719.491455078125,
+        "early_violations": 291,
+        "futile_v2": 0
+      },
+      "Dprime": {
+        "n": 540,
+        "correct": 245,
+        "false_accepts": 0,
+        "accepts": 0,
+        "violations": 297,
+        "inconclusive": 243,
+        "total_cost": 1665.001953125,
+        "early_violations": 297,
+        "futile_v2": 0
+      }
+    },
+    "comparisons_to_B": {
+      "C1": {
+        "different_actions": 540,
+        "worse_than_B": 0,
+        "better_than_B": 0,
+        "correct_difference_vs_B": 0
+      },
+      "C2": {
+        "different_actions": 346,
+        "worse_than_B": 0,
+        "better_than_B": 0,
+        "correct_difference_vs_B": 0
+      },
+      "C3": {
+        "different_actions": 540,
+        "worse_than_B": 59,
+        "better_than_B": 0,
+        "correct_difference_vs_B": -59
+      },
+      "D": {
+        "different_actions": 346,
+        "worse_than_B": 0,
+        "better_than_B": 0,
+        "correct_difference_vs_B": 0
+      },
+      "Dprime": {
+        "different_actions": 0,
+        "worse_than_B": 0,
+        "better_than_B": 0,
+        "correct_difference_vs_B": 0
+      }
+    }
+  },
+  "0.6": {
+    "policies": {
+      "B": {
+        "n": 540,
+        "correct": 245,
+        "false_accepts": 0,
+        "accepts": 0,
+        "violations": 297,
+        "inconclusive": 243,
+        "total_cost": 2716.001953125,
+        "early_violations": 297,
+        "futile_v2": 0
+      },
+      "C1": {
+        "n": 540,
+        "correct": 245,
+        "false_accepts": 0,
+        "accepts": 0,
+        "violations": 297,
+        "inconclusive": 243,
+        "total_cost": 2919.76953125,
+        "early_violations": 297,
+        "futile_v2": 0
+      },
+      "C2": {
+        "n": 540,
+        "correct": 245,
+        "false_accepts": 0,
+        "accepts": 0,
+        "violations": 297,
+        "inconclusive": 243,
+        "total_cost": 2823.81884765625,
+        "early_violations": 297,
+        "futile_v2": 0
+      },
+      "C3": {
+        "n": 540,
+        "correct": 245,
+        "false_accepts": 0,
+        "accepts": 0,
+        "violations": 293,
+        "inconclusive": 247,
+        "total_cost": 4243.821044921875,
+        "early_violations": 293,
+        "futile_v2": 0
+      },
+      "D": {
+        "n": 540,
+        "correct": 245,
+        "false_accepts": 0,
+        "accepts": 0,
+        "violations": 297,
+        "inconclusive": 243,
+        "total_cost": 2921.257080078125,
+        "early_violations": 297,
+        "futile_v2": 0
+      },
+      "Dprime": {
+        "n": 540,
+        "correct": 245,
+        "false_accepts": 0,
+        "accepts": 0,
+        "violations": 297,
+        "inconclusive": 243,
+        "total_cost": 2716.001953125,
+        "early_violations": 297,
+        "futile_v2": 0
+      }
+    },
+    "comparisons_to_B": {
+      "C1": {
+        "different_actions": 540,
+        "worse_than_B": 0,
+        "better_than_B": 0,
+        "correct_difference_vs_B": 0
+      },
+      "C2": {
+        "different_actions": 346,
+        "worse_than_B": 0,
+        "better_than_B": 0,
+        "correct_difference_vs_B": 0
+      },
+      "C3": {
+        "different_actions": 540,
+        "worse_than_B": 1,
+        "better_than_B": 1,
+        "correct_difference_vs_B": 0
+      },
+      "D": {
+        "different_actions": 346,
+        "worse_than_B": 0,
+        "better_than_B": 0,
+        "correct_difference_vs_B": 0
+      },
+      "Dprime": {
+        "different_actions": 0,
+        "worse_than_B": 0,
+        "better_than_B": 0,
+        "correct_difference_vs_B": 0
+      }
+    }
+  },
+  "1.0": {
+    "policies": {
+      "B": {
+        "n": 540,
+        "correct": 419,
+        "false_accepts": 0,
+        "accepts": 163,
+        "violations": 308,
+        "inconclusive": 69,
+        "total_cost": 4867.126953125,
+        "early_violations": 304,
+        "futile_v2": 0
+      },
+      "C1": {
+        "n": 540,
+        "correct": 419,
+        "false_accepts": 0,
+        "accepts": 163,
+        "violations": 308,
+        "inconclusive": 69,
+        "total_cost": 5106.76953125,
+        "early_violations": 297,
+        "futile_v2": 0
+      },
+      "C2": {
+        "n": 540,
+        "correct": 419,
+        "false_accepts": 0,
+        "accepts": 163,
+        "violations": 308,
+        "inconclusive": 69,
+        "total_cost": 5010.81884765625,
+        "early_violations": 297,
+        "futile_v2": 0
+      },
+      "C3": {
+        "n": 540,
+        "correct": 419,
+        "false_accepts": 0,
+        "accepts": 163,
+        "violations": 308,
+        "inconclusive": 69,
+        "total_cost": 7279.374755859375,
+        "early_violations": 301,
+        "futile_v2": 0
+      },
+      "D": {
+        "n": 540,
+        "correct": 419,
+        "false_accepts": 0,
+        "accepts": 163,
+        "violations": 308,
+        "inconclusive": 69,
+        "total_cost": 5244.257080078125,
+        "early_violations": 304,
+        "futile_v2": 0
+      },
+      "Dprime": {
+        "n": 540,
+        "correct": 419,
+        "false_accepts": 0,
+        "accepts": 163,
+        "violations": 308,
+        "inconclusive": 69,
+        "total_cost": 4867.126953125,
+        "early_violations": 304,
+        "futile_v2": 0
+      }
+    },
+    "comparisons_to_B": {
+      "C1": {
+        "different_actions": 540,
+        "worse_than_B": 0,
+        "better_than_B": 0,
+        "correct_difference_vs_B": 0
+      },
+      "C2": {
+        "different_actions": 346,
+        "worse_than_B": 0,
+        "better_than_B": 0,
+        "correct_difference_vs_B": 0
+      },
+      "C3": {
+        "different_actions": 540,
+        "worse_than_B": 0,
+        "better_than_B": 0,
+        "correct_difference_vs_B": 0
+      },
+      "D": {
+        "different_actions": 346,
+        "worse_than_B": 0,
+        "better_than_B": 0,
+        "correct_difference_vs_B": 0
+      },
+      "Dprime": {
+        "different_actions": 0,
+        "worse_than_B": 0,
+        "better_than_B": 0,
+        "correct_difference_vs_B": 0
+      }
+    }
+  }
+}
