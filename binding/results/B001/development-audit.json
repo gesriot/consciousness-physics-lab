@@ -1,0 +1,93 @@
+{
+  "passed": true,
+  "series_count": 12,
+  "cells": 1728,
+  "series": [
+    {
+      "passed": true,
+      "series": "series-00",
+      "cells": 144,
+      "intake_sha256": "43b723688fec8493ff38a1c1c4233a9c6621b6b99d41aa3fc07d4c1f307434fb"
+    },
+    {
+      "passed": true,
+      "series": "series-01",
+      "cells": 144,
+      "intake_sha256": "a1ac53563232fea3ea6bc6a5c61f93aa73493a6710eaaad4885cad128ce417d2"
+    },
+    {
+      "passed": true,
+      "series": "series-02",
+      "cells": 144,
+      "intake_sha256": "ff6505be390dd7def0ca6af944e9102cc246dc4fff2de2c041b6c5f004c69042"
+    },
+    {
+      "passed": true,
+      "series": "series-03",
+      "cells": 144,
+      "intake_sha256": "57a4ceb639fddf5112145290cfdcac015ce942633553254a976f05cdbbef9b88"
+    },
+    {
+      "passed": true,
+      "series": "series-04",
+      "cells": 144,
+      "intake_sha256": "08c39dc1d4ffa20af32169a29b0c4f3bf95d5a2ef573853b7594022b253dd106"
+    },
+    {
+      "passed": true,
+      "series": "series-05",
+      "cells": 144,
+      "intake_sha256": "b01a72941dd5f6d74fce35ab690e4f24f01c640ff0b4ead41f60267b4cd49eba"
+    },
+    {
+      "passed": true,
+      "series": "series-06",
+      "cells": 144,
+      "intake_sha256": "083ffcf6b408cb4168b81c8f0fe8f04ed92fc0846975a0690b4a39a14965036e"
+    },
+    {
+      "passed": true,
+      "series": "series-07",
+      "cells": 144,
+      "intake_sha256": "0b8d1bc0782eb31a103ac5dc0706feb9556910eec38eac7ad8b6687586e5ee33"
+    },
+    {
+      "passed": true,
+      "series": "series-08",
+      "cells": 144,
+      "intake_sha256": "4457232d0bcd5831d4793ab3eb93eba48676484934a29e94fda4225ed3ae5a21"
+    },
+    {
+      "passed": true,
+      "series": "series-09",
+      "cells": 144,
+      "intake_sha256": "917f7d0c4535bbba57e1eb6ca96c50ab321edb96043655e7d51eaf8e6d823b53"
+    },
+    {
+      "passed": true,
+      "series": "series-10",
+      "cells": 144,
+      "intake_sha256": "0bfcac3b9421f3c2b5739e5246d798b869477083ecbd827d337171095e7b4d0d"
+    },
+    {
+      "passed": true,
+      "series": "series-11",
+      "cells": 144,
+      "intake_sha256": "e092915aea1f7ed4ad1c60bfa79b86736f4beb1286174f869bbaa4bb0bebf654"
+    }
+  ],
+  "aggregate_verified": true,
+  "freeze_selection_verified": true,
+  "closure": null,
+  "disjoint_intake": null,
+  "sources": {
+    "source_files": 77,
+    "protocol_ancestry": true,
+    "freeze_committed": false
+  },
+  "limitations": [
+    "Reference accuracy uses archived analytic/high-precision reference values; no new physical reference computation.",
+    "Upstream verdicts and executed observations are evidence; scheduler optimality and numerical instrument execution are not rerun.",
+    "Development archives omit visible snapshots; confirmation snapshots are required and checked against reconstructed projections."
+  ]
+}

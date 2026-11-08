@@ -30,3 +30,13 @@ Development views can be reconstructed from the retained original ledger and edi
 This logging-only addition does not alter selection, budgets or numerical results;
 regression tests verify snapshots reproduce the original selected IDs. Development
 keeps its original source hash; confirmation records the logging-enhanced version.
+
+## Replay scheduling
+
+Plain and last-bit confirmation replays were initially launched concurrently.
+Progress became extremely slow, consistent with numerical thread contention. The
+last-bit process was interrupted before completing its first package; its manifest,
+intake and reference archive remain in lastbit-interrupted-contention. Plain replay
+then completed normally and matched both decisions and diagnostics in all 12
+series. Last-bit replay was restarted sequentially with exactly the same inputs,
+noise flag and explicit runtime override. No experimental setting was changed.

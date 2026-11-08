@@ -1,0 +1,205 @@
+{
+  "passed": true,
+  "series_count": 12,
+  "cells": 1728,
+  "series": [
+    {
+      "passed": true,
+      "series": "series-00",
+      "cells": 144,
+      "intake_sha256": "a8f1783eb754f32a4d1748d130f923290c2621ff21c6ac8df34f900e83989119"
+    },
+    {
+      "passed": true,
+      "series": "series-01",
+      "cells": 144,
+      "intake_sha256": "c3cbf3d751fb55fe061d809756082fdf88be5e9cecc846b96eca3d34169bec27"
+    },
+    {
+      "passed": true,
+      "series": "series-02",
+      "cells": 144,
+      "intake_sha256": "dddb6cdef4224bbd5cb83f0dd18dc9d5249a2a3cbba4a5bf1deb0bbd91ee5cfb"
+    },
+    {
+      "passed": true,
+      "series": "series-03",
+      "cells": 144,
+      "intake_sha256": "91ab4f6bb5534bfcfdaaf0c981a37c43a8f57df9a49975d773cddb3a780387e8"
+    },
+    {
+      "passed": true,
+      "series": "series-04",
+      "cells": 144,
+      "intake_sha256": "9826642adfa73e763c000ede2c5bab95a580317323e6cc27c8193edcc5624fa8"
+    },
+    {
+      "passed": true,
+      "series": "series-05",
+      "cells": 144,
+      "intake_sha256": "b2fa5b9a8cb2ed5548e2246efc87418d564023b2033d9313a4f7f883b3f3e681"
+    },
+    {
+      "passed": true,
+      "series": "series-06",
+      "cells": 144,
+      "intake_sha256": "e25039afb246a0e3c5ed762258a369fa9faee8785b8c2b6ee0a3e840f58babe6"
+    },
+    {
+      "passed": true,
+      "series": "series-07",
+      "cells": 144,
+      "intake_sha256": "de56d4153a110ac1d0667ab546a4ee92d7fd26acebbb72cc981d62c2834c04df"
+    },
+    {
+      "passed": true,
+      "series": "series-08",
+      "cells": 144,
+      "intake_sha256": "5bde7de1a276c802a82ef3d3e8811e2a142ca7dd9a75c75ec9d0fa18ba9b88c6"
+    },
+    {
+      "passed": true,
+      "series": "series-09",
+      "cells": 144,
+      "intake_sha256": "cfb21131c88b3f8e21d249c313ca57c9d595244ded64cbf1a45149ef914f53ce"
+    },
+    {
+      "passed": true,
+      "series": "series-10",
+      "cells": 144,
+      "intake_sha256": "8404cae6b4dc823463bf852a5ef4f3d10f969437ac82bacb96d141e8d800bb04"
+    },
+    {
+      "passed": true,
+      "series": "series-11",
+      "cells": 144,
+      "intake_sha256": "67fdeb3c4e0e571ae25a9e9a68ae019a4b24012df2d4cdbbd659e6869d3229ac"
+    }
+  ],
+  "aggregate_verified": true,
+  "freeze_selection_verified": true,
+  "closure": {
+    "cells": [
+      {
+        "fault": "permissive",
+        "budget": "2",
+        "T_no_worse": false
+      },
+      {
+        "fault": "permissive",
+        "budget": "8",
+        "T_no_worse": false
+      },
+      {
+        "fault": "permissive",
+        "budget": "32",
+        "T_no_worse": false
+      },
+      {
+        "fault": "underestimated",
+        "budget": "2",
+        "T_no_worse": false
+      },
+      {
+        "fault": "underestimated",
+        "budget": "8",
+        "T_no_worse": false
+      },
+      {
+        "fault": "underestimated",
+        "budget": "32",
+        "T_no_worse": false
+      }
+    ],
+    "links_unnecessary_here": false,
+    "exposure_gates": {
+      "permissive": {
+        "candidates": [
+          {
+            "band": 0,
+            "affected": 0,
+            "affected_false": 0
+          },
+          {
+            "band": 1,
+            "affected": 0,
+            "affected_false": 0
+          },
+          {
+            "band": 2,
+            "affected": 30,
+            "affected_false": 3
+          },
+          {
+            "band": 3,
+            "affected": 12,
+            "affected_false": 2
+          },
+          {
+            "band": 4,
+            "affected": 23,
+            "affected_false": 1
+          },
+          {
+            "band": 5,
+            "affected": 29,
+            "affected_false": 0
+          }
+        ],
+        "selected": 2,
+        "exposure_gate": false
+      },
+      "underestimated": {
+        "candidates": [
+          {
+            "band": 0,
+            "affected": 0,
+            "affected_false": 0
+          },
+          {
+            "band": 1,
+            "affected": 0,
+            "affected_false": 0
+          },
+          {
+            "band": 2,
+            "affected": 0,
+            "affected_false": 0
+          },
+          {
+            "band": 3,
+            "affected": 3,
+            "affected_false": 0
+          },
+          {
+            "band": 4,
+            "affected": 0,
+            "affected_false": 0
+          },
+          {
+            "band": 5,
+            "affected": 0,
+            "affected_false": 0
+          }
+        ],
+        "selected": 3,
+        "exposure_gate": false
+      }
+    }
+  },
+  "disjoint_intake": {
+    "development_requests": 240,
+    "confirmation_requests": 240,
+    "overlap": 0
+  },
+  "sources": {
+    "source_files": 77,
+    "protocol_ancestry": true,
+    "freeze_committed": true
+  },
+  "limitations": [
+    "Reference accuracy uses archived analytic/high-precision reference values; no new physical reference computation.",
+    "Upstream verdicts and executed observations are evidence; scheduler optimality and numerical instrument execution are not rerun.",
+    "Development archives omit visible snapshots; confirmation snapshots are required and checked against reconstructed projections."
+  ]
+}
