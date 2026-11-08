@@ -7,7 +7,7 @@ from pathlib import Path
 import numpy as np
 from attention import agent, s2, s3
 from attention.a001 import reference_audit, control_flags
-from attention.io import read_json, write_json as write, load_replay
+from attention.io import read_json, write_json as write, load_replay, source_bytes
 from attention.batch import run_batch as static_batch
 from attention.updated_batch import run_batch as updated_batch
 from attention.development_a002 import oracle_input
@@ -217,7 +217,7 @@ def run(output,replay=None,runtime_override=None):
     overlap['within_A003_duplicate_requests']=overlap.pop('within_E016_duplicate_requests')
     for experiment,path in [('E016','results/E016-frozen-pipeline/results.json'),('A001','attention/results/A001/results.json'),('A002','attention/results/A002/results.json.gz')]:
         earlier=read_json(ROOT/path); keys={request_key(r) for r in earlier['intake_channel']}
-        overlap['comparisons'][experiment]=dict(exact_request_matches=sum(request_key(r) in keys for r in records),source_sha256=hashlib.sha256((ROOT/path).read_bytes()).hexdigest())
+        overlap['comparisons'][experiment]=dict(exact_request_matches=sum(request_key(r) in keys for r in records),source_sha256=hashlib.sha256(source_bytes(ROOT/path)).hexdigest())
     result=dict(experiment='A003',**audit,task_seed=20261135,order_seed=20261136,random_policy_seed=20261137,
         intake_channel=records,global_permutations=permutations,intake_sha256=digest,self_model_sha256=canonical_sha256(model),static_model_sha256=canonical_sha256(static_model),
         reference_audit=reference,request_overlap=overlap,full_pipeline_parity_failures=parity,intervention_audit=intervention,

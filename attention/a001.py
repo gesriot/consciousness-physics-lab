@@ -13,13 +13,14 @@ from lab.experiment_audit import metadata
 from lab.extrapolation import high_precision
 from lab.guard import Request
 from lab.pipeline_holdout import CONDITIONS, COHORTS, LOG_RANGES, overlap_audit, scientific_view
-from lab.replay import canonical_sha256, load_replay, protect_output
+from lab.replay import canonical_sha256, protect_output
+from attention.io import read_json, write_json, load_replay
 from lab.scientist import ROOT, analytic
 from attention.agent import Executor, ORDER, POLICIES, FRACTIONS, corrupt, run_policy
 
 PROTOCOL='attention/protocols/A001-budgeted-self-model.md'
 MODEL='attention/self_model.json'
-SOURCES=['attention/agent.py','attention/a001.py',MODEL]+['lab/'+p for p in (
+SOURCES=['attention/agent.py','attention/a001.py','attention/io.py',MODEL]+['lab/'+p for p in (
     'frozen_pipeline.py','pipeline_holdout.py','replay.py','experiment_audit.py',
     'geometry_invariants.py','convergence_candidates.py','radial_collocation.py',
     'matched_mixture.py','extrapolation.py','three_way.py','surface_order.py',
@@ -28,7 +29,7 @@ SOURCES=['attention/agent.py','attention/a001.py',MODEL]+['lab/'+p for p in (
 
 
 def write(path,value):
-    Path(path).write_text(json.dumps(value,indent=2,allow_nan=False)+'\n')
+    write_json(path,value)
 
 
 def validate(records):
@@ -171,8 +172,9 @@ def compare(first,second):
 
 def run(output,replay=None,runtime_override=None):
     output=Path(output)
-    intake_path=output.with_name(output.stem+'-intake.json')
-    audit_path=output.with_name(output.stem+'-reference-audit.json')
+    stem=output.name.removesuffix('.gz').removesuffix('.json')
+    intake_path=output.with_name(stem+'-intake.json')
+    audit_path=output.with_name(stem+'-reference-audit.json')
     for path in (output,intake_path,audit_path):protect_output(path,replay)
     audit=metadata(PROTOCOL,SOURCES,runtime_override)
     model=json.loads((ROOT/MODEL).read_text())
@@ -248,7 +250,7 @@ if __name__=='__main__':
     args=parser.parse_args()
     if args.compare:
         protect_output(args.output,None)
-        result=compare(*(json.loads(p.read_text()) for p in args.compare))
+        result=compare(*(read_json(p) for p in args.compare))
         write(args.output,result)
         print(json.dumps(result,indent=2))
         if not result['passed']:raise SystemExit(1)

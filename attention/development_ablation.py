@@ -7,6 +7,7 @@ import numpy as np
 from attention import agent, s2
 from attention.batch import remaining_actions
 from attention.development_a002 import read, FRACTIONS
+from attention.io import source_bytes
 
 
 def run(data, training, model):
@@ -86,5 +87,5 @@ if __name__=='__main__':
     if args.output.exists():raise ValueError('Output already exists')
     sources=['attention/results/A002/results.json.gz','attention/results/A001/results.json','attention/self_model_s2.json','attention/results/A002/development-ablation-plan.md','attention/development_ablation.py']
     result=run(read(sources[0]),read(sources[1]),read(sources[2]))
-    result['source_sha256']={s:hashlib.sha256(Path(s).read_bytes()).hexdigest() for s in sources}
+    result['source_sha256']={s:hashlib.sha256(source_bytes(s)).hexdigest() for s in sources}
     args.output.write_text(json.dumps(result,indent=2)+'\n');print(json.dumps(result['summary'],indent=2))

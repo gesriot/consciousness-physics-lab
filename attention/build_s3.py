@@ -3,7 +3,7 @@ import argparse
 import hashlib
 from pathlib import Path
 from attention import agent, s2, s3
-from attention.io import read_json, write_json
+from attention.io import read_json, write_json, source_bytes
 
 ROOT = Path(__file__).resolve().parents[1]
 SOURCES = ['attention/results/A001/results.json', 'attention/results/A002/results.json.gz',
@@ -31,7 +31,7 @@ def build():
     return dict(version=3, neighbors=16, groups=groups, trajectories=trajectories,
         action_names=list(agent.ORDER), action_model=model2['action_model'],
         observation_mapping=identity, unused_observation_mapping={a:list(v) for a,v in identity.items()},
-        development_sources_sha256={s:hashlib.sha256((ROOT/s).read_bytes()).hexdigest() for s in SOURCES},
+        development_sources_sha256={s:hashlib.sha256(source_bytes(ROOT/s)).hexdigest() for s in SOURCES},
         likelihood='Deterministic categorical equality; uniform joint trajectories; widen once to all development if local support is empty; then package C2 fallback if all support is empty.',
         missing='Missing V2 outcomes remain -1, never imputed as observations.',
         feature_definition='Unchanged frozen S2 maps and request feature function.',

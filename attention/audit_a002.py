@@ -78,12 +78,12 @@ def key(r):
  q=r['request'];return (tuple(q['z']),q['mean_time'],q['tolerance'])
 keys=[key(r) for r in d['intake_channel']];check(len(keys)==len(set(keys)),'Duplicate A002 requests')
 for label,path in [('A001','attention/results/A001/results.json'),('E016','results/E016-frozen-pipeline/results.json')]:
- old={key(r) for r in json.loads((ROOT/path).read_text())['intake_channel']};n=sum(k in old for k in keys);check(n==0 and n==d['request_overlap']['comparisons'][label]['exact_request_matches'],f'{label} overlap')
+ old={key(r) for r in read_json(ROOT/path)['intake_channel']};n=sum(k in old for k in keys);check(n==0 and n==d['request_overlap']['comparisons'][label]['exact_request_matches'],f'{label} overlap')
 for label,row in d['request_overlap']['comparisons'].items():
  if row.get('status')=='not_task_intake': continue
  check(row['exact_request_matches']==0,f'Archived overlap {label}')
  if 'source' in row:
-  old_data=json.loads((ROOT/row['source']).read_text());old_keys=set()
+  old_data=read_json(ROOT/row['source']);old_keys=set()
   def collect(obj):
    if isinstance(obj,dict):
     if all(k in obj for k in ['z','mean_time','tolerance']):

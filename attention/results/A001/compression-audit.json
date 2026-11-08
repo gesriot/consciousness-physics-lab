@@ -1,0 +1,23 @@
+{
+  "status": "lossless technical archive relocation after A003 outcomes; no model or scientific parameter changes",
+  "archives": [
+    {
+      "original_path": "attention/results/A001/results.json",
+      "original_bytes": 63626099,
+      "original_sha256": "803c60ed29d498afee9fa8f1f636537cf15501d416f17ec5d85b5df84e7d95aa",
+      "compressed_path": "attention/results/A001/results.json.gz",
+      "compressed_bytes": 1383288,
+      "compressed_sha256": "a4fae6d83ebb14ecd1c140a291e94e70031fee3288f20ba831569afdfb3143b0",
+      "decompressed_exact": true
+    },
+    {
+      "original_path": "attention/results/A001/repeat.json",
+      "original_bytes": 63626254,
+      "original_sha256": "606a36c6138148e80b484bab414f7efbe9f3508f70495c45507dfb951c6085c0",
+      "compressed_path": "attention/results/A001/repeat.json.gz",
+      "compressed_bytes": 1383349,
+      "compressed_sha256": "ab08b4e6f7c45407c5d4e4fdcb0e1c726319f39ac1c0aeec32c39ee9955f349b",
+      "decompressed_exact": true
+    }
+  ]
+}

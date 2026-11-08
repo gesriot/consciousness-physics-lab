@@ -1,17 +1,15 @@
 """Post-result A002 oracle and descriptive loss analysis, not confirmation."""
 import argparse
-import gzip
 import hashlib
 import json
 from pathlib import Path
+from attention.io import read_json, source_path
 
 FRACTIONS = ('0.2', '0.4', '0.6', '1.0')
 
 
 def read(path):
-    path = Path(path)
-    with gzip.open(path, 'rt') if path.suffix == '.gz' else path.open() as stream:
-        return json.load(stream)
+    return read_json(path)
 
 
 def oracle_input(info):
@@ -114,6 +112,6 @@ if __name__ == '__main__':
     if args.output.exists():
         raise ValueError('Output already exists')
     result = analyze(read(args.archive))
-    result['source_sha256'] = hashlib.sha256(args.archive.read_bytes()).hexdigest()
+    result['source_sha256'] = hashlib.sha256(source_path(args.archive).read_bytes()).hexdigest()
     args.output.write_text(json.dumps(result, indent=2, allow_nan=False)+'\n')
     print(json.dumps(dict(full_outcomes=result['full_outcomes'], summary=result['summary']), indent=2))

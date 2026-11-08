@@ -1,0 +1,28 @@
+test_fallback_only_resolves_missing_json (tests.test_attention_compressed.CompressedArchives.test_fallback_only_resolves_missing_json) ... ok
+test_historical_json_fallback_preserves_source_identity (tests.test_attention_compressed.CompressedArchives.test_historical_json_fallback_preserves_source_identity) ... ok
+test_reject_experiment_count_order_and_nonfinite (tests.test_attention_compressed.CompressedArchives.test_reject_experiment_count_order_and_nonfinite) ... ok
+test_roundtrip_determinism_and_replay (tests.test_attention_compressed.CompressedArchives.test_roundtrip_determinism_and_replay) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.004s
+
+OK
+S2 exact byte rebuild PASS
+S3 exact byte rebuild PASS
+A001 compressed intake validation PASS for both archives
+A001 decisions comparison: True
+A002 independent result review: PASS
+Budget 0.2: correct counts {'B': 153, 'C1': 112, 'C2': 261, 'C3': 80, 'C4': 72, 'D': 117, 'Dprime': 153}; B minus C1-C4 [41, -108, 73, 81]; B minus D 36; false accepts 0.
+Allocation 0.2: {'B': {'initially_inconclusive': 191.048095703125, 'initially_accepting': 1792.739501953125}, 'D': {'initially_inconclusive': 1919.675048828125, 'initially_accepting': 64.136962890625}, 'Dprime': {'initially_inconclusive': 191.048095703125, 'initially_accepting': 1792.739501953125}}
+Budget 0.4: correct counts {'B': 275, 'C1': 250, 'C2': 335, 'C3': 152, 'C4': 257, 'D': 193, 'Dprime': 275}; B minus C1-C4 [25, -60, 123, 18]; B minus D 82; false accepts 0.
+Allocation 0.4: {'B': {'initially_inconclusive': 957.23974609375, 'initially_accepting': 3009.695556640625}, 'D': {'initially_inconclusive': 3138.96630859375, 'initially_accepting': 828.659423828125}, 'Dprime': {'initially_inconclusive': 957.23974609375, 'initially_accepting': 3009.695556640625}}
+Budget 0.6: correct counts {'B': 390, 'C1': 422, 'C2': 422, 'C3': 265, 'C4': 319, 'D': 319, 'Dprime': 390}; B minus C1-C4 [-32, -32, 125, 71]; B minus D 71; false accepts 0.
+Allocation 0.6: {'B': {'initially_inconclusive': 1969.52392578125, 'initially_accepting': 3980.468505859375}, 'D': {'initially_inconclusive': 3448.585693359375, 'initially_accepting': 2502.441650390625}, 'Dprime': {'initially_inconclusive': 1969.52392578125, 'initially_accepting': 3980.468505859375}}
+Budget 1.0: correct counts {'B': 422, 'C1': 422, 'C2': 422, 'C3': 422, 'C4': 319, 'D': 422, 'Dprime': 422}; B minus C1-C4 [0, 0, 0, 103]; B minus D 0; false accepts 0.
+Allocation 1.0: {'B': {'initially_inconclusive': 3535.898193359375, 'initially_accepting': 4178.136474609375}, 'D': {'initially_inconclusive': 3535.898193359375, 'initially_accepting': 4178.136474609375}, 'Dprime': {'initially_inconclusive': 3535.898193359375, 'initially_accepting': 4178.136474609375}}
+Brier S2=0.3940477475948807; base=0.5543755804899032.
+Corruption: 540 changed numbers per arm; L1=2398; initial direction checks pass.
+All 12 package pairs independently recomputed from input verdicts. No task regeneration or implementation changes. Full-P parity and high-precision reference status were read from archived audit records, not rerun here.
+Failures: []
+A003 decisions comparison after compression: True
+Oversized final tracked files: []

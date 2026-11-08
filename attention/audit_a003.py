@@ -4,7 +4,7 @@ import hashlib
 import json
 import math
 from pathlib import Path
-from attention.io import read_json, write_json
+from attention.io import read_json, write_json, source_bytes, source_path
 
 ROOT = Path(__file__).resolve().parents[1]
 GRIDS = (64,128,256,512,1024,2048,4096)
@@ -290,7 +290,7 @@ def audit(data, check_sources=True):
             earlier=read_json(ROOT/path); old={(tuple(r['request']['z']),r['request']['mean_time'],r['request']['tolerance']) for r in earlier['intake_channel']}
             matches=sum(k in old for k in keys)
             check(matches==0 and data['request_overlap']['comparisons'][name]['exact_request_matches']==matches,f'overlap {name}')
-            check(data['request_overlap']['comparisons'][name]['source_sha256']==hashlib.sha256((ROOT/path).read_bytes()).hexdigest(),f'overlap source {name}')
+            check(data['request_overlap']['comparisons'][name]['source_sha256']==hashlib.sha256(source_bytes(ROOT/path)).hexdigest(),f'overlap source {name}')
         check(data['request_overlap']['within_A003_duplicate_requests']==0,'reported internal overlap')
         for name,row in data['request_overlap']['comparisons'].items():
             if row.get('status')!='not_task_intake':check(row['exact_request_matches']==0,f'other overlap status {name}')
@@ -306,7 +306,7 @@ def main():
     args=parser.parse_args()
     if args.output.exists():raise ValueError('Refuse to overwrite an audit')
     report=audit(read_json(args.archive))
-    report['source_sha256']=hashlib.sha256(args.archive.read_bytes()).hexdigest()
+    report['source_sha256']=hashlib.sha256(source_path(args.archive).read_bytes()).hexdigest()
     write_json(args.output,report)
     print(json.dumps(report,indent=2))
     if not report['passed']:raise SystemExit(1)
