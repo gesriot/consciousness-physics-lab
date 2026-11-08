@@ -1,0 +1,36 @@
+test_budget_and_safe_incompleteness (test_attention_a001.AttentionTests.test_budget_and_safe_incompleteness) ... ok
+test_collocation_below_floor_not_skipped (test_attention_a001.AttentionTests.test_collocation_below_floor_not_skipped) ... ok
+test_comparison_cli_uses_decisions_and_structure (test_attention_a001.AttentionTests.test_comparison_cli_uses_decisions_and_structure) ... ok
+test_comparison_detects_decisions_and_numbers (test_attention_a001.AttentionTests.test_comparison_detects_decisions_and_numbers) ... ok
+test_comparison_float_drift_is_informational_but_costs_are_exact (test_attention_a001.AttentionTests.test_comparison_float_drift_is_informational_but_costs_are_exact) ... ok
+test_comparison_rejects_flags_and_missing_structure (test_attention_a001.AttentionTests.test_comparison_rejects_flags_and_missing_structure) ... ok
+test_dependencies_and_terminal_v2 (test_attention_a001.AttentionTests.test_dependencies_and_terminal_v2) ... ok
+test_empirical_false_accept_and_subset (test_attention_a001.AttentionTests.test_empirical_false_accept_and_subset) ... ok
+test_equal_corruption_size_and_direction (test_attention_a001.AttentionTests.test_equal_corruption_size_and_direction) ... ok
+test_full_path_matches_strict_for_all_conditions (test_attention_a001.AttentionTests.test_full_path_matches_strict_for_all_conditions) ... ok
+test_irrelevant_corruption_preserves_decisions (test_attention_a001.AttentionTests.test_irrelevant_corruption_preserves_decisions) ... ok
+test_only_selected_probe_calls (test_attention_a001.AttentionTests.test_only_selected_probe_calls) ... ok
+test_replay_rejects_wrong_experiment_and_bad_count (test_attention_a001.AttentionTests.test_replay_rejects_wrong_experiment_and_bad_count) ... ok
+test_scheduler_interface_excludes_hidden_fields (test_attention_a001.AttentionTests.test_scheduler_interface_excludes_hidden_fields) ... ok
+test_separate_probes_match_frozen_checks (test_attention_a001.AttentionTests.test_separate_probes_match_frozen_checks) ... ok
+test_brier_definition (test_attention_a002.A002Tests.test_brier_definition) ... ok
+test_comparison_float_information_and_exact_costs (test_attention_a002.A002Tests.test_comparison_float_information_and_exact_costs) ... ok
+test_comparison_preserves_audit_and_summary (test_attention_a002.A002Tests.test_comparison_preserves_audit_and_summary) ... ok
+test_frozen_s2_probability_and_corruption (test_attention_a002.A002Tests.test_frozen_s2_probability_and_corruption) ... ok
+test_no_wrong_replay (test_attention_a002.A002Tests.test_no_wrong_replay) ... ok
+test_acceptance_complete_and_early_violation (test_attention_batch.BatchTests.test_acceptance_complete_and_early_violation) ... ok
+test_actions_obey_dependencies_and_accounting (test_attention_batch.BatchTests.test_actions_obey_dependencies_and_accounting) ... ok
+test_budget_shortfall_does_not_cap_or_drop_input (test_attention_batch.BatchTests.test_budget_shortfall_does_not_cap_or_drop_input) ... ok
+test_c4_cheap_phase_and_completed_inconclusive (test_attention_batch.BatchTests.test_c4_cheap_phase_and_completed_inconclusive) ... ok
+test_canonical_cheapest_and_random_selection (test_attention_batch.BatchTests.test_canonical_cheapest_and_random_selection) ... ok
+test_detection_continues_after_inconclusive (test_attention_batch.BatchTests.test_detection_continues_after_inconclusive) ... ok
+test_dprime_invariance (test_attention_batch.BatchTests.test_dprime_invariance) ... ok
+test_drop_threshold_uses_decisiveness_not_correctness (test_attention_batch.BatchTests.test_drop_threshold_uses_decisiveness_not_correctness) ... ok
+test_hidden_interface_and_cached_predictions (test_attention_batch.BatchTests.test_hidden_interface_and_cached_predictions) ... ok
+test_invalid_budget_and_permutation (test_attention_batch.BatchTests.test_invalid_budget_and_permutation) ... ok
+test_shared_zero_and_small_budget (test_attention_batch.BatchTests.test_shared_zero_and_small_budget) ... ok
+
+----------------------------------------------------------------------
+Ran 31 tests in 2.695s
+
+OK

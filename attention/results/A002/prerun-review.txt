@@ -1,0 +1,27 @@
+A002 independent prerelease review
+Reviewed revision: 62e0236cd21fa0976a20a5c101be9a31b067f468
+Disposition: PASS for first held-out generation and execution.
+
+Scope: attention/protocols/A002-shared-budget.md, attention/build_s2.py, attention/s2.py, attention/self_model_s2.json, attention/a002.py, attention/batch.py, and A002/batch tests. No A002 tasks were generated and no repository files were edited by this review.
+
+Verified:
+- Frozen S2 exactly rebuilds from enumerated development sources, with 300 requests and nine conditions per request. Class counts are 789 acceptance, 1487 violation, 424 inconclusive.
+- Request-only features, nearest-neighbor distances, E014/E015 map rules, smoothing, and active versus unused corruption match the registration. No new numerical outcomes enter predictions.
+- Task/condition/global-permutation seeds, five-cohort package order, nine conditions per request, and four shared budgets match the registration.
+- Scheduler choice receives requests, observations, available prices and model only. Fresh executors run selected steps; hidden full-pipeline outcomes are not reused for policy decisions.
+- Predictions and intervention checks are written before reference or full-pipeline solves.
+- Primary paired counts and Brier arithmetic are correct. Package Brier averages equally weight all 540 inputs.
+- Replay loads archived requests/permutations rather than regenerating them. An additional fixed development-derived valid archive test passed with random-number initialization explicitly forbidden.
+- Comparison preserves discrete outcomes, aggregate counts, audit flags, structure, and individual/aggregate logical costs; numerical diagnostic drift is informational.
+- Sixteen fixed-development tests passed via python -m unittest tests.test_attention_a002 tests.test_attention_batch -q.
+
+Findings corrected before release:
+1. Abandonment used expected numerical correctness rather than registered decisive-verdict probability. Corrected in 473410d; regression covers their distinction.
+2. Replay comparison omitted aggregate/audit fields. Corrected in 369462a.
+3. Corruption magnitude and initial priority checks were not persisted. Corrected in bc85f97.
+4. Aggregate logical-cost containers were treated as numerical diagnostics. Corrected in 62e0236.
+
+Interpretation cautions, not release blockers:
+- Later-grid action probabilities are conditioned on development paths reaching those grids; 198 of 300 development requests have no v2_4096 observations.
+- Equality at full budget remains a falsifiable prediction, not an invariant: registered abandonment may leave inputs unfinished.
+- Independent post-run summary recomputation, full-pipeline parity checks, false-accept audit, D-prime invariance, overlap checks, and fresh replay remain required after execution. This review does not anticipate their outcomes.
