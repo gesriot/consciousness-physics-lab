@@ -17,6 +17,28 @@ def decision_projection(value):
     return value
 
 
+def upstream_decisions(result):
+    diagnostic_action_keys = {'observation', 'original_observation', 'hooked_observation',
+                              'sample_trace', 'sample_scores', 'score_details', 'forecast'}
+    actions = []
+    for row in result['actions']:
+        action = {k: v for k, v in row.items() if k not in diagnostic_action_keys}
+        observed = row['observation']
+        action['observation_decision'] = {k: observed[k] for k in ('verdict', 'terminal', 'futile') if k in observed}
+        if 'safety' in observed:
+            action['observation_decision']['guard_passed'] = observed['safety']['passed']
+        actions.append(action)
+    inputs = []
+    for row in result['inputs']:
+        value = {k: v for k, v in row.items() if k not in ('observed', 'replacements')}
+        value['observed_decisions'] = {a: {k: obs[k] for k in ('verdict', 'terminal', 'futile') if k in obs}
+                                       for a, obs in row.get('observed', {}).items()}
+        value['replacement_decisions'] = {a: obs['verdict'] for a, obs in row.get('replacements', {}).items()}
+        inputs.append(value)
+    return {**{k: v for k, v in result.items() if k not in ('actions', 'inputs')},
+            'actions': actions, 'inputs': inputs}
+
+
 def compare(left, right):
     left, right = Path(left), Path(right)
     lm, rm = read_json(left/'manifest.json'), read_json(right/'manifest.json')
@@ -28,13 +50,7 @@ def compare(left, right):
             for package in range(4):
                 filename = f'{fault}-{package}.json.gz'
                 a, b = (read_json(root/f'series-{i:02d}'/filename)['result'] for root in (left, right))
-                def upstream(r):
-                    return dict(inputs=[{k:x[k] for k in ('verdict', 'closure_action_index', 'required_replacements')} for x in r['inputs']],
-                        actions=[dict(input_index=x['input_index'], channel=x['channel'], sample=x['sample'],
-                                      replacement=x['replacement'], verdict=x['observation']['verdict'],
-                                      terminal=x['observation'].get('terminal'), cost=x['cost']) for x in r['actions']],
-                        alerts=r['alerts'], suspect=r['suspect'])
-                if upstream(a) != upstream(b): decisions.append([i, filename])
+                if upstream_decisions(a) != upstream_decisions(b): decisions.append([i, filename])
                 elif a != b: diagnostics.append([i, filename])
         for filename in ('recalls.json.gz', 'ledger.json.gz', 'summary.json'):
             a, b = read_json(left/f'series-{i:02d}'/filename), read_json(right/f'series-{i:02d}'/filename)
