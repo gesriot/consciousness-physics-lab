@@ -1,0 +1,76 @@
+A003 independent final source and scientific-record review
+Reviewed HEAD: 12855816d94fc3a4be8aa14340e49366e659d40e
+Base: 238c5b54e033aa91c26d1b986f6480c417dd1b9a
+Status: PASS within the scope below. No unresolved scientific or source blocker.
+
+1. Registration and provenance
+The development analysis precedes protocol 19cef65 in commit ancestry.
+Implementation/model 936acf1 and independent audit 705fd77 precede execution
+commit 7c5856f. The protocol SHA-256 in the primary archive matches the
+committed protocol. Every source SHA-256 in the primary archive was independently
+checked against that exact file at execution commit 7c5856f and matches.
+Seeds are 20261135, 20261136, 20261137. No later parameter change is present.
+The D support-degeneration finding is disclosed in the prerelease record before
+held-out outcomes. It is not retrospectively presented as a successful prediction.
+
+2. Scientific outcome and interpretation
+Independently recomputed policy totals from packages:
+Budget 20%: B2 170, B 138, C2 229, C4 68, D 228, Dprime 170; oracle 330.
+Budget 40%: B2 308, B 268, C2 308, C4 252, D 308, Dprime 308; oracle 400.
+Budget 60%: B2 391, B 375, C2 402, C4 322, D 402, Dprime 391; oracle 404.
+Budget 100%: B2 404, B 404, C2 404, C4 322, D 404, Dprime 404; oracle 404.
+False acceptances total zero at every budget across all six policies.
+The report and manuscript retain the failure to surpass C2. Their claims do not
+attribute the B2 versus B gain uniquely to updating: model, development data and
+planner also differ. D is described as support destruction followed by registered
+C2 rescue, not useful incorrect beliefs or sustained alternate updating.
+Dependent conditions and linked packages are not treated as independent samples.
+The distinction between numerical accuracy and rejection of a wrong model is kept.
+Oracle information is confined to the evaluation, not passed to the scheduler.
+The manuscript is substantive version 0.13, not publication-ready 1.0, with one
+A003 details link and without implementation logs, hashes or seeds in its prose.
+
+3. Replay and independent audits
+The original fresh replay comparison passes. It reports 1,963,145 numeric
+comparisons over 2,653 paths, zero changes. The retained repeat summary agrees
+exactly with the main summary. The two independent result audits pass 513,110
+checks each. Their scope is archived arithmetic, support, prerequisites, costs,
+posterior, summaries and oracle; they do not replace a solver rerun.
+The fallback audit and negative summary-mutation control are retained.
+A supplementary fresh solver replay using the post-compression source adapters
+is still running at this review's completion. Its result is not claimed here;
+the coordinator will add the actual comparison and audit before final delivery.
+
+4. Lossless A001 storage correction
+Independently obtained original A001 bytes directly from base 238c5b5 and compared
+them to decompressed current gzip bytes. Both match byte-for-byte:
+results.json: 63,626,099 bytes, SHA-256
+803c60ed29d498afee9fa8f1f636537cf15501d416f17ec5d85b5df84e7d95aa
+repeat.json: 63,626,254 bytes, SHA-256
+606a36c6138148e80b484bab414f7efbe9f3508f70495c45507dfb951c6085c0
+
+The reader fallback only resolves a missing historical .json to .json.gz;
+an existing original wins. Historical source_bytes hashes decompressed original
+bytes, while an explicitly named .gz identifies actual compressed bytes. Replay
+provenance identifies the actual file. This preserves the frozen S2/S3 source
+identities rather than rewriting them. Frozen model files are unchanged.
+The compression check log records exact byte rebuilds of S2 and S3, compressed
+A001 intake/comparison, A002 audit and original A003 replay comparison passing.
+Post-result modifications are storage/read adaptations, not scheduler or numerical
+parameter changes. lab/ has no differences from base.
+
+5. Final aggregate and repository hygiene
+Read the completed final aggregate log: 186 primary tests and 30 vendor tests
+pass. The checked source tree is clean at 1285581. No AGENTS.md is tracked.
+Tracked forbidden-marker grep and markdown U+2014 grep return no matches.
+All added history blobs are below 50 MiB, and no working repository file outside
+.git exceeds 50 MiB after the A001 correction. Author and committer identities
+throughout the new history form one line, matching 688e13e:
+gesriot <gessman1618@gmail.com>|gesriot <gessman1618@gmail.com>
+
+Scope boundary
+This review does not certify the not-yet-finished supplementary replay, creation
+or restoration of the final bundle, final archive manifest, or pCloud upload.
+Those are coordinator-owned completion checks. No push was performed by this
+review. The preserved negative and mixed outcomes support only the stated
+functional conclusions, not a consciousness claim.

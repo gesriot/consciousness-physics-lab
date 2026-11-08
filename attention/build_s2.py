@@ -1,12 +1,12 @@
 """Build S2 exclusively from explicitly enumerated development archives."""
 import argparse
 import copy
-import gzip
 import hashlib
 import json
 import math
 from pathlib import Path
 from attention.s2 import VERDICTS, features, _probs
+from attention.io import read_json, source_bytes
 
 ROOT = Path(__file__).resolve().parents[1]
 SOURCES = [
@@ -22,9 +22,7 @@ SOURCES = [
 
 
 def read(name):
-    path = ROOT/name
-    with gzip.open(path, 'rt') if name.endswith('.gz') else path.open() as stream:
-        return json.load(stream)
+    return read_json(ROOT/name)
 
 
 def build():
@@ -42,7 +40,7 @@ def build():
                 row += [p['difference'], p['uncertainty']]
             maps[name].append(row)
     model = dict(version=2, neighbors=16, action_model=action_model, action_names=names, maps=maps,
-                 development_sources_sha256={s: hashlib.sha256((ROOT/s).read_bytes()).hexdigest() for s in SOURCES},
+                 development_sources_sha256={s: hashlib.sha256(source_bytes(ROOT/s)).hexdigest() for s in SOURCES},
                  feature_names=['log10_abs_zT/6','signed_phase/(pi/2)','log10_tolerance/3','modal_attainable_4096','v2_map_accept_feasible','collocation_map_accept_feasible'],
                  smoothing='One pseudocount per verdict; beta(1,1) for inaccurate given violation.',
                  map_rule='Nearest archived point in the first two feature coordinates; archive-order ties. Empirical prediction, not a proof. V2 any C1-converging U<=tolerance; collocation difference<=tolerance/8 and U<=tolerance.',

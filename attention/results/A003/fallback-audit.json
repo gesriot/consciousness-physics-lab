@@ -1,0 +1,1025 @@
+{
+  "passed": true,
+  "rows": [
+    {
+      "budget": "0.2",
+      "package_id": 0,
+      "fallback_trigger": {
+        "input_index": 36,
+        "step": 1,
+        "action": "normalization",
+        "category": 0,
+        "global_action_index": 0
+      },
+      "first_action": [
+        36,
+        "normalization"
+      ],
+      "first_action_cost": 1.125,
+      "remaining_actions": 393,
+      "remaining_actions_all_exact_C2": true,
+      "violating_indices": [],
+      "whole_sequence_equals_C2": false,
+      "correct_difference_from_C2": 0
+    },
+    {
+      "budget": "0.2",
+      "package_id": 1,
+      "fallback_trigger": {
+        "input_index": 36,
+        "step": 1,
+        "action": "normalization",
+        "category": 0,
+        "global_action_index": 0
+      },
+      "first_action": [
+        36,
+        "normalization"
+      ],
+      "first_action_cost": 1.125,
+      "remaining_actions": 406,
+      "remaining_actions_all_exact_C2": true,
+      "violating_indices": [],
+      "whole_sequence_equals_C2": false,
+      "correct_difference_from_C2": -1
+    },
+    {
+      "budget": "0.2",
+      "package_id": 2,
+      "fallback_trigger": {
+        "input_index": 36,
+        "step": 1,
+        "action": "normalization",
+        "category": 0,
+        "global_action_index": 0
+      },
+      "first_action": [
+        36,
+        "normalization"
+      ],
+      "first_action_cost": 1.125,
+      "remaining_actions": 382,
+      "remaining_actions_all_exact_C2": true,
+      "violating_indices": [],
+      "whole_sequence_equals_C2": false,
+      "correct_difference_from_C2": 0
+    },
+    {
+      "budget": "0.2",
+      "package_id": 3,
+      "fallback_trigger": {
+        "input_index": 36,
+        "step": 1,
+        "action": "normalization",
+        "category": 0,
+        "global_action_index": 0
+      },
+      "first_action": [
+        36,
+        "normalization"
+      ],
+      "first_action_cost": 1.125,
+      "remaining_actions": 382,
+      "remaining_actions_all_exact_C2": true,
+      "violating_indices": [],
+      "whole_sequence_equals_C2": false,
+      "correct_difference_from_C2": 0
+    },
+    {
+      "budget": "0.2",
+      "package_id": 4,
+      "fallback_trigger": {
+        "input_index": 36,
+        "step": 1,
+        "action": "normalization",
+        "category": 0,
+        "global_action_index": 0
+      },
+      "first_action": [
+        36,
+        "normalization"
+      ],
+      "first_action_cost": 1.125,
+      "remaining_actions": 379,
+      "remaining_actions_all_exact_C2": true,
+      "violating_indices": [],
+      "whole_sequence_equals_C2": false,
+      "correct_difference_from_C2": 0
+    },
+    {
+      "budget": "0.2",
+      "package_id": 5,
+      "fallback_trigger": {
+        "input_index": 36,
+        "step": 1,
+        "action": "normalization",
+        "category": 0,
+        "global_action_index": 0
+      },
+      "first_action": [
+        36,
+        "normalization"
+      ],
+      "first_action_cost": 1.125,
+      "remaining_actions": 362,
+      "remaining_actions_all_exact_C2": true,
+      "violating_indices": [],
+      "whole_sequence_equals_C2": false,
+      "correct_difference_from_C2": 0
+    },
+    {
+      "budget": "0.2",
+      "package_id": 6,
+      "fallback_trigger": {
+        "input_index": 36,
+        "step": 1,
+        "action": "normalization",
+        "category": 0,
+        "global_action_index": 0
+      },
+      "first_action": [
+        36,
+        "normalization"
+      ],
+      "first_action_cost": 1.125,
+      "remaining_actions": 375,
+      "remaining_actions_all_exact_C2": true,
+      "violating_indices": [],
+      "whole_sequence_equals_C2": false,
+      "correct_difference_from_C2": 0
+    },
+    {
+      "budget": "0.2",
+      "package_id": 7,
+      "fallback_trigger": {
+        "input_index": 36,
+        "step": 1,
+        "action": "normalization",
+        "category": 0,
+        "global_action_index": 0
+      },
+      "first_action": [
+        36,
+        "normalization"
+      ],
+      "first_action_cost": 1.125,
+      "remaining_actions": 382,
+      "remaining_actions_all_exact_C2": true,
+      "violating_indices": [],
+      "whole_sequence_equals_C2": false,
+      "correct_difference_from_C2": 0
+    },
+    {
+      "budget": "0.2",
+      "package_id": 8,
+      "fallback_trigger": {
+        "input_index": 36,
+        "step": 1,
+        "action": "normalization",
+        "category": 0,
+        "global_action_index": 0
+      },
+      "first_action": [
+        36,
+        "normalization"
+      ],
+      "first_action_cost": 1.125,
+      "remaining_actions": 380,
+      "remaining_actions_all_exact_C2": true,
+      "violating_indices": [],
+      "whole_sequence_equals_C2": false,
+      "correct_difference_from_C2": 0
+    },
+    {
+      "budget": "0.2",
+      "package_id": 9,
+      "fallback_trigger": {
+        "input_index": 36,
+        "step": 1,
+        "action": "normalization",
+        "category": 0,
+        "global_action_index": 0
+      },
+      "first_action": [
+        36,
+        "normalization"
+      ],
+      "first_action_cost": 1.125,
+      "remaining_actions": 385,
+      "remaining_actions_all_exact_C2": true,
+      "violating_indices": [],
+      "whole_sequence_equals_C2": false,
+      "correct_difference_from_C2": 0
+    },
+    {
+      "budget": "0.2",
+      "package_id": 10,
+      "fallback_trigger": {
+        "input_index": 36,
+        "step": 1,
+        "action": "normalization",
+        "category": 0,
+        "global_action_index": 0
+      },
+      "first_action": [
+        36,
+        "normalization"
+      ],
+      "first_action_cost": 1.125,
+      "remaining_actions": 387,
+      "remaining_actions_all_exact_C2": true,
+      "violating_indices": [],
+      "whole_sequence_equals_C2": false,
+      "correct_difference_from_C2": 0
+    },
+    {
+      "budget": "0.2",
+      "package_id": 11,
+      "fallback_trigger": {
+        "input_index": 36,
+        "step": 1,
+        "action": "normalization",
+        "category": 0,
+        "global_action_index": 0
+      },
+      "first_action": [
+        36,
+        "normalization"
+      ],
+      "first_action_cost": 1.125,
+      "remaining_actions": 373,
+      "remaining_actions_all_exact_C2": true,
+      "violating_indices": [],
+      "whole_sequence_equals_C2": false,
+      "correct_difference_from_C2": 0
+    },
+    {
+      "budget": "0.4",
+      "package_id": 0,
+      "fallback_trigger": {
+        "input_index": 36,
+        "step": 1,
+        "action": "normalization",
+        "category": 0,
+        "global_action_index": 0
+      },
+      "first_action": [
+        36,
+        "normalization"
+      ],
+      "first_action_cost": 1.125,
+      "remaining_actions": 431,
+      "remaining_actions_all_exact_C2": true,
+      "violating_indices": [],
+      "whole_sequence_equals_C2": false,
+      "correct_difference_from_C2": 0
+    },
+    {
+      "budget": "0.4",
+      "package_id": 1,
+      "fallback_trigger": {
+        "input_index": 36,
+        "step": 1,
+        "action": "normalization",
+        "category": 0,
+        "global_action_index": 0
+      },
+      "first_action": [
+        36,
+        "normalization"
+      ],
+      "first_action_cost": 1.125,
+      "remaining_actions": 451,
+      "remaining_actions_all_exact_C2": true,
+      "violating_indices": [],
+      "whole_sequence_equals_C2": false,
+      "correct_difference_from_C2": 0
+    },
+    {
+      "budget": "0.4",
+      "package_id": 2,
+      "fallback_trigger": {
+        "input_index": 36,
+        "step": 1,
+        "action": "normalization",
+        "category": 0,
+        "global_action_index": 0
+      },
+      "first_action": [
+        36,
+        "normalization"
+      ],
+      "first_action_cost": 1.125,
+      "remaining_actions": 410,
+      "remaining_actions_all_exact_C2": true,
+      "violating_indices": [],
+      "whole_sequence_equals_C2": false,
+      "correct_difference_from_C2": 0
+    },
+    {
+      "budget": "0.4",
+      "package_id": 3,
+      "fallback_trigger": {
+        "input_index": 36,
+        "step": 1,
+        "action": "normalization",
+        "category": 0,
+        "global_action_index": 0
+      },
+      "first_action": [
+        36,
+        "normalization"
+      ],
+      "first_action_cost": 1.125,
+      "remaining_actions": 410,
+      "remaining_actions_all_exact_C2": true,
+      "violating_indices": [],
+      "whole_sequence_equals_C2": false,
+      "correct_difference_from_C2": 0
+    },
+    {
+      "budget": "0.4",
+      "package_id": 4,
+      "fallback_trigger": {
+        "input_index": 36,
+        "step": 1,
+        "action": "normalization",
+        "category": 0,
+        "global_action_index": 0
+      },
+      "first_action": [
+        36,
+        "normalization"
+      ],
+      "first_action_cost": 1.125,
+      "remaining_actions": 409,
+      "remaining_actions_all_exact_C2": true,
+      "violating_indices": [],
+      "whole_sequence_equals_C2": false,
+      "correct_difference_from_C2": 0
+    },
+    {
+      "budget": "0.4",
+      "package_id": 5,
+      "fallback_trigger": {
+        "input_index": 36,
+        "step": 1,
+        "action": "normalization",
+        "category": 0,
+        "global_action_index": 0
+      },
+      "first_action": [
+        36,
+        "normalization"
+      ],
+      "first_action_cost": 1.125,
+      "remaining_actions": 387,
+      "remaining_actions_all_exact_C2": true,
+      "violating_indices": [],
+      "whole_sequence_equals_C2": false,
+      "correct_difference_from_C2": 0
+    },
+    {
+      "budget": "0.4",
+      "package_id": 6,
+      "fallback_trigger": {
+        "input_index": 36,
+        "step": 1,
+        "action": "normalization",
+        "category": 0,
+        "global_action_index": 0
+      },
+      "first_action": [
+        36,
+        "normalization"
+      ],
+      "first_action_cost": 1.125,
+      "remaining_actions": 402,
+      "remaining_actions_all_exact_C2": true,
+      "violating_indices": [],
+      "whole_sequence_equals_C2": false,
+      "correct_difference_from_C2": 0
+    },
+    {
+      "budget": "0.4",
+      "package_id": 7,
+      "fallback_trigger": {
+        "input_index": 36,
+        "step": 1,
+        "action": "normalization",
+        "category": 0,
+        "global_action_index": 0
+      },
+      "first_action": [
+        36,
+        "normalization"
+      ],
+      "first_action_cost": 1.125,
+      "remaining_actions": 411,
+      "remaining_actions_all_exact_C2": true,
+      "violating_indices": [],
+      "whole_sequence_equals_C2": false,
+      "correct_difference_from_C2": 0
+    },
+    {
+      "budget": "0.4",
+      "package_id": 8,
+      "fallback_trigger": {
+        "input_index": 36,
+        "step": 1,
+        "action": "normalization",
+        "category": 0,
+        "global_action_index": 0
+      },
+      "first_action": [
+        36,
+        "normalization"
+      ],
+      "first_action_cost": 1.125,
+      "remaining_actions": 409,
+      "remaining_actions_all_exact_C2": true,
+      "violating_indices": [],
+      "whole_sequence_equals_C2": false,
+      "correct_difference_from_C2": 0
+    },
+    {
+      "budget": "0.4",
+      "package_id": 9,
+      "fallback_trigger": {
+        "input_index": 36,
+        "step": 1,
+        "action": "normalization",
+        "category": 0,
+        "global_action_index": 0
+      },
+      "first_action": [
+        36,
+        "normalization"
+      ],
+      "first_action_cost": 1.125,
+      "remaining_actions": 422,
+      "remaining_actions_all_exact_C2": true,
+      "violating_indices": [],
+      "whole_sequence_equals_C2": false,
+      "correct_difference_from_C2": 0
+    },
+    {
+      "budget": "0.4",
+      "package_id": 10,
+      "fallback_trigger": {
+        "input_index": 36,
+        "step": 1,
+        "action": "normalization",
+        "category": 0,
+        "global_action_index": 0
+      },
+      "first_action": [
+        36,
+        "normalization"
+      ],
+      "first_action_cost": 1.125,
+      "remaining_actions": 420,
+      "remaining_actions_all_exact_C2": true,
+      "violating_indices": [],
+      "whole_sequence_equals_C2": false,
+      "correct_difference_from_C2": 0
+    },
+    {
+      "budget": "0.4",
+      "package_id": 11,
+      "fallback_trigger": {
+        "input_index": 36,
+        "step": 1,
+        "action": "normalization",
+        "category": 0,
+        "global_action_index": 0
+      },
+      "first_action": [
+        36,
+        "normalization"
+      ],
+      "first_action_cost": 1.125,
+      "remaining_actions": 403,
+      "remaining_actions_all_exact_C2": true,
+      "violating_indices": [],
+      "whole_sequence_equals_C2": false,
+      "correct_difference_from_C2": 0
+    },
+    {
+      "budget": "0.6",
+      "package_id": 0,
+      "fallback_trigger": {
+        "input_index": 36,
+        "step": 1,
+        "action": "normalization",
+        "category": 0,
+        "global_action_index": 0
+      },
+      "first_action": [
+        36,
+        "normalization"
+      ],
+      "first_action_cost": 1.125,
+      "remaining_actions": 447,
+      "remaining_actions_all_exact_C2": true,
+      "violating_indices": [],
+      "whole_sequence_equals_C2": false,
+      "correct_difference_from_C2": 0
+    },
+    {
+      "budget": "0.6",
+      "package_id": 1,
+      "fallback_trigger": {
+        "input_index": 36,
+        "step": 1,
+        "action": "normalization",
+        "category": 0,
+        "global_action_index": 0
+      },
+      "first_action": [
+        36,
+        "normalization"
+      ],
+      "first_action_cost": 1.125,
+      "remaining_actions": 469,
+      "remaining_actions_all_exact_C2": true,
+      "violating_indices": [],
+      "whole_sequence_equals_C2": false,
+      "correct_difference_from_C2": 0
+    },
+    {
+      "budget": "0.6",
+      "package_id": 2,
+      "fallback_trigger": {
+        "input_index": 36,
+        "step": 1,
+        "action": "normalization",
+        "category": 0,
+        "global_action_index": 0
+      },
+      "first_action": [
+        36,
+        "normalization"
+      ],
+      "first_action_cost": 1.125,
+      "remaining_actions": 422,
+      "remaining_actions_all_exact_C2": true,
+      "violating_indices": [],
+      "whole_sequence_equals_C2": false,
+      "correct_difference_from_C2": 0
+    },
+    {
+      "budget": "0.6",
+      "package_id": 3,
+      "fallback_trigger": {
+        "input_index": 36,
+        "step": 1,
+        "action": "normalization",
+        "category": 0,
+        "global_action_index": 0
+      },
+      "first_action": [
+        36,
+        "normalization"
+      ],
+      "first_action_cost": 1.125,
+      "remaining_actions": 422,
+      "remaining_actions_all_exact_C2": true,
+      "violating_indices": [],
+      "whole_sequence_equals_C2": false,
+      "correct_difference_from_C2": 0
+    },
+    {
+      "budget": "0.6",
+      "package_id": 4,
+      "fallback_trigger": {
+        "input_index": 36,
+        "step": 1,
+        "action": "normalization",
+        "category": 0,
+        "global_action_index": 0
+      },
+      "first_action": [
+        36,
+        "normalization"
+      ],
+      "first_action_cost": 1.125,
+      "remaining_actions": 422,
+      "remaining_actions_all_exact_C2": true,
+      "violating_indices": [],
+      "whole_sequence_equals_C2": false,
+      "correct_difference_from_C2": 0
+    },
+    {
+      "budget": "0.6",
+      "package_id": 5,
+      "fallback_trigger": {
+        "input_index": 36,
+        "step": 1,
+        "action": "normalization",
+        "category": 0,
+        "global_action_index": 0
+      },
+      "first_action": [
+        36,
+        "normalization"
+      ],
+      "first_action_cost": 1.125,
+      "remaining_actions": 394,
+      "remaining_actions_all_exact_C2": true,
+      "violating_indices": [],
+      "whole_sequence_equals_C2": false,
+      "correct_difference_from_C2": 0
+    },
+    {
+      "budget": "0.6",
+      "package_id": 6,
+      "fallback_trigger": {
+        "input_index": 36,
+        "step": 1,
+        "action": "normalization",
+        "category": 0,
+        "global_action_index": 0
+      },
+      "first_action": [
+        36,
+        "normalization"
+      ],
+      "first_action_cost": 1.125,
+      "remaining_actions": 410,
+      "remaining_actions_all_exact_C2": true,
+      "violating_indices": [],
+      "whole_sequence_equals_C2": false,
+      "correct_difference_from_C2": 0
+    },
+    {
+      "budget": "0.6",
+      "package_id": 7,
+      "fallback_trigger": {
+        "input_index": 36,
+        "step": 1,
+        "action": "normalization",
+        "category": 0,
+        "global_action_index": 0
+      },
+      "first_action": [
+        36,
+        "normalization"
+      ],
+      "first_action_cost": 1.125,
+      "remaining_actions": 423,
+      "remaining_actions_all_exact_C2": true,
+      "violating_indices": [],
+      "whole_sequence_equals_C2": false,
+      "correct_difference_from_C2": 0
+    },
+    {
+      "budget": "0.6",
+      "package_id": 8,
+      "fallback_trigger": {
+        "input_index": 36,
+        "step": 1,
+        "action": "normalization",
+        "category": 0,
+        "global_action_index": 0
+      },
+      "first_action": [
+        36,
+        "normalization"
+      ],
+      "first_action_cost": 1.125,
+      "remaining_actions": 420,
+      "remaining_actions_all_exact_C2": true,
+      "violating_indices": [],
+      "whole_sequence_equals_C2": false,
+      "correct_difference_from_C2": 0
+    },
+    {
+      "budget": "0.6",
+      "package_id": 9,
+      "fallback_trigger": {
+        "input_index": 36,
+        "step": 1,
+        "action": "normalization",
+        "category": 0,
+        "global_action_index": 0
+      },
+      "first_action": [
+        36,
+        "normalization"
+      ],
+      "first_action_cost": 1.125,
+      "remaining_actions": 440,
+      "remaining_actions_all_exact_C2": true,
+      "violating_indices": [],
+      "whole_sequence_equals_C2": false,
+      "correct_difference_from_C2": 0
+    },
+    {
+      "budget": "0.6",
+      "package_id": 10,
+      "fallback_trigger": {
+        "input_index": 36,
+        "step": 1,
+        "action": "normalization",
+        "category": 0,
+        "global_action_index": 0
+      },
+      "first_action": [
+        36,
+        "normalization"
+      ],
+      "first_action_cost": 1.125,
+      "remaining_actions": 436,
+      "remaining_actions_all_exact_C2": true,
+      "violating_indices": [],
+      "whole_sequence_equals_C2": false,
+      "correct_difference_from_C2": 0
+    },
+    {
+      "budget": "0.6",
+      "package_id": 11,
+      "fallback_trigger": {
+        "input_index": 36,
+        "step": 1,
+        "action": "normalization",
+        "category": 0,
+        "global_action_index": 0
+      },
+      "first_action": [
+        36,
+        "normalization"
+      ],
+      "first_action_cost": 1.125,
+      "remaining_actions": 412,
+      "remaining_actions_all_exact_C2": true,
+      "violating_indices": [],
+      "whole_sequence_equals_C2": false,
+      "correct_difference_from_C2": 0
+    },
+    {
+      "budget": "1.0",
+      "package_id": 0,
+      "fallback_trigger": {
+        "input_index": 36,
+        "step": 1,
+        "action": "normalization",
+        "category": 0,
+        "global_action_index": 0
+      },
+      "first_action": [
+        36,
+        "normalization"
+      ],
+      "first_action_cost": 1.125,
+      "remaining_actions": 447,
+      "remaining_actions_all_exact_C2": true,
+      "violating_indices": [],
+      "whole_sequence_equals_C2": false,
+      "correct_difference_from_C2": 0
+    },
+    {
+      "budget": "1.0",
+      "package_id": 1,
+      "fallback_trigger": {
+        "input_index": 36,
+        "step": 1,
+        "action": "normalization",
+        "category": 0,
+        "global_action_index": 0
+      },
+      "first_action": [
+        36,
+        "normalization"
+      ],
+      "first_action_cost": 1.125,
+      "remaining_actions": 472,
+      "remaining_actions_all_exact_C2": true,
+      "violating_indices": [],
+      "whole_sequence_equals_C2": false,
+      "correct_difference_from_C2": 0
+    },
+    {
+      "budget": "1.0",
+      "package_id": 2,
+      "fallback_trigger": {
+        "input_index": 36,
+        "step": 1,
+        "action": "normalization",
+        "category": 0,
+        "global_action_index": 0
+      },
+      "first_action": [
+        36,
+        "normalization"
+      ],
+      "first_action_cost": 1.125,
+      "remaining_actions": 422,
+      "remaining_actions_all_exact_C2": true,
+      "violating_indices": [],
+      "whole_sequence_equals_C2": false,
+      "correct_difference_from_C2": 0
+    },
+    {
+      "budget": "1.0",
+      "package_id": 3,
+      "fallback_trigger": {
+        "input_index": 36,
+        "step": 1,
+        "action": "normalization",
+        "category": 0,
+        "global_action_index": 0
+      },
+      "first_action": [
+        36,
+        "normalization"
+      ],
+      "first_action_cost": 1.125,
+      "remaining_actions": 422,
+      "remaining_actions_all_exact_C2": true,
+      "violating_indices": [],
+      "whole_sequence_equals_C2": false,
+      "correct_difference_from_C2": 0
+    },
+    {
+      "budget": "1.0",
+      "package_id": 4,
+      "fallback_trigger": {
+        "input_index": 36,
+        "step": 1,
+        "action": "normalization",
+        "category": 0,
+        "global_action_index": 0
+      },
+      "first_action": [
+        36,
+        "normalization"
+      ],
+      "first_action_cost": 1.125,
+      "remaining_actions": 422,
+      "remaining_actions_all_exact_C2": true,
+      "violating_indices": [],
+      "whole_sequence_equals_C2": false,
+      "correct_difference_from_C2": 0
+    },
+    {
+      "budget": "1.0",
+      "package_id": 5,
+      "fallback_trigger": {
+        "input_index": 36,
+        "step": 1,
+        "action": "normalization",
+        "category": 0,
+        "global_action_index": 0
+      },
+      "first_action": [
+        36,
+        "normalization"
+      ],
+      "first_action_cost": 1.125,
+      "remaining_actions": 394,
+      "remaining_actions_all_exact_C2": true,
+      "violating_indices": [],
+      "whole_sequence_equals_C2": false,
+      "correct_difference_from_C2": 0
+    },
+    {
+      "budget": "1.0",
+      "package_id": 6,
+      "fallback_trigger": {
+        "input_index": 36,
+        "step": 1,
+        "action": "normalization",
+        "category": 0,
+        "global_action_index": 0
+      },
+      "first_action": [
+        36,
+        "normalization"
+      ],
+      "first_action_cost": 1.125,
+      "remaining_actions": 410,
+      "remaining_actions_all_exact_C2": true,
+      "violating_indices": [],
+      "whole_sequence_equals_C2": false,
+      "correct_difference_from_C2": 0
+    },
+    {
+      "budget": "1.0",
+      "package_id": 7,
+      "fallback_trigger": {
+        "input_index": 36,
+        "step": 1,
+        "action": "normalization",
+        "category": 0,
+        "global_action_index": 0
+      },
+      "first_action": [
+        36,
+        "normalization"
+      ],
+      "first_action_cost": 1.125,
+      "remaining_actions": 423,
+      "remaining_actions_all_exact_C2": true,
+      "violating_indices": [],
+      "whole_sequence_equals_C2": false,
+      "correct_difference_from_C2": 0
+    },
+    {
+      "budget": "1.0",
+      "package_id": 8,
+      "fallback_trigger": {
+        "input_index": 36,
+        "step": 1,
+        "action": "normalization",
+        "category": 0,
+        "global_action_index": 0
+      },
+      "first_action": [
+        36,
+        "normalization"
+      ],
+      "first_action_cost": 1.125,
+      "remaining_actions": 420,
+      "remaining_actions_all_exact_C2": true,
+      "violating_indices": [],
+      "whole_sequence_equals_C2": false,
+      "correct_difference_from_C2": 0
+    },
+    {
+      "budget": "1.0",
+      "package_id": 9,
+      "fallback_trigger": {
+        "input_index": 36,
+        "step": 1,
+        "action": "normalization",
+        "category": 0,
+        "global_action_index": 0
+      },
+      "first_action": [
+        36,
+        "normalization"
+      ],
+      "first_action_cost": 1.125,
+      "remaining_actions": 440,
+      "remaining_actions_all_exact_C2": true,
+      "violating_indices": [],
+      "whole_sequence_equals_C2": false,
+      "correct_difference_from_C2": 0
+    },
+    {
+      "budget": "1.0",
+      "package_id": 10,
+      "fallback_trigger": {
+        "input_index": 36,
+        "step": 1,
+        "action": "normalization",
+        "category": 0,
+        "global_action_index": 0
+      },
+      "first_action": [
+        36,
+        "normalization"
+      ],
+      "first_action_cost": 1.125,
+      "remaining_actions": 436,
+      "remaining_actions_all_exact_C2": true,
+      "violating_indices": [],
+      "whole_sequence_equals_C2": false,
+      "correct_difference_from_C2": 0
+    },
+    {
+      "budget": "1.0",
+      "package_id": 11,
+      "fallback_trigger": {
+        "input_index": 36,
+        "step": 1,
+        "action": "normalization",
+        "category": 0,
+        "global_action_index": 0
+      },
+      "first_action": [
+        36,
+        "normalization"
+      ],
+      "first_action_cost": 1.125,
+      "remaining_actions": 412,
+      "remaining_actions_all_exact_C2": true,
+      "violating_indices": [],
+      "whole_sequence_equals_C2": false,
+      "correct_difference_from_C2": 0
+    }
+  ],
+  "interpretation": "D takes one model-selected normalization action, loses all empirical support, then exactly follows C2 on the resulting residual state and budget. Its near-C2 outcome is not evidence that persistent corrupted inference is beneficial.",
+  "development_support": {
+    "normalization": {
+      "accept": 1080,
+      "violation_detected": 0
+    },
+    "high_frequency": {
+      "accept": 840,
+      "violation_detected": 240
+    }
+  },
+  "limitation": "Normalization has no development violations. After the registered category swap, an actual passed normalization is globally unsupported. D therefore degenerates into support-destruction followed by the cheap fallback, rather than maintaining an incorrectly updated posterior. This was inferable from development and limits the intervention interpretation."
+}

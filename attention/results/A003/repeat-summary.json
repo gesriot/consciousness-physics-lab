@@ -1,0 +1,3117 @@
+{
+  "archive_name": "a003-repeat.json.gz",
+  "archive_size_bytes": 9110234,
+  "archive_sha256": "da563047b1186f95c680fc99cf2ccd508df6413831b4a3f502e482d3e0ea6496",
+  "retention": "Full repeat intentionally outside repository; regenerate with archived input. This summary and exact comparison are retained.",
+  "experiment": "A003",
+  "git_head": "7c5856f1603ca76177ad1170d30389b2ac8411e8",
+  "protocol_commit": "19cef6570b0b210793fe435d90094db555f323e3",
+  "protocol_sha256": "9ed0fecc32573275f6351179ef6854015fdba03e19bb205e0b614ed2f02acd4f",
+  "source_sha256": {
+    "attention/a001.py": "7d99fb41d370826e4decb74202cdcfea372b58a77a2ee4c9681052f0244b5e4c",
+    "attention/a002.py": "91359fa48d2b2f5675f323f07a0940f4b5da665a1552fe84edb127063febb108",
+    "attention/a003.py": "bdf3ef7a753aac6c653d31d2feb1306324742cf5648343c27997b14c2dc0f4e3",
+    "attention/agent.py": "dd5e93e3291d44d281bcbcc84557ef55b57700fa73ca18b4aac8504da82aef26",
+    "attention/batch.py": "3b40bfe8fbeb2d9c5003596c4b4ccd0b28268b0f5bf690d80081d862ce11969d",
+    "attention/build_s2.py": "305e2a97e003b8b50e7fa6e55f2527b469d944d3e2a1886caf03d2c72057ec03",
+    "attention/build_s3.py": "a606a2904462a97758a16f2f2cf19233b1aefd51a65e44a5c207abf877d01aac",
+    "attention/development_a002.py": "31885479b81d5095e43e12bd28e91a4b97fdcad7c94a9b5a1a182cf6d9f29310",
+    "attention/io.py": "65e69d96b337f2acb72e58ec7bcae2d1290db9673f14bfd2f5dd0968ca38d2ed",
+    "attention/s2.py": "bd2114c8af2c6d27edd571afa08115d12263f5ed8530b536940ba7d8aaed1f9f",
+    "attention/s3.py": "80c539bf2a5d18fc58dcd003027d47d904871105a910dfeb020c1f5557406c16",
+    "attention/self_model.json": "2c53ee6c9535934f137e407f43ea48a6c4c360a7db144516290e7251f52babe5",
+    "attention/self_model_s2.json": "04e80c09eb8eb0207dd3283e65208b68c8ce602997f96a0684f14a9c3ae0cc4f",
+    "attention/self_model_s3.json": "3bdbfd5ae352092ee0f96ba7f18380a1fa0a497da323b31f3977e5207693f7fb",
+    "attention/updated_batch.py": "3b4bbbaf60f42310db5cab23e82db84c60429f0709c32a4ab1df462ef2be49f7",
+    "lab/allocation.py": "fc00f1cf547f04c7f3b1dde65b97fbbe86b8eb2f203d65ab7ce38e620918cae4",
+    "lab/common_mode.py": "e30aeefce75170f5e45d0d2932f882df70f3367483b4792a16dc5e58d6b3ea92",
+    "lab/convergence_candidates.py": "10c6f17e21bd84b591be73565d2487d2e59909219f1525e257f9801239cb34c7",
+    "lab/executor.py": "9a417483ce7d8fabdda8b1a3186aaa4dc0d1878936ea43d3de2df315a0c94336",
+    "lab/experiment_audit.py": "5373a9bb974d43f9f7d06e36d1144b4d0f225bc9ce6093a2c57145bcfdf0dd9f",
+    "lab/extrapolation.py": "0e0c679cd75bad17dbcee2603e1fd580625afa46df15a70751c4c3d35642b251",
+    "lab/fault_holdout.py": "4c93faa8f44bb857dcc6f9b7bcb15f4baba74a3a5546efb05d6f034180fb59d2",
+    "lab/finite_volume.py": "11077e1271213add698a599aa25c8334601e00f5fc2187d669575cdc7d43c64d",
+    "lab/frozen_pipeline.py": "14700c5ba6aa9b5cc2d426cb2bdf90eefd183ba0c00c4639c09325a0a2c5129c",
+    "lab/geometry_invariants.py": "33fc6e5060227b5c731b34a5419a27107720981acb5d6bf6a8b9846efdae5b0f",
+    "lab/guard.py": "3429f2f915eff1ec24d837b23746af1aaf89a690a9687df97f563fe419f3622e",
+    "lab/matched_mixture.py": "acb2c31f3aeb3f1ca728c980f932e4c83f2f5cdcf3d981d96b4c4cdc98b4b063",
+    "lab/pipeline_holdout.py": "bd62067f99fd3e17ae7a45f136a82c3f3f589ace4b8ef122a6723ef6ecd679cf",
+    "lab/radial_collocation.py": "cec9d3829860fc37b0f32b772651abcc66c1b3581da8a2b33e8294fb0fa6b4f2",
+    "lab/replay.py": "e7fe35565a1d3d89945812bbd0f1a3bc84a01d2e4bd9a302941b3ca2f7113d58",
+    "lab/scientist.py": "ab31b1b5d303e95d2b40e24e21aaa0ee1a1bb8506418bae38ed4de0d52a1e873",
+    "lab/surface_order.py": "c36f743130d4dcba2646ead881dfc05d6c6811c523e6b9b992763cd50e622f59",
+    "lab/three_way.py": "3fe5bd383d3eebbc7392d572a9b7d28247fed4f3e8052a82998aa68d64589af1",
+    "vendor/sphere-thermal-cli/sphere_thermal/response.py": "27e9e1180a686c3a8f11d611b0f2e2c267a098011ccc92389ae6dce3fe48bc32"
+  },
+  "replay": {
+    "source_sha256": "6e19edf677a8d91936adf4c3d309de7468effa804d0901f7e34c140096dc59ac",
+    "experiment": "A003",
+    "task_count": 60
+  },
+  "environment": {
+    "python": "3.12.14",
+    "numpy": "2.3.5",
+    "scipy": "1.17.0",
+    "os": "Linux",
+    "os_release": "6.18.57",
+    "architecture": "x86_64",
+    "blas_lapack_configuration": "Build Dependencies:\n  blas:\n    detection method: pkgconfig\n    found: true\n    include directory: /opt/_internal/cpython-3.12.12/lib/python3.12/site-packages/scipy_openblas64/include\n    lib directory: /opt/_internal/cpython-3.12.12/lib/python3.12/site-packages/scipy_openblas64/lib\n    name: scipy-openblas\n    openblas configuration: OpenBLAS 0.3.30  USE64BITINT DYNAMIC_ARCH NO_AFFINITY\n      Haswell MAX_THREADS=64\n    pc file directory: /project/.openblas\n    version: 0.3.30\n  lapack:\n    detection method: pkgconfig\n    found: true\n    include directory: /opt/_internal/cpython-3.12.12/lib/python3.12/site-packages/scipy_openblas64/include\n    lib directory: /opt/_internal/cpython-3.12.12/lib/python3.12/site-packages/scipy_openblas64/lib\n    name: scipy-openblas\n    openblas configuration: OpenBLAS 0.3.30  USE64BITINT DYNAMIC_ARCH NO_AFFINITY\n      Haswell MAX_THREADS=64\n    pc file directory: /project/.openblas\n    version: 0.3.30\nCompilers:\n  c:\n    commands: cc\n    linker: ld.bfd\n    name: gcc\n    version: 14.2.1\n  c++:\n    commands: c++\n    linker: ld.bfd\n    name: gcc\n    version: 14.2.1\n  cython:\n    commands: cython\n    linker: cython\n    name: cython\n    version: 3.2.1\nMachine Information:\n  build:\n    cpu: x86_64\n    endian: little\n    family: x86_64\n    system: linux\n  host:\n    cpu: x86_64\n    endian: little\n    family: x86_64\n    system: linux\nPython Information:\n  path: /tmp/build-env-aw1mwcap/bin/python\n  version: '3.12'\nSIMD Extensions:\n  baseline:\n  - SSE\n  - SSE2\n  - SSE3\n  found:\n  - SSSE3\n  - SSE41\n  - POPCNT\n  - SSE42\n  - AVX\n  - F16C\n  - FMA3\n  - AVX2\n  - AVX512F\n  - AVX512CD\n  - AVX512_SKX\n  - AVX512_CLX\n  - AVX512_CNL\n  - AVX512_ICL\n  not found:\n  - AVX512_KNL\n  - AVX512_KNM\n  - AVX512_SPR\n\nBuild Dependencies:\n  blas:\n    detection method: pkgconfig\n    found: true\n    has ilp64: false\n    include directory: /opt/_internal/cpython-3.12.11/lib/python3.12/site-packages/scipy_openblas32/include\n    lib directory: /opt/_internal/cpython-3.12.11/lib/python3.12/site-packages/scipy_openblas32/lib\n    name: scipy-openblas\n    openblas configuration: OpenBLAS 0.3.30 DYNAMIC_ARCH NO_AFFINITY Haswell MAX_THREADS=64\n    pc file directory: /project/\n    version: 0.3.30\n  lapack:\n    detection method: pkgconfig\n    found: true\n    has ilp64: false\n    include directory: /opt/_internal/cpython-3.12.11/lib/python3.12/site-packages/scipy_openblas32/include\n    lib directory: /opt/_internal/cpython-3.12.11/lib/python3.12/site-packages/scipy_openblas32/lib\n    name: scipy-openblas\n    openblas configuration: OpenBLAS 0.3.30 DYNAMIC_ARCH NO_AFFINITY Haswell MAX_THREADS=64\n    pc file directory: /project/\n    version: 0.3.30\n  pybind11:\n    detection method: config-tool\n    include directory: unknown\n    name: pybind11\n    version: 3.0.1\nCompilers:\n  c:\n    commands: cc\n    linker: ld.bfd\n    name: gcc\n    version: 14.2.1\n  c++:\n    commands: c++\n    linker: ld.bfd\n    name: gcc\n    version: 14.2.1\n  cython:\n    commands: cython\n    linker: cython\n    name: cython\n    version: 3.2.4\n  fortran:\n    commands: gfortran\n    linker: ld.bfd\n    name: gcc\n    version: 14.2.1\n  pythran:\n    include directory: ../../tmp/build-env-h6rtuvfe/lib/python3.12/site-packages/pythran\n    version: 0.18.1\nMachine Information:\n  build:\n    cpu: x86_64\n    endian: little\n    family: x86_64\n    system: linux\n  cross-compiled: false\n  host:\n    cpu: x86_64\n    endian: little\n    family: x86_64\n    system: linux\nPython Information:\n  path: /tmp/build-env-h6rtuvfe/bin/python\n  version: '3.12'\n\n"
+  },
+  "intake_sha256": "dfcf6a6754165bce442b467e8789334e08cb0ef57d4b2a821012b566c186ff37",
+  "self_model_sha256": "64d40a5f4ffd0aa20686b76ac77cd8332ec91dc5fdd95cb4a1b160306e4c5143",
+  "summary": {
+    "0.2": {
+      "policies": {
+        "B2": {
+          "correct": 170,
+          "false_accepts": 0,
+          "accepts": 20,
+          "spent": 1973.34814453125,
+          "oracle_fraction": 0.5151515151515151,
+          "correct_by_package": [
+            13,
+            15,
+            15,
+            14,
+            14,
+            15,
+            14,
+            15,
+            14,
+            11,
+            14,
+            16
+          ],
+          "spent_by_package": [
+            167.857177734375,
+            167.25634765625,
+            162.907958984375,
+            162.68017578125,
+            165.369873046875,
+            160.438720703125,
+            163.39208984375,
+            163.6025390625,
+            164.671630859375,
+            164.045166015625,
+            163.911376953125,
+            167.215087890625
+          ]
+        },
+        "B": {
+          "correct": 138,
+          "false_accepts": 0,
+          "accepts": 52,
+          "spent": 1973.22265625,
+          "oracle_fraction": 0.41818181818181815,
+          "correct_by_package": [
+            10,
+            12,
+            11,
+            12,
+            13,
+            11,
+            10,
+            12,
+            12,
+            11,
+            11,
+            13
+          ],
+          "spent_by_package": [
+            167.88037109375,
+            167.25927734375,
+            162.914794921875,
+            162.683349609375,
+            165.393798828125,
+            160.46484375,
+            163.396484375,
+            163.6103515625,
+            164.572265625,
+            164.06201171875,
+            163.9365234375,
+            167.048583984375
+          ]
+        },
+        "C2": {
+          "correct": 229,
+          "false_accepts": 0,
+          "accepts": 0,
+          "spent": 1955.5654296875,
+          "oracle_fraction": 0.693939393939394,
+          "correct_by_package": [
+            18,
+            14,
+            19,
+            20,
+            19,
+            21,
+            22,
+            20,
+            22,
+            15,
+            16,
+            23
+          ],
+          "spent_by_package": [
+            166.92626953125,
+            166.546875,
+            161.57470703125,
+            160.42333984375,
+            163.969482421875,
+            159.07421875,
+            159.5,
+            161.078857421875,
+            164.378662109375,
+            162.31005859375,
+            163.205810546875,
+            166.5771484375
+          ]
+        },
+        "C4": {
+          "correct": 68,
+          "false_accepts": 0,
+          "accepts": 0,
+          "spent": 1973.42822265625,
+          "oracle_fraction": 0.20606060606060606,
+          "correct_by_package": [
+            6,
+            6,
+            4,
+            8,
+            4,
+            6,
+            5,
+            5,
+            8,
+            4,
+            5,
+            7
+          ],
+          "spent_by_package": [
+            167.885009765625,
+            167.256591796875,
+            162.91455078125,
+            162.67236328125,
+            165.377685546875,
+            160.462158203125,
+            163.391357421875,
+            163.601806640625,
+            164.65869140625,
+            164.06005859375,
+            163.939697265625,
+            167.208251953125
+          ]
+        },
+        "D": {
+          "correct": 228,
+          "false_accepts": 0,
+          "accepts": 0,
+          "spent": 1956.8154296875,
+          "oracle_fraction": 0.6909090909090909,
+          "correct_by_package": [
+            18,
+            13,
+            19,
+            20,
+            19,
+            21,
+            22,
+            20,
+            22,
+            15,
+            16,
+            23
+          ],
+          "spent_by_package": [
+            166.92626953125,
+            165.671875,
+            162.69970703125,
+            161.54833984375,
+            165.094482421875,
+            160.19921875,
+            160.625,
+            162.203857421875,
+            161.503662109375,
+            162.31005859375,
+            162.330810546875,
+            165.7021484375
+          ]
+        },
+        "Dprime": {
+          "correct": 170,
+          "false_accepts": 0,
+          "accepts": 20,
+          "spent": 1973.34814453125,
+          "oracle_fraction": 0.5151515151515151,
+          "correct_by_package": [
+            13,
+            15,
+            15,
+            14,
+            14,
+            15,
+            14,
+            15,
+            14,
+            11,
+            14,
+            16
+          ],
+          "spent_by_package": [
+            167.857177734375,
+            167.25634765625,
+            162.907958984375,
+            162.68017578125,
+            165.369873046875,
+            160.438720703125,
+            163.39208984375,
+            163.6025390625,
+            164.671630859375,
+            164.045166015625,
+            163.911376953125,
+            167.215087890625
+          ]
+        }
+      },
+      "oracle_correct": 330,
+      "oracle_by_package": [
+        27,
+        25,
+        28,
+        29,
+        27,
+        29,
+        29,
+        28,
+        30,
+        23,
+        24,
+        31
+      ],
+      "paired_B2_minus": {
+        "B": [
+          3,
+          3,
+          4,
+          2,
+          1,
+          4,
+          4,
+          3,
+          2,
+          0,
+          3,
+          3
+        ],
+        "C2": [
+          -5,
+          1,
+          -4,
+          -6,
+          -5,
+          -6,
+          -8,
+          -5,
+          -8,
+          -4,
+          -2,
+          -7
+        ],
+        "C4": [
+          7,
+          9,
+          11,
+          6,
+          10,
+          9,
+          9,
+          10,
+          6,
+          7,
+          9,
+          9
+        ],
+        "D": [
+          -5,
+          2,
+          -4,
+          -6,
+          -5,
+          -6,
+          -8,
+          -5,
+          -8,
+          -4,
+          -2,
+          -7
+        ],
+        "Dprime": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "paired_D_minus_Dprime": [
+        5,
+        -2,
+        4,
+        6,
+        5,
+        6,
+        8,
+        5,
+        8,
+        4,
+        2,
+        7
+      ],
+      "changed_action_packages": {
+        "D": 12,
+        "Dprime": 0
+      }
+    },
+    "0.4": {
+      "policies": {
+        "B2": {
+          "correct": 308,
+          "false_accepts": 0,
+          "accepts": 102,
+          "spent": 3946.232666015625,
+          "oracle_fraction": 0.77,
+          "correct_by_package": [
+            25,
+            25,
+            27,
+            26,
+            25,
+            26,
+            26,
+            27,
+            27,
+            21,
+            24,
+            29
+          ],
+          "spent_by_package": [
+            335.76708984375,
+            334.500244140625,
+            325.802490234375,
+            325.34228515625,
+            330.67724609375,
+            320.881103515625,
+            326.786865234375,
+            327.210693359375,
+            329.330810546875,
+            328.10693359375,
+            327.875732421875,
+            333.951171875
+          ]
+        },
+        "B": {
+          "correct": 268,
+          "false_accepts": 0,
+          "accepts": 112,
+          "spent": 3946.7900390625,
+          "oracle_fraction": 0.67,
+          "correct_by_package": [
+            21,
+            23,
+            21,
+            22,
+            24,
+            22,
+            23,
+            22,
+            24,
+            21,
+            20,
+            25
+          ],
+          "spent_by_package": [
+            335.7705078125,
+            334.5185546875,
+            325.829833984375,
+            325.366943359375,
+            330.78564453125,
+            320.9130859375,
+            326.795166015625,
+            327.224609375,
+            329.30615234375,
+            328.097900390625,
+            327.873291015625,
+            334.308349609375
+          ]
+        },
+        "C2": {
+          "correct": 308,
+          "false_accepts": 0,
+          "accepts": 74,
+          "spent": 3885.5654296875,
+          "oracle_fraction": 0.77,
+          "correct_by_package": [
+            24,
+            19,
+            26,
+            26,
+            23,
+            33,
+            33,
+            26,
+            27,
+            21,
+            23,
+            27
+          ],
+          "spent_by_package": [
+            328.92626953125,
+            332.546875,
+            318.57470703125,
+            317.42333984375,
+            321.969482421875,
+            319.07421875,
+            322.5,
+            322.078857421875,
+            321.378662109375,
+            326.31005859375,
+            322.205810546875,
+            332.5771484375
+          ]
+        },
+        "C4": {
+          "correct": 252,
+          "false_accepts": 0,
+          "accepts": 111,
+          "spent": 3944.863525390625,
+          "oracle_fraction": 0.63,
+          "correct_by_package": [
+            20,
+            19,
+            19,
+            23,
+            20,
+            21,
+            22,
+            20,
+            25,
+            19,
+            18,
+            26
+          ],
+          "spent_by_package": [
+            335.599609375,
+            334.43994140625,
+            325.826416015625,
+            324.5244140625,
+            330.712158203125,
+            320.922607421875,
+            326.784423828125,
+            327.0380859375,
+            329.166748046875,
+            327.951416015625,
+            327.659912109375,
+            334.23779296875
+          ]
+        },
+        "D": {
+          "correct": 308,
+          "false_accepts": 0,
+          "accepts": 74,
+          "spent": 3896.8154296875,
+          "oracle_fraction": 0.77,
+          "correct_by_package": [
+            24,
+            19,
+            26,
+            26,
+            23,
+            33,
+            33,
+            26,
+            27,
+            21,
+            23,
+            27
+          ],
+          "spent_by_package": [
+            328.92626953125,
+            333.671875,
+            319.69970703125,
+            318.54833984375,
+            323.094482421875,
+            320.19921875,
+            323.625,
+            323.203857421875,
+            322.503662109375,
+            326.31005859375,
+            323.330810546875,
+            333.7021484375
+          ]
+        },
+        "Dprime": {
+          "correct": 308,
+          "false_accepts": 0,
+          "accepts": 102,
+          "spent": 3946.232666015625,
+          "oracle_fraction": 0.77,
+          "correct_by_package": [
+            25,
+            25,
+            27,
+            26,
+            25,
+            26,
+            26,
+            27,
+            27,
+            21,
+            24,
+            29
+          ],
+          "spent_by_package": [
+            335.76708984375,
+            334.500244140625,
+            325.802490234375,
+            325.34228515625,
+            330.67724609375,
+            320.881103515625,
+            326.786865234375,
+            327.210693359375,
+            329.330810546875,
+            328.10693359375,
+            327.875732421875,
+            333.951171875
+          ]
+        }
+      },
+      "oracle_correct": 400,
+      "oracle_by_package": [
+        28,
+        27,
+        35,
+        35,
+        33,
+        38,
+        38,
+        34,
+        35,
+        30,
+        32,
+        35
+      ],
+      "paired_B2_minus": {
+        "B": [
+          4,
+          2,
+          6,
+          4,
+          1,
+          4,
+          3,
+          5,
+          3,
+          0,
+          4,
+          4
+        ],
+        "C2": [
+          1,
+          6,
+          1,
+          0,
+          2,
+          -7,
+          -7,
+          1,
+          0,
+          0,
+          1,
+          2
+        ],
+        "C4": [
+          5,
+          6,
+          8,
+          3,
+          5,
+          5,
+          4,
+          7,
+          2,
+          2,
+          6,
+          3
+        ],
+        "D": [
+          1,
+          6,
+          1,
+          0,
+          2,
+          -7,
+          -7,
+          1,
+          0,
+          0,
+          1,
+          2
+        ],
+        "Dprime": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "paired_D_minus_Dprime": [
+        -1,
+        -6,
+        -1,
+        0,
+        -2,
+        7,
+        7,
+        -1,
+        0,
+        0,
+        -1,
+        -2
+      ],
+      "changed_action_packages": {
+        "D": 12,
+        "Dprime": 0
+      }
+    },
+    "0.6": {
+      "policies": {
+        "B2": {
+          "correct": 391,
+          "false_accepts": 0,
+          "accepts": 154,
+          "spent": 5917.787353515625,
+          "oracle_fraction": 0.9678217821782178,
+          "correct_by_package": [
+            27,
+            27,
+            34,
+            34,
+            33,
+            35,
+            36,
+            34,
+            35,
+            29,
+            32,
+            35
+          ],
+          "spent_by_package": [
+            503.62548828125,
+            501.422119140625,
+            488.7294921875,
+            488.026611328125,
+            495.30419921875,
+            481.390625,
+            490.194580078125,
+            490.44482421875,
+            493.08251953125,
+            492.1572265625,
+            491.803466796875,
+            501.606201171875
+          ]
+        },
+        "B": {
+          "correct": 375,
+          "false_accepts": 0,
+          "accepts": 148,
+          "spent": 5917.578369140625,
+          "oracle_fraction": 0.9282178217821783,
+          "correct_by_package": [
+            27,
+            26,
+            32,
+            32,
+            33,
+            31,
+            33,
+            33,
+            34,
+            28,
+            31,
+            35
+          ],
+          "spent_by_package": [
+            502.86376953125,
+            501.21923828125,
+            488.743408203125,
+            488.053955078125,
+            496.089599609375,
+            481.3828125,
+            490.197509765625,
+            490.83837890625,
+            493.394287109375,
+            492.150390625,
+            491.742919921875,
+            500.902099609375
+          ]
+        },
+        "C2": {
+          "correct": 402,
+          "false_accepts": 0,
+          "accepts": 160,
+          "spent": 5253.5654296875,
+          "oracle_fraction": 0.995049504950495,
+          "correct_by_package": [
+            28,
+            25,
+            35,
+            35,
+            33,
+            40,
+            40,
+            34,
+            35,
+            30,
+            32,
+            35
+          ],
+          "spent_by_package": [
+            472.92626953125,
+            494.546875,
+            426.57470703125,
+            425.42333984375,
+            438.969482421875,
+            382.07421875,
+            394.5,
+            430.078857421875,
+            420.378662109375,
+            488.31005859375,
+            466.205810546875,
+            413.5771484375
+          ]
+        },
+        "C4": {
+          "correct": 322,
+          "false_accepts": 0,
+          "accepts": 160,
+          "spent": 4919.9482421875,
+          "oracle_fraction": 0.7970297029702971,
+          "correct_by_package": [
+            23,
+            19,
+            26,
+            27,
+            26,
+            33,
+            34,
+            27,
+            28,
+            26,
+            25,
+            28
+          ],
+          "spent_by_package": [
+            462.443359375,
+            343.31494140625,
+            391.419921875,
+            377.5244140625,
+            401.060302734375,
+            443.97509765625,
+            445.86181640625,
+            393.950927734375,
+            385.072998046875,
+            486.0751953125,
+            407.105224609375,
+            382.14404296875
+          ]
+        },
+        "D": {
+          "correct": 402,
+          "false_accepts": 0,
+          "accepts": 160,
+          "spent": 5264.8154296875,
+          "oracle_fraction": 0.995049504950495,
+          "correct_by_package": [
+            28,
+            25,
+            35,
+            35,
+            33,
+            40,
+            40,
+            34,
+            35,
+            30,
+            32,
+            35
+          ],
+          "spent_by_package": [
+            472.92626953125,
+            495.671875,
+            427.69970703125,
+            426.54833984375,
+            440.094482421875,
+            383.19921875,
+            395.625,
+            431.203857421875,
+            421.503662109375,
+            488.31005859375,
+            467.330810546875,
+            414.7021484375
+          ]
+        },
+        "Dprime": {
+          "correct": 391,
+          "false_accepts": 0,
+          "accepts": 154,
+          "spent": 5917.787353515625,
+          "oracle_fraction": 0.9678217821782178,
+          "correct_by_package": [
+            27,
+            27,
+            34,
+            34,
+            33,
+            35,
+            36,
+            34,
+            35,
+            29,
+            32,
+            35
+          ],
+          "spent_by_package": [
+            503.62548828125,
+            501.422119140625,
+            488.7294921875,
+            488.026611328125,
+            495.30419921875,
+            481.390625,
+            490.194580078125,
+            490.44482421875,
+            493.08251953125,
+            492.1572265625,
+            491.803466796875,
+            501.606201171875
+          ]
+        }
+      },
+      "oracle_correct": 404,
+      "oracle_by_package": [
+        28,
+        27,
+        35,
+        35,
+        33,
+        40,
+        40,
+        34,
+        35,
+        30,
+        32,
+        35
+      ],
+      "paired_B2_minus": {
+        "B": [
+          0,
+          1,
+          2,
+          2,
+          0,
+          4,
+          3,
+          1,
+          1,
+          1,
+          1,
+          0
+        ],
+        "C2": [
+          -1,
+          2,
+          -1,
+          -1,
+          0,
+          -5,
+          -4,
+          0,
+          0,
+          -1,
+          0,
+          0
+        ],
+        "C4": [
+          4,
+          8,
+          8,
+          7,
+          7,
+          2,
+          2,
+          7,
+          7,
+          3,
+          7,
+          7
+        ],
+        "D": [
+          -1,
+          2,
+          -1,
+          -1,
+          0,
+          -5,
+          -4,
+          0,
+          0,
+          -1,
+          0,
+          0
+        ],
+        "Dprime": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "paired_D_minus_Dprime": [
+        1,
+        -2,
+        1,
+        1,
+        0,
+        5,
+        4,
+        0,
+        0,
+        1,
+        0,
+        0
+      ],
+      "changed_action_packages": {
+        "D": 12,
+        "Dprime": 0
+      }
+    },
+    "1.0": {
+      "policies": {
+        "B2": {
+          "correct": 404,
+          "false_accepts": 0,
+          "accepts": 160,
+          "spent": 6821.5322265625,
+          "oracle_fraction": 1.0,
+          "correct_by_package": [
+            28,
+            27,
+            35,
+            35,
+            33,
+            40,
+            40,
+            34,
+            35,
+            30,
+            32,
+            35
+          ],
+          "spent_by_package": [
+            595.35986328125,
+            578.66845703125,
+            549.569580078125,
+            555.15869140625,
+            571.17919921875,
+            540.09375,
+            554.87109375,
+            568.81982421875,
+            570.95751953125,
+            593.6171875,
+            579.318359375,
+            563.918701171875
+          ]
+        },
+        "B": {
+          "correct": 404,
+          "false_accepts": 0,
+          "accepts": 160,
+          "spent": 7759.413818359375,
+          "oracle_fraction": 1.0,
+          "correct_by_package": [
+            28,
+            27,
+            35,
+            35,
+            33,
+            40,
+            40,
+            34,
+            35,
+            30,
+            32,
+            35
+          ],
+          "spent_by_package": [
+            668.86376953125,
+            658.3837890625,
+            640.12158203125,
+            640.32958984375,
+            637.620849609375,
+            636.08984375,
+            644.90625,
+            646.338134765625,
+            653.409912109375,
+            653.3359375,
+            650.690185546875,
+            629.323974609375
+          ]
+        },
+        "C2": {
+          "correct": 404,
+          "false_accepts": 0,
+          "accepts": 160,
+          "spent": 5280.5654296875,
+          "oracle_fraction": 1.0,
+          "correct_by_package": [
+            28,
+            27,
+            35,
+            35,
+            33,
+            40,
+            40,
+            34,
+            35,
+            30,
+            32,
+            35
+          ],
+          "spent_by_package": [
+            472.92626953125,
+            521.546875,
+            426.57470703125,
+            425.42333984375,
+            438.969482421875,
+            382.07421875,
+            394.5,
+            430.078857421875,
+            420.378662109375,
+            488.31005859375,
+            466.205810546875,
+            413.5771484375
+          ]
+        },
+        "C4": {
+          "correct": 322,
+          "false_accepts": 0,
+          "accepts": 160,
+          "spent": 4919.9482421875,
+          "oracle_fraction": 0.7970297029702971,
+          "correct_by_package": [
+            23,
+            19,
+            26,
+            27,
+            26,
+            33,
+            34,
+            27,
+            28,
+            26,
+            25,
+            28
+          ],
+          "spent_by_package": [
+            462.443359375,
+            343.31494140625,
+            391.419921875,
+            377.5244140625,
+            401.060302734375,
+            443.97509765625,
+            445.86181640625,
+            393.950927734375,
+            385.072998046875,
+            486.0751953125,
+            407.105224609375,
+            382.14404296875
+          ]
+        },
+        "D": {
+          "correct": 404,
+          "false_accepts": 0,
+          "accepts": 160,
+          "spent": 5291.8154296875,
+          "oracle_fraction": 1.0,
+          "correct_by_package": [
+            28,
+            27,
+            35,
+            35,
+            33,
+            40,
+            40,
+            34,
+            35,
+            30,
+            32,
+            35
+          ],
+          "spent_by_package": [
+            472.92626953125,
+            522.671875,
+            427.69970703125,
+            426.54833984375,
+            440.094482421875,
+            383.19921875,
+            395.625,
+            431.203857421875,
+            421.503662109375,
+            488.31005859375,
+            467.330810546875,
+            414.7021484375
+          ]
+        },
+        "Dprime": {
+          "correct": 404,
+          "false_accepts": 0,
+          "accepts": 160,
+          "spent": 6821.5322265625,
+          "oracle_fraction": 1.0,
+          "correct_by_package": [
+            28,
+            27,
+            35,
+            35,
+            33,
+            40,
+            40,
+            34,
+            35,
+            30,
+            32,
+            35
+          ],
+          "spent_by_package": [
+            595.35986328125,
+            578.66845703125,
+            549.569580078125,
+            555.15869140625,
+            571.17919921875,
+            540.09375,
+            554.87109375,
+            568.81982421875,
+            570.95751953125,
+            593.6171875,
+            579.318359375,
+            563.918701171875
+          ]
+        }
+      },
+      "oracle_correct": 404,
+      "oracle_by_package": [
+        28,
+        27,
+        35,
+        35,
+        33,
+        40,
+        40,
+        34,
+        35,
+        30,
+        32,
+        35
+      ],
+      "paired_B2_minus": {
+        "B": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "C2": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "C4": [
+          5,
+          8,
+          9,
+          8,
+          7,
+          7,
+          6,
+          7,
+          7,
+          4,
+          7,
+          7
+        ],
+        "D": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "Dprime": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "paired_D_minus_Dprime": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "changed_action_packages": {
+        "D": 12,
+        "Dprime": 0
+      }
+    }
+  },
+  "calibration": {
+    "0.2": {
+      "B2": {
+        "by_step": {
+          "0": {
+            "count": 540,
+            "missing": 0,
+            "brier": 0.43627507716049285
+          },
+          "1": {
+            "count": 540,
+            "missing": 0,
+            "brier": 0.388014609072179
+          },
+          "2": {
+            "count": 385,
+            "missing": 0,
+            "brier": 0.4241399925845292
+          },
+          "3": {
+            "count": 199,
+            "missing": 0,
+            "brier": 0.28051277338580466
+          },
+          "4": {
+            "count": 102,
+            "missing": 0,
+            "brier": 0.2969930102024157
+          },
+          "5": {
+            "count": 53,
+            "missing": 0,
+            "brier": 0.21779804568315256
+          },
+          "6": {
+            "count": 30,
+            "missing": 0,
+            "brier": 0.19134978210034015
+          },
+          "7": {
+            "count": 30,
+            "missing": 0,
+            "brier": 0.013477276275892644
+          },
+          "8": {
+            "count": 21,
+            "missing": 0,
+            "brier": 0.0
+          },
+          "9": {
+            "count": 20,
+            "missing": 0,
+            "brier": 0.0
+          },
+          "10": {
+            "count": 20,
+            "missing": 0,
+            "brier": 0.0
+          },
+          "11": {
+            "count": 20,
+            "missing": 0,
+            "brier": 0.0
+          }
+        },
+        "by_package": [
+          {
+            "package_id": 0,
+            "count": 163,
+            "missing": 0,
+            "brier": 0.4496763125773201
+          },
+          {
+            "package_id": 1,
+            "count": 145,
+            "missing": 0,
+            "brier": 0.32574580607078624
+          },
+          {
+            "package_id": 2,
+            "count": 202,
+            "missing": 0,
+            "brier": 0.38241046428702974
+          },
+          {
+            "package_id": 3,
+            "count": 178,
+            "missing": 0,
+            "brier": 0.39125697594405273
+          },
+          {
+            "package_id": 4,
+            "count": 165,
+            "missing": 0,
+            "brier": 0.31336219051400727
+          },
+          {
+            "package_id": 5,
+            "count": 160,
+            "missing": 0,
+            "brier": 0.3353104414894018
+          },
+          {
+            "package_id": 6,
+            "count": 155,
+            "missing": 0,
+            "brier": 0.3823938717338681
+          },
+          {
+            "package_id": 7,
+            "count": 169,
+            "missing": 0,
+            "brier": 0.32435741978286836
+          },
+          {
+            "package_id": 8,
+            "count": 168,
+            "missing": 0,
+            "brier": 0.29796651281316927
+          },
+          {
+            "package_id": 9,
+            "count": 168,
+            "missing": 0,
+            "brier": 0.4401667194451019
+          },
+          {
+            "package_id": 10,
+            "count": 148,
+            "missing": 0,
+            "brier": 0.3964846192750938
+          },
+          {
+            "package_id": 11,
+            "count": 139,
+            "missing": 0,
+            "brier": 0.306940544503173
+          }
+        ]
+      },
+      "D": {
+        "by_step": {
+          "0": {
+            "count": 540,
+            "missing": 0,
+            "brier": 0.8962962962962963
+          },
+          "1": {
+            "count": 0,
+            "missing": 540,
+            "brier": null
+          },
+          "2": {
+            "count": 0,
+            "missing": 540,
+            "brier": null
+          },
+          "3": {
+            "count": 0,
+            "missing": 540,
+            "brier": null
+          },
+          "4": {
+            "count": 0,
+            "missing": 540,
+            "brier": null
+          },
+          "5": {
+            "count": 0,
+            "missing": 540,
+            "brier": null
+          },
+          "6": {
+            "count": 0,
+            "missing": 540,
+            "brier": null
+          },
+          "7": {
+            "count": 0,
+            "missing": 374,
+            "brier": null
+          },
+          "8": {
+            "count": 0,
+            "missing": 363,
+            "brier": null
+          },
+          "9": {
+            "count": 0,
+            "missing": 305,
+            "brier": null
+          },
+          "10": {
+            "count": 0,
+            "missing": 128,
+            "brier": null
+          },
+          "11": {
+            "count": 0,
+            "missing": 110,
+            "brier": null
+          },
+          "12": {
+            "count": 0,
+            "missing": 78,
+            "brier": null
+          }
+        },
+        "by_package": [
+          {
+            "package_id": 0,
+            "count": 45,
+            "missing": 394,
+            "brier": 0.9777777777777777
+          },
+          {
+            "package_id": 1,
+            "count": 45,
+            "missing": 407,
+            "brier": 0.9333333333333333
+          },
+          {
+            "package_id": 2,
+            "count": 45,
+            "missing": 383,
+            "brier": 0.8
+          },
+          {
+            "package_id": 3,
+            "count": 45,
+            "missing": 383,
+            "brier": 0.8444444444444444
+          },
+          {
+            "package_id": 4,
+            "count": 45,
+            "missing": 380,
+            "brier": 0.8888888888888888
+          },
+          {
+            "package_id": 5,
+            "count": 45,
+            "missing": 363,
+            "brier": 0.8444444444444444
+          },
+          {
+            "package_id": 6,
+            "count": 45,
+            "missing": 376,
+            "brier": 0.8444444444444444
+          },
+          {
+            "package_id": 7,
+            "count": 45,
+            "missing": 383,
+            "brier": 0.8888888888888888
+          },
+          {
+            "package_id": 8,
+            "count": 45,
+            "missing": 381,
+            "brier": 0.8888888888888888
+          },
+          {
+            "package_id": 9,
+            "count": 45,
+            "missing": 386,
+            "brier": 1.0666666666666667
+          },
+          {
+            "package_id": 10,
+            "count": 45,
+            "missing": 388,
+            "brier": 0.9777777777777777
+          },
+          {
+            "package_id": 11,
+            "count": 45,
+            "missing": 374,
+            "brier": 0.8
+          }
+        ]
+      },
+      "Dprime": {
+        "by_step": {
+          "0": {
+            "count": 540,
+            "missing": 0,
+            "brier": 0.43627507716049285
+          },
+          "1": {
+            "count": 540,
+            "missing": 0,
+            "brier": 0.388014609072179
+          },
+          "2": {
+            "count": 385,
+            "missing": 0,
+            "brier": 0.4241399925845292
+          },
+          "3": {
+            "count": 199,
+            "missing": 0,
+            "brier": 0.28051277338580466
+          },
+          "4": {
+            "count": 102,
+            "missing": 0,
+            "brier": 0.2969930102024157
+          },
+          "5": {
+            "count": 53,
+            "missing": 0,
+            "brier": 0.21779804568315256
+          },
+          "6": {
+            "count": 30,
+            "missing": 0,
+            "brier": 0.19134978210034015
+          },
+          "7": {
+            "count": 30,
+            "missing": 0,
+            "brier": 0.013477276275892644
+          },
+          "8": {
+            "count": 21,
+            "missing": 0,
+            "brier": 0.0
+          },
+          "9": {
+            "count": 20,
+            "missing": 0,
+            "brier": 0.0
+          },
+          "10": {
+            "count": 20,
+            "missing": 0,
+            "brier": 0.0
+          },
+          "11": {
+            "count": 20,
+            "missing": 0,
+            "brier": 0.0
+          }
+        },
+        "by_package": [
+          {
+            "package_id": 0,
+            "count": 163,
+            "missing": 0,
+            "brier": 0.4496763125773201
+          },
+          {
+            "package_id": 1,
+            "count": 145,
+            "missing": 0,
+            "brier": 0.32574580607078624
+          },
+          {
+            "package_id": 2,
+            "count": 202,
+            "missing": 0,
+            "brier": 0.38241046428702974
+          },
+          {
+            "package_id": 3,
+            "count": 178,
+            "missing": 0,
+            "brier": 0.39125697594405273
+          },
+          {
+            "package_id": 4,
+            "count": 165,
+            "missing": 0,
+            "brier": 0.31336219051400727
+          },
+          {
+            "package_id": 5,
+            "count": 160,
+            "missing": 0,
+            "brier": 0.3353104414894018
+          },
+          {
+            "package_id": 6,
+            "count": 155,
+            "missing": 0,
+            "brier": 0.3823938717338681
+          },
+          {
+            "package_id": 7,
+            "count": 169,
+            "missing": 0,
+            "brier": 0.32435741978286836
+          },
+          {
+            "package_id": 8,
+            "count": 168,
+            "missing": 0,
+            "brier": 0.29796651281316927
+          },
+          {
+            "package_id": 9,
+            "count": 168,
+            "missing": 0,
+            "brier": 0.4401667194451019
+          },
+          {
+            "package_id": 10,
+            "count": 148,
+            "missing": 0,
+            "brier": 0.3964846192750938
+          },
+          {
+            "package_id": 11,
+            "count": 139,
+            "missing": 0,
+            "brier": 0.306940544503173
+          }
+        ]
+      }
+    },
+    "0.4": {
+      "B2": {
+        "by_step": {
+          "0": {
+            "count": 540,
+            "missing": 0,
+            "brier": 0.43627507716049285
+          },
+          "1": {
+            "count": 540,
+            "missing": 0,
+            "brier": 0.38334035377455794
+          },
+          "2": {
+            "count": 411,
+            "missing": 0,
+            "brier": 0.41290104509943487
+          },
+          "3": {
+            "count": 314,
+            "missing": 0,
+            "brier": 0.2817293116881418
+          },
+          "4": {
+            "count": 201,
+            "missing": 0,
+            "brier": 0.12670929592129235
+          },
+          "5": {
+            "count": 138,
+            "missing": 0,
+            "brier": 0.1123767823252159
+          },
+          "6": {
+            "count": 127,
+            "missing": 0,
+            "brier": 0.08869632221760602
+          },
+          "7": {
+            "count": 122,
+            "missing": 0,
+            "brier": 0.031212664098565625
+          },
+          "8": {
+            "count": 109,
+            "missing": 0,
+            "brier": 0.008006893815648947
+          },
+          "9": {
+            "count": 103,
+            "missing": 0,
+            "brier": 2.3088556157140686e-05
+          },
+          "10": {
+            "count": 103,
+            "missing": 0,
+            "brier": 0.0
+          },
+          "11": {
+            "count": 103,
+            "missing": 0,
+            "brier": 0.0
+          }
+        },
+        "by_package": [
+          {
+            "package_id": 0,
+            "count": 228,
+            "missing": 0,
+            "brier": 0.3059746470757248
+          },
+          {
+            "package_id": 1,
+            "count": 229,
+            "missing": 0,
+            "brier": 0.2727864876438981
+          },
+          {
+            "package_id": 2,
+            "count": 245,
+            "missing": 0,
+            "brier": 0.29866701492499653
+          },
+          {
+            "package_id": 3,
+            "count": 248,
+            "missing": 0,
+            "brier": 0.31259834378048723
+          },
+          {
+            "package_id": 4,
+            "count": 229,
+            "missing": 0,
+            "brier": 0.2207851748608168
+          },
+          {
+            "package_id": 5,
+            "count": 232,
+            "missing": 0,
+            "brier": 0.21932635625503338
+          },
+          {
+            "package_id": 6,
+            "count": 244,
+            "missing": 0,
+            "brier": 0.31041325100958184
+          },
+          {
+            "package_id": 7,
+            "count": 231,
+            "missing": 0,
+            "brier": 0.2825590120379068
+          },
+          {
+            "package_id": 8,
+            "count": 246,
+            "missing": 0,
+            "brier": 0.22206665141781218
+          },
+          {
+            "package_id": 9,
+            "count": 244,
+            "missing": 0,
+            "brier": 0.29727469956388203
+          },
+          {
+            "package_id": 10,
+            "count": 228,
+            "missing": 0,
+            "brier": 0.27399105953149255
+          },
+          {
+            "package_id": 11,
+            "count": 207,
+            "missing": 0,
+            "brier": 0.20610983423159926
+          }
+        ]
+      },
+      "D": {
+        "by_step": {
+          "0": {
+            "count": 540,
+            "missing": 0,
+            "brier": 0.8962962962962963
+          },
+          "1": {
+            "count": 0,
+            "missing": 540,
+            "brier": null
+          },
+          "2": {
+            "count": 0,
+            "missing": 540,
+            "brier": null
+          },
+          "3": {
+            "count": 0,
+            "missing": 540,
+            "brier": null
+          },
+          "4": {
+            "count": 0,
+            "missing": 540,
+            "brier": null
+          },
+          "5": {
+            "count": 0,
+            "missing": 540,
+            "brier": null
+          },
+          "6": {
+            "count": 0,
+            "missing": 540,
+            "brier": null
+          },
+          "7": {
+            "count": 0,
+            "missing": 374,
+            "brier": null
+          },
+          "8": {
+            "count": 0,
+            "missing": 363,
+            "brier": null
+          },
+          "9": {
+            "count": 0,
+            "missing": 329,
+            "brier": null
+          },
+          "10": {
+            "count": 0,
+            "missing": 285,
+            "brier": null
+          },
+          "11": {
+            "count": 0,
+            "missing": 183,
+            "brier": null
+          },
+          "12": {
+            "count": 0,
+            "missing": 94,
+            "brier": null
+          },
+          "13": {
+            "count": 0,
+            "missing": 79,
+            "brier": null
+          },
+          "14": {
+            "count": 0,
+            "missing": 30,
+            "brier": null
+          }
+        },
+        "by_package": [
+          {
+            "package_id": 0,
+            "count": 45,
+            "missing": 432,
+            "brier": 0.9777777777777777
+          },
+          {
+            "package_id": 1,
+            "count": 45,
+            "missing": 452,
+            "brier": 0.9333333333333333
+          },
+          {
+            "package_id": 2,
+            "count": 45,
+            "missing": 411,
+            "brier": 0.8
+          },
+          {
+            "package_id": 3,
+            "count": 45,
+            "missing": 411,
+            "brier": 0.8444444444444444
+          },
+          {
+            "package_id": 4,
+            "count": 45,
+            "missing": 410,
+            "brier": 0.8888888888888888
+          },
+          {
+            "package_id": 5,
+            "count": 45,
+            "missing": 388,
+            "brier": 0.8444444444444444
+          },
+          {
+            "package_id": 6,
+            "count": 45,
+            "missing": 403,
+            "brier": 0.8444444444444444
+          },
+          {
+            "package_id": 7,
+            "count": 45,
+            "missing": 412,
+            "brier": 0.8888888888888888
+          },
+          {
+            "package_id": 8,
+            "count": 45,
+            "missing": 410,
+            "brier": 0.8888888888888888
+          },
+          {
+            "package_id": 9,
+            "count": 45,
+            "missing": 423,
+            "brier": 1.0666666666666667
+          },
+          {
+            "package_id": 10,
+            "count": 45,
+            "missing": 421,
+            "brier": 0.9777777777777777
+          },
+          {
+            "package_id": 11,
+            "count": 45,
+            "missing": 404,
+            "brier": 0.8
+          }
+        ]
+      },
+      "Dprime": {
+        "by_step": {
+          "0": {
+            "count": 540,
+            "missing": 0,
+            "brier": 0.43627507716049285
+          },
+          "1": {
+            "count": 540,
+            "missing": 0,
+            "brier": 0.38334035377455794
+          },
+          "2": {
+            "count": 411,
+            "missing": 0,
+            "brier": 0.41290104509943487
+          },
+          "3": {
+            "count": 314,
+            "missing": 0,
+            "brier": 0.2817293116881418
+          },
+          "4": {
+            "count": 201,
+            "missing": 0,
+            "brier": 0.12670929592129235
+          },
+          "5": {
+            "count": 138,
+            "missing": 0,
+            "brier": 0.1123767823252159
+          },
+          "6": {
+            "count": 127,
+            "missing": 0,
+            "brier": 0.08869632221760602
+          },
+          "7": {
+            "count": 122,
+            "missing": 0,
+            "brier": 0.031212664098565625
+          },
+          "8": {
+            "count": 109,
+            "missing": 0,
+            "brier": 0.008006893815648947
+          },
+          "9": {
+            "count": 103,
+            "missing": 0,
+            "brier": 2.3088556157140686e-05
+          },
+          "10": {
+            "count": 103,
+            "missing": 0,
+            "brier": 0.0
+          },
+          "11": {
+            "count": 103,
+            "missing": 0,
+            "brier": 0.0
+          }
+        },
+        "by_package": [
+          {
+            "package_id": 0,
+            "count": 228,
+            "missing": 0,
+            "brier": 0.3059746470757248
+          },
+          {
+            "package_id": 1,
+            "count": 229,
+            "missing": 0,
+            "brier": 0.2727864876438981
+          },
+          {
+            "package_id": 2,
+            "count": 245,
+            "missing": 0,
+            "brier": 0.29866701492499653
+          },
+          {
+            "package_id": 3,
+            "count": 248,
+            "missing": 0,
+            "brier": 0.31259834378048723
+          },
+          {
+            "package_id": 4,
+            "count": 229,
+            "missing": 0,
+            "brier": 0.2207851748608168
+          },
+          {
+            "package_id": 5,
+            "count": 232,
+            "missing": 0,
+            "brier": 0.21932635625503338
+          },
+          {
+            "package_id": 6,
+            "count": 244,
+            "missing": 0,
+            "brier": 0.31041325100958184
+          },
+          {
+            "package_id": 7,
+            "count": 231,
+            "missing": 0,
+            "brier": 0.2825590120379068
+          },
+          {
+            "package_id": 8,
+            "count": 246,
+            "missing": 0,
+            "brier": 0.22206665141781218
+          },
+          {
+            "package_id": 9,
+            "count": 244,
+            "missing": 0,
+            "brier": 0.29727469956388203
+          },
+          {
+            "package_id": 10,
+            "count": 228,
+            "missing": 0,
+            "brier": 0.27399105953149255
+          },
+          {
+            "package_id": 11,
+            "count": 207,
+            "missing": 0,
+            "brier": 0.20610983423159926
+          }
+        ]
+      }
+    },
+    "0.6": {
+      "B2": {
+        "by_step": {
+          "0": {
+            "count": 540,
+            "missing": 0,
+            "brier": 0.43627507716049285
+          },
+          "1": {
+            "count": 540,
+            "missing": 0,
+            "brier": 0.35842120458209353
+          },
+          "2": {
+            "count": 455,
+            "missing": 0,
+            "brier": 0.3709751919881175
+          },
+          "3": {
+            "count": 420,
+            "missing": 0,
+            "brier": 0.26088187405799235
+          },
+          "4": {
+            "count": 305,
+            "missing": 0,
+            "brier": 0.09390677522073211
+          },
+          "5": {
+            "count": 248,
+            "missing": 0,
+            "brier": 0.110285743071893
+          },
+          "6": {
+            "count": 243,
+            "missing": 0,
+            "brier": 0.09920799999106407
+          },
+          "7": {
+            "count": 237,
+            "missing": 0,
+            "brier": 0.07395491126597695
+          },
+          "8": {
+            "count": 223,
+            "missing": 0,
+            "brier": 0.05179469209926751
+          },
+          "9": {
+            "count": 219,
+            "missing": 0,
+            "brier": 0.04911757299598254
+          },
+          "10": {
+            "count": 214,
+            "missing": 0,
+            "brier": 0.021295295545322435
+          },
+          "11": {
+            "count": 193,
+            "missing": 0,
+            "brier": 0.010362694300518135
+          },
+          "12": {
+            "count": 7,
+            "missing": 0,
+            "brier": 0.0
+          },
+          "13": {
+            "count": 2,
+            "missing": 0,
+            "brier": 0.0
+          },
+          "14": {
+            "count": 1,
+            "missing": 0,
+            "brier": 0.0
+          }
+        },
+        "by_package": [
+          {
+            "package_id": 0,
+            "count": 341,
+            "missing": 0,
+            "brier": 0.29983174095840276
+          },
+          {
+            "package_id": 1,
+            "count": 331,
+            "missing": 0,
+            "brier": 0.22856924230834696
+          },
+          {
+            "package_id": 2,
+            "count": 308,
+            "missing": 0,
+            "brier": 0.24708969141179368
+          },
+          {
+            "package_id": 3,
+            "count": 314,
+            "missing": 0,
+            "brier": 0.25143923433960086
+          },
+          {
+            "package_id": 4,
+            "count": 326,
+            "missing": 0,
+            "brier": 0.1450663741291502
+          },
+          {
+            "package_id": 5,
+            "count": 297,
+            "missing": 0,
+            "brier": 0.20816936676448755
+          },
+          {
+            "package_id": 6,
+            "count": 309,
+            "missing": 0,
+            "brier": 0.2431314948460175
+          },
+          {
+            "package_id": 7,
+            "count": 324,
+            "missing": 0,
+            "brier": 0.17168987647118683
+          },
+          {
+            "package_id": 8,
+            "count": 353,
+            "missing": 0,
+            "brier": 0.1573056660991456
+          },
+          {
+            "package_id": 9,
+            "count": 321,
+            "missing": 0,
+            "brier": 0.27628686619601117
+          },
+          {
+            "package_id": 10,
+            "count": 321,
+            "missing": 0,
+            "brier": 0.22659079559929987
+          },
+          {
+            "package_id": 11,
+            "count": 302,
+            "missing": 0,
+            "brier": 0.1463948000200084
+          }
+        ]
+      },
+      "D": {
+        "by_step": {
+          "0": {
+            "count": 540,
+            "missing": 0,
+            "brier": 0.8962962962962963
+          },
+          "1": {
+            "count": 0,
+            "missing": 540,
+            "brier": null
+          },
+          "2": {
+            "count": 0,
+            "missing": 540,
+            "brier": null
+          },
+          "3": {
+            "count": 0,
+            "missing": 540,
+            "brier": null
+          },
+          "4": {
+            "count": 0,
+            "missing": 540,
+            "brier": null
+          },
+          "5": {
+            "count": 0,
+            "missing": 540,
+            "brier": null
+          },
+          "6": {
+            "count": 0,
+            "missing": 540,
+            "brier": null
+          },
+          "7": {
+            "count": 0,
+            "missing": 374,
+            "brier": null
+          },
+          "8": {
+            "count": 0,
+            "missing": 363,
+            "brier": null
+          },
+          "9": {
+            "count": 0,
+            "missing": 329,
+            "brier": null
+          },
+          "10": {
+            "count": 0,
+            "missing": 285,
+            "brier": null
+          },
+          "11": {
+            "count": 0,
+            "missing": 282,
+            "brier": null
+          },
+          "12": {
+            "count": 0,
+            "missing": 95,
+            "brier": null
+          },
+          "13": {
+            "count": 0,
+            "missing": 84,
+            "brier": null
+          },
+          "14": {
+            "count": 0,
+            "missing": 77,
+            "brier": null
+          }
+        },
+        "by_package": [
+          {
+            "package_id": 0,
+            "count": 45,
+            "missing": 448,
+            "brier": 0.9777777777777777
+          },
+          {
+            "package_id": 1,
+            "count": 45,
+            "missing": 470,
+            "brier": 0.9333333333333333
+          },
+          {
+            "package_id": 2,
+            "count": 45,
+            "missing": 423,
+            "brier": 0.8
+          },
+          {
+            "package_id": 3,
+            "count": 45,
+            "missing": 423,
+            "brier": 0.8444444444444444
+          },
+          {
+            "package_id": 4,
+            "count": 45,
+            "missing": 423,
+            "brier": 0.8888888888888888
+          },
+          {
+            "package_id": 5,
+            "count": 45,
+            "missing": 395,
+            "brier": 0.8444444444444444
+          },
+          {
+            "package_id": 6,
+            "count": 45,
+            "missing": 411,
+            "brier": 0.8444444444444444
+          },
+          {
+            "package_id": 7,
+            "count": 45,
+            "missing": 424,
+            "brier": 0.8888888888888888
+          },
+          {
+            "package_id": 8,
+            "count": 45,
+            "missing": 421,
+            "brier": 0.8888888888888888
+          },
+          {
+            "package_id": 9,
+            "count": 45,
+            "missing": 441,
+            "brier": 1.0666666666666667
+          },
+          {
+            "package_id": 10,
+            "count": 45,
+            "missing": 437,
+            "brier": 0.9777777777777777
+          },
+          {
+            "package_id": 11,
+            "count": 45,
+            "missing": 413,
+            "brier": 0.8
+          }
+        ]
+      },
+      "Dprime": {
+        "by_step": {
+          "0": {
+            "count": 540,
+            "missing": 0,
+            "brier": 0.43627507716049285
+          },
+          "1": {
+            "count": 540,
+            "missing": 0,
+            "brier": 0.35842120458209353
+          },
+          "2": {
+            "count": 455,
+            "missing": 0,
+            "brier": 0.3709751919881175
+          },
+          "3": {
+            "count": 420,
+            "missing": 0,
+            "brier": 0.26088187405799235
+          },
+          "4": {
+            "count": 305,
+            "missing": 0,
+            "brier": 0.09390677522073211
+          },
+          "5": {
+            "count": 248,
+            "missing": 0,
+            "brier": 0.110285743071893
+          },
+          "6": {
+            "count": 243,
+            "missing": 0,
+            "brier": 0.09920799999106407
+          },
+          "7": {
+            "count": 237,
+            "missing": 0,
+            "brier": 0.07395491126597695
+          },
+          "8": {
+            "count": 223,
+            "missing": 0,
+            "brier": 0.05179469209926751
+          },
+          "9": {
+            "count": 219,
+            "missing": 0,
+            "brier": 0.04911757299598254
+          },
+          "10": {
+            "count": 214,
+            "missing": 0,
+            "brier": 0.021295295545322435
+          },
+          "11": {
+            "count": 193,
+            "missing": 0,
+            "brier": 0.010362694300518135
+          },
+          "12": {
+            "count": 7,
+            "missing": 0,
+            "brier": 0.0
+          },
+          "13": {
+            "count": 2,
+            "missing": 0,
+            "brier": 0.0
+          },
+          "14": {
+            "count": 1,
+            "missing": 0,
+            "brier": 0.0
+          }
+        },
+        "by_package": [
+          {
+            "package_id": 0,
+            "count": 341,
+            "missing": 0,
+            "brier": 0.29983174095840276
+          },
+          {
+            "package_id": 1,
+            "count": 331,
+            "missing": 0,
+            "brier": 0.22856924230834696
+          },
+          {
+            "package_id": 2,
+            "count": 308,
+            "missing": 0,
+            "brier": 0.24708969141179368
+          },
+          {
+            "package_id": 3,
+            "count": 314,
+            "missing": 0,
+            "brier": 0.25143923433960086
+          },
+          {
+            "package_id": 4,
+            "count": 326,
+            "missing": 0,
+            "brier": 0.1450663741291502
+          },
+          {
+            "package_id": 5,
+            "count": 297,
+            "missing": 0,
+            "brier": 0.20816936676448755
+          },
+          {
+            "package_id": 6,
+            "count": 309,
+            "missing": 0,
+            "brier": 0.2431314948460175
+          },
+          {
+            "package_id": 7,
+            "count": 324,
+            "missing": 0,
+            "brier": 0.17168987647118683
+          },
+          {
+            "package_id": 8,
+            "count": 353,
+            "missing": 0,
+            "brier": 0.1573056660991456
+          },
+          {
+            "package_id": 9,
+            "count": 321,
+            "missing": 0,
+            "brier": 0.27628686619601117
+          },
+          {
+            "package_id": 10,
+            "count": 321,
+            "missing": 0,
+            "brier": 0.22659079559929987
+          },
+          {
+            "package_id": 11,
+            "count": 302,
+            "missing": 0,
+            "brier": 0.1463948000200084
+          }
+        ]
+      }
+    },
+    "1.0": {
+      "B2": {
+        "by_step": {
+          "0": {
+            "count": 540,
+            "missing": 0,
+            "brier": 0.43627507716049285
+          },
+          "1": {
+            "count": 540,
+            "missing": 0,
+            "brier": 0.35284236524470913
+          },
+          "2": {
+            "count": 451,
+            "missing": 0,
+            "brier": 0.364886051906262
+          },
+          "3": {
+            "count": 421,
+            "missing": 0,
+            "brier": 0.25259774993361733
+          },
+          "4": {
+            "count": 311,
+            "missing": 0,
+            "brier": 0.07885504536145899
+          },
+          "5": {
+            "count": 254,
+            "missing": 0,
+            "brier": 0.09655086262761316
+          },
+          "6": {
+            "count": 254,
+            "missing": 0,
+            "brier": 0.09655086262761316
+          },
+          "7": {
+            "count": 254,
+            "missing": 0,
+            "brier": 0.06586359254855965
+          },
+          "8": {
+            "count": 246,
+            "missing": 0,
+            "brier": 0.05060508230077942
+          },
+          "9": {
+            "count": 241,
+            "missing": 5,
+            "brier": 0.046463971048356395
+          },
+          "10": {
+            "count": 241,
+            "missing": 5,
+            "brier": 0.016597510373443983
+          },
+          "11": {
+            "count": 238,
+            "missing": 6,
+            "brier": 0.01680672268907563
+          },
+          "12": {
+            "count": 67,
+            "missing": 14,
+            "brier": 0.0
+          },
+          "13": {
+            "count": 61,
+            "missing": 16,
+            "brier": 0.0
+          },
+          "14": {
+            "count": 60,
+            "missing": 11,
+            "brier": 0.0
+          }
+        },
+        "by_package": [
+          {
+            "package_id": 0,
+            "count": 361,
+            "missing": 30,
+            "brier": 0.301297724344362
+          },
+          {
+            "package_id": 1,
+            "count": 367,
+            "missing": 0,
+            "brier": 0.1699023739853573
+          },
+          {
+            "package_id": 2,
+            "count": 330,
+            "missing": 0,
+            "brier": 0.2253234669063982
+          },
+          {
+            "package_id": 3,
+            "count": 338,
+            "missing": 0,
+            "brier": 0.2197617435580008
+          },
+          {
+            "package_id": 4,
+            "count": 348,
+            "missing": 0,
+            "brier": 0.13522870147227883
+          },
+          {
+            "package_id": 5,
+            "count": 319,
+            "missing": 0,
+            "brier": 0.16721464575499143
+          },
+          {
+            "package_id": 6,
+            "count": 333,
+            "missing": 0,
+            "brier": 0.22038500909690714
+          },
+          {
+            "package_id": 7,
+            "count": 353,
+            "missing": 0,
+            "brier": 0.1485509730445887
+          },
+          {
+            "package_id": 8,
+            "count": 377,
+            "missing": 0,
+            "brier": 0.1453709056024891
+          },
+          {
+            "package_id": 9,
+            "count": 359,
+            "missing": 27,
+            "brier": 0.2533676888527085
+          },
+          {
+            "package_id": 10,
+            "count": 364,
+            "missing": 0,
+            "brier": 0.22826850394019407
+          },
+          {
+            "package_id": 11,
+            "count": 330,
+            "missing": 0,
+            "brier": 0.1337523218771345
+          }
+        ]
+      },
+      "D": {
+        "by_step": {
+          "0": {
+            "count": 540,
+            "missing": 0,
+            "brier": 0.8962962962962963
+          },
+          "1": {
+            "count": 0,
+            "missing": 540,
+            "brier": null
+          },
+          "2": {
+            "count": 0,
+            "missing": 540,
+            "brier": null
+          },
+          "3": {
+            "count": 0,
+            "missing": 540,
+            "brier": null
+          },
+          "4": {
+            "count": 0,
+            "missing": 540,
+            "brier": null
+          },
+          "5": {
+            "count": 0,
+            "missing": 540,
+            "brier": null
+          },
+          "6": {
+            "count": 0,
+            "missing": 540,
+            "brier": null
+          },
+          "7": {
+            "count": 0,
+            "missing": 374,
+            "brier": null
+          },
+          "8": {
+            "count": 0,
+            "missing": 363,
+            "brier": null
+          },
+          "9": {
+            "count": 0,
+            "missing": 329,
+            "brier": null
+          },
+          "10": {
+            "count": 0,
+            "missing": 285,
+            "brier": null
+          },
+          "11": {
+            "count": 0,
+            "missing": 284,
+            "brier": null
+          },
+          "12": {
+            "count": 0,
+            "missing": 95,
+            "brier": null
+          },
+          "13": {
+            "count": 0,
+            "missing": 84,
+            "brier": null
+          },
+          "14": {
+            "count": 0,
+            "missing": 78,
+            "brier": null
+          }
+        },
+        "by_package": [
+          {
+            "package_id": 0,
+            "count": 45,
+            "missing": 448,
+            "brier": 0.9777777777777777
+          },
+          {
+            "package_id": 1,
+            "count": 45,
+            "missing": 473,
+            "brier": 0.9333333333333333
+          },
+          {
+            "package_id": 2,
+            "count": 45,
+            "missing": 423,
+            "brier": 0.8
+          },
+          {
+            "package_id": 3,
+            "count": 45,
+            "missing": 423,
+            "brier": 0.8444444444444444
+          },
+          {
+            "package_id": 4,
+            "count": 45,
+            "missing": 423,
+            "brier": 0.8888888888888888
+          },
+          {
+            "package_id": 5,
+            "count": 45,
+            "missing": 395,
+            "brier": 0.8444444444444444
+          },
+          {
+            "package_id": 6,
+            "count": 45,
+            "missing": 411,
+            "brier": 0.8444444444444444
+          },
+          {
+            "package_id": 7,
+            "count": 45,
+            "missing": 424,
+            "brier": 0.8888888888888888
+          },
+          {
+            "package_id": 8,
+            "count": 45,
+            "missing": 421,
+            "brier": 0.8888888888888888
+          },
+          {
+            "package_id": 9,
+            "count": 45,
+            "missing": 441,
+            "brier": 1.0666666666666667
+          },
+          {
+            "package_id": 10,
+            "count": 45,
+            "missing": 437,
+            "brier": 0.9777777777777777
+          },
+          {
+            "package_id": 11,
+            "count": 45,
+            "missing": 413,
+            "brier": 0.8
+          }
+        ]
+      },
+      "Dprime": {
+        "by_step": {
+          "0": {
+            "count": 540,
+            "missing": 0,
+            "brier": 0.43627507716049285
+          },
+          "1": {
+            "count": 540,
+            "missing": 0,
+            "brier": 0.35284236524470913
+          },
+          "2": {
+            "count": 451,
+            "missing": 0,
+            "brier": 0.364886051906262
+          },
+          "3": {
+            "count": 421,
+            "missing": 0,
+            "brier": 0.25259774993361733
+          },
+          "4": {
+            "count": 311,
+            "missing": 0,
+            "brier": 0.07885504536145899
+          },
+          "5": {
+            "count": 254,
+            "missing": 0,
+            "brier": 0.09655086262761316
+          },
+          "6": {
+            "count": 254,
+            "missing": 0,
+            "brier": 0.09655086262761316
+          },
+          "7": {
+            "count": 254,
+            "missing": 0,
+            "brier": 0.06586359254855965
+          },
+          "8": {
+            "count": 246,
+            "missing": 0,
+            "brier": 0.05060508230077942
+          },
+          "9": {
+            "count": 241,
+            "missing": 5,
+            "brier": 0.046463971048356395
+          },
+          "10": {
+            "count": 241,
+            "missing": 5,
+            "brier": 0.016597510373443983
+          },
+          "11": {
+            "count": 238,
+            "missing": 6,
+            "brier": 0.01680672268907563
+          },
+          "12": {
+            "count": 67,
+            "missing": 14,
+            "brier": 0.0
+          },
+          "13": {
+            "count": 61,
+            "missing": 16,
+            "brier": 0.0
+          },
+          "14": {
+            "count": 60,
+            "missing": 11,
+            "brier": 0.0
+          }
+        },
+        "by_package": [
+          {
+            "package_id": 0,
+            "count": 361,
+            "missing": 30,
+            "brier": 0.301297724344362
+          },
+          {
+            "package_id": 1,
+            "count": 367,
+            "missing": 0,
+            "brier": 0.1699023739853573
+          },
+          {
+            "package_id": 2,
+            "count": 330,
+            "missing": 0,
+            "brier": 0.2253234669063982
+          },
+          {
+            "package_id": 3,
+            "count": 338,
+            "missing": 0,
+            "brier": 0.2197617435580008
+          },
+          {
+            "package_id": 4,
+            "count": 348,
+            "missing": 0,
+            "brier": 0.13522870147227883
+          },
+          {
+            "package_id": 5,
+            "count": 319,
+            "missing": 0,
+            "brier": 0.16721464575499143
+          },
+          {
+            "package_id": 6,
+            "count": 333,
+            "missing": 0,
+            "brier": 0.22038500909690714
+          },
+          {
+            "package_id": 7,
+            "count": 353,
+            "missing": 0,
+            "brier": 0.1485509730445887
+          },
+          {
+            "package_id": 8,
+            "count": 377,
+            "missing": 0,
+            "brier": 0.1453709056024891
+          },
+          {
+            "package_id": 9,
+            "count": 359,
+            "missing": 27,
+            "brier": 0.2533676888527085
+          },
+          {
+            "package_id": 10,
+            "count": 364,
+            "missing": 0,
+            "brier": 0.22826850394019407
+          },
+          {
+            "package_id": 11,
+            "count": 330,
+            "missing": 0,
+            "brier": 0.1337523218771345
+          }
+        ]
+      }
+    }
+  },
+  "full_pipeline_parity_failures": []
+}
