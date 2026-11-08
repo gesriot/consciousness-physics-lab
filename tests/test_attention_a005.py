@@ -53,3 +53,21 @@ class MonitoringTests(unittest.TestCase):
         self.assertEqual(call.call_count,1)
         self.assertEqual(e.observed,before)
         self.assertEqual(result['verdict'],before['v2_512']['verdict'])
+
+
+class RuntimeOverrideTests(unittest.TestCase):
+    def test_all_experiment_interfaces_have_explicit_override(self):
+        import subprocess
+        import sys
+        for n in range(1,6):
+            result=subprocess.run([sys.executable,'-m',f'attention.a{n:03d}','--help'],capture_output=True,text=True,check=True)
+            self.assertIn('--runtime-override',result.stdout)
+
+    def test_a005_forwards_override_to_metadata_before_intake(self):
+        from attention import a005
+        from unittest.mock import patch
+        class StopBeforeIntake(Exception):pass
+        with patch.object(a005,'metadata',side_effect=StopBeforeIntake) as meta, patch.object(a005,'protect_output'):
+            with self.assertRaises(StopBeforeIntake):
+                a005.run('unused.json',runtime_override='Cross-platform replay: Python 3.12.13')
+            meta.assert_called_once_with(a005.PROTOCOL,a005.SOURCES,'Cross-platform replay: Python 3.12.13')

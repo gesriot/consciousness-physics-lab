@@ -117,10 +117,10 @@ def intervention_audit(records,requests,model):
         scheduling_expectations_unchanged=True,Dprime_active_unchanged=True)
 
 
-def run(output,replay=None,noise=False):
+def run(output,replay=None,noise=False,runtime_override=None):
     monitor_planning.NOISE=noise
     output=Path(output);protect_output(output,replay)
-    audit=metadata(PROTOCOL,SOURCES)
+    audit=metadata(PROTOCOL,SOURCES,runtime_override)
     records,requests,permutations,provenance=intake(replay)
     if provenance:audit['replay']=provenance
     onset=int(np.random.default_rng(20261144).integers(4,9))
@@ -182,6 +182,6 @@ def run(output,replay=None,noise=False):
     write(output,out);return out
 
 if __name__=='__main__':
-    parser=argparse.ArgumentParser();parser.add_argument('--output',required=True);parser.add_argument('--replay');parser.add_argument('--last-bit-noise',action='store_true');args=parser.parse_args()
-    result=run(args.output,args.replay,args.last_bit_noise)
+    parser=argparse.ArgumentParser();parser.add_argument('--output',required=True);parser.add_argument('--replay');parser.add_argument('--last-bit-noise',action='store_true');parser.add_argument('--runtime-override');args=parser.parse_args()
+    result=run(args.output,args.replay,args.last_bit_noise,args.runtime_override)
     print(json.dumps(result['summary'],indent=2))
