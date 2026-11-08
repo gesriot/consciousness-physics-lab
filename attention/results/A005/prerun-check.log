@@ -237,4 +237,33 @@ test_mixture_example_keeps_mean_time_and_converges (tests.test_cli.ExampleTests.
 test_invalid_values_report_their_json_path (tests.test_cli.InvalidInputTests.test_invalid_values_report_their_json_path) ... ok
 test_malformed_json (tests.test_cli.InvalidInputTests.test_malformed_json) ... ok
 test_usage_errors (tests.test_cli.InvalidInputTests.test_usage_errors) ... ok
-test_analytic_mode (tests.test_cli.ModeTests.test_analytic_mode) ... 
+test_analytic_mode (tests.test_cli.ModeTests.test_analytic_mode) ... ok
+test_compare_mode_reports_discrepancy_and_tail (tests.test_cli.ModeTests.test_compare_mode_reports_discrepancy_and_tail) ... ok
+test_convergence_report (tests.test_cli.ModeTests.test_convergence_report) ... ok
+test_file_and_stdin_inputs_agree (tests.test_cli.ModeTests.test_file_and_stdin_inputs_agree) ... ok
+test_mixture_is_weighted_sum_of_single_spheres (tests.test_cli.ModeTests.test_mixture_is_weighted_sum_of_single_spheres) ... ok
+test_modal_mode_does_not_compute_analytic (tests.test_cli.ModeTests.test_modal_mode_does_not_compute_analytic) ... ok
+test_radius_and_diffusivity_define_mean_time (tests.test_cli.ModeTests.test_radius_and_diffusivity_define_mean_time) ... ok
+test_stdout_is_json_and_diagnostics_go_to_stderr (tests.test_cli.ModeTests.test_stdout_is_json_and_diagnostics_go_to_stderr) ... ok
+test_tolerance_below_rounding_level_is_reported (tests.test_cli.ModeTests.test_tolerance_below_rounding_level_is_reported) ... ok
+test_tolerance_not_met_is_explicit (tests.test_cli.ModeTests.test_tolerance_not_met_is_explicit) ... ok
+test_complex_arguments_against_independent_reference (tests.test_response.AnalyticTests.test_complex_arguments_against_independent_reference) ... ok
+test_large_arguments_do_not_overflow (tests.test_response.AnalyticTests.test_large_arguments_do_not_overflow) ... ok
+test_mean_relaxation_time_is_minus_derivative_at_zero (tests.test_response.AnalyticTests.test_mean_relaxation_time_is_minus_derivative_at_zero) ... ok
+test_passivity_and_conjugate_symmetry (tests.test_response.AnalyticTests.test_passivity_and_conjugate_symmetry) ... ok
+test_rejects_unsupported_domain (tests.test_response.AnalyticTests.test_rejects_unsupported_domain) ... ok
+test_series_and_closed_form_agree_at_switch (tests.test_response.AnalyticTests.test_series_and_closed_form_agree_at_switch) ... ok
+test_small_arguments_keep_full_precision (tests.test_response.AnalyticTests.test_small_arguments_keep_full_precision) ... ok
+test_taylor_coefficients_match_zeta_values (tests.test_response.AnalyticTests.test_taylor_coefficients_match_zeta_values) ... ok
+test_zero_limit_is_exact (tests.test_response.AnalyticTests.test_zero_limit_is_exact) ... ok
+test_large_argument_branch_of_tail_bound (tests.test_response.ModalTests.test_large_argument_branch_of_tail_bound) ... ok
+test_mean_relaxation_time_of_truncated_sum (tests.test_response.ModalTests.test_mean_relaxation_time_of_truncated_sum) ... ok
+test_mode_sum_converges_within_tail_bound (tests.test_response.ModalTests.test_mode_sum_converges_within_tail_bound) ... ok
+test_partial_sums_across_chunk_boundaries (tests.test_response.ModalTests.test_partial_sums_across_chunk_boundaries) ... ok
+test_tail_bound_against_independent_reference (tests.test_response.ModalTests.test_tail_bound_against_independent_reference) ... ok
+test_zero_limit_keeps_truncated_weights (tests.test_response.ModalTests.test_zero_limit_keeps_truncated_weights) ... ok
+
+----------------------------------------------------------------------
+Ran 30 tests in 6.193s
+
+OK

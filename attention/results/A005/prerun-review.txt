@@ -1,0 +1,51 @@
+A005 independent pre-execution review
+
+Scope: committed protocol d763bfa and its pre-execution amendment d06b865;
+monitoring, scheduling, calibration, replay comparison, and test code before
+new A005 request generation or scientific outcomes.
+
+The development audit found 8 inaccurate A004 inputs whose sole blocking
+check was collocation, and none whose sole blocker was V2. The selected
+permissive collocation channel therefore preserves all P-strict acceptance
+requirements rather than weakening the rule to manufacture an effect.
+
+The monitor receives paid categorical outcomes and frozen pre-observation
+forecasts. Hidden onset and fault metadata stay inside the execution harness.
+Replacement observations do not enter the original-channel monitor. Closed
+verdicts are not retroactively rescued. Additional checks share the budget.
+D alters the two registered expectations without changing the scheduler;
+Dprime changes the unused counterpart. The common expectation-table volume
+is distinct from realized exposure, which may change with the policy.
+
+Action scores are rounded at direct, continuation, and package-choice levels.
+The final last-bit perturbation repeat must establish decision stability;
+unit-level score equality alone is insufficient evidence of portability.
+Actual charged cost is authoritative in replay; expected planning cost is a
+numerical diagnostic, not an executed charge.
+
+The amended replacement uses four valid uniform FV grids and charges all
+61440 cells. The existing V2 convergence and uncertainty rule is heuristic,
+not a certified bound. At 32768 cells its rounding term is approximately
+7.63e-6 times max(1, absolute response), which can prohibit acceptance at
+small tolerances. It is a different discretization from collocation but
+shares a numerical family with ordinary V2. Repeated second-moment evidence
+provides channel redundancy, not an independent physical method.
+
+An independently authored saved-result auditor reconstructs actual prices,
+evidence prerequisites, prospective closures, ordinary and replacement
+verdicts, static S3 forecasts, cumulative residuals, alarms, exposure counts,
+delays, intervention magnitudes, Dprime equivalence, and aggregate measures.
+It does not independently solve the physical equations or exhaustively prove
+global planner optimality. Fresh physical replay remains a separate check.
+
+All 16 focused monitoring, independent-audit, and replay-comparison tests
+passed. Negative controls detect changed aggregate counts, unsupported
+acceptance, changed actual cost, and changed verdicts. A real replacement
+check exercises all four FV grids; another verifies that repeating one V2
+step reuses paid prerequisites rather than executing an uncharged chain.
+
+Conclusion: no remaining blocking scientific or implementation issue was
+identified before main execution. The registered threshold and policies must
+remain unchanged after outcomes. Final clearance additionally requires the
+main archive audit, exact-input repeat, last-bit perturbation repeat, and
+complete repository checks. No A005 outcomes were used in this review.
