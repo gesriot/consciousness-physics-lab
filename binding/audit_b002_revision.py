@@ -212,3 +212,5 @@ if __name__=='__main__':
     try:result=audit(args.directory,args.freeze)
     except (AuditError,KeyError,ValueError,FileNotFoundError) as error:result=dict(passed=False,error=str(error))
     Path(args.output).write_text(json.dumps(result,indent=2)+'\n')
+    print(json.dumps(result,indent=2))
+    raise SystemExit(0 if result.get('passed') else 1)
