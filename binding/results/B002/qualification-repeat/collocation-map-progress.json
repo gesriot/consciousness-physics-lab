@@ -1,0 +1,11 @@
+{
+  "instrument": "collocation",
+  "source": "results/E015-collocation-map/map.json.gz",
+  "source_sha256": "047544f4a38ddc27144394ebcb928a28ed1847082988fcf9122f2ea0c7252542",
+  "points": 21000,
+  "steps": 147000,
+  "protected_convergence": 68530,
+  "dangerous_misses": 0,
+  "max_error_over_uncertainty": 0.28860307684076564,
+  "examples": []
+}
