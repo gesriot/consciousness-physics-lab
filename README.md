@@ -699,3 +699,79 @@ python3 -m binding.compare binding/results/B001/confirmation results/local/b001-
 ```sh
 python3 -m binding.audit binding/results/B001/confirmation --development binding/results/B001/development-complete --freeze binding/results/B001/development-complete/freeze.json --output results/local/b001-audit.json
 ```
+
+## B002: перепроверка с подтверждением
+
+[Квалификация](binding/protocols/B002-qualification.md) и
+[протокол пересмотра](binding/protocols/B002-recall.md) зарегистрированы до
+новых исходов. [Отчёт](binding/results/B002/report.md): сгущённый V2 подтвердил
+509/582 точных development-принятий, коллокация 571/582; опасных промахов
+покрытия на полных картах E014/E015 нет. Последовательный шумовой повтор
+сохранил решения при 11 047 изменённых диагностических числах.
+
+Экспозиция всей коллокации прошла при кратчайших 4 пакетах: 527 затронутых
+принятий, из них 21 ложное. V2 U/100 не создал ложных принятий при 4/8/16
+пакетах и исключён. Все три прогона экспозиции прошли независимую реконструкцию;
+шум изменил 1 884 070 диагностик, не изменив решений и выбора срока.
+
+Подтверждение: 12 новых серий, 240 запросов. При внешнем уведомлении и бюджетах
+2/8/32 G оставляет 19/13/1 ошибку против 22/19/5 у T; верных потеряно
+0/9/50 против 4/16/51. Цены одинаковы: 47.625/190.5/762. Предсказанное
+ценовое преимущество G не подтвердилось. Gx сохраняет все 23 ошибки,
+Gxprime совпадает с G. При бюджете 32 рабочая перепроверка сохраняет 312
+верных ответов G относительно равномерного контрфактического инструмента
+на тех же traces. Исторические числа B001 не выдаются за такой парный контроль.
+
+BU не проверил коллокацию ни одним из 480 образцов, не поднял тревоги и
+сохранил все 23 ошибки. В исправной среде отзыва нет; ложное уведомление
+при бюджете 32 теряет 52 верных у G против 49 у T. Условие признать связи
+ненужными не выполнено, но универсального превосходства или вывода о
+сознании нет. §3–§4 рукописи сохранены; новое изложение – версия 0.20.
+
+Проверка A007 отдельно уточнила интерпретацию: 313 чистых замен после тревоги,
+0 решающих; 1556 закрытий требовали замены и ни одно не стало принятием.
+Это фактическая блокировка канала до конца пакета. Исходы не менялись.
+Исправлены сравнения неразрешённых отношений и численных полей аудиторского
+шага. Шумовой набор тестов возмущает реальные ответы решателей, не только
+округлённые оценки действий; сводка и область проверки – в
+[binding/results/B002/step0](binding/results/B002/step0/verification.json).
+
+### Воспроизведение B002
+
+Команды выполняются последовательно. Имена выходных каталогов должны быть
+новыми. Для отличающейся среды добавляется содержательный --runtime-override;
+он уже испытан в повторах в закреплённой среде. Семейства порчи, сроки и
+пороговые условия после исходов не менялись. Короткие development-сроки –
+зависимые префиксы единой серии; все новые серии сохраняются по пакетам.
+
+```sh
+OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 python3 -m binding.qualification --output results/local/b002-qualification
+OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 python3 -m binding.qualification --replay results/local/b002-qualification --output results/local/b002-qualification-repeat --runtime-override 'Explicit recorded repeat of the pinned environment'
+OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 python3 -m binding.qualification --replay results/local/b002-qualification --last-bit-noise --output results/local/b002-qualification-noise
+python3 -m binding.qualification --finalize results/local/b002-qualification results/local/b002-qualification-repeat results/local/b002-qualification-noise --output results/local/b002-qualified.json
+OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 python3 -m binding.b002 --output results/local/b002-exposure
+OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 python3 -m binding.b002 --replay results/local/b002-exposure --output results/local/b002-exposure-repeat --runtime-override 'Explicit recorded repeat of the pinned environment'
+OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 python3 -m binding.b002 --replay results/local/b002-exposure --last-bit-noise --output results/local/b002-exposure-noise
+python3 -m binding.audit_b002_exposure results/local/b002-exposure --output results/local/b002-exposure-audit.json
+python3 -m binding.audit_b002_exposure results/local/b002-exposure --compare results/local/b002-exposure-noise --output results/local/b002-exposure-noise-comparison.json
+OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 python3 -m binding.revision_b002 --freeze binding/results/B002/exposure-first/freeze.json --output results/local/b002-confirmation
+OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 python3 -m binding.revision_b002 --freeze binding/results/B002/exposure-first/freeze.json --replay results/local/b002-confirmation --output results/local/b002-confirmation-repeat --runtime-override 'Explicit recorded repeat of the pinned environment'
+OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 python3 -m binding.revision_b002 --freeze binding/results/B002/exposure-first/freeze.json --replay results/local/b002-confirmation --last-bit-noise --output results/local/b002-confirmation-noise
+python3 -m binding.revision_b002 --compare results/local/b002-confirmation results/local/b002-confirmation-noise --output results/local/b002-confirmation-noise-comparison.json
+python3 -m binding.audit_b002_revision results/local/b002-confirmation --freeze binding/results/B002/exposure-first/freeze.json --output results/local/b002-confirmation-audit.json
+./scripts/check.sh
+./scripts/check-noise.sh
+```
+
+Разработка экспозиции и подтверждение используют уже закоммиченные штатные
+артефакты квалификации и экспозиции; локальные выходы выше воспроизводят их,
+но не заменяют зарегистрированный freeze. Новое исследование с другими
+параметрами требует нового протокола, а не перезаписи этих файлов.
+
+Итог B002: обычный и шумовой полный наборы – каждый 388 основных + 30
+vendor-тестов PASS. [Обычный журнал](binding/results/B002/check.log),
+[шумовой журнал](binding/results/B002/check-noise.log),
+[сводка проверки](binding/results/B002/verification.json).
+Все три подтверждающих архива независимо прошли по 1296 парных ячеек;
+повторы не увеличивают число независимых серий. Шумовой повтор подтверждения
+сохранил решения при 386 010 изменённых диагностических числах.
