@@ -1,0 +1,90 @@
+{
+  "completed_series": 12,
+  "partial": {
+    "experiment": "B002-exposure",
+    "development_seeds": [
+      20270101,
+      20270102,
+      20270103,
+      20270104,
+      20270105,
+      20270106,
+      20270107,
+      20270108,
+      20270109,
+      20270110,
+      20270111,
+      20270112
+    ],
+    "qualification_sha256": "1b7bb5072253f4bd91f098b33cd75bb4af5435f1e065e7da2d5a3a039e004255",
+    "candidates": {
+      "permissive": {
+        "instrument": "graded_v2",
+        "candidates": [
+          {
+            "packages": 4,
+            "accepted": 677,
+            "initial_false": 21,
+            "affected": 527,
+            "affected_false": 21,
+            "exposure_gate": true
+          },
+          {
+            "packages": 8,
+            "accepted": 1325,
+            "initial_false": 56,
+            "affected": 1175,
+            "affected_false": 56,
+            "exposure_gate": true
+          },
+          {
+            "packages": 16,
+            "accepted": 2647,
+            "initial_false": 132,
+            "affected": 2497,
+            "affected_false": 132,
+            "exposure_gate": true
+          }
+        ],
+        "selected_packages": 4,
+        "exposure_gate": true
+      },
+      "underestimated": {
+        "instrument": "collocation",
+        "candidates": [
+          {
+            "packages": 4,
+            "accepted": 614,
+            "initial_false": 0,
+            "affected": 41,
+            "affected_false": 0,
+            "exposure_gate": false
+          },
+          {
+            "packages": 8,
+            "accepted": 1195,
+            "initial_false": 0,
+            "affected": 119,
+            "affected_false": 0,
+            "exposure_gate": false
+          },
+          {
+            "packages": 16,
+            "accepted": 2348,
+            "initial_false": 0,
+            "affected": 226,
+            "affected_false": 0,
+            "exposure_gate": false
+          }
+        ],
+        "selected_packages": null,
+        "exposure_gate": false
+      }
+    },
+    "selected": {
+      "permissive": 4
+    },
+    "confirmation_allowed": true,
+    "status": "freeze_before_confirmation"
+  }
+}

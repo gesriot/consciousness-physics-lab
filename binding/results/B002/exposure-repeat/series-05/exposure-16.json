@@ -1,0 +1,20 @@
+{
+  "none": {
+    "accepted": 183,
+    "initial_false": 0,
+    "affected": 0,
+    "affected_false": 0
+  },
+  "permissive": {
+    "accepted": 206,
+    "initial_false": 12,
+    "affected": 193,
+    "affected_false": 12
+  },
+  "underestimated": {
+    "accepted": 183,
+    "initial_false": 0,
+    "affected": 24,
+    "affected_false": 0
+  }
+}
