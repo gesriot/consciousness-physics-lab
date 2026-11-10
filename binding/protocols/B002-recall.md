@@ -72,3 +72,31 @@ neural synchronization or a theory of consciousness. Preserve negative results,
 protocol chronology, all gate failures, and the distinction between development
 selection and independent confirmation. Finish with sequential ordinary/noise
 replays, explicit runtime override, independent archive auditing and the full checks.
+
+## Pre-exposure clarification of the family-wide causal control
+
+This clarification is committed after instrument qualification but before any new
+exposure or confirmation outcomes. Qualification assessed the two numerical tools,
+not memory selection. A same-family neighbour relabel from B001 would be insufficient
+here: all six channels are notified, so another notice would still match the relabelled
+edge. That intervention would mostly change priority, not remove relevant support.
+
+Therefore Gx changes the relevant raw numerical dependency label to its
+`independent:`-prefixed label in the policy-visible graph only. It falsely represents
+a genuinely used original channel as an independent replacement, without changing
+any execution, truth label or archived clean ledger. Gxprime toggles the same
+raw/independent prefix of one unrelated normalization dependency in exactly the
+same eligible records. If the unrelated label already has the prefix, remove it.
+These records always carry the accepting normalization evidence required by the
+pipeline; absence is an audit failure, not permission to choose another edge.
+
+Eligibility is the same observable condition as B001: a supporting observation of
+the notified channel newer than its last successful sample, before the notice.
+Both interventions change exactly one edge in each eligible record, preserve record
+and edge counts, all endpoints as record positions, and all timestamps. Their
+registered distance is one binary provenance-label toggle per edge, not the old
+channel-index distance. No claim of preserving label-frequency distributions is
+made. The relevant edit removes that original channel from the matching set even
+under a whole-family notification; the unrelated edit cannot create or remove a
+numerical-family match. Every edited graph and edit list is archived for auditing.
+The original G, T, A, N, budgets, predictions and closure criterion are unchanged.
