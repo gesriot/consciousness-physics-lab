@@ -1,0 +1,14 @@
+test_aggregate_freeze_closure_mutations (test_binding_audit.AuditTests.test_aggregate_freeze_closure_mutations) ... ok
+test_archive (test_binding_audit.AuditTests.test_archive) ... ok
+test_boundaries (test_binding_audit.AuditTests.test_boundaries) ... ok
+test_corrupt_log (test_binding_audit.AuditTests.test_corrupt_log) ... ok
+test_corruption (test_binding_audit.AuditTests.test_corruption) ... ok
+test_negative_mutations (test_binding_audit.AuditTests.test_negative_mutations) ... ok
+test_snapshot_mutation (test_binding_audit.AuditTests.test_snapshot_mutation) ... ok
+test_source_hash_mutation (test_binding_audit.AuditTests.test_source_hash_mutation) ... ok
+test_valid (test_binding_audit.AuditTests.test_valid) ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.479s
+
+OK

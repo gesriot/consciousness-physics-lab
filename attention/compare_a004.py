@@ -1,4 +1,5 @@
 """Bounded-memory comparison of canonically framed A004 JSON archives."""
+from attention.comparison_diagnostics import SHADOW_FIELDS, shadow_differences
 import argparse
 import gzip
 import io
@@ -155,12 +156,13 @@ def _package_view(package):
 def compare_paths(first, second):
     left, right = Archive(first), Archive(second)
     missing = object()
-    mismatches, diagnostics = [], {}
+    mismatches, diagnostics = [], {}; shadows = []
     same = True
     for index, (a, b) in enumerate(zip_longest(left.packages(), right.packages(), fillvalue=missing)):
         if a is missing or b is missing:
             same = False
             continue
+        shadows.extend(shadow_differences(a,b,'/packages/'+str(index)))
         equal = _package_view(a) == _package_view(b)
         same = same and equal
         if not equal:
@@ -180,7 +182,7 @@ def compare_paths(first, second):
     except KeyError as error:
         raise ValueError('Missing required comparison metadata: ' + str(error)) from error
     return dict(decisions_pass=same, differing_packages=mismatches,
-                numeric_diagnostics=diagnostics, numeric_diagnostics_informational=True)
+                numeric_diagnostics=diagnostics, numeric_diagnostics_informational=True,shadow_diagnostics=shadows)
 
 
 def main():

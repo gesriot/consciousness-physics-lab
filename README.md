@@ -648,3 +648,54 @@ python3 -m attention.audit_a007 attention/results/A007/results.json.gz --negativ
 Итоговый check: 296 основных + 30 vendor-тестов PASS
 ([журнал](attention/results/A007/check.log)). Пиковая память прогонов около
 259–260 МиБ; завершённые пакеты сохранялись до продолжения расчёта.
+
+
+## B001: связывание выводов с основаниями
+
+Новая область [binding/](binding/README.md) следует за закрытой линией внимания.
+[Протокол](binding/protocols/B001-recall.md) зафиксирован до кода и данных;
+[отчёт](binding/results/B001/report.md) сохраняет отрицательные результаты,
+исправление реализации на разработке и ограничения интерпретации.
+
+12 независимых подтверждающих серий, 240 новых запросов и 2160 зависимых
+вариантов на среду. После внешнего уведомления о локальном отказе коллокации
+при бюджете 8 у G осталось 3 ложных принятия против 10 у T, при 32 – 0 против 1.
+Напрасные отзывы точных ответов: 78 против 94 и 118 против 372 соответственно.
+Релевантная порча связей сохраняет 12 ошибок, нерелевантная точно повторяет G.
+Без уведомления и без порчи отзыва нет; ложное уведомление при 32 приводит
+к 53 напрасным отзывам у G против 217 у T. По собственной тревоге при 32
+у обеих схем остаётся 8 ошибок, но G теряет 51 точный ответ против 152.
+
+Все 567 разных перепроверенных кандидатов получили «не решено» из-за
+неизменённой защитной полосы A007. Это избирательный отзыв, не успешное
+повторное подтверждение. Оба условия порчи не прошли составной development-критерий экспозиции;
+при V2 в подтверждении 3 затронутых принятия и 0 ложных. Правило закрытия
+«T не хуже G во всех шести первичных ячейках» не выполнено, но универсальная
+необходимость графа не доказана. Рукопись 0.19 отражает эти содержательные
+результаты, не публикационную готовность; §3–§4 сохранены.
+
+```sh
+OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 python3 -m binding.b001 --phase confirmation --freeze binding/results/B001/development-complete/freeze.json --replay binding/results/B001/confirmation --output results/local/b001-replay
+OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 python3 -m binding.b001 --phase confirmation --freeze binding/results/B001/development-complete/freeze.json --replay binding/results/B001/confirmation --last-bit-noise --runtime-override "Explicit replay audit; preserve registered numerical settings" --output results/local/b001-noise
+python3 -m binding.compare binding/results/B001/confirmation results/local/b001-replay --output results/local/b001-replay-comparison.json
+python3 -m binding.compare binding/results/B001/confirmation results/local/b001-noise --output results/local/b001-noise-comparison.json
+./scripts/check.sh
+```
+
+Выходная директория должна быть новой. Указанный override фиксирует причину,
+не меняет параметры. Шум последнего бита относится к оценкам выбора перед
+округлением, не к арифметике решателя; это не повтор на второй платформе.
+Полные численные повторы запускаются последовательно. Готовые пакеты
+сохраняются немедленно; gzip использует максимальное сжатие и нулевой mtime.
+
+
+Оба полных повтора B001 совпали по решениям и сравниваемым диагностикам.
+Независимый аудитор проверил разработку, подтверждение и два повтора: по 1728
+ячеек каждого прогона, включая хронологию протокола/freeze и источники в Git.
+Это не 48 независимых подтверждающих серий: повторяются те же 12 подтверждающих
+входных серий. Итоговый check – 330 основных + 30 vendor-тестов PASS
+([журнал](binding/results/B001/check.log)).
+
+```sh
+python3 -m binding.audit binding/results/B001/confirmation --development binding/results/B001/development-complete --freeze binding/results/B001/development-complete/freeze.json --output results/local/b001-audit.json
+```

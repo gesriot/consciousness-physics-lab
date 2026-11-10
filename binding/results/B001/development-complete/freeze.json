@@ -1,0 +1,96 @@
+{
+  "experiment": "B001",
+  "development_seeds": [
+    20261206,
+    20261207,
+    20261208,
+    20261209,
+    20261210,
+    20261211,
+    20261212,
+    20261213,
+    20261214,
+    20261215,
+    20261216,
+    20261217
+  ],
+  "candidates": {
+    "permissive": {
+      "candidates": [
+        {
+          "band": 0,
+          "affected": 0,
+          "affected_false": 0
+        },
+        {
+          "band": 1,
+          "affected": 0,
+          "affected_false": 0
+        },
+        {
+          "band": 2,
+          "affected": 30,
+          "affected_false": 3
+        },
+        {
+          "band": 3,
+          "affected": 12,
+          "affected_false": 2
+        },
+        {
+          "band": 4,
+          "affected": 23,
+          "affected_false": 1
+        },
+        {
+          "band": 5,
+          "affected": 29,
+          "affected_false": 0
+        }
+      ],
+      "selected": 2,
+      "exposure_gate": false
+    },
+    "underestimated": {
+      "candidates": [
+        {
+          "band": 0,
+          "affected": 0,
+          "affected_false": 0
+        },
+        {
+          "band": 1,
+          "affected": 0,
+          "affected_false": 0
+        },
+        {
+          "band": 2,
+          "affected": 0,
+          "affected_false": 0
+        },
+        {
+          "band": 3,
+          "affected": 3,
+          "affected_false": 0
+        },
+        {
+          "band": 4,
+          "affected": 0,
+          "affected_false": 0
+        },
+        {
+          "band": 5,
+          "affected": 0,
+          "affected_false": 0
+        }
+      ],
+      "selected": 3,
+      "exposure_gate": false
+    }
+  },
+  "bands": {
+    "permissive": 2,
+    "underestimated": 3
+  },
+  "all_exposure_gates_pass": false
+}

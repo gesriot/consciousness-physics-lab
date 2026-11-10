@@ -1,0 +1,61 @@
+{
+  "experiment": "B001",
+  "base_commit": "16ee41d6b878945f344a2ad951e778e54d123e71",
+  "experiment_commit": "81857d4e076a2be0e96a32ccebdde6f0911d018e",
+  "tests": {
+    "command": "OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 ./scripts/check.sh",
+    "exit_code": 0,
+    "main": 330,
+    "vendor": 30,
+    "log_sha256": "eb2d7d127418b06ac02d6f8679417a75c4b87937f7e91d8e45a1bf6d4c4d9864"
+  },
+  "comparisons": {
+    "replay": {
+      "decisions_pass": true,
+      "differing_decisions": [],
+      "diagnostics_pass": true,
+      "differing_diagnostics": [],
+      "series_compared": 12,
+      "intake_pass": true
+    },
+    "lastbit": {
+      "decisions_pass": true,
+      "differing_decisions": [],
+      "diagnostics_pass": true,
+      "differing_diagnostics": [],
+      "series_compared": 12,
+      "intake_pass": true
+    }
+  },
+  "audits": {
+    "development": {
+      "passed": true,
+      "series_count": 12,
+      "cells": 1728
+    },
+    "confirmation": {
+      "passed": true,
+      "series_count": 12,
+      "cells": 1728
+    },
+    "replay": {
+      "passed": true,
+      "series_count": 12,
+      "cells": 1728
+    },
+    "lastbit": {
+      "passed": true,
+      "series_count": 12,
+      "cells": 1728
+    }
+  },
+  "unchanged": [
+    "lab/",
+    "vendor/",
+    "MANUSCRIPT.md sections 3 and 4"
+  ],
+  "manuscript_sections_3_4_sha256": "083455c6db2f845f5fa36914f9d9c3e909536034032e790dffbe0d79f4ac0cd5",
+  "manuscript_version": "0.19",
+  "noise_scope": "Next-representable ranking scores before nine-decimal rounding; no solver-arithmetic or platform perturbation",
+  "note": "Audits reuse recorded numerical evidence. Confirmation has 12 independent series; exact replays are not new independent evidence."
+}

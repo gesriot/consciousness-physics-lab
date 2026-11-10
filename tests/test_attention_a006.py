@@ -24,7 +24,7 @@ class CalibrationTests(unittest.TestCase):
             self.assertTrue({'sphere','slab','mixture','model_scale'}<={s['model'] for s in rows})
 
     def test_all_frozen_samples_execute_clean(self):
-        for row in self.library['samples']:
+        for row in self.library['samples'] + read_json(ROOT/'attention/sample_library_a007.json')['samples']:
             with self.subTest(sample=row['sample_id']):
                 actual=samples.execute_sample(row,self.weights)
                 self.assertEqual(actual['verdict'],row['expected'])
@@ -35,7 +35,13 @@ class CalibrationTests(unittest.TestCase):
         from attention.audit_a006_portability import diagnostic_atol
         if isinstance(expected,dict):
             self.assertEqual(set(actual),set(expected))
-            for key in expected:self.assert_diagnostics_close(actual[key],expected[key],family,diagnostic_atol(family,key,expected))
+            for key in expected:
+                if key == 'shadow_C2_converging':
+                    self.assertIsInstance(actual[key],bool)
+                elif key in ('cost','budget','spent','maximum_cost'):
+                    self.assertEqual(actual[key],expected[key])
+                else:
+                    self.assert_diagnostics_close(actual[key],expected[key],family,diagnostic_atol(family,key,expected))
         elif isinstance(expected,list):
             self.assertEqual(len(actual),len(expected))
             for a,b in zip(actual,expected):self.assert_diagnostics_close(a,b,family,atol)

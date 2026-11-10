@@ -1,0 +1,109 @@
+{
+  "cells": [
+    {
+      "fault": "permissive",
+      "budget": "2",
+      "T_no_worse": false
+    },
+    {
+      "fault": "permissive",
+      "budget": "8",
+      "T_no_worse": false
+    },
+    {
+      "fault": "permissive",
+      "budget": "32",
+      "T_no_worse": false
+    },
+    {
+      "fault": "underestimated",
+      "budget": "2",
+      "T_no_worse": false
+    },
+    {
+      "fault": "underestimated",
+      "budget": "8",
+      "T_no_worse": false
+    },
+    {
+      "fault": "underestimated",
+      "budget": "32",
+      "T_no_worse": false
+    }
+  ],
+  "links_unnecessary_here": false,
+  "exposure_gates": {
+    "permissive": {
+      "candidates": [
+        {
+          "band": 0,
+          "affected": 0,
+          "affected_false": 0
+        },
+        {
+          "band": 1,
+          "affected": 0,
+          "affected_false": 0
+        },
+        {
+          "band": 2,
+          "affected": 30,
+          "affected_false": 3
+        },
+        {
+          "band": 3,
+          "affected": 12,
+          "affected_false": 2
+        },
+        {
+          "band": 4,
+          "affected": 23,
+          "affected_false": 1
+        },
+        {
+          "band": 5,
+          "affected": 29,
+          "affected_false": 0
+        }
+      ],
+      "selected": 2,
+      "exposure_gate": false
+    },
+    "underestimated": {
+      "candidates": [
+        {
+          "band": 0,
+          "affected": 0,
+          "affected_false": 0
+        },
+        {
+          "band": 1,
+          "affected": 0,
+          "affected_false": 0
+        },
+        {
+          "band": 2,
+          "affected": 0,
+          "affected_false": 0
+        },
+        {
+          "band": 3,
+          "affected": 3,
+          "affected_false": 0
+        },
+        {
+          "band": 4,
+          "affected": 0,
+          "affected_false": 0
+        },
+        {
+          "band": 5,
+          "affected": 0,
+          "affected_false": 0
+        }
+      ],
+      "selected": 3,
+      "exposure_gate": false
+    }
+  }
+}

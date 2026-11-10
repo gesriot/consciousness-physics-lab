@@ -1,4 +1,5 @@
 """A001 held-out budget allocation and archived-input replay."""
+from attention.comparison_diagnostics import SHADOW_FIELDS, shadow_differences
 import argparse
 import copy
 import hashlib
@@ -121,7 +122,7 @@ def summary(rows):
 def control_flags(value, path=''):
     """All discrete boolean decisions, including nested gate and grid flags."""
     if isinstance(value,dict):
-        return {p:v for k,item in value.items() for p,v in control_flags(item,path+'/'+k).items()}
+        return {p:v for k,item in value.items() if k not in SHADOW_FIELDS for p,v in control_flags(item,path+'/'+k).items()}
     if isinstance(value,list):
         return {p:v for i,item in enumerate(value) for p,v in control_flags(item,path+'/'+str(i)).items()}
     return {path:value} if isinstance(value,bool) else {}
@@ -150,7 +151,7 @@ def compare(first,second):
     def walk(x,y,path=''):
         if isinstance(x,dict) and isinstance(y,dict):
             if x.keys()!=y.keys():structure.append(path)
-            for k in x.keys()&y.keys():
+            for k in (x.keys()&y.keys())-SHADOW_FIELDS:
                 walk(x[k],y[k],path+'/'+k)
         elif isinstance(x,list) and isinstance(y,list):
             if len(x)!=len(y):structure.append(path)
@@ -165,6 +166,7 @@ def compare(first,second):
         diagnostic_structure_pass=structure_pass,
         numeric_diagnostic_summary=numeric_summary(first['runs'],second['runs']),
         numeric_diagnostics_informational=True,
+        shadow_diagnostics=shadow_differences(first,second),
         differing_decision_rows=mismatches,numeric_diagnostic_differences=numeric,
         numeric_diagnostics_pass=not numeric and not structure,diagnostic_structure_differences=structure,atol=1e-12,rtol=1e-12,
         scientific_exact=scientific_view(first)==scientific_view(second))
