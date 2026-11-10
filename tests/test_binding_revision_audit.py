@@ -26,6 +26,24 @@ class RevisionAuditTests(unittest.TestCase):
     def check(self,value,memory='G'):
         return check_cell(value,self.records,self.truth,self.notices,memory,2,'cross',self.infos,self.weights)
 
+    def test_uniform_guard_normalizes_scalar_boolean(self):
+        import json
+        from binding.audit import guard_check
+        from lab import frozen_pipeline as P
+        values=[1.+0j,.999+0j,.9989+0j,.99889+0j]
+        tolerance=.00004
+        step=P.v2_step(values,32768,values[-1],tolerance)
+        margin=tolerance-step['discrepancy']-step['uncertainty_estimate']
+        contraction=.5*step['previous_difference']-step['last_difference']
+        result=dict(grids=[4096,8192,16384,32768],values=[[v.real,v.imag] for v in values],
+            step=json.loads(json.dumps(step)),unguarded_verdict='accept',verdict='inconclusive',
+            safety=dict(multiplier=4,decision_margin=float(margin),contraction_margin=contraction,
+                        threshold=4*step['rounding'],passed=False))
+        info=dict(outcome={'value':[values[-1].real,0.]},tolerance=tolerance)
+        guard_check(result,info)
+        result['safety']['passed']=True
+        with self.assertRaises(AuditError):guard_check(result,info)
+
     def test_valid_synthetic_cross_acceptance(self):
         result=self.check(self.saved())
         self.assertEqual(result['confirmed'],1)

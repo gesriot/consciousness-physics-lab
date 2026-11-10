@@ -189,7 +189,7 @@ def guard_check(result, info):
     margin = info['tolerance']-step['discrepancy']-step['uncertainty_estimate'] if verdict == 'accept' else step['discrepancy']-step['uncertainty_estimate']-info['tolerance'] if verdict == 'violation_detected' else None
     contraction = .5*step['previous_difference']-step['last_difference']
     threshold = 4*step['rounding']
-    passed = margin is not None and margin > threshold and contraction > threshold
+    passed = bool(margin is not None and margin > threshold and contraction > threshold)
     equal(result['unguarded_verdict'], verdict, 'unguarded verdict')
     safety = dict(multiplier=4, decision_margin=margin, contraction_margin=contraction, threshold=threshold, passed=passed)
     comparison = diagnostic_comparison(result['safety'], safety, 'v2')
