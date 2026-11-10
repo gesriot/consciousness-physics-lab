@@ -5,7 +5,6 @@ import hashlib
 import json
 import math
 from pathlib import Path
-import statistics
 import subprocess
 from binding.audit import AuditError, read, digest, equal, close, guard_check
 from binding.audit_b002_exposure import reconstruct, native_price, cross_check
@@ -133,6 +132,18 @@ def audit(directory,freeze_path):
     qpath='binding/results/B002/qualification-freeze.json';qbytes=blob(qpath);qualified=json.loads(qbytes)
     equal(hashlib.sha256(qbytes).hexdigest(),manifest['qualification_sha256'],'qualification hash')
     equal(frozen['qualification_sha256'],manifest['qualification_sha256'],'qualification binding')
+    independently_selected={}
+    for fault,candidate in frozen['candidates'].items():
+        equal([c['packages'] for c in candidate['candidates']],[4,8,16],'registered exposure candidates')
+        passes=[]
+        for c in candidate['candidates']:
+            passed=c['affected']>=10 and c['affected_false']>=5
+            equal(c['exposure_gate'],passed,'compound exposure gate')
+            if passed:passes.append(c['packages'])
+        equal(candidate['exposure_gate'],bool(passes),'family exposure gate')
+        equal(candidate['selected_packages'],min(passes) if passes else None,'shortest passing exposure')
+        if passes:independently_selected[fault]=min(passes)
+    equal(selected,independently_selected,'all and only exposed families')
     for fault,duration in selected.items():
         equal(duration,frozen['candidates'][fault]['selected_packages'],'selected shortest duration')
         equal(frozen['candidates'][fault]['exposure_gate'],True,'exposure gate')
@@ -165,6 +176,8 @@ def audit(directory,freeze_path):
         revisions=read(base.parent/'revision.json.gz');expected_scenarios={s for f in selected for s in (f,'none:'+f,'false_notice:'+f)}
         equal(set(revisions),expected_scenarios,'scenario membership');row={}
         candidates={f:[read(base/f'{f}-{p}.json.gz') for p in range(n)] for f in ['none']+list(selected)}
+        for fault in selected:
+            for p in range(n):equal(candidates[fault][p]['inputs'],candidates['none'][p]['inputs'],'shared ordinary candidate construction')
         infos={f'{p}:{j}':info for p,archive in enumerate(candidates['none']) for j,info in enumerate(archive['inputs'])}
         for fault,duration in selected.items():
             rebuilt={source:reconstruct(candidates[source][:duration],data,reference,weights,source) for source in (fault,'none')}
