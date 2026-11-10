@@ -1,0 +1,21 @@
+{
+  "cells": [
+    {
+      "fault": "permissive",
+      "budget": 2,
+      "T_no_worse": false
+    },
+    {
+      "fault": "permissive",
+      "budget": 8,
+      "T_no_worse": false
+    },
+    {
+      "fault": "permissive",
+      "budget": 32,
+      "T_no_worse": false
+    }
+  ],
+  "links_unnecessary_here": false,
+  "tested": true
+}

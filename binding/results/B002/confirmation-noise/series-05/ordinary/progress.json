@@ -1,0 +1,9 @@
+{
+  "completed_packages": 4,
+  "solver_noise_calls": {
+    "modal_partial_sums": 380,
+    "lab.frozen_pipeline.model_response": 4061,
+    "lab.frozen_pipeline.probe_response": 5728,
+    "lab.radial_collocation.response": 1064
+  }
+}

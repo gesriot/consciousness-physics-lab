@@ -1,0 +1,44 @@
+{
+  "experiment": "B002-confirmation",
+  "environment": {
+    "python": "3.12.14",
+    "numpy": "2.3.5",
+    "scipy": "1.17.0",
+    "os": "Linux",
+    "os_release": "6.18.57",
+    "architecture": "x86_64",
+    "blas_lapack_configuration": "Build Dependencies:\n  blas:\n    detection method: pkgconfig\n    found: true\n    include directory: /opt/_internal/cpython-3.12.12/lib/python3.12/site-packages/scipy_openblas64/include\n    lib directory: /opt/_internal/cpython-3.12.12/lib/python3.12/site-packages/scipy_openblas64/lib\n    name: scipy-openblas\n    openblas configuration: OpenBLAS 0.3.30  USE64BITINT DYNAMIC_ARCH NO_AFFINITY\n      Haswell MAX_THREADS=64\n    pc file directory: /project/.openblas\n    version: 0.3.30\n  lapack:\n    detection method: pkgconfig\n    found: true\n    include directory: /opt/_internal/cpython-3.12.12/lib/python3.12/site-packages/scipy_openblas64/include\n    lib directory: /opt/_internal/cpython-3.12.12/lib/python3.12/site-packages/scipy_openblas64/lib\n    name: scipy-openblas\n    openblas configuration: OpenBLAS 0.3.30  USE64BITINT DYNAMIC_ARCH NO_AFFINITY\n      Haswell MAX_THREADS=64\n    pc file directory: /project/.openblas\n    version: 0.3.30\nCompilers:\n  c:\n    commands: cc\n    linker: ld.bfd\n    name: gcc\n    version: 14.2.1\n  c++:\n    commands: c++\n    linker: ld.bfd\n    name: gcc\n    version: 14.2.1\n  cython:\n    commands: cython\n    linker: cython\n    name: cython\n    version: 3.2.1\nMachine Information:\n  build:\n    cpu: x86_64\n    endian: little\n    family: x86_64\n    system: linux\n  host:\n    cpu: x86_64\n    endian: little\n    family: x86_64\n    system: linux\nPython Information:\n  path: /tmp/build-env-aw1mwcap/bin/python\n  version: '3.12'\nSIMD Extensions:\n  baseline:\n  - SSE\n  - SSE2\n  - SSE3\n  found:\n  - SSSE3\n  - SSE41\n  - POPCNT\n  - SSE42\n  - AVX\n  - F16C\n  - FMA3\n  - AVX2\n  - AVX512F\n  - AVX512CD\n  - AVX512_SKX\n  - AVX512_CLX\n  - AVX512_CNL\n  - AVX512_ICL\n  not found:\n  - AVX512_KNL\n  - AVX512_KNM\n  - AVX512_SPR\n\nBuild Dependencies:\n  blas:\n    detection method: pkgconfig\n    found: true\n    has ilp64: false\n    include directory: /opt/_internal/cpython-3.12.11/lib/python3.12/site-packages/scipy_openblas32/include\n    lib directory: /opt/_internal/cpython-3.12.11/lib/python3.12/site-packages/scipy_openblas32/lib\n    name: scipy-openblas\n    openblas configuration: OpenBLAS 0.3.30 DYNAMIC_ARCH NO_AFFINITY Haswell MAX_THREADS=64\n    pc file directory: /project/\n    version: 0.3.30\n  lapack:\n    detection method: pkgconfig\n    found: true\n    has ilp64: false\n    include directory: /opt/_internal/cpython-3.12.11/lib/python3.12/site-packages/scipy_openblas32/include\n    lib directory: /opt/_internal/cpython-3.12.11/lib/python3.12/site-packages/scipy_openblas32/lib\n    name: scipy-openblas\n    openblas configuration: OpenBLAS 0.3.30 DYNAMIC_ARCH NO_AFFINITY Haswell MAX_THREADS=64\n    pc file directory: /project/\n    version: 0.3.30\n  pybind11:\n    detection method: config-tool\n    include directory: unknown\n    name: pybind11\n    version: 3.0.1\nCompilers:\n  c:\n    commands: cc\n    linker: ld.bfd\n    name: gcc\n    version: 14.2.1\n  c++:\n    commands: c++\n    linker: ld.bfd\n    name: gcc\n    version: 14.2.1\n  cython:\n    commands: cython\n    linker: cython\n    name: cython\n    version: 3.2.4\n  fortran:\n    commands: gfortran\n    linker: ld.bfd\n    name: gcc\n    version: 14.2.1\n  pythran:\n    include directory: ../../tmp/build-env-h6rtuvfe/lib/python3.12/site-packages/pythran\n    version: 0.18.1\nMachine Information:\n  build:\n    cpu: x86_64\n    endian: little\n    family: x86_64\n    system: linux\n  cross-compiled: false\n  host:\n    cpu: x86_64\n    endian: little\n    family: x86_64\n    system: linux\nPython Information:\n  path: /tmp/build-env-h6rtuvfe/bin/python\n  version: '3.12'\n\n"
+  },
+  "runtime_override": "Sequential one-bit solver-output replay audit in the pinned environment; registered instruments and policies unchanged.",
+  "git_head": "b03748c0c9033006a56ea1d319e5987396739b9a",
+  "protocol_commit": "c56265827bfda84ed59162fd4eb52fea0fa1ecc6",
+  "protocol_sha256": "9c9544c090617b2d60fffbf2a76528a31eeb4842617b6b83a57c7fd6724bec06",
+  "source_sha256": {
+    "attention/agent.py": "dd5e93e3291d44d281bcbcc84557ef55b57700fa73ca18b4aac8504da82aef26",
+    "attention/calibration_samples.py": "0ea5b03010e68fd961bdd144ae6cc252cba34098f08a2af42c4fff4caed68f92",
+    "attention/channel_monitor.py": "b7284703c8de8c48deb9503028f7b3410b741a1e4011afafd663a84164c402fe",
+    "attention/sample_library_a007.json": "9a0ef25deab3944e29ce8f6a5d65e1ea636200d224829d184ed138c3c7a56538",
+    "attention/self_model_s2.json": "04e80c09eb8eb0207dd3283e65208b68c8ce602997f96a0684f14a9c3ae0cc4f",
+    "attention/self_model_s3.json": "3bdbfd5ae352092ee0f96ba7f18380a1fa0a497da323b31f3977e5207693f7fb",
+    "binding/b001.py": "a0634e38bc134b617654cc80b25f002f785f8119bdab5e51744d1e8e0453f2ea",
+    "binding/b002.py": "a07d1c33907c84fbae31b932fe2b9ef0be9e4f0e29a67816c12d8a8d21596307",
+    "binding/memory.py": "40bff1d16fc08751720f5304c7b0686793a8b05ef13ff0a165a48d950d4964f9",
+    "binding/qualification.py": "ecb4864f5fb293f2c16f879968c88d210ba41830481c0cfc3af0fdee90637426",
+    "binding/revision_b002.py": "db564e02e8477376f58ffe3affe2231aa122827b99c0092aa9ff71f08f400b41",
+    "lab/frozen_pipeline.py": "14700c5ba6aa9b5cc2d426cb2bdf90eefd183ba0c00c4639c09325a0a2c5129c",
+    "lab/radial_collocation.py": "cec9d3829860fc37b0f32b772651abcc66c1b3581da8a2b33e8294fb0fa6b4f2"
+  },
+  "exposure_freeze_sha256": "47207a2925e9121cdff970c5e447841d2d9d5815da03931a22a1c026e73a1e89",
+  "qualification_sha256": "1b7bb5072253f4bd91f098b33cd75bb4af5435f1e065e7da2d5a3a039e004255",
+  "selected": {
+    "permissive": 4
+  },
+  "last_bit_noise": true,
+  "intake_sha256": "3fbe70c20af9235e38f4c940c99b0c8a091fd6b49ebcd74859500f17a13d0e9a",
+  "independent_series": 12,
+  "requests": 240,
+  "exact_development_overlap": 0,
+  "development_intake_sha256": "e8a5403fa5c0370aec5f6b62923a8346120a5d8cb1d4c67abf44c385e6fb8ac8",
+  "qualification_intake_sha256": "6175ee632f125638262999616404f881c9b5987558bade450fc89eb55694d154",
+  "sampling_unit": "12 series; faults, controls, budgets, memories and replacement counterfactuals paired within series"
+}
