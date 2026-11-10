@@ -42,6 +42,12 @@ class QualificationTests(unittest.TestCase):
         self.assertEqual(result['verdict'], 'inconclusive')
         self.assertFalse(result['finite'])
 
+    def test_finite_inputs_with_overflow_abstain(self):
+        result = q.protected_step('collocation', [1e308+0j]*2, -1e308+0j, 1e308)
+        self.assertEqual(result['verdict'], 'inconclusive')
+        self.assertFalse(result['finite'])
+        json.dumps(result, allow_nan=False)
+
     def test_solver_noise_precedes_arithmetic(self):
         request = Request(1, 1, .01)
         with patch.object(q.radial_collocation, 'response', return_value=1+1j):
@@ -65,6 +71,29 @@ class QualificationTests(unittest.TestCase):
                 f.write('{"points": [{"x": 1},]}')
             with self.assertRaisesRegex(ValueError, 'Trailing comma'):
                 list(q.map_points(p))
+
+    def test_replay_stability_is_instrument_specific(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            directories = [Path(tmp)/name for name in ('first', 'repeat', 'noise')]
+            for index, directory in enumerate(directories):
+                directory.mkdir()
+                q.atomic_json(directory/'manifest.json', dict(last_bit_noise=index == 2,
+                    protocol_sha256='p', source_sha256={}, input_sha256={}))
+                instruments = {name: dict(gates={'accuracy': True}, verdicts={'accept': 12},
+                    coverage=dict(points=1, steps=1, protected_convergence=1,
+                                  dangerous_misses=0, operational_sha256='h', source_sha256='s'))
+                    for name in q.INSTRUMENTS}
+                q.atomic_json(directory/'summary.json', dict(instruments=instruments))
+                for series in range(12):
+                    results = {name: {'verdict': 'accept'} for name in q.INSTRUMENTS}
+                    if index == 2:
+                        results['graded_v2']['verdict'] = 'inconclusive'
+                    q.atomic_json(directory/('series-%02d.json.gz' % series),
+                                  [dict(id=str(series), accurate=True, results=results)])
+            result = q.finalize(*directories, Path(tmp)/'final.json')
+            self.assertEqual(result['qualified'], ['collocation'])
+            self.assertFalse(result['comparisons']['last_bit_noise']['decisions_pass'])
+            self.assertTrue(result['instruments']['collocation']['gates']['replay_stability'])
 
     def test_empty_override_rejected(self):
         with tempfile.TemporaryDirectory() as tmp:

@@ -70,6 +70,12 @@ def protected_step(instrument, values, value, tolerance, grid=None):
         uncertainty = 2 * difference + rounding
     discrepancy = abs(value - values[-1])
     raw, margin = decision(discrepancy, uncertainty, tolerance)
+    if (not all(math.isfinite(x) for x in
+                (difference, rounding, uncertainty, discrepancy, contraction))
+            or (margin is not None and not math.isfinite(margin))):
+        return dict(verdict='inconclusive', convergence_pass=False, decision_pass=False,
+                    finite=False, native_rounding=None, uncertainty=None,
+                    convergence_margin=None, decision_margin=None)
     convergence_pass = bool(converging and contraction > 4 * rounding)
     decision_pass = bool(margin is not None and margin > 4 * rounding)
     return dict(verdict=raw if convergence_pass and decision_pass else 'inconclusive',
@@ -280,7 +286,7 @@ def run(output, noise=False, override=None, replay=None):
     return result
 
 
-def compare(first, second):
+def compare(first, second, instrument=None):
     """Exact operational comparison with descriptive finite numerical drift."""
     stats = dict(decisions_pass=True, flags_pass=True, intake_pass=True,
                  changed_numerics=0, max_absolute_difference=0., fields=0,
@@ -289,6 +295,8 @@ def compare(first, second):
              'grid', 'accurate', 'id', 'source_hashes'}
     def walk(a, b, key=''):
         stats['fields'] += 1
+        if key == 'results' and instrument is not None:
+            a, b = {instrument: a[instrument]}, {instrument: b[instrument]}
         if key == 'unguarded_verdict':
             if a != b:
                 stats['changed_unguarded_verdicts'] += 1
@@ -323,7 +331,7 @@ def compare(first, second):
         filename = 'series-%02d.json.gz' % series
         walk(read_json(first/filename), read_json(second/filename))
     a, b = read_json(first/'summary.json'), read_json(second/'summary.json')
-    for name in INSTRUMENTS:
+    for name in ([instrument] if instrument else INSTRUMENTS):
         x, y = a['instruments'][name], b['instruments'][name]
         if x['gates'] != y['gates'] or x['verdicts'] != y['verdicts']:
             stats['flags_pass'] = False
@@ -346,11 +354,14 @@ def finalize(first, repeat, noise, output):
             raise ValueError('Qualification source or protocol mismatch')
     comparisons = dict(ordinary=compare(directories[0], directories[1]),
                        last_bit_noise=compare(directories[0], directories[2]))
-    stable = all(c[k] for c in comparisons.values()
-                 for k in ('decisions_pass', 'flags_pass', 'intake_pass'))
     baseline = read_json(directories[0]/'summary.json')
     instruments = baseline['instruments']
     for name, result in instruments.items():
+        individual = dict(ordinary=compare(directories[0], directories[1], name),
+                          last_bit_noise=compare(directories[0], directories[2], name))
+        stable = all(c[k] for c in individual.values()
+                     for k in ('decisions_pass', 'flags_pass', 'intake_pass'))
+        result['comparisons'] = individual
         result['gates']['replay_stability'] = stable
         result['qualified'] = all(result['gates'].values())
     qualified = [name for name, result in instruments.items() if result['qualified']]
