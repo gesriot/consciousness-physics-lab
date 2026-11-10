@@ -32,22 +32,9 @@ class CalibrationTests(unittest.TestCase):
                 self.assertLessEqual(actual['cost'],row['maximum_cost'])
 
     def assert_diagnostics_close(self,actual,expected,family=None,atol=1e-11):
-        from attention.audit_a006_portability import diagnostic_atol
-        if isinstance(expected,dict):
-            self.assertEqual(set(actual),set(expected))
-            for key in expected:
-                if key == 'shadow_C2_converging':
-                    self.assertIsInstance(actual[key],bool)
-                elif key in ('cost','budget','spent','maximum_cost'):
-                    self.assertEqual(actual[key],expected[key])
-                else:
-                    self.assert_diagnostics_close(actual[key],expected[key],family,diagnostic_atol(family,key,expected))
-        elif isinstance(expected,list):
-            self.assertEqual(len(actual),len(expected))
-            for a,b in zip(actual,expected):self.assert_diagnostics_close(a,b,family,atol)
-        elif isinstance(expected,float):
-            self.assertTrue(math.isclose(actual,expected,rel_tol=1e-9,abs_tol=atol),(actual,expected))
-        else:self.assertEqual(actual,expected)
+        from attention.audit_a006_portability import diagnostic_comparison
+        result=diagnostic_comparison(actual,expected,family)
+        self.assertTrue(result['passed'],result['failures'])
 
     def test_conditioned_diagnostics_keep_verdicts_exact(self):
         row=copy.deepcopy(self.library['samples'][80])
@@ -64,6 +51,27 @@ class CalibrationTests(unittest.TestCase):
         changed['original']['step']['antecedent_ratio']=.3
         with self.assertRaises(AssertionError):
             self.assert_diagnostics_close(changed,row['clean_result'],row['family'])
+
+    def test_roundoff_ratio_is_diagnostic_across_sample_families(self):
+        from attention.audit_a006_portability import diagnostic_comparison
+        row=read_json(ROOT/'attention/sample_library_a007.json')['samples'][0]
+        changed=copy.deepcopy(row['clean_result'])
+        changed['original']['step']['antecedent_ratio']=0.25020308133936797
+        for family in ('binding','v2'):
+            result=diagnostic_comparison(changed,row['clean_result'],family)
+            self.assertTrue(result['passed'],result['failures'])
+            self.assertTrue(any(x['reason']=='roundoff-limited ratio' for x in result['diagnostics']))
+        for key in ('converging','futile','both_differences_within_rounding'):
+            bad=copy.deepcopy(changed)
+            bad['original']['step'][key]=not bad['original']['step'][key]
+            self.assertFalse(diagnostic_comparison(bad,row['clean_result'],'v2')['passed'])
+        changed['cost']+=1e-12
+        self.assertFalse(diagnostic_comparison(changed,row['clean_result'],'v2')['passed'])
+
+    def test_stable_diagnostics_reject_boolean_and_nonfinite(self):
+        from attention.audit_a006_portability import diagnostic_comparison
+        for value in (True,False,float('nan'),float('inf')):
+            self.assertFalse(diagnostic_comparison({'value':value},{'value':1.})['passed'])
 
     def test_selection_has_no_fault_feedback(self):
         import inspect

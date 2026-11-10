@@ -14,6 +14,7 @@ import math
 from pathlib import Path
 from attention.build_a007_library import CHANNELS
 from lab import frozen_pipeline as P
+from attention.audit_a006_portability import diagnostic_comparison
 from lab.pipeline_holdout import CONDITIONS, COHORTS
 
 MEMORIES = ('G', 'T', 'A', 'N', 'Gx', 'Gxprime')
@@ -182,15 +183,19 @@ def guard_check(result, info):
     equal(result['grids'], [4096, 8192, 16384, 32768], 'replacement grids')
     values = [complex(*v) for v in result['values']]
     step = P.v2_step(values, 32768, complex(*info['outcome']['value']), info['tolerance'])
-    equal(result['step'], step, 'replacement step')
+    comparison = diagnostic_comparison(result['step'], step, 'v2')
+    equal(comparison['passed'], True, 'replacement step: '+str(comparison['failures']))
     verdict = step['verdict']
     margin = info['tolerance']-step['discrepancy']-step['uncertainty_estimate'] if verdict == 'accept' else step['discrepancy']-step['uncertainty_estimate']-info['tolerance'] if verdict == 'violation_detected' else None
     contraction = .5*step['previous_difference']-step['last_difference']
     threshold = 4*step['rounding']
     passed = margin is not None and margin > threshold and contraction > threshold
     equal(result['unguarded_verdict'], verdict, 'unguarded verdict')
-    equal(result['safety'], dict(multiplier=4, decision_margin=margin, contraction_margin=contraction, threshold=threshold, passed=passed), 'guard safety')
+    safety = dict(multiplier=4, decision_margin=margin, contraction_margin=contraction, threshold=threshold, passed=passed)
+    comparison = diagnostic_comparison(result['safety'], safety, 'v2')
+    equal(comparison['passed'], True, 'guard safety: '+str(comparison['failures']))
     equal(result['verdict'], verdict if passed else 'inconclusive', 'guarded verdict')
+    return comparison
 
 
 def recall_check(result, records, evaluator, notices, memory, units, price, infos, require_snapshots=False):
