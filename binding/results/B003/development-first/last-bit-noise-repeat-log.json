@@ -1,0 +1,9 @@
+{
+  "stage": "development",
+  "replay": "binding/results/B003/development-first",
+  "last_bit_noise": true,
+  "runtime_override": "Explicit audited replay path on Python 3.12.14 NumPy 2.3.5 SciPy 1.17.0",
+  "execution": "sequential",
+  "status": "passed",
+  "elapsed_seconds": 166.84543446199996
+}
