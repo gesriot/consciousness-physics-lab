@@ -26,3 +26,17 @@ Development exposure gates failed and local V2 produced no false acceptances.
 The registered all-cell temporal-journal closure condition is not met.
 See the [full report](results/B001/report.md) for controls, paired analysis,
 implementation correction, source provenance and limits.
+
+
+## B002 outcome
+
+Both cross instruments qualify before new exposure. Whole-family collocation
+passes at four packages; V2 U/100 produces no false acceptances even at sixteen
+and is excluded. With external notice, G leaves 19/13/1 errors against
+22/19/5 for T at budgets 2/8/32, losing 0/9/50 correct answers against 4/16/51.
+All active memories use the full budget: the predicted G price advantage fails.
+Working revalidation saves 312 correct answers for G at budget 32 relative to
+the matched uniform counterfactual, rather than merely withdrawing everything.
+BU never samples collocation and raises no alarm; every memory retains 23 errors.
+See the [qualification protocol](protocols/B002-qualification.md),
+[revision protocol](protocols/B002-recall.md) and [report](results/B002/report.md).

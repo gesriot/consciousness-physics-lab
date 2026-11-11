@@ -1,0 +1,282 @@
+{
+  "source_sha256": {
+    "binding/results/B002/confirmation-first/series-00/ordinary/permissive-0.json.gz": "c9d4356ec3bdaf2b4f96342b6483326f9be6a60de6615b2d211b6f09574d6015",
+    "binding/results/B002/confirmation-first/series-00/ordinary/permissive-1.json.gz": "01cf226c5a897869c37b690d0adf1eac2a8ff559a9da4c988f2076166e4cb561",
+    "binding/results/B002/confirmation-first/series-00/ordinary/permissive-2.json.gz": "48d620f019390c8c72b11dae8a8889f27cd37050c73d1214792188c65e08d472",
+    "binding/results/B002/confirmation-first/series-00/ordinary/permissive-3.json.gz": "1148fdb0f6ac9458872b04c6cc709603f27c2d99427a3d297b0af378642d26b0",
+    "binding/results/B002/confirmation-first/series-01/ordinary/permissive-0.json.gz": "a31731e38b24257d3c7ebaa03ff4a92237b3ddeb72883cd71c7df9fdd8734e81",
+    "binding/results/B002/confirmation-first/series-01/ordinary/permissive-1.json.gz": "210434d6d0f05bd182aba54bae40e022a7f48cb931473bac305ac6a99c663f52",
+    "binding/results/B002/confirmation-first/series-01/ordinary/permissive-2.json.gz": "670b489dfbc8c8ffac4a0d834829d1223677365a789c6c802baacd507639355a",
+    "binding/results/B002/confirmation-first/series-01/ordinary/permissive-3.json.gz": "ffbbadc115fa3916f3e532d7daf14596255b08fbe3ebe6881a203de4917cabb5",
+    "binding/results/B002/confirmation-first/series-02/ordinary/permissive-0.json.gz": "0998eb121490f75ed3663ac8d51e5ecd7918cb545fd41087abf7ed834174eb95",
+    "binding/results/B002/confirmation-first/series-02/ordinary/permissive-1.json.gz": "1aa4f1b2c2ef21c81ff42b2ae4a32578365bdaa0b54336768b03c6639ec07317",
+    "binding/results/B002/confirmation-first/series-02/ordinary/permissive-2.json.gz": "23e06e12f6050d9f7b0a20f136446828fbadbfd60c2c21f96b43a7900cbbedc7",
+    "binding/results/B002/confirmation-first/series-02/ordinary/permissive-3.json.gz": "cb898e049eec236fa64ed7bd5168f8fe0a121e0fcf4889b22929952feec3e012",
+    "binding/results/B002/confirmation-first/series-03/ordinary/permissive-0.json.gz": "517f732d590461fc15c5acb4f33cbc5ec3a66f473daa66c17a848f2f04d350ab",
+    "binding/results/B002/confirmation-first/series-03/ordinary/permissive-1.json.gz": "3df518ec0739d0d038c94082789d8704fa6e53b3e1404d3c730ee8ef68fba597",
+    "binding/results/B002/confirmation-first/series-03/ordinary/permissive-2.json.gz": "c5bc1cc6be7d001796f5c32e8da12dc2468b80df0d11aef99062b1cae73756c8",
+    "binding/results/B002/confirmation-first/series-03/ordinary/permissive-3.json.gz": "5adabd86123c0b76e584078cbbffd0b6ff58353d889753e63dbe00514e380c31",
+    "binding/results/B002/confirmation-first/series-04/ordinary/permissive-0.json.gz": "d744dec3b57bdd46e64639cf221a87132c4dbf6712e8abf1aa36f2d1a03feb5e",
+    "binding/results/B002/confirmation-first/series-04/ordinary/permissive-1.json.gz": "93418ce43d9c6320028864ac44143cfc1084ffb4636950d45f171821227750e8",
+    "binding/results/B002/confirmation-first/series-04/ordinary/permissive-2.json.gz": "f7fcb2ce427c8642b83edfa081d447823c163f799c594328b5f1f8a85b7dbe69",
+    "binding/results/B002/confirmation-first/series-04/ordinary/permissive-3.json.gz": "51f0eaf6de8260e1d6d709bc96c9edfd819630684610374992d405d05c9491f3",
+    "binding/results/B002/confirmation-first/series-05/ordinary/permissive-0.json.gz": "25c994839187aad85537d9e5b6a26d6771c968a2c0ec23ad1795d6dc35362523",
+    "binding/results/B002/confirmation-first/series-05/ordinary/permissive-1.json.gz": "ebd378ff647565618d3dd019b327aec179cab38cb1a33b8035e3d2f9365f59da",
+    "binding/results/B002/confirmation-first/series-05/ordinary/permissive-2.json.gz": "a5ed7de17b36e7e8e4364970bbf6526db74ad6000a95831ae96a6cf0f49d60f3",
+    "binding/results/B002/confirmation-first/series-05/ordinary/permissive-3.json.gz": "d0568eb41a16bb24095f286e9dfd88fd99e4299ebbba25dc723b6c7ae4d6ca58",
+    "binding/results/B002/confirmation-first/series-06/ordinary/permissive-0.json.gz": "dc78d4cf76038dd86308a81c44e1d9566bf0717f07f29895fec5de8edff9b334",
+    "binding/results/B002/confirmation-first/series-06/ordinary/permissive-1.json.gz": "73012b006ced78ffcf2a0ab758d2ab05bcb178844bcc6b0d25eab9613d93f287",
+    "binding/results/B002/confirmation-first/series-06/ordinary/permissive-2.json.gz": "57225529b471aa5e04e3bea94f84d62dfc1c5ded4001ddafc4d2350deca5e18f",
+    "binding/results/B002/confirmation-first/series-06/ordinary/permissive-3.json.gz": "85820955568a7b5e8ca12ab81960fbe5bb025a96099ecfb72b8f888a1a1ffee4",
+    "binding/results/B002/confirmation-first/series-07/ordinary/permissive-0.json.gz": "fa4c786b658f6fc02e256ee094c735b60ba29cb8fe448c64c399155f8555b689",
+    "binding/results/B002/confirmation-first/series-07/ordinary/permissive-1.json.gz": "29e8f9795927857db31ec73d6f3458c04da8963560e25f77f2da86ba6afd3b8b",
+    "binding/results/B002/confirmation-first/series-07/ordinary/permissive-2.json.gz": "7ccbdef7995e969af968bdd91904fa6549404e89ffbae1072d63fde52e31cd63",
+    "binding/results/B002/confirmation-first/series-07/ordinary/permissive-3.json.gz": "8294072cf408b3a86eba9e4a857cc9c1fa76ecb4574d8e353f8d11a3da2a0706",
+    "binding/results/B002/confirmation-first/series-08/ordinary/permissive-0.json.gz": "1e8cf7e8f7b64b3957e50178ebc9137b99d38192c6bb15c81b1e1c74d5533e14",
+    "binding/results/B002/confirmation-first/series-08/ordinary/permissive-1.json.gz": "4ac493aa121baee2190f7b3c5bfffa577df5cb4b89c4f9a2007db1170b7b3dce",
+    "binding/results/B002/confirmation-first/series-08/ordinary/permissive-2.json.gz": "ce16db0514ce83e0520955e965e047a89919cfe7929f5bad3132af5da2e54588",
+    "binding/results/B002/confirmation-first/series-08/ordinary/permissive-3.json.gz": "354c154bbbf2588f7dafb9fe00be2b6b2394702c98eaeda1b3febe4d721d6faa",
+    "binding/results/B002/confirmation-first/series-09/ordinary/permissive-0.json.gz": "114540dff014b905f19099c178d190257df200704cf66383931028eeaa0eca5d",
+    "binding/results/B002/confirmation-first/series-09/ordinary/permissive-1.json.gz": "d761b902e42229815b22f0e2f34c343c17b5e3d6444755bcc879340df639d3da",
+    "binding/results/B002/confirmation-first/series-09/ordinary/permissive-2.json.gz": "7a85bfdf5bc75c0620285f4fbcaeb3943902e44f1ab71320ab459ed71cd31897",
+    "binding/results/B002/confirmation-first/series-09/ordinary/permissive-3.json.gz": "2ae7944d239c4aab769d2c45344eb0c98fc9d3d2d1995180a4a22e17dc3df751",
+    "binding/results/B002/confirmation-first/series-10/ordinary/permissive-0.json.gz": "9a17f32998d2f4c1b467a9c2e57fb085222e2f7acc9c3a78fdfba12578dcdef2",
+    "binding/results/B002/confirmation-first/series-10/ordinary/permissive-1.json.gz": "c98664296415951e46ac22c337e425b4e9553b3a9747405c4c6c45f63757e8e4",
+    "binding/results/B002/confirmation-first/series-10/ordinary/permissive-2.json.gz": "ec03af394df38a836688654e63a14abf1f9a2640e02550c69c6ed1e320bdc449",
+    "binding/results/B002/confirmation-first/series-10/ordinary/permissive-3.json.gz": "fe7cc3c723a9c27b7a0df8c198482f7102fe7d03319dd941b20fc0b97d89bf1b",
+    "binding/results/B002/confirmation-first/series-11/ordinary/permissive-0.json.gz": "517a525f2adbb1b297180063a77f300a3e560119e874f023563916992d32fb3f",
+    "binding/results/B002/confirmation-first/series-11/ordinary/permissive-1.json.gz": "49da894297841727c6ddf2e03cbc051a6440f526190a3b00ef7ad57ec48915c3",
+    "binding/results/B002/confirmation-first/series-11/ordinary/permissive-2.json.gz": "7e89798c387c35d9fea43880999327d9089d42b2efb4e2421c34dfa1dc4190d6",
+    "binding/results/B002/confirmation-first/series-11/ordinary/permissive-3.json.gz": "ddc046d6afb63e961024111d0eefe55e06400e14fefcb975873f04ef629c9a53"
+  },
+  "unit": "Dependent actions within 12 independent series; no added replication",
+  "method": "Count sample/replacement action rows; after-onset packages are 1 through 3. Read registered aggregate metrics without changing outcomes.",
+  "sample_counts": {
+    "v2:3": 56,
+    "v2:4": 80,
+    "normalization": 54,
+    "first_moment": 44,
+    "second_moment": 44,
+    "high_frequency": 36,
+    "v2:1": 32,
+    "v2:2": 18,
+    "v2:5": 57,
+    "binding": 10,
+    "v2:0": 48,
+    "modal": 1
+  },
+  "postonset_sample_counts": {
+    "v2:4": 64,
+    "normalization": 41,
+    "first_moment": 33,
+    "second_moment": 33,
+    "high_frequency": 26,
+    "v2:1": 21,
+    "v2:2": 15,
+    "v2:5": 44,
+    "v2:3": 38,
+    "binding": 5,
+    "v2:0": 40
+  },
+  "sample_mismatches": {},
+  "ordinary_replacements": {},
+  "collocation_samples": 0,
+  "metrics": {
+    "permissive": {
+      "2": {
+        "G": {
+          "cross": {
+            "selection_precision": 1.0,
+            "selection_recall": 0.0486815415821501,
+            "confirmation_fraction": 0.8333333333333334
+          },
+          "uniform_correct_losses": 20.0,
+          "cross_correct_losses": 0.0,
+          "avoided_correct_losses": 20.0
+        },
+        "T": {
+          "cross": {
+            "selection_precision": 1.0,
+            "selection_recall": 0.0486815415821501,
+            "confirmation_fraction": 0.7916666666666666
+          },
+          "uniform_correct_losses": 23.0,
+          "cross_correct_losses": 4.0,
+          "avoided_correct_losses": 19.0
+        },
+        "A": {
+          "cross": {
+            "selection_precision": 1.0,
+            "selection_recall": 0.0486815415821501,
+            "confirmation_fraction": 0.7916666666666666
+          },
+          "uniform_correct_losses": 23.0,
+          "cross_correct_losses": 4.0,
+          "avoided_correct_losses": 19.0
+        }
+      },
+      "8": {
+        "G": {
+          "cross": {
+            "selection_precision": 0.875,
+            "selection_recall": 0.17038539553752535,
+            "confirmation_fraction": 0.8020833333333334
+          },
+          "uniform_correct_losses": 86.0,
+          "cross_correct_losses": 9.0,
+          "avoided_correct_losses": 77.0
+        },
+        "T": {
+          "cross": {
+            "selection_precision": 1.0,
+            "selection_recall": 0.1947261663286004,
+            "confirmation_fraction": 0.7916666666666666
+          },
+          "uniform_correct_losses": 92.0,
+          "cross_correct_losses": 16.0,
+          "avoided_correct_losses": 76.0
+        },
+        "A": {
+          "cross": {
+            "selection_precision": 1.0,
+            "selection_recall": 0.1947261663286004,
+            "confirmation_fraction": 0.7916666666666666
+          },
+          "uniform_correct_losses": 92.0,
+          "cross_correct_losses": 16.0,
+          "avoided_correct_losses": 76.0
+        }
+      },
+      "32": {
+        "G": {
+          "cross": {
+            "selection_precision": 0.8515625,
+            "selection_recall": 0.6632860040567952,
+            "confirmation_fraction": 0.8125
+          },
+          "uniform_correct_losses": 362.0,
+          "cross_correct_losses": 50.0,
+          "avoided_correct_losses": 312.0
+        },
+        "T": {
+          "cross": {
+            "selection_precision": 1.0,
+            "selection_recall": 0.7789046653144016,
+            "confirmation_fraction": 0.8203125
+          },
+          "uniform_correct_losses": 366.0,
+          "cross_correct_losses": 51.0,
+          "avoided_correct_losses": 315.0
+        },
+        "A": {
+          "cross": {
+            "selection_precision": 1.0,
+            "selection_recall": 0.7789046653144016,
+            "confirmation_fraction": 0.8203125
+          },
+          "uniform_correct_losses": 366.0,
+          "cross_correct_losses": 51.0,
+          "avoided_correct_losses": 315.0
+        }
+      }
+    },
+    "false_notice:permissive": {
+      "2": {
+        "G": {
+          "cross": {
+            "selection_precision": 0.0,
+            "selection_recall": null,
+            "confirmation_fraction": 1.0
+          },
+          "uniform_correct_losses": 24.0,
+          "cross_correct_losses": 0.0,
+          "avoided_correct_losses": 24.0
+        },
+        "T": {
+          "cross": {
+            "selection_precision": 0.0,
+            "selection_recall": null,
+            "confirmation_fraction": 0.8333333333333334
+          },
+          "uniform_correct_losses": 24.0,
+          "cross_correct_losses": 4.0,
+          "avoided_correct_losses": 20.0
+        },
+        "A": {
+          "cross": {
+            "selection_precision": 0.0,
+            "selection_recall": null,
+            "confirmation_fraction": 0.8333333333333334
+          },
+          "uniform_correct_losses": 24.0,
+          "cross_correct_losses": 4.0,
+          "avoided_correct_losses": 20.0
+        }
+      },
+      "8": {
+        "G": {
+          "cross": {
+            "selection_precision": 0.0,
+            "selection_recall": null,
+            "confirmation_fraction": 0.8854166666666666
+          },
+          "uniform_correct_losses": 96.0,
+          "cross_correct_losses": 11.0,
+          "avoided_correct_losses": 85.0
+        },
+        "T": {
+          "cross": {
+            "selection_precision": 0.0,
+            "selection_recall": null,
+            "confirmation_fraction": 0.8333333333333334
+          },
+          "uniform_correct_losses": 96.0,
+          "cross_correct_losses": 16.0,
+          "avoided_correct_losses": 80.0
+        },
+        "A": {
+          "cross": {
+            "selection_precision": 0.0,
+            "selection_recall": null,
+            "confirmation_fraction": 0.8333333333333334
+          },
+          "uniform_correct_losses": 96.0,
+          "cross_correct_losses": 16.0,
+          "avoided_correct_losses": 80.0
+        }
+      },
+      "32": {
+        "G": {
+          "cross": {
+            "selection_precision": 0.0,
+            "selection_recall": null,
+            "confirmation_fraction": 0.8645833333333334
+          },
+          "uniform_correct_losses": 384.0,
+          "cross_correct_losses": 52.0,
+          "avoided_correct_losses": 332.0
+        },
+        "T": {
+          "cross": {
+            "selection_precision": 0.0,
+            "selection_recall": null,
+            "confirmation_fraction": 0.8723958333333334
+          },
+          "uniform_correct_losses": 384.0,
+          "cross_correct_losses": 49.0,
+          "avoided_correct_losses": 335.0
+        },
+        "A": {
+          "cross": {
+            "selection_precision": 0.0,
+            "selection_recall": null,
+            "confirmation_fraction": 0.8723958333333334
+          },
+          "uniform_correct_losses": 384.0,
+          "cross_correct_losses": 49.0,
+          "avoided_correct_losses": 335.0
+        }
+      }
+    }
+  }
+}

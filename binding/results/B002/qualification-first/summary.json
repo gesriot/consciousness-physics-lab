@@ -1,0 +1,74 @@
+{
+  "experiment": "B002-qualification",
+  "instruments": {
+    "graded_v2": {
+      "accurate": 582,
+      "inaccurate": 6,
+      "decisive_accurate": 509,
+      "accurate_accept": 509,
+      "false_accept": 0,
+      "false_violation": 0,
+      "verdicts": {
+        "accept": 509,
+        "inconclusive": 73,
+        "violation_detected": 6
+      },
+      "decisive_fraction": 0.8745704467353952,
+      "coverage": {
+        "instrument": "graded_v2",
+        "source": "results/E014-convergence-candidates/first/map.json.gz",
+        "source_sha256": "ef8cf65216aecddc906f30605ac3ed564fecd9979368af2b147fa53cb9244da5",
+        "points": 62451,
+        "steps": 249804,
+        "protected_convergence": 32785,
+        "dangerous_misses": 0,
+        "max_error_over_uncertainty": 0.21917802831746835,
+        "examples": [],
+        "operational_sha256": "7f1b8998d542d3acbefb54e4c820f88669a67f5f52d2ba05470e9eb9327c57bb"
+      },
+      "gates": {
+        "decisive_fraction": true,
+        "has_protected_accept": true,
+        "no_wrong_decisions": true,
+        "coverage": true
+      },
+      "provisional_pass": true
+    },
+    "collocation": {
+      "accurate": 582,
+      "inaccurate": 6,
+      "decisive_accurate": 571,
+      "accurate_accept": 571,
+      "false_accept": 0,
+      "false_violation": 0,
+      "verdicts": {
+        "accept": 571,
+        "inconclusive": 11,
+        "violation_detected": 6
+      },
+      "decisive_fraction": 0.9810996563573883,
+      "coverage": {
+        "instrument": "collocation",
+        "source": "results/E015-collocation-map/map.json.gz",
+        "source_sha256": "047544f4a38ddc27144394ebcb928a28ed1847082988fcf9122f2ea0c7252542",
+        "points": 21587,
+        "steps": 151109,
+        "protected_convergence": 69704,
+        "dangerous_misses": 0,
+        "max_error_over_uncertainty": 0.28860307684076564,
+        "examples": [],
+        "operational_sha256": "10e534b9a4c610ff8cdd2e48668b75c52a0dc0f6c430ed0f6288836fb53218e3"
+      },
+      "gates": {
+        "decisive_fraction": true,
+        "has_protected_accept": true,
+        "no_wrong_decisions": true,
+        "coverage": true
+      },
+      "provisional_pass": true
+    }
+  },
+  "replay_stability": "pending",
+  "qualified": [],
+  "confirmation_allowed": false
+}

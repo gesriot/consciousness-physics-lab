@@ -1,0 +1,67 @@
+Command: python3 -m binding.audit_b002_revision binding/results/B002/confirmation-first --freeze binding/results/B002/exposure-first/freeze.json --output binding/results/B002/confirmation-first-audit.json
+{
+  "passed": true,
+  "series": 12,
+  "requests": 240,
+  "cells": 1296,
+  "cross_attempts": 4032,
+  "closure": {
+    "cells": [
+      {
+        "fault": "permissive",
+        "budget": 2,
+        "T_no_worse": false
+      },
+      {
+        "fault": "permissive",
+        "budget": 8,
+        "T_no_worse": false
+      },
+      {
+        "fault": "permissive",
+        "budget": 32,
+        "T_no_worse": false
+      }
+    ],
+    "links_unnecessary_here": false,
+    "tested": true
+  },
+  "protocol_last_revision": "31f40706ea5d4e5874e6c600350ed73bcc066429",
+  "limitations": [
+    "Archived solver values are recomputed arithmetically, not freshly solved.",
+    "Repeated cells, faults, controls and counterfactuals remain dependent within series."
+  ]
+}
+{
+  "passed": true,
+  "series": 12,
+  "requests": 240,
+  "cells": 1296,
+  "cross_attempts": 4032,
+  "closure": {
+    "cells": [
+      {
+        "fault": "permissive",
+        "budget": 2,
+        "T_no_worse": false
+      },
+      {
+        "fault": "permissive",
+        "budget": 8,
+        "T_no_worse": false
+      },
+      {
+        "fault": "permissive",
+        "budget": 32,
+        "T_no_worse": false
+      }
+    ],
+    "links_unnecessary_here": false,
+    "tested": true
+  },
+  "protocol_last_revision": "31f40706ea5d4e5874e6c600350ed73bcc066429",
+  "limitations": [
+    "Archived solver values are recomputed arithmetically, not freshly solved.",
+    "Repeated cells, faults, controls and counterfactuals remain dependent within series."
+  ]
+}

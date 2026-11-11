@@ -1,0 +1,86 @@
+{
+  "purpose": "Post-result portability regression, no historical outcomes changed",
+  "environment": {
+    "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+    "numpy": "2.3.5",
+    "scipy": "1.17.0",
+    "platform": "Linux-6.18.57-x86_64-with-glibc2.41",
+    "machine": "x86_64"
+  },
+  "commands": [
+    "OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 ./scripts/check-noise.sh",
+    "OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 ./scripts/check.sh"
+  ],
+  "execution_order": "Full solver-noise suite followed by ordinary full suite, sequentially",
+  "noise_scope": {
+    "method": "nextafter toward positive infinity for finite nonzero real and imaginary components of solver output, before downstream arithmetic",
+    "patched": [
+      "scipy.linalg.solve_banded",
+      "scipy.linalg.solve",
+      "numpy.linalg.solve",
+      "sphere_thermal.response.modal_partial_sums"
+    ],
+    "unchanged": [
+      "analytic reference functions",
+      "exact zero components",
+      "subprocess CLI executions"
+    ],
+    "main_calls": {
+      "scipy.linalg.solve": 968,
+      "scipy.linalg.solve_banded": 7697,
+      "numpy.linalg.solve": 0,
+      "sphere_thermal.response.modal_partial_sums": 4029
+    },
+    "vendor_calls": {
+      "sphere_thermal.response.modal_partial_sums": 81
+    }
+  },
+  "comparison_rules": {
+    "exact": "Operational verdicts, terminal/convergence/futility/rounding flags, structure, integer fields and cost",
+    "numeric": "Stable floating diagnostics retain conditioned absolute and relative bounds",
+    "diagnostic_only": "antecedent_ratio when previous_difference <= recorded rounding; shadow_C2_converging remains a non-operational diagnostic flag"
+  },
+  "diagnostics": {
+    "A006": {
+      "samples": 115,
+      "verdict_matches": 115,
+      "comparison_failures": 0,
+      "roundoff_ratios": 40,
+      "shadow_flags": 164
+    },
+    "A007": {
+      "samples": 38,
+      "verdict_matches": 38,
+      "comparison_failures": 0,
+      "roundoff_ratios": 22,
+      "shadow_flags": 106
+    }
+  },
+  "source_sha256": {
+    "attention/audit_a006_portability.py": "43facaf2e33cd04b0d883ded5487393493b82e5538d63afcb08704db2b4ae7b8",
+    "binding/audit.py": "88ca03b1645b3fc166db1e8abf051b1efa3ed79c604dc499987375216d9861b9",
+    "tests/test_attention_a006.py": "6fb0f9b3dc2145db54c88b77730618abbdc462e5e5d9f66038c5006b64bc6912",
+    "tests/test_binding_audit.py": "2ff9e941450f6613b538b7be75a6b76031e90a845b1f96649e90228492537ad3",
+    "scripts/check-noise.sh": "9b56b9c0eb1929822a713bce8cac1692575c6533840c3249e7acd74a905999cb",
+    "scripts/check_solver_noise.py": "d0323c1a2e80f17de1b2ca07faeffb332c05f8217d232b20f5ae789245d36a90"
+  },
+  "checks": {
+    "check-noise.log": {
+      "test_counts": [
+        336,
+        30
+      ],
+      "passed": true,
+      "sha256": "8bb3042f585f088a1187b4174ff5a18e151e3ea4b41feb8a8583ad60444b77c2"
+    },
+    "check.log": {
+      "test_counts": [
+        336,
+        30
+      ],
+      "passed": true,
+      "sha256": "9fd222657d20f17030bbc90ed90f401c71f18b0e61fff4c8b26c84f92c135319"
+    }
+  },
+  "diagnostics_command": "OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 python3 -c \"from attention.audit_a006_portability import library_audit; from attention.io import read_json,write_json; write_json('binding/results/B002/step0/diagnostics.json',{name:library_audit(read_json('attention/sample_library_'+name+'.json')) for name in ('a006','a007')})\""
+}

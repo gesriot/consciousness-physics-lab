@@ -31,6 +31,57 @@ def endpoint_allowance(family, container):
     return max(ENDPOINT_ALLOWANCE, np.finfo(float).eps * grid**2 * scale)
 
 
+def unstable_ratio(key, container):
+    """A ratio of unresolved grid differences is not a portable observable.
+
+    Use the instrument's recorded rounding floor, independently of the sample
+    family (binding samples can contain a complete numerical trace).
+    """
+    return (key == 'antecedent_ratio' and 'rounding' in container
+            and container.get('previous_difference', float('inf')) <= container['rounding'])
+
+
+def diagnostic_comparison(actual, expected, family=None):
+    """Compare decisions exactly and stable diagnostics with conditioned bounds.
+
+    Unresolved ratios and shadow-only convergence are reported, never used as
+    equality gates. Structural changes and operational flags remain failures.
+    """
+    import math
+    failures, diagnostics = [], []
+
+    def walk(a, b, path, atol=ENDPOINT_ALLOWANCE):
+        if isinstance(b, dict):
+            if not isinstance(a, dict) or set(a) != set(b):
+                failures.append(path + ': keys'); return
+            for key in b:
+                name = path + '.' + key
+                if unstable_ratio(key, b) or key == 'shadow_C2_converging':
+                    valid = (type(a[key]) is bool if key == 'shadow_C2_converging'
+                             else isinstance(a[key], (int, float)) and not isinstance(a[key], bool)
+                             and math.isfinite(a[key]))
+                    if not valid: failures.append(name + ': diagnostic type')
+                    diagnostics.append(dict(path=name, actual=a[key], expected=b[key],
+                                            reason='shadow flag' if key == 'shadow_C2_converging' else 'roundoff-limited ratio'))
+                elif key in ('cost', 'budget', 'spent', 'maximum_cost'):
+                    if a[key] != b[key]: failures.append(name + ': exact cost')
+                else:
+                    walk(a[key], b[key], name, diagnostic_atol(family, key, b))
+        elif isinstance(b, list):
+            if not isinstance(a, list) or len(a) != len(b):
+                failures.append(path + ': length'); return
+            for i, (x, y) in enumerate(zip(a, b)): walk(x, y, path + '[' + str(i) + ']', atol)
+        elif isinstance(b, float):
+            if (isinstance(a, bool) or not isinstance(a, (int, float)) or not math.isfinite(a)
+                    or not math.isclose(a, b, rel_tol=1e-9, abs_tol=atol)):
+                failures.append(path + ': stable numeric')
+        elif type(a) is not type(b) or a != b:
+            failures.append(path + ': decision')
+
+    walk(actual, expected, 'result')
+    return dict(passed=not failures, failures=failures, diagnostics=diagnostics)
+
+
 def diagnostic_atol(family, key, container):
     endpoint = endpoint_allowance(family, container)
     if key == 'error':
@@ -95,10 +146,11 @@ def library_audit(library):
             # A category is stable if both interval boundaries and convergence
             # have more margin than propagated endpoint perturbations.
             m=row['numerical'];a=endpoint_allowance(family,o.get('step',o))
-            row['diagnostic_drift_may_flip']=(m['nearest_decision_boundary']<=5*a or abs(m['contraction_margin'])<=3*a)
+            row['diagnostic_drift_may_flip']=bool(m['nearest_decision_boundary']<=5*a or abs(m['contraction_margin'])<=3*a)
         else:
             row['diagnostic_drift_may_flip']=False
             row['scope']='Binding hash / integer modal resource guard; no floating diagnostic decision.'
+        row['comparison']=diagnostic_comparison(actual,sample['clean_result'],family)
         rows.append(row)
     return dict(count=len(rows),verdict_matches=sum(x['verdict_match'] for x in rows),
                 potentially_sensitive_samples=[x['sample_id'] for x in rows if x['diagnostic_drift_may_flip']],samples=rows)

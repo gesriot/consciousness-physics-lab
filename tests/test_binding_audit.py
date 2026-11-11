@@ -101,6 +101,26 @@ class AuditTests(unittest.TestCase):
     def test_boundaries(self): test_boundaries_and_oracle_independence(make_case())
     def test_archive(self): test_archive_reconstruction_if_present()
 
+    def test_recomputed_step_allows_numeric_drift_not_decisions(self):
+        import math
+        case=make_case()
+        result=case[0]['attempts'][0]['result']
+        for key,value in list(result['step'].items()):
+            if isinstance(value,float): result['step'][key]=math.nextafter(value,math.inf)
+        for key,value in list(result['safety'].items()):
+            if isinstance(value,float): result['safety'][key]=math.nextafter(value,math.inf)
+        A.recall_check(*case)
+        for key in ('converging','blocked_rounding','futile'):
+            bad=copy.deepcopy(case)
+            step=bad[0]['attempts'][0]['result']['step'];step[key]=not step[key]
+            with self.assertRaises(A.AuditError): A.recall_check(*bad)
+        for field,key in [('safety','passed'),('step','verdict')]:
+            bad=copy.deepcopy(case)
+            bad[0]['attempts'][0]['result'][field][key]='wrong'
+            with self.assertRaises(A.AuditError): A.recall_check(*bad)
+        bad=copy.deepcopy(case);bad[0]['attempts'][0]['cost']+=1e-12
+        with self.assertRaises(A.AuditError): A.recall_check(*bad)
+
     def test_snapshot_mutation(self):
         case = list(make_case())
         result = case[0]

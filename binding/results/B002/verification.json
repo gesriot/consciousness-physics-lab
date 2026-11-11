@@ -1,0 +1,123 @@
+{
+  "base": "08afddd",
+  "numerical_confirmation_head": "0bb36c3064b5df90e48e0506e485b7bc15ecbf84",
+  "final_code_head": "b03748c0c9033006a56ea1d319e5987396739b9a",
+  "checks": {
+    "check.log": {
+      "passed": true,
+      "test_counts": [
+        388,
+        30
+      ],
+      "sha256": "e515e2ef3e6602f6802e5ba4bb199fd07f2746c7203a152a847c6cd634bd1dcb"
+    },
+    "check-noise.log": {
+      "passed": true,
+      "test_counts": [
+        388,
+        30
+      ],
+      "sha256": "b33112f138d3a759922b0ea766c154a34c1c068f0de6e22e6d1ed2f7d4e15d2f"
+    }
+  },
+  "independent_audits": {
+    "binding/results/B002/exposure-first-audit.json": {
+      "sha256": "183abfcfb2fa1c1a10937ab9fe5066e9415ffca67c6391f98e546b6f7edb6624",
+      "passed": true,
+      "series": 12
+    },
+    "binding/results/B002/exposure-repeat-audit.json": {
+      "sha256": "183abfcfb2fa1c1a10937ab9fe5066e9415ffca67c6391f98e546b6f7edb6624",
+      "passed": true,
+      "series": 12
+    },
+    "binding/results/B002/exposure-noise-audit.json": {
+      "sha256": "183abfcfb2fa1c1a10937ab9fe5066e9415ffca67c6391f98e546b6f7edb6624",
+      "passed": true,
+      "series": 12
+    },
+    "binding/results/B002/confirmation-first-audit.json": {
+      "sha256": "e5f10488cf2f71744173820959a8e53e67334cbbb649a56678b4585a2a9b8097",
+      "passed": true,
+      "series": 12
+    },
+    "binding/results/B002/confirmation-repeat-audit.json": {
+      "sha256": "e5f10488cf2f71744173820959a8e53e67334cbbb649a56678b4585a2a9b8097",
+      "passed": true,
+      "series": 12
+    },
+    "binding/results/B002/confirmation-noise-audit.json": {
+      "sha256": "e5f10488cf2f71744173820959a8e53e67334cbbb649a56678b4585a2a9b8097",
+      "passed": true,
+      "series": 12
+    }
+  },
+  "comparisons": {
+    "binding/results/B002/exposure-repeat-comparison.json": {
+      "sha256": "f0d68ebee5830a0348a26a75865c6e6691b5f66a6396d9574df2be22478c532d",
+      "decisions_pass": true,
+      "intake_pass": true,
+      "flags_pass": true,
+      "differing_decisions": [],
+      "changed_numerics": 0,
+      "max_absolute_difference": 0.0,
+      "series_compared": 12
+    },
+    "binding/results/B002/exposure-noise-comparison.json": {
+      "sha256": "02439635ea4c2c19a93e0f2320c8ec141673262aaabd01ae6ac5211c561e0e13",
+      "decisions_pass": true,
+      "intake_pass": true,
+      "flags_pass": true,
+      "differing_decisions": [],
+      "changed_numerics": 1884070,
+      "max_absolute_difference": 9.094947017729282e-13,
+      "series_compared": 12
+    },
+    "binding/results/B002/confirmation-repeat-comparison.json": {
+      "sha256": "fd3226573c4f6fa562150b9693efdc1c004b80f160dc3f08f4bfc66b28d6fae9",
+      "decisions_pass": true,
+      "intake_pass": true,
+      "changed_numerics": 0,
+      "max_absolute_difference": 0.0,
+      "diagnostic_unguarded_changes": 0
+    },
+    "binding/results/B002/confirmation-noise-comparison.json": {
+      "sha256": "24cdb30985d57da0dd6af254a5e8db4b457a5c3afebb3a7580017b913e7b63dd",
+      "decisions_pass": true,
+      "intake_pass": true,
+      "changed_numerics": 386010,
+      "max_absolute_difference": 9.094947017729282e-13,
+      "diagnostic_unguarded_changes": 0
+    }
+  },
+  "source_sha256": {
+    "binding/audit_a007_replacements.py": "22879b71034580ce57e243f76af8b6b151f13816c7f491177b3b543451c1bc9c",
+    "binding/__init__.py": "cbee72ab3e4f62324b3ebdd59061ed773a5e3097930a4b827fd2e10d885a1ad4",
+    "binding/b002.py": "a07d1c33907c84fbae31b932fe2b9ef0be9e4f0e29a67816c12d8a8d21596307",
+    "binding/memory.py": "40bff1d16fc08751720f5304c7b0686793a8b05ef13ff0a165a48d950d4964f9",
+    "binding/qualification.py": "ecb4864f5fb293f2c16f879968c88d210ba41830481c0cfc3af0fdee90637426",
+    "binding/audit_b002_revision.py": "f8dad332e4ac05b6985b7c4aa2ff013da8ea2414887180088d04352916a60af2",
+    "binding/b001.py": "a0634e38bc134b617654cc80b25f002f785f8119bdab5e51744d1e8e0453f2ea",
+    "binding/compare.py": "352ac2ef6c54bb7d3a217a47000caa66c7298515f590bc6225a8cca2a4f6267b",
+    "binding/audit_b002_exposure.py": "3cdceb0cfc661579e049dd58cdabd61e590de8113ea8a8e3fa86083abd54244a",
+    "binding/revision_b002.py": "db564e02e8477376f58ffe3affe2231aa122827b99c0092aa9ff71f08f400b41",
+    "binding/audit.py": "1fd5fb4136f25ed9be9ed7cc1c7e7a80769a89e9ddff0c72f7aff6010f16adc1",
+    "attention/audit_a006_portability.py": "43facaf2e33cd04b0d883ded5487393493b82e5538d63afcb08704db2b4ae7b8",
+    "scripts/check_solver_noise.py": "d0323c1a2e80f17de1b2ca07faeffb332c05f8217d232b20f5ae789245d36a90",
+    "scripts/check-noise.sh": "9b56b9c0eb1929822a713bce8cac1692575c6533840c3249e7acd74a905999cb"
+  },
+  "manuscript_sections_3_4_unchanged": true,
+  "lab_and_vendor_unchanged": true,
+  "gzip_9_n_files": 2232,
+  "commands": [
+    "OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 ./scripts/check.sh",
+    "OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 ./scripts/check-noise.sh"
+  ],
+  "noise_suite_calls": {
+    "scipy.linalg.solve": 974,
+    "scipy.linalg.solve_banded": 7758,
+    "sphere_thermal.response.modal_partial_sums": 4043,
+    "vendor_modal_partial_sums": 81
+  },
+  "scope": "Solver-noise suite does not patch analytic references, exact zero components or separate CLI subprocesses; full experiment replays perturb their numerical boundaries independently."
+}

@@ -1,0 +1,12 @@
+{
+  "instrument": "graded_v2",
+  "source": "results/E014-convergence-candidates/first/map.json.gz",
+  "source_sha256": "ef8cf65216aecddc906f30605ac3ed564fecd9979368af2b147fa53cb9244da5",
+  "points": 62451,
+  "steps": 249804,
+  "protected_convergence": 32785,
+  "dangerous_misses": 0,
+  "max_error_over_uncertainty": 0.21917802831746835,
+  "examples": [],
+  "operational_sha256": "7f1b8998d542d3acbefb54e4c820f88669a67f5f52d2ba05470e9eb9327c57bb"
+}

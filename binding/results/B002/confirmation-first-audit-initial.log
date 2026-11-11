@@ -1,0 +1,2 @@
+Command: python3 -m binding.audit_b002_revision binding/results/B002/confirmation-first --freeze binding/results/B002/exposure-first/freeze.json --output binding/results/B002/confirmation-first-audit.json
+Result: rejected guard safety passed flag due to bool versus numpy.bool scalar type, not a value difference.

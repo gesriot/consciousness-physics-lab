@@ -1,0 +1,7 @@
+{
+  "decisions_pass": true,
+  "intake_pass": true,
+  "changed_numerics": 386010,
+  "max_absolute_difference": 9.094947017729282e-13,
+  "diagnostic_unguarded_changes": 0
+}

@@ -1,0 +1,9 @@
+{
+  "decisions_pass": true,
+  "intake_pass": true,
+  "flags_pass": true,
+  "differing_decisions": [],
+  "changed_numerics": 1884070,
+  "max_absolute_difference": 9.094947017729282e-13,
+  "series_compared": 12
+}

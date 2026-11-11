@@ -1,0 +1,31 @@
+{
+  "completed_series": 12,
+  "instruments": {
+    "graded_v2": {
+      "accurate": 582,
+      "inaccurate": 6,
+      "decisive_accurate": 509,
+      "accurate_accept": 509,
+      "false_accept": 0,
+      "false_violation": 0,
+      "verdicts": {
+        "accept": 509,
+        "inconclusive": 73,
+        "violation_detected": 6
+      }
+    },
+    "collocation": {
+      "accurate": 582,
+      "inaccurate": 6,
+      "decisive_accurate": 571,
+      "accurate_accept": 571,
+      "false_accept": 0,
+      "false_violation": 0,
+      "verdicts": {
+        "accept": 571,
+        "inconclusive": 11,
+        "violation_detected": 6
+      }
+    }
+  }
+}

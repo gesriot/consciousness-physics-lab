@@ -1,0 +1,10 @@
+{
+  "decisions_pass": true,
+  "flags_pass": true,
+  "intake_pass": true,
+  "changed_numerics": 11047,
+  "max_absolute_difference": 1.214306433183765e-16,
+  "fields": 39752,
+  "changed_unguarded_verdicts": 0,
+  "unguarded_examples": []
+}
