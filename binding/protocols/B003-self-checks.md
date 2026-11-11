@@ -88,7 +88,10 @@ without an equal-price advantage claim. Always give actual-cost differences.
 Use the same deterministic ordinary selector and sampling opportunities for every
 active schedule. Sample k is due after paid ordinary work reaches k / quota times
 the initial non-sample allowance, for k = 0 through quota minus 1, or when no
-ordinary action is affordable. There are no policy-specific anticipated opportunities.
+ordinary action is affordable. The deadline counter sums ordinary native checks,
+ordinary replacements and future suspect-dependent cross-checks, excluding samples
+and retrospective review. These remain separate accounting categories. There are
+no policy-specific anticipated opportunities.
 Process closures before actions at the same position. Include already closed
 accepted inputs of this package and standing acceptances from earlier packages.
 Use global half-tick timestamps as in B001/B002.
@@ -185,7 +188,9 @@ across notices and never charge two retrospective attempts for one accepted iden
 The fixed recall cap is 32 qualified attempts per series across all alarms, subject
 also to the common monetary allowance. It is not per channel or package. Pending
 G review has priority after due samples; an unaffordable review may wait while
-an affordable ordinary action proceeds. Recheck standing eligibility when dequeued.
+an affordable ordinary action proceeds. An unaffordable valid queue head blocks
+cheaper reviews behind it; do not bypass the registered G order. Recheck standing
+eligibility when dequeued.
 Archive pending queues, attempts and both remaining budgets. Qualified review uses
 the original request and candidate, not a corrupted observation. Protected acceptance
 retains the identity with independent support; violation or abstention withdraws it.
@@ -287,3 +292,10 @@ comparisons and independent audits, not duplicate archives. Record source hashes
 environment, commands, overrides and replay results. Run and save scripts/check.sh
 and scripts/check-noise.sh after integration. Distinguish incomplete, failed and
 passed checks. No outcome generation precedes protocol approval and commit.
+
+## Pre-data accounting clarification
+
+Before implementation is committed or any B003 outcomes are generated, the sample
+deadline counter and strict queue-head affordability rule above are made explicit.
+This resolves discrete scheduling ambiguity without changing budgets, predictions,
+series, interventions or admission rules.
