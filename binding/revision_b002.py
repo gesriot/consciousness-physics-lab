@@ -272,9 +272,9 @@ def run(output, freeze_path, replay=None, noise=False, override=None):
 
 def compare(first, second):
     first, second = Path(first), Path(second)
-    stats = dict(decisions_pass=True, intake_pass=True, changed_numerics=0, max_absolute_difference=0., diagnostic_unguarded_changes=0)
-    exact_numeric = {'cost','spent','budget','recall_cost','ordinary_cost','replacement_cost','sample_cost','full_cost','sample_deadline','ordinary_cost_before','reserve_before'}
-    def walk(a,b,key=''):
+    stats = dict(decisions_pass=True, intake_pass=True, changed_numerics=0, max_absolute_difference=0., diagnostic_unguarded_changes=0, diagnostic_guarded_raw_changes=0)
+    exact_numeric = {'cost','spent','budget','recall_cost','ordinary_cost','replacement_cost','sample_cost','full_cost','sample_deadline','ordinary_cost_before','reserve_before','confirmation_fraction','selection_precision','selection_recall'}
+    def walk(a,b,key='', diagnostic=False):
         if key in ('package_hashes','shadow_C2_converging','antecedent_ratio','seconds','decision_seconds','hash_seconds'):
             return
         if key == 'unguarded_verdict':
@@ -282,10 +282,33 @@ def compare(first, second):
             return
         if isinstance(a,dict):
             if not isinstance(b,dict) or a.keys()!=b.keys(): stats['decisions_pass']=False; return
-            for k in a: walk(a[k],b[k],k)
+            # A uniform guard veto makes its raw solver classification and
+            # margins diagnostic, but never its admission flag or configuration.
+            vetoed = all(isinstance(x.get('step'), dict)
+                         and 'unguarded_verdict' in x and 'grids' in x
+                         and x.get('verdict') == 'inconclusive'
+                         and isinstance(x.get('safety'), dict)
+                         and x['safety'].get('passed') is False for x in (a,b))
+            for k in a:
+                if vetoed and k == 'safety':
+                    if not isinstance(b[k], dict) or a[k].keys() != b[k].keys():
+                        stats['decisions_pass'] = False
+                        continue
+                    for field in a[k]:
+                        walk(a[k][field], b[k][field], field,
+                             field not in ('passed', 'multiplier'))
+                else:
+                    walk(a[k],b[k],k,(diagnostic and k != 'last_grid') or (vetoed and k == 'step'))
         elif isinstance(a,list):
             if not isinstance(b,list) or len(a)!=len(b): stats['decisions_pass']=False; return
-            for x,y in zip(a,b):walk(x,y,key)
+            for x,y in zip(a,b):walk(x,y,key,diagnostic)
+        elif diagnostic and (type(a) is not type(b) or a != b):
+            stats['diagnostic_guarded_raw_changes'] += 1
+            if any(isinstance(x,float) and not np.isfinite(x) for x in (a,b)):
+                stats['decisions_pass']=False
+            elif isinstance(a,float) and isinstance(b,(int,float)) and not isinstance(b,bool):
+                stats['changed_numerics'] += 1
+                stats['max_absolute_difference']=max(stats['max_absolute_difference'],abs(a-b))
         elif isinstance(a,float) and key not in exact_numeric:
             if isinstance(b,bool) or not isinstance(b,(int,float)) or not np.isfinite(a) or not np.isfinite(b): stats['decisions_pass']=False
             elif a!=b:
