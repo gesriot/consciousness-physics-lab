@@ -1,0 +1,44 @@
+{
+  "checks": {
+    "all_saved_scores_exact": true,
+    "confirmation-noise/none": true,
+    "confirmation-noise/permissive": true,
+    "confirmation-noise/revision_record_ranks": true,
+    "confirmation-noise/revision_totals": true,
+    "confirmation-repeat/none": true,
+    "confirmation-repeat/permissive": true,
+    "confirmation-repeat/revision_record_ranks": true,
+    "confirmation-repeat/revision_totals": true,
+    "exposure-noise/none": true,
+    "exposure-noise/permissive": true,
+    "exposure-noise/underestimated": true,
+    "exposure-repeat/none": true,
+    "exposure-repeat/permissive": true,
+    "exposure-repeat/underestimated": true,
+    "recovered_matches_pre_loss_observations": true
+  },
+  "passed": true,
+  "pre_loss_observations": {
+    "a007_collocation": 115,
+    "collocation": 0,
+    "collocation_only": 151,
+    "linked": 11034,
+    "nonempty": 416,
+    "standing": 11034,
+    "states": 480,
+    "total_states": 20160,
+    "v2": 291
+  },
+  "recovered_actual": {
+    "a007_collocation": 115,
+    "collocation": 0,
+    "collocation_only": 151,
+    "linked": 11034,
+    "nonempty": 416,
+    "standing": 11034,
+    "states": 480,
+    "total_states": 20160,
+    "v2": 291
+  },
+  "recovery": "Workspace disappeared after initial completed analysis. Source was reconstructed from retained conversation; only archival calculations rerun. No solver or experimental trajectory rerun. Byte identity to lost artifacts cannot be claimed."
+}
