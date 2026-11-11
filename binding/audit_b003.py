@@ -416,16 +416,150 @@ def check_aggregate(saved,rows,scenarios):
 
 
 
-def audit_directory(directory):
+EXECUTED_BASELINE = '8fb29c76565dffb853256a2b1719823cce493689'
+COMPATIBILITY = 'binding/results/B003/portability-compatibility.json'
+COMPATIBLE_SOURCES = ('binding/run_b003.py', 'binding/audit_b003.py')
+RUNNER_METADATA_FUNCTIONS = {'preflight', 'run', 'check_overlap'}
+AUDIT_METADATA_FUNCTIONS = {'audit_directory', 'compare_directories'}
+
+
+def source_inventory(head):
+    import subprocess
+    paths=subprocess.check_output(['git','ls-tree','-r','--name-only',head,'--','binding','attention','lab'],cwd=ROOT,text=True).splitlines()
+    return sorted(p for p in paths if '/results/' not in p and p.endswith(('.py','.json')))
+
+
+def git_bytes(head,path):
+    import subprocess
+    try:return subprocess.check_output(['git','show',f'{head}:{path}'],cwd=ROOT,stderr=subprocess.PIPE)
+    except subprocess.CalledProcessError as error:raise AuditError('Missing committed source '+path) from error
+
+
+def byte_sha(value):
+    return hashlib.sha256(value).hexdigest()
+
+
+def unchanged_function_proof(old,new,excluded,module_exact=False):
+    """Prove both literal scientific text and AST, independently of record claims."""
+    import ast
+    before,after=ast.parse(old),ast.parse(new)
+    old_nodes={n.name:n for n in before.body if isinstance(n,(ast.FunctionDef,ast.AsyncFunctionDef))}
+    new_nodes={n.name:n for n in after.body if isinstance(n,(ast.FunctionDef,ast.AsyncFunctionDef))}
+    proof={}
+    for name,node in old_nodes.items():
+        if name in excluded:continue
+        equal(name in new_nodes,True,'scientific function retained '+name)
+        left=ast.get_source_segment(old,node);right=ast.get_source_segment(new,new_nodes[name])
+        equal(left,right,'scientific function text '+name)
+        tree=ast.dump(node,include_attributes=False);equal(tree,ast.dump(new_nodes[name],include_attributes=False),'scientific function AST '+name)
+        proof[name]=dict(text_sha256=byte_sha(left.encode()),ast_sha256=byte_sha(tree.encode()))
+    if module_exact:
+        def outside(tree,source):
+            return [(ast.dump(n,include_attributes=False),ast.get_source_segment(source,n)) for n in tree.body if not isinstance(n,(ast.FunctionDef,ast.AsyncFunctionDef)) or n.name not in excluded]
+        equal(outside(before,old),outside(after,new),'runner entire module outside metadata functions')
+    return proof
+
+
+def validate_compatibility_record(record,old_sources,current_sources,old_text,new_text):
+    """Pure validator used by negative tests and committed verification."""
+    equal(record['old_head'],EXECUTED_BASELINE,'exact executed compatibility baseline')
+    equal(set(old_sources),set(current_sources),'unchanged complete source inventory')
+    equal(set(record['allowed_changes']),set(COMPATIBLE_SOURCES),'bounded two-source compatibility scope')
+    changed={p for p in old_sources if old_sources[p]!=current_sources[p]}
+    equal(changed,set(COMPATIBLE_SOURCES),'only declared metadata sources changed')
+    for path,pair in record['allowed_changes'].items():
+        equal(pair,dict(old_sha256=old_sources[path],new_sha256=current_sources[path]),'exact compatibility pair '+path)
+        equal(byte_sha(old_text[path].encode()),pair['old_sha256'],'old compatibility source bytes')
+        equal(byte_sha(new_text[path].encode()),pair['new_sha256'],'new compatibility source bytes')
+    proof=dict(runner=unchanged_function_proof(old_text[COMPATIBLE_SOURCES[0]],new_text[COMPATIBLE_SOURCES[0]],RUNNER_METADATA_FUNCTIONS,True),auditor=unchanged_function_proof(old_text[COMPATIBLE_SOURCES[1]],new_text[COMPATIBLE_SOURCES[1]],AUDIT_METADATA_FUNCTIONS))
+    equal(record['unchanged_scientific_functions'],proof,'independent scientific text and AST proof')
+    equal(record['unchanged_sources_sha256'],{p:h for p,h in old_sources.items() if p not in COMPATIBLE_SOURCES},'complete unchanged core and instrument hashes')
+    equal(record['schema'],'B003-path-verification-compatibility-v1','compatibility schema')
+    return proof
+
+
+def committed_compatibility():
+    import subprocess
+    path=ROOT/COMPATIBILITY;raw=path.read_bytes()
+    equal(raw,git_bytes('HEAD',COMPATIBILITY),'compatibility record committed bytes')
+    record=json.loads(raw)
+    commit=subprocess.check_output(['git','log','-1','--format=%H','--',COMPATIBILITY],cwd=ROOT,text=True).strip()
+    equal(subprocess.run(['git','merge-base','--is-ancestor',record['old_head'],commit],cwd=ROOT,capture_output=True).returncode,0,'compatibility chronology')
+    return record,dict(source_compatibility_sha256=byte_sha(raw),source_compatibility_commit=commit)
+
+
+def verify_sources(manifest):
+    """Authenticate executed bytes before considering an exact verifier-only update."""
+    import subprocess
+    head=manifest['git_head'];saved=manifest['source_sha256']
+    equal(set(saved),set(source_inventory(head)),'complete executed source inventory')
+    equal(set(saved),set(source_inventory('HEAD')),'current source inventory unchanged')
+    for path,h in saved.items():equal(byte_sha(git_bytes(head,path)),h,'executed committed source '+path)
+    current={path:byte_sha((ROOT/path).read_bytes()) for path in saved}
+    for path,h in current.items():equal(h,byte_sha(git_bytes('HEAD',path)),'current committed verifier source '+path)
+    metadata={}
+    if current!=saved:
+        record,metadata=committed_compatibility()
+        old={path:byte_sha(git_bytes(record['old_head'],path)) for path in source_inventory(record['old_head'])}
+        equal(saved,old,'exact historical executed source map')
+        old_text={p:git_bytes(record['old_head'],p).decode() for p in COMPATIBLE_SOURCES}
+        new_text={p:(ROOT/p).read_text() for p in COMPATIBLE_SOURCES}
+        validate_compatibility_record(record,saved,current,old_text,new_text)
+    if 'source_compatibility_sha256' in manifest:
+        record,record_metadata=committed_compatibility()
+        equal({k:manifest[k] for k in record_metadata},record_metadata,'recorded source compatibility identity')
+        equal(subprocess.run(['git','merge-base','--is-ancestor',record_metadata['source_compatibility_commit'],head],cwd=ROOT,capture_output=True).returncode,0,'compatibility committed before execution')
+        old={p:byte_sha(git_bytes(record['old_head'],p)) for p in source_inventory(record['old_head'])}
+        validate_compatibility_record(record,old,current,{p:git_bytes(record['old_head'],p).decode() for p in COMPATIBLE_SOURCES},{p:(ROOT/p).read_text() for p in COMPATIBLE_SOURCES})
+        metadata=record_metadata
+    return metadata
+
+
+def resolve_development(directory,manifest,override=None):
+    saved=Path(manifest['development_directory'])
+    preferred=Path(override) if override is not None else saved if saved.is_absolute() else ROOT/saved
+    candidates=[preferred] if override is not None else [preferred,Path(directory).resolve().parent/'development-first',ROOT/'binding/results/B003/development-first']
+    matches={p.resolve() for p in candidates if (p/'freeze.json').is_file() and byte_sha((p/'freeze.json').read_bytes())==manifest['freeze_sha256']}
+    equal(len(matches),1,'unique development archive with exact freeze hash')
+    return matches.pop()
+
+
+def overlap_path(name,manifest,development):
+    saved=Path(name);old_root=Path(manifest['development_directory'])
+    if saved.is_absolute() and old_root.is_absolute() and saved.is_relative_to(old_root):
+        return development/saved.relative_to(old_root)
+    if not saved.is_absolute() and saved.is_relative_to(old_root):
+        return development/saved.relative_to(old_root)
+    equal(not saved.is_absolute(),True,'external overlap path is not an authenticated development descendant')
+    resolved=(ROOT/saved).resolve();equal(resolved.is_relative_to(ROOT.resolve()),True,'overlap path within repository')
+    return resolved
+
+
+def verified_overlap_sources(manifest,development=None):
+    required={p.resolve() for experiment in ('B001','B002') for p in (ROOT/'binding/results'/experiment).rglob('intake.json')}
+    if development is not None:required.update((development/f'series-{i:02d}/intake.json').resolve() for i in range(12))
+    paths={}
+    for name,h in manifest['overlap']['sources'].items():
+        if development is not None:path=overlap_path(name,manifest,development)
+        else:
+            path=(ROOT/name).resolve();equal(path.is_relative_to(ROOT.resolve()),True,'historical overlap source within repository')
+        equal(path not in paths,True,'unambiguous overlap source paths');paths[path]=h
+    equal(set(paths),required,'complete historical and twelve development overlap sources')
+    for path,h in paths.items():equal(byte_sha(path.read_bytes()),h,'overlap source hash')
+    return paths
+
+
+def audit_directory(directory, development=None):
     import subprocess
     directory=Path(directory);manifest=read(directory/'manifest.json');stage=manifest['stage'];equal(stage in ('development','confirmation'),True,'registered stage')
     equal(read(directory/'progress.json'),dict(completed_series=12,status='complete'),'completed archive')
+    source_verification=verify_sources(manifest)
     weights=read(ROOT/'attention/self_model_s3.json')['action_model']['cost_weights'];library=read(ROOT/'attention/sample_library_a007.json')
     policies=[['N0',0]] if stage=='development' else [['N0',0]]+[[p,q] for q in (1,2,4) for p in ('S','Sx','Sxprime','RR','BU')]
     equal(manifest['policies'],policies,'all registered policies and quotas')
     if stage=='development':expected_scenarios=[['single',16]]
     else:
-        development=Path(manifest['development_directory']);frozen=read(development/'freeze.json')
+        development=resolve_development(directory,manifest,development);frozen=read(development/'freeze.json')
         equal(hashlib.sha256((development/'freeze.json').read_bytes()).hexdigest(),manifest['freeze_sha256'],'exact committed admission freeze')
         audit_directory(development)
         single=frozen['single_channel']['selected_packages'];expected_scenarios=[['whole',4]]+([['single',single]] if single else [])
@@ -434,7 +568,6 @@ def audit_directory(directory):
     equal(manifest['N0_quota_references'],{str(q):'N0-q0' for q in (1,2,4)},'N0 shared references')
 
     def sha(p):return hashlib.sha256(Path(p).read_bytes()).hexdigest()
-    for source,h in manifest['source_sha256'].items():equal(sha(ROOT/source),h,'frozen source '+source)
     for key,path in [('protocol_sha256','binding/protocols/B003-self-checks.md'),('qualification_sha256','binding/results/B002/qualification-freeze.json'),('exposure_sha256','binding/results/B002/exposure-first/freeze.json')]:equal(manifest[key],sha(ROOT/path),'inherited '+key)
     def ancestor(a,b):return subprocess.run(['git','merge-base','--is-ancestor',a,b],cwd=ROOT,capture_output=True).returncode==0
     equal(ancestor(manifest['protocol_commit'],manifest['git_head']),True,'protocol-before-source chronology')
@@ -444,10 +577,9 @@ def audit_directory(directory):
     for exp in ('B001','B002'):
         for p in (ROOT/'binding/results'/exp).rglob('intake.json'):historical.update(r['request_sha256'] for r in read(p)['requests'])
     equal(bool(historical),True,'historical overlap evidence')
+    overlap_sources=verified_overlap_sources(manifest,development if stage=='confirmation' else None)
     if stage=='confirmation':
-        for p in manifest['overlap']['sources']:
-            path=Path(p) if Path(p).is_absolute() else ROOT/p
-            equal(sha(path),manifest['overlap']['sources'][p],'overlap source hash')
+        for path in overlap_sources:
             historical.update(r['request_sha256'] for r in read(path)['requests'])
     rows=[];datasets=[];seen=set();package_count=0
     dirs=sorted(directory.glob('series-*'));equal(len([p for p in dirs if p.is_dir()]),12,'twelve independent series')
@@ -499,7 +631,7 @@ def audit_directory(directory):
     else:
         report=read(directory/'aggregate.json');check_aggregate(report,rows,manifest['scenarios'])
         equal(report['target_strata'],{c:[i for i,d in enumerate(datasets) if d['single_target']==c] for c in CHANNELS if c.startswith('collocation:')},'target strata')
-    return dict(passed=True,independent_series=12,packages=package_count,stage=stage,limitations=['Archived numerical evidence is checked arithmetically, not independently re-solved.'])
+    return dict(passed=True,independent_series=12,packages=package_count,stage=stage,source_verification=source_verification,limitations=['Archived numerical evidence is checked arithmetically, not independently re-solved.'])
 
 
 # Numerical values and raw diagnostics may drift without changing protected work.
@@ -523,7 +655,15 @@ def compare_values(left,right):
 
 def compare_directories(left,right):
     left,right=Path(left),Path(right);lm,rm=read(left/'manifest.json'),read(right/'manifest.json')
-    for k in ('intake_sha256','protocol_sha256','source_sha256','qualification_sha256','exposure_sha256','freeze_sha256'):equal(lm.get(k),rm.get(k),'comparison identity '+k)
+    source_verification={}
+    if lm['source_sha256']!=rm['source_sha256']:
+        left_verification,right_verification=verify_sources(lm),verify_sources(rm)
+        equal(bool(left_verification),True,'authorized source comparison transition')
+        equal(left_verification,right_verification,'same exact compatibility proof for comparison')
+        source_verification=left_verification
+    else:
+        for k in ('source_compatibility_sha256','source_compatibility_commit'):equal(lm.get(k),rm.get(k),'comparison identity '+k)
+    for k in ('intake_sha256','protocol_sha256','qualification_sha256','exposure_sha256','freeze_sha256'):equal(lm.get(k),rm.get(k),'comparison identity '+k)
     def files(root):
         return {str(p.relative_to(root)) for p in root.rglob('*') if p.is_file() and (p.name.endswith('.json') or p.name.endswith('.json.gz')) and ('series-' in str(p.relative_to(root)) or p.name in ('aggregate.json','series-summaries.json'))}
     lf,rf=files(left),files(right);equal(lf,rf,'comparison complete archive file set');decisions=[];diagnostics=[]
@@ -531,7 +671,7 @@ def compare_directories(left,right):
         a,b=read(left/name),read(right/name);result=compare_values(a,b)
         if not result['decisions_pass']:decisions.append(name)
         if not result['diagnostics_equal']:diagnostics.append(name)
-    return dict(decisions_pass=not decisions,differing_decisions=decisions,diagnostics_pass=not diagnostics,differing_diagnostics=diagnostics,files_compared=len(lf))
+    return dict(decisions_pass=not decisions,differing_decisions=decisions,diagnostics_pass=not diagnostics,differing_diagnostics=diagnostics,files_compared=len(lf),source_verification=source_verification)
 
 
 audit=audit_directory
@@ -539,5 +679,5 @@ compare=compare_directories
 
 
 if __name__=='__main__':
-    parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('directory');parser.add_argument('--compare');args=parser.parse_args()
-    print(json.dumps(compare(args.directory,args.compare) if args.compare else audit(args.directory),indent=2))
+    parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('directory');parser.add_argument('--compare');parser.add_argument('--development');args=parser.parse_args()
+    print(json.dumps(compare(args.directory,args.compare) if args.compare else audit(args.directory,args.development),indent=2))

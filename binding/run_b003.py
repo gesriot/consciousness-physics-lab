@@ -145,7 +145,7 @@ def check_overlap(datasets, development=None):
     if development:
         for path in sorted(Path(development).glob('series-*/intake.json')):
             old.update(row['request_sha256'] for row in read_json(path)['requests'])
-            sources[str(path)] = sha(path)
+            sources[str(path.resolve().relative_to(ROOT.resolve()))] = sha(path)
         if len(list(Path(development).glob('series-*/intake.json'))) != 12:
             raise ValueError('Development overlap audit needs twelve series')
     seen = set()
@@ -438,19 +438,26 @@ def run(output, stage='development', development=None, replay=None, noise=False,
     if stage == 'confirmation':
         if not development:
             raise ValueError('Confirmation requires committed development freeze')
-        freeze_path = Path(development)/'freeze.json'
+        development = (ROOT / Path(development)).resolve()
+        development_relative = development.relative_to(ROOT.resolve())
+        freeze_path = development/'freeze.json'
         b002.committed_file(freeze_path)
         frozen = read_json(freeze_path)
         if frozen['status'] != 'freeze_before_confirmation' or frozen['completed_series'] != 12:
             raise ValueError('Development is incomplete')
-        for key in ('qualification_sha256', 'exposure_sha256', 'source_sha256', 'protocol_sha256'):
+        from binding.audit_b003 import verify_sources
+        development_manifest = read_json(development/'manifest.json')
+        if frozen['source_sha256'] != development_manifest['source_sha256']:
+            raise ValueError('Development source manifest differs from freeze')
+        audit.update(verify_sources(development_manifest))
+        for key in ('qualification_sha256', 'exposure_sha256', 'protocol_sha256'):
             if frozen[key] != audit[key]:
                 raise ValueError('Development freeze mismatch: '+key)
         for relative, digest in frozen['artifact_sha256'].items():
             # Progress is rewritten on final completion; scientific artifacts are immutable.
             if relative != 'progress.json' and sha(Path(development)/relative) != digest:
                 raise ValueError('Development artifact differs from freeze: '+relative)
-        audit['development_directory'] = str(Path(development).resolve())
+        audit['development_directory'] = str(development_relative)
         audit['freeze_sha256'] = sha(freeze_path)
         audit['freeze_commit'] = subprocess.check_output(
             ['git', 'log', '-1', '--format=%H', '--', str(freeze_path.resolve().relative_to(ROOT))],
@@ -459,7 +466,21 @@ def run(output, stage='development', development=None, replay=None, noise=False,
     packages = 16 if stage == 'development' else max(d for _, d in scenarios(stage, frozen))
     if replay:
         original = read_json(Path(replay)/'manifest.json')
-        for key in ('source_sha256', 'protocol_sha256', 'qualification_sha256', 'exposure_sha256', 'freeze_sha256'):
+        from binding.audit_b003 import verify_sources
+        compatibility = verify_sources(original)
+        source_transition = original['source_sha256'] != audit['source_sha256']
+        if source_transition and (stage != 'development' or original.get('stage') != 'development'
+                                  or not compatibility):
+            raise ValueError('Replay source transition is not verified development portability')
+        for key, value in compatibility.items():
+            if key in audit and audit[key] != value:
+                raise ValueError('Replay compatibility differs from confirmation freeze')
+            audit[key] = value
+        for key in ('source_sha256', 'protocol_sha256', 'qualification_sha256', 'exposure_sha256',
+                    'freeze_sha256', 'source_compatibility_sha256', 'source_compatibility_commit'):
+            if source_transition and (key == 'source_sha256' or
+                                      (key in compatibility and key not in original)):
+                continue
             if original.get(key) != audit.get(key):
                 raise ValueError('Replay metadata mismatch: '+key)
         datasets = [read_json(Path(replay)/f'series-{i:02d}'/'intake.json') for i in range(12)]

@@ -125,4 +125,70 @@ class ArchiveAuditTests(unittest.TestCase):
         with self.assertRaises(AuditError):A.request_root(r,requests)
 
 
+class PortabilityVerificationTests(unittest.TestCase):
+    def case(self):
+        old_text={A.COMPATIBLE_SOURCES[0]:"import math\ndef science(x):\n    return x+1\ndef run():\n    return 'old-path'\n",A.COMPATIBLE_SOURCES[1]:"def check_package(x):\n    return x+1\ndef audit_directory():\n    return 'old-path'\n"}
+        new_text={p:v.replace('old-path','new-path') for p,v in old_text.items()}
+        old={p:A.byte_sha(v.encode()) for p,v in old_text.items()};new={p:A.byte_sha(v.encode()) for p,v in new_text.items()}
+        old['binding/self_checks_b003.py']=new['binding/self_checks_b003.py']='fixed-core'
+        record=dict(schema='B003-path-verification-compatibility-v1',old_head=A.EXECUTED_BASELINE,allowed_changes={p:dict(old_sha256=old[p],new_sha256=new[p]) for p in A.COMPATIBLE_SOURCES},unchanged_sources_sha256={'binding/self_checks_b003.py':'fixed-core'},unchanged_scientific_functions=dict(runner=A.unchanged_function_proof(old_text[A.COMPATIBLE_SOURCES[0]],new_text[A.COMPATIBLE_SOURCES[0]],A.RUNNER_METADATA_FUNCTIONS,True),auditor=A.unchanged_function_proof(old_text[A.COMPATIBLE_SOURCES[1]],new_text[A.COMPATIBLE_SOURCES[1]],A.AUDIT_METADATA_FUNCTIONS)))
+        return record,old,new,old_text,new_text
+
+    def test_exact_bounded_source_transition(self):
+        A.validate_compatibility_record(*self.case())
+
+    def test_unmapped_source_record_tamper_and_scientific_edit_fail(self):
+        for kind in ('core','unknown_source','pair','proof','baseline','science','module'):
+            record,old,new,ot,nt=self.case()
+            if kind=='core':new['binding/self_checks_b003.py']='edited-core'
+            elif kind=='unknown_source':new['lab/new.py']='extra'
+            elif kind=='pair':record['allowed_changes'][A.COMPATIBLE_SOURCES[0]]['new_sha256']='forged'
+            elif kind=='proof':record['unchanged_scientific_functions']['runner']['science']['text_sha256']='forged'
+            elif kind=='baseline':record['old_head']='wrong'
+            else:
+                path=A.COMPATIBLE_SOURCES[0]
+                nt[path]=nt[path].replace('x+1','x+2') if kind=='science' else nt[path].replace('import math','import sys')
+                new[path]=A.byte_sha(nt[path].encode());record['allowed_changes'][path]['new_sha256']=new[path]
+            with self.subTest(kind=kind),self.assertRaises(AuditError):A.validate_compatibility_record(record,old,new,ot,nt)
+
+    def test_record_file_must_match_committed_bytes(self):
+        import tempfile,json
+        from pathlib import Path
+        with tempfile.TemporaryDirectory() as temporary:
+            root=Path(temporary);path=root/A.COMPATIBILITY;path.parent.mkdir(parents=True);path.write_text('{"tampered":true}')
+            with patch.object(A,'ROOT',root),patch.object(A,'git_bytes',return_value=b'{"original":true}'):
+                with self.assertRaises(AuditError):A.committed_compatibility()
+
+    def test_missing_development_overlap_source_fails(self):
+        import tempfile,json
+        from pathlib import Path
+        with tempfile.TemporaryDirectory() as temporary:
+            root=Path(temporary);development=root/'binding/results/B003/development-first';sources={}
+            for i in range(12):
+                path=development/f'series-{i:02d}/intake.json';path.parent.mkdir(parents=True);path.write_text('{"requests":[]}')
+                sources[str(path.relative_to(root))]=A.byte_sha(path.read_bytes())
+            manifest=dict(development_directory=str(development.relative_to(root)),overlap={'sources':sources})
+            with patch.object(A,'ROOT',root):
+                self.assertEqual(len(A.verified_overlap_sources(manifest,development)),12)
+                del sources[next(iter(sources))]
+                with self.assertRaises(AuditError):A.verified_overlap_sources(manifest,development)
+
+    def test_relocated_relative_and_legacy_absolute_sources(self):
+        import tempfile
+        from pathlib import Path
+        with tempfile.TemporaryDirectory() as temporary:
+            root=Path(temporary);development=root/'binding/results/B003/development-first';development.mkdir(parents=True);(development/'freeze.json').write_text('{"freeze":"exact"}')
+            archive=development.parent/'confirmation-first';archive.mkdir()
+            manifest=dict(development_directory='binding/results/B003/development-first',freeze_sha256=A.byte_sha((development/'freeze.json').read_bytes()))
+            with patch.object(A,'ROOT',root):
+                self.assertEqual(A.resolve_development(archive,manifest),development)
+                self.assertEqual(A.overlap_path(manifest['development_directory']+'/series-00/intake.json',manifest,development),development/'series-00/intake.json')
+                manifest['development_directory']='/old-machine/binding/results/B003/development-first'
+                self.assertEqual(A.resolve_development(archive,manifest),development)
+                self.assertEqual(A.overlap_path(manifest['development_directory']+'/series-00/intake.json',manifest,development),development/'series-00/intake.json')
+                with self.assertRaises(AuditError):A.overlap_path('/unrelated/private/intake.json',manifest,development)
+                manifest['freeze_sha256']='wrong'
+                with self.assertRaises(AuditError):A.resolve_development(archive,manifest)
+
+
 if __name__=='__main__':unittest.main()
