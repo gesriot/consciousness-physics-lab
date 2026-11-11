@@ -220,10 +220,13 @@ undetected corruption receives penalty D, the series duration. Report censoring
 separately; a penalty is not observed detection time. Sample fractions use all
 post-onset samples; N0's denominator is zero and its fraction undefined.
 
-Opportunity cost uses correct final identity-set differences from paired clean N0
-at the same allowance and duration. Report gross lost, gross gained and net counts.
-Also report faulty-environment differences without attributing them solely to samples,
-since alarms and rechecks also change work. False-alarm cost includes mismatch
+Opportunity cost uses correct final identity-set differences from paired N0 in the
+same environment, at the same allowance and duration. In the clean environment
+this isolates the sampling-related work tradeoff. Report gross lost, gross gained
+and net counts. In faulty environments do not attribute the differences solely to
+samples, since alarms and rechecks also change work. Retain the separate contrast
+against clean N0 under its own explicit label, rather than mixing the two baselines.
+The same-environment baseline also defines accurate ordinary results never obtained. False-alarm cost includes mismatch
 samples and directly triggered reviews/rechecks. Report all clean sample expenditure
 separately. Preserve all per-series values, totals and paired schedule-minus-S
 differences with descriptive standard errors over 12 series. Describe single-target
@@ -299,3 +302,7 @@ Before implementation is committed or any B003 outcomes are generated, the sampl
 deadline counter and strict queue-head affordability rule above are made explicit.
 This resolves discrete scheduling ambiguity without changing budgets, predictions,
 series, interventions or admission rules.
+
+Before the first implementation commit or outcomes, the opportunity-cost baseline
+is clarified as same-environment N0, with clean-N0 differences labelled separately.
+No population, price, admission rule, prediction or closure criterion changes.
