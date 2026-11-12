@@ -1,0 +1,10 @@
+{
+  "status": "passed",
+  "original_status": "failed",
+  "verification_source_commit": "b720bb6dcc07e5012200400dad77c705afe8af51",
+  "same_retained_bytes": true,
+  "manifest_files": 2932,
+  "elapsed_seconds": 940.8415703370001,
+  "finished_utc": "2026-11-12T00:43:12.910683+00:00",
+  "no_new_experiments": true
+}
