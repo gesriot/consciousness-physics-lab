@@ -1,0 +1,21 @@
+{
+  "decisions_pass": true,
+  "differing_decisions": [],
+  "diagnostics_pass": false,
+  "differing_diagnostics": [
+    "series-00/reference.json",
+    "series-01/reference.json",
+    "series-02/reference.json",
+    "series-03/reference.json",
+    "series-04/reference.json",
+    "series-05/reference.json",
+    "series-06/reference.json",
+    "series-07/reference.json",
+    "series-08/reference.json",
+    "series-09/reference.json",
+    "series-10/reference.json",
+    "series-11/reference.json"
+  ],
+  "files_compared": 2930,
+  "source_verification": {}
+}
