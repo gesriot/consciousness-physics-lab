@@ -10,7 +10,7 @@ from lab.common_mode import encode
 from lab.executor import request_hash
 
 
-def fixture(policy='S',quota=1):
+def fixture(policy='S',quota=1,noise=False):
     request=Request(1,1,.01);fields=encode(request);outcome=dict(value=[1.,0.],calls=1,modes_spent=64,trace=[dict(call=1,modes=64)])
     model=read(A.ROOT/'attention/self_model_s3.json');weights=model['action_model']['cost_weights']
     library={'samples':[dict(sample_id=j,channel=c,family=c.split(':')[0],standard_kind='accept',expected='accept',request=fields,candidate=[1.,0.]) for j,c in enumerate(A.CHANNELS)]}
@@ -34,7 +34,7 @@ def fixture(policy='S',quota=1):
             obs.update(terminal=True,value=[1.,0.]);trace=[dict(action='v2_64',cost=cost,original=obs,observed=obs)]
         return dict(verdict='accept',original=obs,observed=copy.deepcopy(obs),trace=trace,cost=cost)
     with patch.object(B.monitor,'sample_execution',sample),patch.object(B,'v2_observation',lambda *a:dict(verdict='accept',terminal=True,value=[1.,0.])):
-        state=B.State(policy,quota,6);result=B.run_package([Executor() for _ in infos],infos,intake['requests'],0,sum(i['full_cost'] for i in infos),model,library,state,())
+        state=B.State(policy,quota,6);result=B.run_package([Executor() for _ in infos],infos,intake['requests'],0,sum(i['full_cost'] for i in infos),model,library,state,(),noise=noise)
     archive=dict(package_id=0,policy=policy,quota=0 if policy=='N0' else quota,budget=result['budget'],inputs=infos,result=result)
     return archive,intake,dict(candidates={f'0:{i}':outcome for i in range(9)}),weights,library
 
@@ -189,6 +189,76 @@ class PortabilityVerificationTests(unittest.TestCase):
                 with self.assertRaises(AuditError):A.overlap_path('/unrelated/private/intake.json',manifest,development)
                 manifest['freeze_sha256']='wrong'
                 with self.assertRaises(AuditError):A.resolve_development(archive,manifest)
+
+
+class NoiseVerifierCorrectionTests(unittest.TestCase):
+    def test_registered_half_even_boundary(self):
+        self.assertEqual(A.score_round(26.5517578125,False),26.551757812)
+        self.assertEqual(A.score_round(26.5517578125,True),26.551757813)
+        data=fixture('BU',4,True)
+        A.check_package(*data,noise=True)
+        sample=next(a for a in data[0]['result']['actions'] if a['kind']=='sample')
+        sample['selection_snapshot']['scores']['modal']+=1e-9
+        with self.assertRaises(AuditError):A.check_package(*data,noise=True)
+
+    def test_noise_stakes_reconstruct_all_paired_policies(self):
+        for policy in ('S','Sx','Sxprime','RR','BU'):
+            for quota in (1,2,4):
+                A.check_package(*fixture(policy,quota,True),noise=True)
+
+    def test_score_comparison_requires_both_independent_cell_checks(self):
+        import tempfile,json
+        from pathlib import Path
+        with tempfile.TemporaryDirectory() as temporary:
+            roots=[Path(temporary)/name for name in ('first','noise')]
+            for index,root in enumerate(roots):
+                target=root/'series-00/cell/package-00.json.gz';target.parent.mkdir(parents=True)
+                import gzip
+                with gzip.open(target,'wt') as stream:json.dump(dict(result={'actions':[dict(kind='sample',scores={'modal':26.551757812+index*1e-9},channel='normalization',cost=1.,count=2)]}),stream)
+                (root/'manifest.json').write_text(json.dumps(dict(source_sha256={'same':'source'},intake_sha256='intake')))
+            with patch.object(A,'verify_sources',return_value={}),patch.object(A,'verify_score_cell',return_value=1) as check:
+                result=A.compare_directories(*roots)
+                self.assertTrue(result['decisions_pass']);self.assertEqual(check.call_count,2)
+                self.assertEqual(result['independently_verified_score_cells'],2)
+            with patch.object(A,'verify_sources',return_value={}),patch.object(A,'verify_score_cell',side_effect=AuditError('tampered score')):
+                with self.assertRaises(AuditError):A.compare_directories(*roots)
+
+    def test_score_projection_keeps_channel_shape_and_protected_fields(self):
+        base=dict(kind='sample',scores={'a':1.,'b':2.},channel='a',verdict='accept',cost=3.,count=1)
+        def projected(action):return A.score_diagnostic_projection({'result':{'actions':[action]}})
+        numerical=copy.deepcopy(base);numerical['scores']['a']+=1e-9
+        self.assertEqual(projected(base),projected(numerical))
+        for key,value in [('channel','b'),('verdict','inconclusive'),('cost',4.),('count',2),('scores',{'a':1.})]:
+            altered=copy.deepcopy(base);altered[key]=value
+            self.assertNotEqual(projected(base),projected(altered))
+        with self.assertRaises(AuditError):A.verify_score_cell('/not-read','summary.json')
+
+    def test_unregistered_nested_score_changes_remain_exact(self):
+        known={'result':{'actions':[{'kind':'sample','scores':{'a':1.},'selection_snapshot':{'scores':{'a':1.},'paired_graphs':{'S':{'scores':{'a':1.}},'Sx':{'scores':{'a':1.}},'Sxprime':{'scores':{'a':1.}}}}}]}}
+        modified=copy.deepcopy(known)
+        action=modified['result']['actions'][0];action['scores']['a']=2.;action['selection_snapshot']['scores']['a']=2.
+        for paired in action['selection_snapshot']['paired_graphs'].values():paired['scores']['a']=2.
+        self.assertEqual(A.score_diagnostic_projection(known),A.score_diagnostic_projection(modified))
+        for location in ('root','action_metadata','unknown_pair','ordinary_action'):
+            left=copy.deepcopy(known);right=copy.deepcopy(known)
+            if location=='root':left['metadata']={'scores':{'a':1.}};right['metadata']={'scores':{'a':2.}}
+            elif location=='action_metadata':
+                left['result']['actions'][0]['metadata']={'scores':{'a':1.}};right['result']['actions'][0]['metadata']={'scores':{'a':2.}}
+            elif location=='ordinary_action':
+                left['result']['actions'][0]['kind']='ordinary';right['result']['actions'][0]['kind']='ordinary';right['result']['actions'][0]['scores']['a']=2.
+            else:
+                left['result']['actions'][0]['selection_snapshot']['paired_graphs']['unknown']={'scores':{'a':1.}};right['result']['actions'][0]['selection_snapshot']['paired_graphs']['unknown']={'scores':{'a':2.}}
+            with self.subTest(location=location):self.assertNotEqual(A.score_diagnostic_projection(A.decision_projection(left)),A.score_diagnostic_projection(A.decision_projection(right)))
+
+    def test_exact_correction_record_rejects_core_and_pair_tampering(self):
+        record,old,new,ot,nt=PortabilityVerificationTests().case()
+        record['schema']='B003-noise-verifier-correction-v1';record['old_head']=A.CORRECTION_BASELINE
+        record['unchanged_scientific_functions']['auditor']=A.unchanged_function_proof(ot[A.COMPATIBLE_SOURCES[1]],nt[A.COMPATIBLE_SOURCES[1]],A.CORRECTED_AUDIT_FUNCTIONS)
+        A.validate_verifier_correction(record,old,new,ot,nt)
+        damaged=copy.deepcopy(record);damaged['allowed_changes'][A.COMPATIBLE_SOURCES[1]]['new_sha256']='wrong'
+        with self.assertRaises(AuditError):A.validate_verifier_correction(damaged,old,new,ot,nt)
+        changed=copy.deepcopy(new);changed['binding/self_checks_b003.py']='changed-core'
+        with self.assertRaises(AuditError):A.validate_verifier_correction(record,old,changed,ot,nt)
 
 
 if __name__=='__main__':unittest.main()

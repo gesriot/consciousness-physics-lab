@@ -55,12 +55,12 @@ def projection(records, markers, policy):
     return rows,edits
 
 
-def score_stakes(records,markers,prices):
+def score_stakes(records,markers,prices,noise=False):
     counts=dict.fromkeys(CHANNELS,0)
     for row in records:
         if row['standing']:
             for c in {e['channel'] for e in row['links'] if e['kind']=='channel' and e['channel'] in counts and e['time']>markers[e['channel']]}: counts[c]+=1
-    return counts,{c:round(counts[c]/prices[c],9) for c in CHANNELS}
+    return counts,{c:score_round(counts[c]/prices[c],noise) for c in CHANNELS}
 
 
 def queue_for(records,channel_name,marker,tick,excluded):
@@ -149,7 +149,7 @@ def protected_check(result,fields,outcome):
         equal(result['charged_work'],dict(grids=list(GRIDS)) if graded else dict(degrees=[64,128]),'full qualified charge grids')
 
 
-def check_package(archive,intake,reference,weights,library,prior=None):
+def check_package(archive,intake,reference,weights,library,prior=None,noise=False):
     """Replay all chronology from actions, not final state or sample snapshots."""
     finite_tree(archive)
     result=archive['result']; infos=archive['inputs']; package=archive['package_id']
@@ -206,11 +206,11 @@ def check_package(archive,intake,reference,weights,library,prior=None):
             if verdict(obs)=='accept':
                 for c in (set(support[i])&suspect)-set(extra[i]):
                     p=replacement_price(c,fields,weights)
-                    if p<=remaining:futures.append((round(p,9),i,CHANNELS.index(c),p,c))
+                    if p<=remaining:futures.append((score_round(p,noise),i,CHANNELS.index(c),p,c))
             else:
                 for a in available(obs):
                     p=native(a,fields,weights,infos[i]['outcome'])
-                    if p<=remaining:options.append((round(p,9),i,ORDER.index(a),p,a))
+                    if p<=remaining:options.append((score_round(p,noise),i,ORDER.index(a),p,a))
         choices=futures or options
         due=samples<quota and (ordinary_cost>=samples/quota*(budget-quota*maximum) or not choices)
         kind=action['kind'];tick=state['tick']+1;equal(action['tick'],tick,'half-tick action time');state['tick']+=2
@@ -226,11 +226,11 @@ def check_package(archive,intake,reference,weights,library,prior=None):
                 equal(action['observation'],token,'categorical protected observation')
         if kind=='sample':
             prices={ch:price(pools[ch][counts[ch]%len(pools[ch])]) for ch in CHANNELS}
-            rows,edits=projection(records,markers,policy);numerators,scores=score_stakes(rows,markers,prices)
+            rows,edits=projection(records,markers,policy);numerators,scores=score_stakes(rows,markers,prices,noise)
             eligible=[ch for ch in CHANNELS if ch not in suspect];equal(bool(eligible),True,'unexhausted channels')
             snap=action['selection_snapshot'];equal(snap['records'],rows,'authentic typed intervention graph');equal(snap['edits'],edits,'binary paired graph edits');equal(snap['markers'],markers,'successful markers');equal(snap['suspect'],sorted(suspect),'visible suspect state')
             for paired in ('S','Sx','Sxprime'):
-                g,ed=projection(records,markers,paired);nu,sc=score_stakes(g,markers,prices)
+                g,ed=projection(records,markers,paired);nu,sc=score_stakes(g,markers,prices,noise)
                 equal(snap['paired_graphs'][paired],dict(records=g,edits=ed,numerators=nu,scores=sc),'actual paired snapshot '+paired)
             for forbidden in ('target','onset','accurate','affected','fault_channels','single_target'):equal(forbidden in snap,False,'truth isolation')
             if policy=='BU':
@@ -240,12 +240,12 @@ def check_package(archive,intake,reference,weights,library,prior=None):
                     fields=requests[infos[i]['task_id']]['request']
                     for family in ('v2','collocation')+FEATURES+('binding','modal'):
                         ch=channel(family,fields);raw[ch]+=replacement_price(ch,fields,weights)*(1+len(obs)/len(ORDER))
-                scores={ch:round(raw[ch]*(1+ordinary-bu_last[ch])/max(price(s) for s in pools[ch]),9) for ch in CHANNELS}
+                scores={ch:score_round(raw[ch]*(1+ordinary-bu_last[ch])/max(price(s) for s in pools[ch]),noise) for ch in CHANNELS}
                 equal(snap['evidence'],evidence,'BU open evidence');equal(snap['closed'],sorted(closed),'BU closures');equal(snap['bu_last'],bu_last,'BU ages');equal(snap['ordinary_count'],ordinary,'BU action clock')
                 equal(snap['details']['raw'],raw,'frozen BU exposure');chosen=min(eligible,key=lambda ch:(-scores[ch],CHANNELS.index(ch)))
             else:
                 for k,v in [('numerators',numerators),('denominators',prices),('tie_order',list(CHANNELS))]:equal(snap[k],v,'S '+k)
-                control,_=projection(records,markers,'Sxprime');equal(score_stakes(control,markers,prices),score_stakes(records,markers,prices),'all-channel irrelevant control null')
+                control,_=projection(records,markers,'Sxprime');equal(score_stakes(control,markers,prices,noise),score_stakes(records,markers,prices,noise),'all-channel irrelevant control null')
                 if policy=='RR':
                     index=next((state['rr_pointer']+k)%len(CHANNELS) for k in range(len(CHANNELS)) if CHANNELS[(state['rr_pointer']+k)%len(CHANNELS)] in eligible)
                     chosen=CHANNELS[index];state['rr_pointer']=(index+1)%len(CHANNELS)
@@ -488,8 +488,74 @@ def committed_compatibility():
     return record,dict(source_compatibility_sha256=byte_sha(raw),source_compatibility_commit=commit)
 
 
+CORRECTION_BASELINE = '72c445a35f2e2c6a10e1075b4b961c8ca00e07f6'
+VERIFIER_CORRECTION = 'binding/results/B003/noise-verifier-correction.json'
+CORRECTED_RUNNER_FUNCTIONS = {'run'}
+CORRECTED_AUDIT_FUNCTIONS = {'score_stakes','check_package','verify_sources','audit_directory','compare_directories'}
+
+
+def score_round(value,noise=False):
+    """Apply the preregistered perturbation before, never after, rounding."""
+    return round(float(np.nextafter(float(value),np.inf)) if noise else float(value),9)
+
+
+def validate_verifier_correction(record,old_sources,current_sources,old_text,new_text):
+    equal(record['schema'],'B003-noise-verifier-correction-v1','verifier correction schema')
+    equal(record['old_head'],CORRECTION_BASELINE,'exact pre-correction execution source')
+    equal(set(old_sources),set(current_sources),'unchanged correction source inventory')
+    equal(set(record['allowed_changes']),set(COMPATIBLE_SOURCES),'bounded verifier and replay metadata scope')
+    equal({p for p in old_sources if old_sources[p]!=current_sources[p]},set(COMPATIBLE_SOURCES),'only declared correction sources changed')
+    for p,pair in record['allowed_changes'].items():
+        equal(pair,dict(old_sha256=old_sources[p],new_sha256=current_sources[p]),'exact verifier correction pair '+p)
+        equal(byte_sha(old_text[p].encode()),pair['old_sha256'],'historical correction source bytes')
+        equal(byte_sha(new_text[p].encode()),pair['new_sha256'],'current correction source bytes')
+    proof=dict(runner=unchanged_function_proof(old_text[COMPATIBLE_SOURCES[0]],new_text[COMPATIBLE_SOURCES[0]],CORRECTED_RUNNER_FUNCTIONS,True),auditor=unchanged_function_proof(old_text[COMPATIBLE_SOURCES[1]],new_text[COMPATIBLE_SOURCES[1]],CORRECTED_AUDIT_FUNCTIONS))
+    equal(record['unchanged_scientific_functions'],proof,'independent correction scientific-function proof')
+    equal(record['unchanged_sources_sha256'],{p:h for p,h in old_sources.items() if p not in COMPATIBLE_SOURCES},'unchanged producer instruments and libraries')
+    return proof
+
+
+def committed_verifier_correction():
+    import subprocess
+    raw=(ROOT/VERIFIER_CORRECTION).read_bytes()
+    equal(raw,git_bytes('HEAD',VERIFIER_CORRECTION),'verifier correction record committed bytes')
+    record=json.loads(raw)
+    equal(record['original_portability_record_sha256'],byte_sha((ROOT/COMPATIBILITY).read_bytes()),'original portability record remains byte-identical')
+    for path,h in record['preserved_original_failure_sha256'].items():equal(byte_sha((ROOT/path).read_bytes()),h,'preserved original failed verification artifact')
+    commit=subprocess.check_output(['git','log','-1','--format=%H','--',VERIFIER_CORRECTION],cwd=ROOT,text=True).strip()
+    equal(subprocess.run(['git','merge-base','--is-ancestor',CORRECTION_BASELINE,commit],cwd=ROOT,capture_output=True).returncode,0,'post-execution verifier correction chronology')
+    return record,dict(verifier_correction_sha256=byte_sha(raw),verifier_correction_commit=commit)
+
+
+def score_diagnostic_projection(value,path=(),sample_action=False):
+    """Normalize only the score locations independently checked by check_package."""
+    if isinstance(value,list):return [score_diagnostic_projection(v,path+(str(i),),sample_action) for i,v in enumerate(value)]
+    if isinstance(value,dict):
+        action=len(path)>=3 and path[:2]==('result','actions') and path[2].isdigit()
+        if action and len(path)==3:sample_action=value.get('kind')=='sample'
+        registered=action and sample_action and (len(path)==3 or path[3:]==('selection_snapshot',) or (len(path)==6 and path[3:5]==('selection_snapshot','paired_graphs') and path[5] in ('S','Sx','Sxprime')))
+        return {k:({c:'verified numerical score' for c in v} if k=='scores' and registered else score_diagnostic_projection(v,path+(k,),sample_action)) for k,v in value.items()}
+    return value
+
+
+def verify_score_cell(directory,relative_path):
+    """Reconstruct the complete paired cell before accepting score-only drift."""
+    root=Path(directory);relative=Path(relative_path)
+    equal(len(relative.parts)==3 and relative.parts[0].startswith('series-') and relative.parts[-1].startswith('package-'),True,'scores belong to a raw package archive')
+    manifest=read(root/'manifest.json');data=read(root/relative.parts[0]/'intake.json');check_intake(data)
+    weights=read(ROOT/'attention/self_model_s3.json')['action_model']['cost_weights'];library=read(ROOT/'attention/sample_library_a007.json')
+    prior=None;candidates={};count=0
+    paths=sorted((root/relative.parent).glob('package-*.json.gz'))
+    for path in paths:
+        archive=read(path);p=archive['package_id'];equal(p,count,'complete score-cell chronology')
+        candidates.update({f'{p}:{i}':info['outcome'] for i,info in enumerate(archive['inputs'])})
+        prior=check_package(archive,data,dict(candidates=candidates),weights,library,prior,noise=manifest['last_bit_noise']);count+=1
+    equal(count,archive['duration'],'complete independently verified score cell')
+    return count
+
+
 def verify_sources(manifest):
-    """Authenticate executed bytes before considering an exact verifier-only update."""
+    """Authenticate execution, the original portability bridge, then the erratum."""
     import subprocess
     head=manifest['git_head'];saved=manifest['source_sha256']
     equal(set(saved),set(source_inventory(head)),'complete executed source inventory')
@@ -497,21 +563,23 @@ def verify_sources(manifest):
     for path,h in saved.items():equal(byte_sha(git_bytes(head,path)),h,'executed committed source '+path)
     current={path:byte_sha((ROOT/path).read_bytes()) for path in saved}
     for path,h in current.items():equal(h,byte_sha(git_bytes('HEAD',path)),'current committed verifier source '+path)
-    metadata={}
-    if current!=saved:
-        record,metadata=committed_compatibility()
-        old={path:byte_sha(git_bytes(record['old_head'],path)) for path in source_inventory(record['old_head'])}
-        equal(saved,old,'exact historical executed source map')
-        old_text={p:git_bytes(record['old_head'],p).decode() for p in COMPATIBLE_SOURCES}
-        new_text={p:(ROOT/p).read_text() for p in COMPATIBLE_SOURCES}
-        validate_compatibility_record(record,saved,current,old_text,new_text)
-    if 'source_compatibility_sha256' in manifest:
-        record,record_metadata=committed_compatibility()
-        equal({k:manifest[k] for k in record_metadata},record_metadata,'recorded source compatibility identity')
-        equal(subprocess.run(['git','merge-base','--is-ancestor',record_metadata['source_compatibility_commit'],head],cwd=ROOT,capture_output=True).returncode,0,'compatibility committed before execution')
-        old={p:byte_sha(git_bytes(record['old_head'],p)) for p in source_inventory(record['old_head'])}
-        validate_compatibility_record(record,old,current,{p:git_bytes(record['old_head'],p).decode() for p in COMPATIBLE_SOURCES},{p:(ROOT/p).read_text() for p in COMPATIBLE_SOURCES})
-        metadata=record_metadata
+    portability,port_metadata=committed_compatibility()
+    correction,correction_metadata=committed_verifier_correction()
+    baseline={p:byte_sha(git_bytes(EXECUTED_BASELINE,p)) for p in source_inventory(EXECUTED_BASELINE)}
+    historical={p:byte_sha(git_bytes(CORRECTION_BASELINE,p)) for p in source_inventory(CORRECTION_BASELINE)}
+    baseline_text={p:git_bytes(EXECUTED_BASELINE,p).decode() for p in COMPATIBLE_SOURCES}
+    historical_text={p:git_bytes(CORRECTION_BASELINE,p).decode() for p in COMPATIBLE_SOURCES}
+    current_text={p:(ROOT/p).read_text() for p in COMPATIBLE_SOURCES}
+    validate_compatibility_record(portability,baseline,historical,baseline_text,historical_text)
+    validate_verifier_correction(correction,historical,current,historical_text,current_text)
+    equal(saved in (baseline,historical,current),True,'exact authenticated source chain')
+    metadata=dict(port_metadata,**correction_metadata)
+    for group in (port_metadata,correction_metadata):
+        sha_key=next(k for k in group if k.endswith('_sha256'));commit_key=next(k for k in group if k.endswith('_commit'))
+        if sha_key in manifest:
+            equal({k:manifest[k] for k in group},group,'recorded source verification identity')
+            equal(subprocess.run(['git','merge-base','--is-ancestor',group[commit_key],head],cwd=ROOT,capture_output=True).returncode,0,'recorded verification committed before execution')
+        elif commit_key in manifest:raise AuditError('Incomplete source verification identity')
     return metadata
 
 
@@ -603,7 +671,7 @@ def audit_directory(directory, development=None):
                 for action in a['result']['actions']:equal(action['fault_applied'],action['kind'] in ('ordinary','sample') and action['channel'] in fault,'injection isolation')
                 common.setdefault(p,a['inputs']);equal(a['inputs'],common[p],'paired common native inputs and allowance')
                 candidates.update({f'{p}:{i}':info['outcome'] for i,info in enumerate(a['inputs'])})
-                state=check_package(a,data,dict(candidates=candidates),weights,library,state)
+                state=check_package(a,data,dict(candidates=candidates),weights,library,state,noise=manifest['last_bit_noise'])
                 truth=evaluator(a,state,data,refs,truth);actions.extend(dict(x,package_id=p) for x in a['result']['actions'])
                 for c in CATEGORIES:costs[c]+=a['result']['costs'][c]
                 if p+1==duration or stage=='development' and p+1 in (4,8,16):
@@ -662,16 +730,26 @@ def compare_directories(left,right):
         equal(left_verification,right_verification,'same exact compatibility proof for comparison')
         source_verification=left_verification
     else:
-        for k in ('source_compatibility_sha256','source_compatibility_commit'):equal(lm.get(k),rm.get(k),'comparison identity '+k)
+        for k in ('source_compatibility_sha256','source_compatibility_commit','verifier_correction_sha256','verifier_correction_commit'):equal(lm.get(k),rm.get(k),'comparison identity '+k)
     for k in ('intake_sha256','protocol_sha256','qualification_sha256','exposure_sha256','freeze_sha256'):equal(lm.get(k),rm.get(k),'comparison identity '+k)
     def files(root):
         return {str(p.relative_to(root)) for p in root.rglob('*') if p.is_file() and (p.name.endswith('.json') or p.name.endswith('.json.gz')) and ('series-' in str(p.relative_to(root)) or p.name in ('aggregate.json','series-summaries.json'))}
-    lf,rf=files(left),files(right);equal(lf,rf,'comparison complete archive file set');decisions=[];diagnostics=[]
+    lf,rf=files(left),files(right);equal(lf,rf,'comparison complete archive file set');decisions=[];diagnostics=[];score_diagnostics=[];verified_cells=set();verified_source_roots=set()
     for name in sorted(lf):
         a,b=read(left/name),read(right/name);result=compare_values(a,b)
-        if not result['decisions_pass']:decisions.append(name)
+        if not result['decisions_pass']:
+            same_operational=score_diagnostic_projection(decision_projection(a))==score_diagnostic_projection(decision_projection(b))
+            if same_operational:
+                for root in (left,right):
+                    cell=(str(root.resolve()),str(Path(name).parent))
+                    if cell not in verified_cells:
+                        if cell[0] not in verified_source_roots:
+                            verify_sources(read(root/'manifest.json'));verified_source_roots.add(cell[0])
+                        verify_score_cell(root,name);verified_cells.add(cell)
+                score_diagnostics.append(name)
+            else:decisions.append(name)
         if not result['diagnostics_equal']:diagnostics.append(name)
-    return dict(decisions_pass=not decisions,differing_decisions=decisions,diagnostics_pass=not diagnostics,differing_diagnostics=diagnostics,files_compared=len(lf),source_verification=source_verification)
+    return dict(decisions_pass=not decisions,differing_decisions=decisions,diagnostics_pass=not diagnostics,differing_diagnostics=diagnostics,files_compared=len(lf),source_verification=source_verification,differing_verified_score_diagnostics=score_diagnostics,independently_verified_score_cells=len(verified_cells))
 
 
 audit=audit_directory

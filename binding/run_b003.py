@@ -469,17 +469,25 @@ def run(output, stage='development', development=None, replay=None, noise=False,
         from binding.audit_b003 import verify_sources
         compatibility = verify_sources(original)
         source_transition = original['source_sha256'] != audit['source_sha256']
-        if source_transition and (stage != 'development' or original.get('stage') != 'development'
-                                  or not compatibility):
-            raise ValueError('Replay source transition is not verified development portability')
+        portability_keys = ('source_compatibility_sha256', 'source_compatibility_commit')
+        correction_keys = ('verifier_correction_sha256', 'verifier_correction_commit')
+        development_transition = (stage == original.get('stage') == 'development'
+                                  and all(compatibility.get(key) for key in portability_keys))
+        correction_transition = (stage == original.get('stage')
+                                 and all(compatibility.get(key) for key in correction_keys))
+        if source_transition and not (development_transition or correction_transition):
+            raise ValueError('Replay source transition lacks exact verified provenance')
         for key, value in compatibility.items():
             if key in audit and audit[key] != value:
                 raise ValueError('Replay compatibility differs from confirmation freeze')
             audit[key] = value
         for key in ('source_sha256', 'protocol_sha256', 'qualification_sha256', 'exposure_sha256',
-                    'freeze_sha256', 'source_compatibility_sha256', 'source_compatibility_commit'):
+                    'freeze_sha256', 'source_compatibility_sha256', 'source_compatibility_commit',
+                    'verifier_correction_sha256', 'verifier_correction_commit'):
+            introduced_key = (key in correction_keys and correction_transition or
+                              key in portability_keys and development_transition)
             if source_transition and (key == 'source_sha256' or
-                                      (key in compatibility and key not in original)):
+                                      (introduced_key and key in compatibility and key not in original)):
                 continue
             if original.get(key) != audit.get(key):
                 raise ValueError('Replay metadata mismatch: '+key)
