@@ -1,0 +1,15 @@
+{
+  "passed": true,
+  "independent_series": 12,
+  "packages": 2304,
+  "stage": "confirmation",
+  "source_verification": {
+    "source_compatibility_sha256": "082967531266b8f7c7a7b13c62bb76d717d5bb56bf414e547e4160ac80cc7a37",
+    "source_compatibility_commit": "72c445a35f2e2c6a10e1075b4b961c8ca00e07f6",
+    "verifier_correction_sha256": "4f2e7f566167b90ccbc9c37089bac08030404b6c373994023f653dcb71d009a8",
+    "verifier_correction_commit": "b720bb6dcc07e5012200400dad77c705afe8af51"
+  },
+  "limitations": [
+    "Archived numerical evidence is checked arithmetically, not independently re-solved."
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "stage": "confirmation",
+  "replay": "binding/results/B003/confirmation-first",
+  "last_bit_noise": true,
+  "runtime_override": "Explicit audited replay path on Python 3.12.14 NumPy 2.3.5 SciPy 1.17.0",
+  "execution": "sequential",
+  "status": "failed",
+  "error_type": "AuditError",
+  "error": "all-channel scores",
+  "retained_archive": "/workspace/scratch/1594829ace7a/b003-checkout/binding/results/B003/b003-last-bit-noise-repeat-ghewe245/archive",
+  "elapsed_seconds": 1049.5937627290004
+}

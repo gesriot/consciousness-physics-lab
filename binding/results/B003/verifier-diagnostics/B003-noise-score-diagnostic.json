@@ -1,0 +1,14 @@
+{
+  "classification": "diagnostic_only_not_official_audit",
+  "status": "incomplete_interrupted_for_committed_verifier",
+  "completed_checkpoint_packages": 1152,
+  "termination_exit_code": 130,
+  "reason": "Stopped to run one full verification with committed corrected sources; original failed audit remains unchanged.",
+  "script_sha256": "2f7ca3bcce27ce5ecdf82cf41fc4f1eab56db5f355428b5278f81290ffcace87",
+  "all_protected_non_score_comparison": {
+    "files": 2930,
+    "differing_score_scalars": 90,
+    "differing_other_projected_fields": 0,
+    "all_numerical_values_finite": true
+  }
+}

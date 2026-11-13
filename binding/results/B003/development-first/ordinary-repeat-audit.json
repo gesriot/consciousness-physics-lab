@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "independent_series": 12,
+  "packages": 192,
+  "stage": "development",
+  "limitations": [
+    "Archived numerical evidence is checked arithmetically, not independently re-solved."
+  ]
+}

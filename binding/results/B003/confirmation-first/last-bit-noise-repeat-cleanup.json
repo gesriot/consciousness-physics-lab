@@ -1,0 +1,13 @@
+{
+  "status": "successful_reverification_duplicate_removed",
+  "original_failure_preserved": true,
+  "corrected_audit_passed": true,
+  "corrected_comparison_passed": true,
+  "retained_manifest": "last-bit-noise-repeat-file-manifest.json",
+  "manifest_sha256": "2fef36dbd9524cf9a1a7fe9d0a9ec89aa02578e1658921442a90696a6f8840a5",
+  "verified_files": 2932,
+  "verified_bytes": 166226608,
+  "cleanup_utc": "2026-11-12T00:43:57.651187+00:00",
+  "original_archive": "b003-last-bit-noise-repeat-ghewe245/archive",
+  "no_new_experiments": true
+}

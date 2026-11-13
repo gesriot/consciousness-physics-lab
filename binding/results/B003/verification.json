@@ -1,0 +1,57 @@
+{
+  "experiment": "B003",
+  "status": "passed_after_disclosed_verifier_correction",
+  "checked_git_head": "850f4b55cbdf5ddbbc02e7485b0a7abb92b9cdfc",
+  "scientific_execution_head": "72c445a35f2e2c6a10e1075b4b961c8ca00e07f6",
+  "verifier_correction_commit": "b720bb6dcc07e5012200400dad77c705afe8af51",
+  "finished_utc": "2026-11-12T00:48:05.422563+00:00",
+  "environment": {
+    "python": "3.12.14",
+    "numpy": "2.3.5",
+    "scipy": "1.17.0",
+    "os": "Linux",
+    "architecture": "x86_64"
+  },
+  "aggregate_checks": {
+    "check": {
+      "passed": true,
+      "main_tests": 455,
+      "utility_tests": 30,
+      "log": "binding/results/B003/check.log",
+      "sha256": "74beb418b4e44e3f873b9a9bb3d171803d40fb702f3a4769ebe07779739140b7"
+    },
+    "check-noise": {
+      "passed": true,
+      "main_tests": 455,
+      "utility_tests": 30,
+      "log": "binding/results/B003/check-noise.log",
+      "sha256": "122f93fcb96e04c2f350c2c99542c59a7949cbe3bd2a57c959dc60283f85de4e"
+    }
+  },
+  "deterministic_gzip": {
+    "files_checked": 2497,
+    "maximum_compression": true,
+    "timestamp_zero": true,
+    "original_filename_absent": true
+  },
+  "confirmation": {
+    "independent_series": 12,
+    "packages": 2304,
+    "ordinary_comparison": {
+      "decisions_pass": true,
+      "files_compared": 2930
+    },
+    "noise_comparison": {
+      "decisions_pass": true,
+      "files_compared": 2930,
+      "verified_score_diagnostic_files": 42,
+      "independently_reconstructed_cells": 66
+    },
+    "original_noise_verification_status": "failed; preserved in original log and comparison",
+    "corrected_noise_verification": "passed on the same 2932 retained file hashes; no new physical experiment"
+  },
+  "limits": [
+    "Numerical evidence is checked arithmetically by the independent auditor, not independently re-solved.",
+    "Actual repeats were verified on the recorded Linux runtime; B003 macOS verification is not claimed."
+  ]
+}

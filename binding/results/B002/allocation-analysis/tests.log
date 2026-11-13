@@ -1,0 +1,8 @@
+test_closed_accepts_do_not_contribute (binding.test_analyze_b002_allocation.AllocationAnalysisTests.test_closed_accepts_do_not_contribute) ... ok
+test_matches_reference_for_both_prices (binding.test_analyze_b002_allocation.AllocationAnalysisTests.test_matches_reference_for_both_prices) ... ok
+test_price_ratio (binding.test_analyze_b002_allocation.AllocationAnalysisTests.test_price_ratio) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.006s
+
+OK

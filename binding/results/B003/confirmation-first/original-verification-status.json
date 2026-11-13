@@ -1,0 +1,25 @@
+{
+  "status": "original_verification_failed",
+  "execution_source_commit": "72c445a35f2e2c6a10e1075b4b961c8ca00e07f6",
+  "first_audit": "passed",
+  "ordinary_repeat_audit_and_comparison": "passed",
+  "noise_execution": "all_12_series_completed",
+  "noise_original_audit_error": "all-channel scores",
+  "noise_original_comparison": {
+    "decisions_pass": false,
+    "differing_decision_files": 42,
+    "files_compared": 2930
+  },
+  "initial_diagnosis": {
+    "archive": "series-02/clean-d4-BU-q4/package-01.json.gz",
+    "sample_index": 2,
+    "tick": 1629,
+    "selected_channel": "normalization",
+    "differing_channel": "modal",
+    "unrounded_score": 26.5517578125,
+    "unperturbed_rounded_score": 26.551757812,
+    "registered_noise_rounded_score": 26.551757813,
+    "reason": "The producer perturbs scores before rounding as registered; the original verifier reconstructs BU scores without this perturbation."
+  },
+  "followup": "Full independent diagnostic and separate post-data verifier correction pending. Original outputs and failure records are preserved; no numerical experiment is repeated."
+}

@@ -1,0 +1,586 @@
+{
+  "seed": 20270214,
+  "packages": 4,
+  "requests": [
+    {
+      "task_id": 0,
+      "package_id": 0,
+      "cohort": "W",
+      "request": {
+        "z": [
+          3392.1576805576146,
+          1776.788603525245
+        ],
+        "mean_time": 9.653562123752897,
+        "tolerance": 0.0059810132624351885,
+        "budget": 4096,
+        "max_calls": 3
+      },
+      "request_sha256": "b1adf36cffaab197421d839ce341e981620e8a1c6f44587bbe9c9abedaba42b8",
+      "condition_order": [
+        "mixture",
+        "clean",
+        "stale_value",
+        "model_scale",
+        "conjugate",
+        "time_units",
+        "slab",
+        "near_tolerance",
+        "renormalized"
+      ]
+    },
+    {
+      "task_id": 1,
+      "package_id": 0,
+      "cohort": "H",
+      "request": {
+        "z": [
+          3357784.772251635,
+          1212946.9228247714
+        ],
+        "mean_time": 2.167574799841872,
+        "tolerance": 0.009218172338045574,
+        "budget": 4096,
+        "max_calls": 3
+      },
+      "request_sha256": "c1d5cfe0513fb19104dd94bb2aabbecf2a702d188db89dc7ba0da468e0502e84",
+      "condition_order": [
+        "near_tolerance",
+        "time_units",
+        "renormalized",
+        "stale_value",
+        "conjugate",
+        "slab",
+        "model_scale",
+        "clean",
+        "mixture"
+      ]
+    },
+    {
+      "task_id": 2,
+      "package_id": 0,
+      "cohort": "M",
+      "request": {
+        "z": [
+          0.37659704170582853,
+          0.5691497879788832
+        ],
+        "mean_time": 0.9812131935599877,
+        "tolerance": 0.0007574521664564192,
+        "budget": 4096,
+        "max_calls": 3
+      },
+      "request_sha256": "a8b201a938d5de9ab08fb4bc5953f0f7e5e510106eb1ad1aeee20a348367cf6d",
+      "condition_order": [
+        "time_units",
+        "conjugate",
+        "clean",
+        "renormalized",
+        "near_tolerance",
+        "mixture",
+        "model_scale",
+        "slab",
+        "stale_value"
+      ]
+    },
+    {
+      "task_id": 3,
+      "package_id": 0,
+      "cohort": "O",
+      "request": {
+        "z": [
+          3.547990925783227,
+          111.4756315879085
+        ],
+        "mean_time": 61.53689807404311,
+        "tolerance": 0.0011169768170738368,
+        "budget": 4096,
+        "max_calls": 3
+      },
+      "request_sha256": "4d414d4f686d95294283697b5c5c8d6e6c3770c553597583024396bf10c7244e",
+      "condition_order": [
+        "stale_value",
+        "model_scale",
+        "near_tolerance",
+        "time_units",
+        "clean",
+        "renormalized",
+        "mixture",
+        "conjugate",
+        "slab"
+      ]
+    },
+    {
+      "task_id": 4,
+      "package_id": 0,
+      "cohort": "S",
+      "request": {
+        "z": [
+          8429636.767199263,
+          1120868.2994443348
+        ],
+        "mean_time": 0.013684970955125681,
+        "tolerance": 1.2550915865880204e-05,
+        "budget": 4096,
+        "max_calls": 3
+      },
+      "request_sha256": "888859c2d95cb9cfe7d7aab933489dbc43188595bece0ada2c7dae2f2f805c16",
+      "condition_order": [
+        "mixture",
+        "conjugate",
+        "time_units",
+        "clean",
+        "stale_value",
+        "renormalized",
+        "model_scale",
+        "near_tolerance",
+        "slab"
+      ]
+    },
+    {
+      "task_id": 5,
+      "package_id": 1,
+      "cohort": "W",
+      "request": {
+        "z": [
+          1.703138347206785,
+          -2.761628393084336
+        ],
+        "mean_time": 9.780676063274461,
+        "tolerance": 0.00015174507415496776,
+        "budget": 4096,
+        "max_calls": 3
+      },
+      "request_sha256": "af23872f195d7a3b211eb3c28b6b8ebe7e041817444eb3798def5c2a4ded0d6d",
+      "condition_order": [
+        "model_scale",
+        "near_tolerance",
+        "clean",
+        "renormalized",
+        "slab",
+        "conjugate",
+        "stale_value",
+        "time_units",
+        "mixture"
+      ]
+    },
+    {
+      "task_id": 6,
+      "package_id": 1,
+      "cohort": "H",
+      "request": {
+        "z": [
+          9482009.004283773,
+          -28310987.596485857
+        ],
+        "mean_time": 2.2819575892544535,
+        "tolerance": 0.001114762526646945,
+        "budget": 4096,
+        "max_calls": 3
+      },
+      "request_sha256": "5618baa00a58bdbc2b893255150062aacc6d6e8209d7001e2a481e4188f4dc78",
+      "condition_order": [
+        "stale_value",
+        "mixture",
+        "renormalized",
+        "near_tolerance",
+        "conjugate",
+        "clean",
+        "model_scale",
+        "time_units",
+        "slab"
+      ]
+    },
+    {
+      "task_id": 7,
+      "package_id": 1,
+      "cohort": "M",
+      "request": {
+        "z": [
+          1455.4357641393956,
+          6989.267603340532
+        ],
+        "mean_time": 0.07521624987313824,
+        "tolerance": 0.0006540060193534477,
+        "budget": 4096,
+        "max_calls": 3
+      },
+      "request_sha256": "b5732259cde6133755d6a6cad2bd357f8368ec97378afe66d27aba4cff878d51",
+      "condition_order": [
+        "mixture",
+        "time_units",
+        "stale_value",
+        "slab",
+        "model_scale",
+        "conjugate",
+        "near_tolerance",
+        "renormalized",
+        "clean"
+      ]
+    },
+    {
+      "task_id": 8,
+      "package_id": 1,
+      "cohort": "O",
+      "request": {
+        "z": [
+          7.622919027454723,
+          -321.70351014819346
+        ],
+        "mean_time": 42.32878852415153,
+        "tolerance": 0.02103400558323901,
+        "budget": 4096,
+        "max_calls": 3
+      },
+      "request_sha256": "8cdeb47ec4f1ffe7e313fb8b45f0f4600955ea75895989b50818ab4e79fc592d",
+      "condition_order": [
+        "time_units",
+        "conjugate",
+        "renormalized",
+        "clean",
+        "stale_value",
+        "mixture",
+        "slab",
+        "near_tolerance",
+        "model_scale"
+      ]
+    },
+    {
+      "task_id": 9,
+      "package_id": 1,
+      "cohort": "S",
+      "request": {
+        "z": [
+          19.399274641493164,
+          -41.93053911652573
+        ],
+        "mean_time": 0.06120920980188923,
+        "tolerance": 5.12386653782947e-06,
+        "budget": 4096,
+        "max_calls": 3
+      },
+      "request_sha256": "7ec957375820fbb173604b0c2362432d357e02dc1445b4d7d486c822a8442525",
+      "condition_order": [
+        "clean",
+        "renormalized",
+        "near_tolerance",
+        "stale_value",
+        "conjugate",
+        "mixture",
+        "time_units",
+        "slab",
+        "model_scale"
+      ]
+    },
+    {
+      "task_id": 10,
+      "package_id": 2,
+      "cohort": "W",
+      "request": {
+        "z": [
+          0.0003749382071458959,
+          -1.94942708381771e-05
+        ],
+        "mean_time": 16.28249458658934,
+        "tolerance": 0.049295969816559426,
+        "budget": 4096,
+        "max_calls": 3
+      },
+      "request_sha256": "d6127b98bdeb1ec808de33f16256362787a41ad43104a7b0fc6f7135f6a99145",
+      "condition_order": [
+        "mixture",
+        "time_units",
+        "slab",
+        "conjugate",
+        "near_tolerance",
+        "stale_value",
+        "renormalized",
+        "clean",
+        "model_scale"
+      ]
+    },
+    {
+      "task_id": 11,
+      "package_id": 2,
+      "cohort": "H",
+      "request": {
+        "z": [
+          107679442457.93315,
+          90332005018.08891
+        ],
+        "mean_time": 0.06599355378423336,
+        "tolerance": 0.002210636154485855,
+        "budget": 4096,
+        "max_calls": 3
+      },
+      "request_sha256": "41df54879e47c87cf95193f724d8f874643cfa91445bce87297a3c014e0c7e00",
+      "condition_order": [
+        "model_scale",
+        "near_tolerance",
+        "conjugate",
+        "mixture",
+        "stale_value",
+        "slab",
+        "renormalized",
+        "time_units",
+        "clean"
+      ]
+    },
+    {
+      "task_id": 12,
+      "package_id": 2,
+      "cohort": "M",
+      "request": {
+        "z": [
+          0.05584057727330762,
+          -0.22908661743634748
+        ],
+        "mean_time": 13.072313164898635,
+        "tolerance": 0.0001923855045794937,
+        "budget": 4096,
+        "max_calls": 3
+      },
+      "request_sha256": "f4fc40eca8e79c4c4f0ef9792d3aaf85eef00336b365d6d19558ed1c34b2d5b9",
+      "condition_order": [
+        "mixture",
+        "clean",
+        "stale_value",
+        "near_tolerance",
+        "time_units",
+        "slab",
+        "model_scale",
+        "renormalized",
+        "conjugate"
+      ]
+    },
+    {
+      "task_id": 13,
+      "package_id": 2,
+      "cohort": "O",
+      "request": {
+        "z": [
+          8.847905399130887e-07,
+          -4.104817053661947e-05
+        ],
+        "mean_time": 2.141090500112011,
+        "tolerance": 0.00025076152355104183,
+        "budget": 4096,
+        "max_calls": 3
+      },
+      "request_sha256": "756cd94afd6778845008f66abcac6ab4ec42c02fb25deea769bc1c65cb12ecc2",
+      "condition_order": [
+        "near_tolerance",
+        "renormalized",
+        "slab",
+        "stale_value",
+        "mixture",
+        "time_units",
+        "model_scale",
+        "conjugate",
+        "clean"
+      ]
+    },
+    {
+      "task_id": 14,
+      "package_id": 2,
+      "cohort": "S",
+      "request": {
+        "z": [
+          0.0025316677530289335,
+          -0.0038769571002881843
+        ],
+        "mean_time": 8.174051344370481,
+        "tolerance": 7.560787240408566e-06,
+        "budget": 4096,
+        "max_calls": 3
+      },
+      "request_sha256": "c093ed17a6d43a8e5456b75d236225330d110e1fa6749270281046cf9e106f06",
+      "condition_order": [
+        "mixture",
+        "conjugate",
+        "near_tolerance",
+        "renormalized",
+        "model_scale",
+        "stale_value",
+        "time_units",
+        "slab",
+        "clean"
+      ]
+    },
+    {
+      "task_id": 15,
+      "package_id": 3,
+      "cohort": "W",
+      "request": {
+        "z": [
+          15.358298890059645,
+          -34.21153595044372
+        ],
+        "mean_time": 0.011176727521531685,
+        "tolerance": 0.011598990364114251,
+        "budget": 4096,
+        "max_calls": 3
+      },
+      "request_sha256": "b3f0ac388be350cc52f63911ad7bddfc82e5873a786cabc011a61ad9dfe43feb",
+      "condition_order": [
+        "conjugate",
+        "model_scale",
+        "mixture",
+        "near_tolerance",
+        "slab",
+        "clean",
+        "stale_value",
+        "time_units",
+        "renormalized"
+      ]
+    },
+    {
+      "task_id": 16,
+      "package_id": 3,
+      "cohort": "H",
+      "request": {
+        "z": [
+          3406540.977106774,
+          -8740293.142182847
+        ],
+        "mean_time": 11.136811893856288,
+        "tolerance": 0.0002321386532193209,
+        "budget": 4096,
+        "max_calls": 3
+      },
+      "request_sha256": "0c45fb479c574dc4feb4cda7d27c85fe778c44530b556075f86e93fb8ec3d21a",
+      "condition_order": [
+        "renormalized",
+        "conjugate",
+        "time_units",
+        "clean",
+        "model_scale",
+        "mixture",
+        "slab",
+        "near_tolerance",
+        "stale_value"
+      ]
+    },
+    {
+      "task_id": 17,
+      "package_id": 3,
+      "cohort": "M",
+      "request": {
+        "z": [
+          2926.5454517910443,
+          1303.1643082836997
+        ],
+        "mean_time": 0.23919523430502532,
+        "tolerance": 0.0248534623113905,
+        "budget": 4096,
+        "max_calls": 3
+      },
+      "request_sha256": "b2d4bdd04173fb68431ee69f1c6bede381c0bd46061d233b867c1b60f7588597",
+      "condition_order": [
+        "mixture",
+        "stale_value",
+        "slab",
+        "near_tolerance",
+        "model_scale",
+        "conjugate",
+        "clean",
+        "time_units",
+        "renormalized"
+      ]
+    },
+    {
+      "task_id": 18,
+      "package_id": 3,
+      "cohort": "O",
+      "request": {
+        "z": [
+          4748712.902619738,
+          -8365367924.246596
+        ],
+        "mean_time": 0.033874798287190935,
+        "tolerance": 0.012934272125346829,
+        "budget": 4096,
+        "max_calls": 3
+      },
+      "request_sha256": "f96d3e60b3bd4f66ccb119ff96f56038d91e6f3b5672c264c52828d890127c85",
+      "condition_order": [
+        "renormalized",
+        "near_tolerance",
+        "mixture",
+        "conjugate",
+        "stale_value",
+        "clean",
+        "slab",
+        "time_units",
+        "model_scale"
+      ]
+    },
+    {
+      "task_id": 19,
+      "package_id": 3,
+      "cohort": "S",
+      "request": {
+        "z": [
+          0.02217148267400577,
+          -0.010255224162986682
+        ],
+        "mean_time": 7.320973805754959,
+        "tolerance": 3.4508682335744397e-06,
+        "budget": 4096,
+        "max_calls": 3
+      },
+      "request_sha256": "bb79895abb710efeb993a1e3917a51962ac151bca0c32b20838cf6defe04b82f",
+      "condition_order": [
+        "time_units",
+        "clean",
+        "slab",
+        "conjugate",
+        "stale_value",
+        "model_scale",
+        "near_tolerance",
+        "mixture",
+        "renormalized"
+      ]
+    }
+  ],
+  "sample_seeds": [
+    1356142929,
+    1386261661,
+    1043683509,
+    920330688
+  ],
+  "single_target": "collocation:1",
+  "rr_phase": 15,
+  "streams": {
+    "requests": {
+      "entropy": 20270214,
+      "spawn_key": [
+        0
+      ]
+    },
+    "condition_order": {
+      "entropy": 20270214,
+      "spawn_key": [
+        1
+      ]
+    },
+    "sample_execution": {
+      "entropy": 20270214,
+      "spawn_key": [
+        2
+      ]
+    },
+    "single_target": {
+      "entropy": 20270214,
+      "spawn_key": [
+        3
+      ]
+    },
+    "rr_phase": {
+      "entropy": 20270214,
+      "spawn_key": [
+        4
+      ]
+    }
+  }
+}

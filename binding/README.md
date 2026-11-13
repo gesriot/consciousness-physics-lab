@@ -40,3 +40,24 @@ the matched uniform counterfactual, rather than merely withdrawing everything.
 BU never samples collocation and raises no alarm; every memory retains 23 errors.
 See the [qualification protocol](protocols/B002-qualification.md),
 [revision protocol](protocols/B002-recall.md) and [report](results/B002/report.md).
+
+
+## B003 outcome
+
+The preregistered stake-per-price schedule S never samples collocation at any
+quota. S, Sx and Sxprime leave 18 whole-family and 5 single-channel false
+acceptances, with no accurate withdrawals. RR leaves 17/11/3 and 5/3/0 at
+quotas 1/2/4, but withdraws 5/22/34 and 5/6/11 accurate acceptances and costs more.
+The registered all-cell closure condition is false, which does not establish a
+benefit of S. Its positive detection and advantage predictions fail. Sx does not
+change choices; Sxprime preserves them. No clean false
+alarms or losses of correct final answers from sampling are observed.
+
+Twelve development and twelve confirmation series use five independent random
+streams. Ordinary and last-bit-noise repeats use saved input values. Repeated
+runs and the nine dependent variants are not new independent observations.
+The matched request-origin control is a typed structural placebo, not independent
+evidence for graph usefulness. No scheduling parameter is retuned after outcomes.
+See the [protocol](protocols/B003-self-checks.md) and
+[full report](results/B003/report.md) for audits, paired effects, expenditure,
+source compatibility, replay commands and limits.
