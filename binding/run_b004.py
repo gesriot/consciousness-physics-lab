@@ -128,6 +128,11 @@ def gate(archives):
                 for c in s['affected']:
                     row=exposure[f][str(byid[c]['depth'])]; row['affected']+=1
                     row['inaccurate']+=not B.close(byid[c]['value'],s['truth'][c])
+    admitted=[f for f,depths in exposure.items() if all(x['affected']>=10 and x['inaccurate']>=5 for x in depths.values())]
+    for a in archives:
+        for f,case in a['cases'].items():
+            if f not in admitted:
+                continue
             for b in B.BUDGETS:
                 for branch in B.SIGNALS:
                     out={p:case['outputs'][case['conditions'][f'{p}|{b}|{branch}']] for p in B.POLICIES}
