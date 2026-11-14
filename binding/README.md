@@ -69,3 +69,17 @@ negative for the registered stake-based allocation rule: channel coverage was
 more useful than its graph priority. This scheduling rule is closed without
 retuning on the same data. Source reconciliation is a separate question with
 derived claims, not another attempt to rescue that scheduler.
+
+## B004 outcome
+
+Source reconciliation adds three-step derivation chains over dimensioned tables.
+At budget 8, G/G1/F/T retain 0/18/35/45 incompatible acceptances per corruption.
+At 32 all active memories repair everything; N retains all 72 errors. Gx matches
+F and Gxprime preserves G. All active memories localize 24/24 conflicts through
+the common paid service; the graph helps downstream revision, not localization.
+Actual costs differ and final correct losses remain (12 for G versus 11 for F
+in the budget-8 conflict cell). Equal logical memory capacity is not equal RAM.
+The all-cell closure rule is false; conclusions are limited to this laboratory.
+See the [protocol](protocols/B004-source-reconciliation.md),
+[development freeze](results/B004/development-report.md) and
+[report](results/B004/report.md).
