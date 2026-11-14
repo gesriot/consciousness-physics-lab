@@ -181,14 +181,66 @@ class PortabilityVerificationTests(unittest.TestCase):
             archive=development.parent/'confirmation-first';archive.mkdir()
             manifest=dict(development_directory='binding/results/B003/development-first',freeze_sha256=A.byte_sha((development/'freeze.json').read_bytes()))
             with patch.object(A,'ROOT',root):
-                self.assertEqual(A.resolve_development(archive,manifest),development)
-                self.assertEqual(A.overlap_path(manifest['development_directory']+'/series-00/intake.json',manifest,development),development/'series-00/intake.json')
+                self.assertEqual(A.resolve_development(archive,manifest),development.resolve())
+                self.assertEqual(A.overlap_path(manifest['development_directory']+'/series-00/intake.json',manifest,development),(development/'series-00/intake.json').resolve())
                 manifest['development_directory']='/old-machine/binding/results/B003/development-first'
-                self.assertEqual(A.resolve_development(archive,manifest),development)
-                self.assertEqual(A.overlap_path(manifest['development_directory']+'/series-00/intake.json',manifest,development),development/'series-00/intake.json')
+                self.assertEqual(A.resolve_development(archive,manifest),development.resolve())
+                self.assertEqual(A.overlap_path(manifest['development_directory']+'/series-00/intake.json',manifest,development),(development/'series-00/intake.json').resolve())
                 with self.assertRaises(AuditError):A.overlap_path('/unrelated/private/intake.json',manifest,development)
                 manifest['freeze_sha256']='wrong'
                 with self.assertRaises(AuditError):A.resolve_development(archive,manifest)
+
+
+    def test_repository_under_symlink_uses_one_canonical_path_form(self):
+        import tempfile
+        from pathlib import Path
+        with tempfile.TemporaryDirectory() as temporary:
+            container=Path(temporary);physical=container/'real-repository';physical.mkdir()
+            linked=container/'linked-repository';linked.symlink_to(physical,target_is_directory=True)
+            development=linked/'binding/results/B003/development-first';development.mkdir(parents=True)
+            (development/'freeze.json').write_text('{"freeze":"exact"}')
+            archive=development.parent/'confirmation-first';archive.mkdir()
+            relative='binding/results/B003/development-first'
+            for i in range(12):
+                source=development/f'series-{i:02d}/intake.json';source.parent.mkdir();source.write_text('{"requests":[]}')
+            for old_root in (relative,'/old-machine/'+relative):
+                sources={old_root+f'/series-{i:02d}/intake.json':A.byte_sha((development/f'series-{i:02d}/intake.json').read_bytes()) for i in range(12)}
+                manifest=dict(development_directory=old_root,freeze_sha256=A.byte_sha((development/'freeze.json').read_bytes()),overlap={'sources':sources})
+                with self.subTest(old_root=old_root),patch.object(A,'ROOT',linked):
+                    self.assertEqual(A.resolve_development(archive,manifest),development.resolve())
+                    self.assertEqual(A.resolve_development(archive,manifest,development),development.resolve())
+                    paths=A.verified_overlap_sources(manifest,development)
+                    self.assertEqual(set(paths),{(development/f'series-{i:02d}/intake.json').resolve() for i in range(12)})
+                    self.assertTrue(all(path.is_relative_to(physical.resolve()) for path in paths))
+
+
+    def test_path_bridge_accepts_only_normalization_changes(self):
+        old_text="import json\ndef overlap_path(name,manifest,development):\n    saved=name;old_root=manifest\n    return development/saved.relative_to(old_root)\ndef check_package(x):\n    return x+1\ndef verify_sources(manifest):\n    return 1\n"
+        new_text=old_text.replace('return development/saved.relative_to(old_root)','return (development/saved.relative_to(old_root)).resolve()').replace('return 1','return 2')
+        def hashes(text):return {'binding/audit_b003.py':A.byte_sha(text.encode()),'lab/verifier.py':'fixed'}
+        A.validate_path_normalization(hashes(old_text),hashes(new_text),old_text,new_text)
+        for changed in (new_text.replace('x+1','x+2'),new_text.replace('import json','import sys'),new_text.replace('.resolve()','.absolute()'),new_text+'\ndef unrelated(): return 0\n'):
+            with self.subTest(changed=changed),self.assertRaises(AuditError):
+                A.validate_path_normalization(hashes(old_text),hashes(changed),old_text,changed)
+        removed=hashes(new_text);del removed['lab/verifier.py']
+        with self.assertRaises(AuditError):A.validate_path_normalization(hashes(old_text),removed,old_text,new_text)
+        changed=hashes(new_text);changed['lab/verifier.py']='changed'
+        with self.assertRaises(AuditError):A.validate_path_normalization(hashes(old_text),changed,old_text,new_text)
+
+    def test_existing_archive_identity_allows_only_isolated_b004_additions(self):
+        manifest=read(A.ROOT/'binding/results/B003/confirmation-first/manifest.json')
+        real_inventory=A.source_inventory;real_git=A.git_bytes
+        def source_bytes(head,path):
+            if head=='HEAD' and path=='binding/audit_b003.py':return (A.ROOT/path).read_bytes()
+            return real_git(head,path)
+        for extra,passes in (('binding/run_b004.py',True),('binding/unrelated.py',False),('lab/b004.py',False)):
+            def inventory(head):return sorted(set(real_inventory(head))|({extra} if head=='HEAD' else set()))
+            with self.subTest(extra=extra),patch.object(A,'source_inventory',side_effect=inventory),patch.object(A,'git_bytes',side_effect=source_bytes):
+                if passes:
+                    result=A.verify_sources(manifest)
+                    self.assertIn('verifier_correction_sha256',result)
+                else:
+                    with self.assertRaises(AuditError):A.verify_sources(manifest)
 
 
 class NoiseVerifierCorrectionTests(unittest.TestCase):
