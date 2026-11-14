@@ -74,7 +74,7 @@ The registered all-cell closure rule is false in 12 of 18 primary cells: F leave
 
 ## Conflict localization and false notices
 
-In each fault condition, all active policies locate 24 of 24 damaged supports in the conflict branch with 24 paid root evaluations and no incorrect support IDs. Units/version identify property tables; regime identifies calculation-method records, not innocent material tables. The comparison first establishes a numerical discrepancy and then checks typed metadata against a current catalogue. N does not diagnose. A pair is resolved when its remaining accepted endpoints no longer disagree; gold accuracy is measured separately.
+In each fault condition, all active policies locate 24 of 24 damaged supports in the conflict branch with 24 paid root evaluations and no incorrect support IDs. Units/version identify property tables; regime identifies calculation-method records, not innocent material tables. The comparison first establishes a numerical discrepancy and then checks typed metadata against a current catalogue. N does not diagnose. Of the 24 conflicts, G/G1/F resolve all 24 at every budget with correct localization; T resolves 3/8/24 at budgets 2/8/32, so its joint resolution-and-correct-localization rates are 12.5%/33.3%/100%. N resolves none. A pair is resolved when its remaining accepted endpoints no longer disagree; gold accuracy is measured separately.
 
 All clean conflict runs have zero alarms and spend zero. False external notices cause unnecessary revisions. Correct original claims still withdrawn in G at budgets 2/8/32 are 12/11/0; F has 12/12/0 and T 10/12/0. At the largest budget all active memories redundantly rederive all 576 correct claims across the twelve series, leaving none withdrawn. The deliberate blind scan after priority candidates and the last unaffordable withdrawal are substantial costs of this registered policy, not a discovery that all revision systems need them.
 
@@ -101,3 +101,10 @@ python3 -m binding.run_b004 --compare binding/results/B004/confirmation-first /t
 Add --noise to the replay for the last-bit condition. Run scripts/check.sh and scripts/check-noise.sh sequentially. Final logs are in logs/. B003 owner-reported macOS runs remain observations, not independently inspected local archives. The symlink path correction and authenticated isolated B004 additions do not alter earlier outcomes.
 
 For Git object disk growth, strip path annotations with --no-object-names before cat-file. The originally specified pipeline can emit `<hash> <path> missing` and a meaningless numeric sum on this Git version. The delivery manifest retains both the literal output and the corrected disk-byte total. No external attention archive was copied; lab/ and attention/ are unchanged.
+
+## Final validation
+
+Both final aggregate suites pass: 519 main tests and 30 sphere-tool tests each.
+Ordinary and last-bit logs are preserved under logs/check-final.log and
+logs/check-noise-final.log. Each run covers the source laboratory, symlink
+portability, policy isolation and independent-auditor mutation tests.
