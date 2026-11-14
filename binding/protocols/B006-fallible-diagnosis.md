@@ -141,8 +141,11 @@ episodes retain suspicion separately and never update prior or reliability count
 
 Development seeds are 20270501 through 20270512 inclusive, each in all four
 environments. Confirmation seeds are 20270601 through 20270612 inclusive, never
-used in development. Episode streams are deterministic from their series seed
-and environment. Every policy/configuration sees paired inputs and error streams.
+used in development. Episode streams are deterministic from their series and episode seed, not the
+environment. Before data, factorial pairing was made explicit: each episode
+consumes fixed clean/false/fault/scope draws regardless of branch. Changing check
+reliability leaves the physical episode and signal unchanged; changing objection
+frequency changes only the threshold on the shared false-objection draw. Every policy/configuration sees paired inputs and error streams.
 All 32 episodes of one series are dependent observations, not independent runs.
 
 Development evaluates the three K settings and four P settings globally, not

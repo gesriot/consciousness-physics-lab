@@ -15,6 +15,21 @@ class LaboratoryTests(unittest.TestCase):
         self.assertTrue(all(s == shapes[0] for s in shapes))
         self.assertEqual(len(shapes[0]), 44)
 
+    def test_factorial_pairing_isolates_error_environment(self):
+        zero = lab.make_series(71, 'low_zero', episodes=8)
+        moderate = lab.make_series(71, 'low_moderate', episodes=8)
+        for a, b in zip(zero['episodes'], moderate['episodes']):
+            self.assertEqual(lab.public_episode(a), lab.public_episode(b))
+            self.assertEqual(a['evaluator']['kind'], b['evaluator']['kind'])
+        high = lab.make_series(71, 'high_zero', episodes=8)
+        for a, b in zip(zero['episodes'], high['episodes']):
+            self.assertEqual(a['evaluator']['scope'], b['evaluator']['scope'])
+            self.assertEqual(a['signal_branch'], b['signal_branch'])
+            if a['evaluator']['kind'] in ('clean', 'false_objection'):
+                self.assertEqual(a['evaluator']['kind'], b['evaluator']['kind'])
+            if a['evaluator']['kind'] == b['evaluator']['kind']:
+                self.assertEqual(lab.public_episode(a), lab.public_episode(b))
+
     def test_public_has_no_labels(self):
         for e in self.series['episodes']:
             public = lab.public_episode(e)

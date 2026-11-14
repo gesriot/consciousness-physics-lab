@@ -68,12 +68,13 @@ def make_series(seed, environment, episodes=EPISODES, noise=False):
     out = []
     for index in range(episodes):
         eseed = seed * 1000 + index
-        rng = random.Random(int(_uniform('episode', eseed, environment) * 2**64))
-        draw = rng.random()
+        rng = random.Random(int(_uniform('episode', eseed) * 2**64))
+        draw, false_draw = rng.random(), rng.random()
+        fault_choice, scope_choice = rng.randrange(4), rng.randrange(2)
         kind = ('clean' if draw < CLEAN_RATE else
-                'false_objection' if rng.random() < FALSE_RATE[frequency] else 'true_fault')
-        fault = FAULTS[rng.randrange(4)] if kind == 'true_fault' else 'clean'
-        scope = ('shared', 'private')[rng.randrange(2)]
+                'false_objection' if false_draw < FALSE_RATE[frequency] else 'true_fault')
+        fault = FAULTS[fault_choice] if kind == 'true_fault' else 'clean'
+        scope = ('shared', 'private')[scope_choice]
         branch = ('measurement', 'conflict')[index % 2]
         key = (fault, scope)
         if key not in cache:
