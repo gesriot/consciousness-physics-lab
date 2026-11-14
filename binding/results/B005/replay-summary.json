@@ -1,0 +1,30 @@
+{
+  "confirmation-noise": {
+    "compared_conditions": 7776,
+    "differing_numeric_fields": 332107,
+    "max_abs": 3.885780586188048e-16,
+    "max_rel": 9.93445811695087e-15,
+    "paths": 3849
+  },
+  "confirmation-repeat": {
+    "compared_conditions": 7776,
+    "differing_numeric_fields": 0,
+    "max_abs": 0,
+    "max_rel": 0,
+    "paths": 0
+  },
+  "development-noise": {
+    "compared_conditions": 7776,
+    "differing_numeric_fields": 332362,
+    "max_abs": 4.996003610813204e-16,
+    "max_rel": 1.795590139313374e-14,
+    "paths": 3923
+  },
+  "development-repeat": {
+    "compared_conditions": 7776,
+    "differing_numeric_fields": 0,
+    "max_abs": 0,
+    "max_rel": 0,
+    "paths": 0
+  }
+}

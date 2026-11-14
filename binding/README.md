@@ -83,3 +83,27 @@ The all-cell closure rule is false; conclusions are limited to this laboratory.
 See the [protocol](protocols/B004-source-reconciliation.md),
 [development freeze](results/B004/development-report.md) and
 [report](results/B004/report.md).
+
+
+## B005 outcome
+
+G and inherited-label memory L agree in all 864 paired confirmation action
+sequences across 12 independent series. Closure 1 is met: explicit parent links
+add no necessary information for this registered rule. Closure 2 is not met:
+F fails to match G/L in all primary cells. At budget 8 with measurement signals,
+G/L leave 0/0/7/0 errors for units/version/regime/intermediate, versus
+130/180/129/91 for F. These are joint diagnosis/revision outcomes; finding the
+culprit and repairing its indirect descendants are reported separately.
+
+The result is partly negative: F sometimes leaves fewer errors at budget 2;
+G's fuller repair is not always cheaper, and the universal root forecast fails.
+G/F use different selection rules, whereas G/L share the same one. Zero false
+accusations and final correct withdrawals are common to all policies under
+reliable checks and affordable atomic repair. False observations do not create
+route-conflict signals. The graph and label representations both fit; measured
+serialized sizes are not resident memory. Singleton checks and laboratory tariffs
+limit interpretation. No consciousness claim follows.
+
+See the [protocol](protocols/B005-error-localization.md),
+[report](results/B005/report.md), [analysis](results/B005/analysis.json), and
+[development correction](results/B005/development-changes.md).
