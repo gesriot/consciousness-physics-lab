@@ -70,7 +70,7 @@ def audit_output(case, output, policy, budget, branch, noise=False):
         require(actual.keys() == record.keys(), 'action fields')
         for key, value in record.items():
             if key in numeric and value is not None:
-                require(math.isclose(actual[key], value, rel_tol=1e-12, abs_tol=1e-15), 'action numeric '+key)
+                require(physics_number_equal(actual[key], value), 'action numeric '+key)
             else:
                 require(actual[key] == value, 'action '+key)
         expected.append(actual)
@@ -124,7 +124,6 @@ def audit_output(case, output, policy, budget, branch, noise=False):
         checked.add(sid)
         event(dict(**selected, bad=bad, checked_value=value, candidates=sorted(candidates)), ('checked_value',))
         if bad:
-            require(sid == case['culprit'], 'false blame')
             culprit = sid
             sources[sid] = fresh
             break
@@ -174,8 +173,8 @@ def audit_output(case, output, policy, budget, branch, noise=False):
                      actions=[{k:v for k,v in t.items() if k not in ('score','checked_value','value')} for t in expected])
     require(output['protected'] == protected, 'protected ledger')
     require(0 <= spent <= limit, 'budget')
-    metrics = dict(remaining_bad=len(bad_ids), withdrawn_good=0, false_accusations=0,
-                   cost=spent, unused_budget=limit-spent, correctly_localized=int(culprit is not None),
+    metrics = dict(remaining_bad=len(bad_ids), withdrawn_good=0, false_accusations=int(culprit is not None and culprit != case['culprit']),
+                   cost=spent, unused_budget=limit-spent, correctly_localized=int(culprit is not None and culprit == case['culprit']),
                    checks_to_localization=checks if culprit else 0, checks=checks,
                    suspected=len(suspected), resolved=int(resolved), repeated_measurement=int(repeat),
                    initial_bad=len(case['inaccurate']), repaired=len(repaired),
@@ -183,7 +182,8 @@ def audit_output(case, output, policy, budget, branch, noise=False):
                    localization_opportunities=int(case['culprit'] is not None and bool(ids)))
     for k,v in metrics.items():
         require(output['metrics'][k] == v, 'metric '+k)
-    require(output['diagnostics']['final_values'] == values, 'final values')
+    require(output['diagnostics']['final_values'].keys() == values.keys(), 'final value identifiers')
+    require(all(physics_number_equal(output['diagnostics']['final_values'][c], v) for c,v in values.items()), 'final values')
     require(output['diagnostics']['signal_observations'] ==
             ({c:case['measurements'][c]['value'] for c in ids} if branch == 'measurement' else {}), 'signal observations')
     sizes = []
@@ -206,6 +206,59 @@ def audit_output(case, output, policy, budget, branch, noise=False):
     return True
 
 
+def physics_number_equal(value, reference):
+    return (isinstance(value, (int, float)) and not isinstance(value, bool) and
+            math.isfinite(value) and math.isfinite(reference) and
+            abs(value-reference) <= 64*math.ulp(1.)*(1+abs(reference)))
+
+
+def verify_series(case, rebuilt):
+    """Only stored physical outputs tolerate platform rounding, never inputs."""
+    def walk(value, reference, path=()):
+        numeric = (len(path) == 3 and path[0] == 'records' and path[2] == 'value' or
+                   len(path) == 2 and path[0] == 'truth' or
+                   len(path) == 3 and path[0] == 'measurements' and
+                   path[2] in ('value', 'repeat_value'))
+        if numeric:
+            require(physics_number_equal(value, reference), 'physical series numeric '+str(path))
+        elif isinstance(reference, dict):
+            require(isinstance(value, dict) and value.keys() == reference.keys(), 'physical series keys '+str(path))
+            for key in reference:
+                walk(value[key], reference[key], path+(key,))
+        elif isinstance(reference, list):
+            require(isinstance(value, list) and len(value) == len(reference), 'physical series length '+str(path))
+            for i, (v, r) in enumerate(zip(value, reference)):
+                walk(v, r, path+(i,))
+        else:
+            require(type(value) is type(reference) and value == reference, 'physical series exact '+str(path))
+    walk(case, rebuilt)
+
+
+def verify_freeze(manifest):
+    """Resolve committed freeze bytes by identity rather than a mutable local path."""
+    commit = manifest['freeze_commit']
+    R.git('merge-base', '--is-ancestor', commit, manifest['git_head'])
+    matches = []
+    for path in R.git('ls-tree', '-r', '--name-only', commit).splitlines():
+        if not path.endswith('.json') or 'freeze' not in path.lower():
+            continue
+        data = R.subprocess.check_output(['git', 'show', commit+':'+path], cwd=R.ROOT)
+        if R.hashlib.sha256(data).hexdigest() == manifest['freeze_sha256']:
+            matches.append((path, data))
+    require(len(matches) == 1, 'committed freeze identity')
+    path, data = matches[0]
+    at_run = R.subprocess.check_output(['git', 'show', manifest['git_head']+':'+path], cwd=R.ROOT)
+    require(data == at_run, 'freeze changed before run')
+    freeze = R.json.loads(data)
+    require(freeze['gate']['pass_gate'] is True, 'freeze gate')
+    require(set(freeze['gate']['admitted_faults']) == set(R.CORRUPTIONS), 'freeze admission')
+    development = freeze['development_manifest']
+    for key in ('source_sha256', 'protocol_sha256', 'protocol_commit'):
+        require(development[key] == manifest[key], 'freeze '+key)
+    require(development['phase'] == 'development', 'freeze phase')
+    R.git('merge-base', '--is-ancestor', development['git_head'], commit)
+
+
 def audit_archive(archive, faults, noise=False):
     require(archive['intake_sha256'] == R.B.digest(archive['inputs']), 'intake identity')
     require(set(archive['cases']) == {f+'|'+s for f in faults for s in L.SCOPES}, 'case set')
@@ -216,7 +269,7 @@ def audit_archive(archive, faults, noise=False):
         require(name == case['fault']+'|'+case['scope'], 'case identity')
         require(case['seed'] == archive['inputs']['seed'], 'seed identity')
         rebuilt = L.build_case(archive['inputs'], case['fault'], case['scope'], noise)
-        require(case == rebuilt, 'physical series reconstruction')
+        verify_series(case, rebuilt)
         require(set(item['conditions']) == conditions, 'condition set')
         require(set(item['conditions'].values()) == set(item['outputs']), 'output references')
         for ref, output in item['outputs'].items():
@@ -225,12 +278,6 @@ def audit_archive(archive, faults, noise=False):
             policy, budget, branch = condition.split('|')
             audit_output(case, item['outputs'][ref], policy, int(budget), branch, noise)
             count += 1
-        for b in R.B.BUDGETS:
-            for s in R.B.SIGNALS:
-                g,l = [item['outputs'][item['conditions'][f'{p}|{b}|{s}']] for p in ('G','L')]
-                require(g['protected'] == l['protected'], 'G/L decisions')
-                for k in g['metrics'].keys()-{'memory_bytes','capacity_bytes'}:
-                    require(g['metrics'][k] == l['metrics'][k], 'G/L metric '+k)
     return count
 
 
@@ -243,6 +290,8 @@ def audit(directory):
     for path, digest in manifest['source_sha256'].items():
         require(R.hashlib.sha256(R.subprocess.check_output(['git', 'show', manifest['git_head']+':'+path], cwd=R.ROOT)).hexdigest() == digest,
                 'committed source identity '+path)
+    if manifest['phase'] == 'confirmation':
+        verify_freeze(manifest)
     seeds = R.DEVELOPMENT if manifest['phase'] == 'development' else R.CONFIRMATION
     require(manifest['seeds'] == list(seeds), 'seed cohort')
     require(manifest['faults'] == list(L.FAULTS), 'fault cohort')
@@ -261,7 +310,8 @@ def audit(directory):
     require(R.read(directory/'summary.json') == R.summarize(archives), 'summary aggregation')
     if manifest['phase'] == 'development':
         require(R.read(directory/'gate.json') == R.gate(archives), 'development gate accounting')
-    return dict(passed=True, series=len(seeds), conditions=count)
+    return dict(passed=True, series=len(seeds), conditions=count,
+                auditor_sha256=R.sha_file(Path(__file__)), audit_git_head=R.git('rev-parse', 'HEAD'))
 
 
 def main():

@@ -1,5 +1,6 @@
 """Small synthetic checks, deliberately outside both experimental cohorts."""
 import copy
+import math
 import tempfile
 import unittest
 from pathlib import Path
@@ -68,11 +69,15 @@ class AuditTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             A.audit_archive(broken, ['clean'])
 
-    def test_false_blame_rejected_even_when_ledger_matches(self):
+    def test_false_blame_is_measured_not_forbidden(self):
         case = copy.deepcopy(self.case)
         case['culprit'] = 'innocent'
-        with self.assertRaisesRegex(ValueError, 'false blame'):
+        with self.assertRaisesRegex(ValueError, 'metric false_accusations'):
             A.audit_output(case, self.output, 'G', 32, 'measurement')
+        output = copy.deepcopy(self.output)
+        output['metrics']['false_accusations'] = 1
+        output['metrics']['correctly_localized'] = 0
+        self.assertTrue(A.audit_output(case, output, 'G', 32, 'measurement'))
 
     def test_repair_and_physical_series_tampering(self):
         output = copy.deepcopy(self.output)
@@ -107,6 +112,48 @@ class AuditTests(unittest.TestCase):
         case['source_order'][0] = case['source_order'][1]
         with self.assertRaisesRegex(ValueError, 'source order inventory'):
             A.audit_output(case, self.output, 'G', 32, 'measurement')
+
+    def test_only_physical_outputs_allow_rounding(self):
+        modified = copy.deepcopy(self.case)
+        modified['records'][0]['value'] = math.nextafter(modified['records'][0]['value'], math.inf)
+        cid = next(iter(modified['truth']))
+        modified['truth'][cid] = math.nextafter(modified['truth'][cid], math.inf)
+        for field in ('value', 'repeat_value'):
+            modified['measurements'][cid][field] = math.nextafter(modified['measurements'][cid][field], math.inf)
+        A.verify_series(modified, self.case)
+        source = next(iter(self.case['sources']))
+        mutations = [
+            lambda c:c['sources'][source].__setitem__('version', 3),
+            lambda c:c['records'][0].__setitem__('depth', 7),
+            lambda c:c.__setitem__('budget_unit', c['budget_unit']+1),
+            lambda c:c['records'][0].__setitem__('value', c['records'][0]['value']+1e-6),
+            lambda c:c['records'].pop(),
+        ]
+        for mutate in mutations:
+            modified = copy.deepcopy(self.case)
+            mutate(modified)
+            with self.assertRaises(ValueError):
+                A.verify_series(modified, self.case)
+
+    def test_freeze_identity_and_ancestry(self):
+        development = dict(phase='development', git_head='development-head',
+                           source_sha256={'source': 'hash'}, protocol_sha256='protocol-hash',
+                           protocol_commit='protocol-commit')
+        freeze = dict(gate=dict(pass_gate=True, admitted_faults=list(R.CORRUPTIONS)),
+                      development_manifest=development)
+        data = R.canonical(freeze)
+        manifest = dict(development, phase='confirmation', git_head='run-head',
+                        freeze_commit='freeze-commit', freeze_sha256=R.hashlib.sha256(data).hexdigest())
+        def git(*args):
+            return 'binding/results/B005/freeze.json' if args[0] == 'ls-tree' else ''
+        with patch.object(R, 'git', side_effect=git) as command, patch.object(R.subprocess, 'check_output', return_value=data):
+            A.verify_freeze(manifest)
+            command.assert_any_call('merge-base', '--is-ancestor', 'freeze-commit', 'run-head')
+            changed = dict(manifest, freeze_sha256='wrong')
+            with self.assertRaisesRegex(ValueError, 'freeze identity'):
+                A.verify_freeze(changed)
+            A.verify_freeze(dict(manifest, freeze_commit='run-head'))
+            command.assert_any_call('merge-base', '--is-ancestor', 'run-head', 'run-head')
 
     def test_gzip_and_canonical_integrity(self):
         with tempfile.TemporaryDirectory() as directory:
