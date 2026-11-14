@@ -921,8 +921,7 @@ G/L оставили 0/0/7/0 ошибок единиц/версий/режима
 [исправление development](binding/results/B005/development-changes.md).
 Первый confirmation-аудит проверил 12 серий и 7776 зависимых условий.
 Обычный и шумовой полные тестовые наборы прошли по 588 + 30 тестов;
-[журналы](binding/results/B005/logs/). Проверка повторных confirmation-прогонов
-ещё не завершена в этой редакции отчёта.
+[журналы](binding/results/B005/logs/). Все шесть независимых аудитов прошли; обычные и шумовые повторы обеих когорт сохранили все решения. В шумовых повторах изменились 332362 и 332107 числовых полей соответственно; [сводка](binding/results/B005/replay-summary.json).
 
 ```sh
 python3 -m binding.analyze_b005 --input binding/results/B005/confirmation-first --output binding/results/B005/analysis.json
