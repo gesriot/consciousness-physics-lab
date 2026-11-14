@@ -107,3 +107,10 @@ limit interpretation. No consciousness claim follows.
 See the [protocol](protocols/B005-error-localization.md),
 [report](results/B005/report.md), [analysis](results/B005/analysis.json), and
 [development correction](results/B005/development-changes.md).
+
+## Provenance representation closure
+
+B004–B005 support provenance information, including inherited source and method
+labels. Explicit links add no necessary information for this laboratory: G and L
+match in all 864 paired conditions, following from equal information under the
+same rule. This representation question will not be retuned on those data.
