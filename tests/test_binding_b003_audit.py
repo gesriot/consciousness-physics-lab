@@ -181,14 +181,37 @@ class PortabilityVerificationTests(unittest.TestCase):
             archive=development.parent/'confirmation-first';archive.mkdir()
             manifest=dict(development_directory='binding/results/B003/development-first',freeze_sha256=A.byte_sha((development/'freeze.json').read_bytes()))
             with patch.object(A,'ROOT',root):
-                self.assertEqual(A.resolve_development(archive,manifest),development)
-                self.assertEqual(A.overlap_path(manifest['development_directory']+'/series-00/intake.json',manifest,development),development/'series-00/intake.json')
+                self.assertEqual(A.resolve_development(archive,manifest),development.resolve())
+                self.assertEqual(A.overlap_path(manifest['development_directory']+'/series-00/intake.json',manifest,development),(development/'series-00/intake.json').resolve())
                 manifest['development_directory']='/old-machine/binding/results/B003/development-first'
-                self.assertEqual(A.resolve_development(archive,manifest),development)
-                self.assertEqual(A.overlap_path(manifest['development_directory']+'/series-00/intake.json',manifest,development),development/'series-00/intake.json')
+                self.assertEqual(A.resolve_development(archive,manifest),development.resolve())
+                self.assertEqual(A.overlap_path(manifest['development_directory']+'/series-00/intake.json',manifest,development),(development/'series-00/intake.json').resolve())
                 with self.assertRaises(AuditError):A.overlap_path('/unrelated/private/intake.json',manifest,development)
                 manifest['freeze_sha256']='wrong'
                 with self.assertRaises(AuditError):A.resolve_development(archive,manifest)
+
+
+    def test_repository_under_symlink_uses_one_canonical_path_form(self):
+        import tempfile
+        from pathlib import Path
+        with tempfile.TemporaryDirectory() as temporary:
+            container=Path(temporary);physical=container/'real-repository';physical.mkdir()
+            linked=container/'linked-repository';linked.symlink_to(physical,target_is_directory=True)
+            development=linked/'binding/results/B003/development-first';development.mkdir(parents=True)
+            (development/'freeze.json').write_text('{"freeze":"exact"}')
+            archive=development.parent/'confirmation-first';archive.mkdir()
+            relative='binding/results/B003/development-first'
+            for i in range(12):
+                source=development/f'series-{i:02d}/intake.json';source.parent.mkdir();source.write_text('{"requests":[]}')
+            for old_root in (relative,'/old-machine/'+relative):
+                sources={old_root+f'/series-{i:02d}/intake.json':A.byte_sha((development/f'series-{i:02d}/intake.json').read_bytes()) for i in range(12)}
+                manifest=dict(development_directory=old_root,freeze_sha256=A.byte_sha((development/'freeze.json').read_bytes()),overlap={'sources':sources})
+                with self.subTest(old_root=old_root),patch.object(A,'ROOT',linked):
+                    self.assertEqual(A.resolve_development(archive,manifest),development.resolve())
+                    self.assertEqual(A.resolve_development(archive,manifest,development),development.resolve())
+                    paths=A.verified_overlap_sources(manifest,development)
+                    self.assertEqual(set(paths),{(development/f'series-{i:02d}/intake.json').resolve() for i in range(12)})
+                    self.assertTrue(all(path.is_relative_to(physical.resolve()) for path in paths))
 
 
 class NoiseVerifierCorrectionTests(unittest.TestCase):

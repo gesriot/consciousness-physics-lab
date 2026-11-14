@@ -595,9 +595,9 @@ def resolve_development(directory,manifest,override=None):
 def overlap_path(name,manifest,development):
     saved=Path(name);old_root=Path(manifest['development_directory'])
     if saved.is_absolute() and old_root.is_absolute() and saved.is_relative_to(old_root):
-        return development/saved.relative_to(old_root)
+        return (development/saved.relative_to(old_root)).resolve()
     if not saved.is_absolute() and saved.is_relative_to(old_root):
-        return development/saved.relative_to(old_root)
+        return (development/saved.relative_to(old_root)).resolve()
     equal(not saved.is_absolute(),True,'external overlap path is not an authenticated development descendant')
     resolved=(ROOT/saved).resolve();equal(resolved.is_relative_to(ROOT.resolve()),True,'overlap path within repository')
     return resolved
