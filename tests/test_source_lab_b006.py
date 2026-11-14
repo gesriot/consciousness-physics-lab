@@ -120,6 +120,20 @@ class LaboratoryTests(unittest.TestCase):
         svc.probe({'kind': 'check_source', 'id': next(iter(e['case']['sources']))})
         self.assertEqual(self.series, original)
 
+    def test_d_matches_b005_noiseless_local_diagnosis(self):
+        from binding import diagnose_b006 as current
+        for episode in self.series['episodes']:
+            if episode['evaluator']['kind'] == 'false_objection' and episode['signal_branch'] == 'conflict':
+                continue
+            for budget in (2, 8, 32):
+                earlier = old.simulate(episode['case'], 'L', budget, episode['signal_branch'])
+                later = current.simulate(episode, 'D', budget)
+                self.assertEqual(earlier['protected']['signal_ids'], later['protected']['signal_ids'])
+                for field in ('initial_candidates', 'checked', 'repaired', 'suspected', 'resolved', 'budget', 'cost'):
+                    self.assertEqual(earlier['protected'][field], later['protected'][field], field)
+                self.assertEqual(earlier['metrics']['remaining_bad'], later['metrics']['remaining_bad'])
+                self.assertEqual(earlier['metrics']['false_accusations'], later['metrics']['false_accusations'])
+
     def test_invalid_inputs(self):
         with self.assertRaises(ValueError): lab.make_series(1, 'unknown')
         with self.assertRaises(ValueError): lab.make_series(1, 'low_zero', episodes=0)
