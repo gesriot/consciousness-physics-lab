@@ -554,25 +554,51 @@ def verify_score_cell(directory,relative_path):
     return count
 
 
+def validate_path_normalization(old_sources,current_sources,old_text,new_text):
+    """Bound the path fix to its two returns and source-authentication bridge."""
+    import ast
+    equal(set(old_sources),set(current_sources),'complete protected B003 source inventory')
+    auditor='binding/audit_b003.py'
+    equal({p for p in old_sources if old_sources[p]!=current_sources[p]},{auditor},'only B003 path verifier changed')
+    equal(byte_sha(old_text.encode()),old_sources[auditor],'path baseline source bytes')
+    equal(byte_sha(new_text.encode()),current_sources[auditor],'path current source bytes')
+    before,after=ast.parse(old_text),ast.parse(new_text)
+    def function(tree,name):return next(n for n in tree.body if isinstance(n,ast.FunctionDef) and n.name==name)
+    expected=ast.get_source_segment(old_text,function(before,'overlap_path')).replace('return development/saved.relative_to(old_root)','return (development/saved.relative_to(old_root)).resolve()')
+    equal(ast.dump(ast.parse(expected),include_attributes=False),ast.dump(ast.Module(body=[function(after,'overlap_path')],type_ignores=[]),include_attributes=False),'exact two path normalization changes')
+    def protected(tree,source):
+        exempt={'verify_sources','validate_path_normalization','overlap_path'}
+        return [(ast.dump(n,include_attributes=False),ast.get_source_segment(source,n)) for n in tree.body if not isinstance(n,ast.FunctionDef) or n.name not in exempt]
+    equal(protected(before,old_text),protected(after,new_text),'all remaining B003 verifier text and AST unchanged')
+
+
 def verify_sources(manifest):
-    """Authenticate execution, the original portability bridge, then the erratum."""
+    """Authenticate B003 history and the bounded path fix, ignoring isolated B004 additions."""
     import subprocess
+    path_baseline='a76bde20a630042d14df04b5f67393f886ccaa25'
     head=manifest['git_head'];saved=manifest['source_sha256']
     equal(set(saved),set(source_inventory(head)),'complete executed source inventory')
-    equal(set(saved),set(source_inventory('HEAD')),'current source inventory unchanged')
+    protected=set(source_inventory(path_baseline));current_inventory=set(source_inventory('HEAD'))
+    equal(protected.issubset(saved) and protected.issubset(current_inventory),True,'all protected B003 sources retained')
+    for path in (set(saved)|current_inventory)-protected:
+        equal(path.startswith('binding/') and 'b004' in Path(path).stem.lower(),True,'only isolated B004 source additions')
     for path,h in saved.items():equal(byte_sha(git_bytes(head,path)),h,'executed committed source '+path)
-    current={path:byte_sha((ROOT/path).read_bytes()) for path in saved}
+    saved={path:saved[path] for path in protected}
+    current={path:byte_sha((ROOT/path).read_bytes()) for path in protected}
     for path,h in current.items():equal(h,byte_sha(git_bytes('HEAD',path)),'current committed verifier source '+path)
     portability,port_metadata=committed_compatibility()
     correction,correction_metadata=committed_verifier_correction()
     baseline={p:byte_sha(git_bytes(EXECUTED_BASELINE,p)) for p in source_inventory(EXECUTED_BASELINE)}
     historical={p:byte_sha(git_bytes(CORRECTION_BASELINE,p)) for p in source_inventory(CORRECTION_BASELINE)}
+    prepath={p:byte_sha(git_bytes(path_baseline,p)) for p in protected}
     baseline_text={p:git_bytes(EXECUTED_BASELINE,p).decode() for p in COMPATIBLE_SOURCES}
     historical_text={p:git_bytes(CORRECTION_BASELINE,p).decode() for p in COMPATIBLE_SOURCES}
+    prepath_text={p:git_bytes(path_baseline,p).decode() for p in COMPATIBLE_SOURCES}
     current_text={p:(ROOT/p).read_text() for p in COMPATIBLE_SOURCES}
     validate_compatibility_record(portability,baseline,historical,baseline_text,historical_text)
-    validate_verifier_correction(correction,historical,current,historical_text,current_text)
-    equal(saved in (baseline,historical,current),True,'exact authenticated source chain')
+    validate_verifier_correction(correction,historical,prepath,historical_text,prepath_text)
+    validate_path_normalization(prepath,current,prepath_text['binding/audit_b003.py'],current_text['binding/audit_b003.py'])
+    equal(saved in (baseline,historical,prepath,current),True,'exact authenticated source chain')
     metadata=dict(port_metadata,**correction_metadata)
     for group in (port_metadata,correction_metadata):
         sha_key=next(k for k in group if k.endswith('_sha256'));commit_key=next(k for k in group if k.endswith('_commit'))

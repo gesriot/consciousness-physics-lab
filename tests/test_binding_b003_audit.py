@@ -214,6 +214,35 @@ class PortabilityVerificationTests(unittest.TestCase):
                     self.assertTrue(all(path.is_relative_to(physical.resolve()) for path in paths))
 
 
+    def test_path_bridge_accepts_only_normalization_changes(self):
+        old_text="import json\ndef overlap_path(name,manifest,development):\n    saved=name;old_root=manifest\n    return development/saved.relative_to(old_root)\ndef check_package(x):\n    return x+1\ndef verify_sources(manifest):\n    return 1\n"
+        new_text=old_text.replace('return development/saved.relative_to(old_root)','return (development/saved.relative_to(old_root)).resolve()').replace('return 1','return 2')
+        def hashes(text):return {'binding/audit_b003.py':A.byte_sha(text.encode()),'lab/verifier.py':'fixed'}
+        A.validate_path_normalization(hashes(old_text),hashes(new_text),old_text,new_text)
+        for changed in (new_text.replace('x+1','x+2'),new_text.replace('import json','import sys'),new_text.replace('.resolve()','.absolute()'),new_text+'\ndef unrelated(): return 0\n'):
+            with self.subTest(changed=changed),self.assertRaises(AuditError):
+                A.validate_path_normalization(hashes(old_text),hashes(changed),old_text,changed)
+        removed=hashes(new_text);del removed['lab/verifier.py']
+        with self.assertRaises(AuditError):A.validate_path_normalization(hashes(old_text),removed,old_text,new_text)
+        changed=hashes(new_text);changed['lab/verifier.py']='changed'
+        with self.assertRaises(AuditError):A.validate_path_normalization(hashes(old_text),changed,old_text,new_text)
+
+    def test_existing_archive_identity_allows_only_isolated_b004_additions(self):
+        manifest=read(A.ROOT/'binding/results/B003/confirmation-first/manifest.json')
+        real_inventory=A.source_inventory;real_git=A.git_bytes
+        def source_bytes(head,path):
+            if head=='HEAD' and path=='binding/audit_b003.py':return (A.ROOT/path).read_bytes()
+            return real_git(head,path)
+        for extra,passes in (('binding/run_b004.py',True),('binding/unrelated.py',False),('lab/b004.py',False)):
+            def inventory(head):return sorted(set(real_inventory(head))|({extra} if head=='HEAD' else set()))
+            with self.subTest(extra=extra),patch.object(A,'source_inventory',side_effect=inventory),patch.object(A,'git_bytes',side_effect=source_bytes):
+                if passes:
+                    result=A.verify_sources(manifest)
+                    self.assertIn('verifier_correction_sha256',result)
+                else:
+                    with self.assertRaises(AuditError):A.verify_sources(manifest)
+
+
 class NoiseVerifierCorrectionTests(unittest.TestCase):
     def test_registered_half_even_boundary(self):
         self.assertEqual(A.score_round(26.5517578125,False),26.551757812)
