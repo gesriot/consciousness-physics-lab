@@ -61,3 +61,11 @@ evidence for graph usefulness. No scheduling parameter is retuned after outcomes
 See the [protocol](protocols/B003-self-checks.md) and
 [full report](results/B003/report.md) for audits, paired effects, expenditure,
 source compatibility, replay commands and limits.
+
+## Scope of the completed line
+
+B001–B002 establish selective revision after a known failure notice. B003 is
+negative for the registered stake-based allocation rule: channel coverage was
+more useful than its graph priority. This scheduling rule is closed without
+retuning on the same data. Source reconciliation is a separate question with
+derived claims, not another attempt to rescue that scheduler.
