@@ -264,7 +264,7 @@ def build_case(inputs, fault, scope='shared', noise=False):
         culprit = inverses[group]
         sources[culprit]['mode'] = 'high_frequency'
         sources[culprit]['domain']['zT_min'] = 10000.
-    case = {'records': rows, 'sources': sources, 'catalog': catalog, 'pairs': pairs,
+    case = {'records': rows, 'sources': sources, 'source_order': list(catalog), 'catalog': catalog, 'pairs': pairs,
             'branches': branches, 'fault': fault, 'scope': scope, 'culprit': culprit,
             'seed': inputs['seed']}
     truth = independent

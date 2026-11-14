@@ -17,6 +17,8 @@ def audit_output(case, output, policy, budget, branch, noise=False):
     rows = {r['id']: r for r in case['records']}
     require(len(rows) == len(case['records']), 'duplicate claim identifier')
     sources = copy.deepcopy(case['sources'])
+    source_order = case['source_order']
+    require(len(source_order) == len(sources) and set(source_order) == set(sources), 'source order inventory')
     values = {c: r['value'] for c, r in rows.items()}
     def grounds(cid, seen=None):
         seen = set() if seen is None else seen
@@ -101,7 +103,7 @@ def audit_output(case, output, policy, budget, branch, noise=False):
         def rank(t):
             if policy == 'T':
                 position = (len(sources)+rows[t['id']]['timestamp'] if t['kind'] == 'check_claim'
-                            else list(sources).index(t['candidate']))
+                            else source_order.index(t['candidate']))
                 return (-position, t['id'], t['kind'])
             if policy == 'F':
                 return (t['candidate'] not in candidates, t['candidate'], t['cost'], t['id'])
@@ -197,7 +199,7 @@ def audit_output(case, output, policy, budget, branch, noise=False):
         item['request'] = 'request:placebo' if policy in ('Gxprime','Lxprime') and c in ids else 'request:original'
         sizes.append(len(R.canonical(item))+8)
     require(output['diagnostics']['record_bytes'] == sizes, 'record bytes')
-    source_bytes = len(R.canonical(case['sources']))
+    source_bytes = len(R.canonical(case['sources']))+len(R.canonical(source_order))
     require(output['metrics']['memory_bytes'] == sum(sizes)+source_bytes, 'memory bytes')
     require(output['metrics']['capacity_bytes'] == len(rows)*16384+source_bytes, 'capacity')
     require(max(sizes) <= 16384, 'memory budget')

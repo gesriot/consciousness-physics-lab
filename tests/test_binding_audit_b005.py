@@ -87,6 +87,27 @@ class AuditTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'physical series'):
             A.audit_archive(archive, ['clean'])
 
+    def test_canonical_roundtrip_preserves_time_order(self):
+        archive = R.make_archive(self.inputs, ['false_measurement'])
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory)/'fixture.json.gz'
+            R.write(path, archive)
+            restored = R.read(path)
+        self.assertEqual(A.audit_archive(restored, ['false_measurement']), 108)
+        case = restored['cases']['false_measurement|shared']['series']
+        self.assertNotEqual(case['source_order'], list(case['sources']))
+
+    def test_source_order_mutation(self):
+        archive = R.make_archive(self.inputs, ['false_measurement'])
+        case = archive['cases']['false_measurement|shared']['series']
+        case['source_order'].reverse()
+        with self.assertRaisesRegex(ValueError, 'physical series'):
+            A.audit_archive(archive, ['false_measurement'])
+        case = copy.deepcopy(self.case)
+        case['source_order'][0] = case['source_order'][1]
+        with self.assertRaisesRegex(ValueError, 'source order inventory'):
+            A.audit_output(case, self.output, 'G', 32, 'measurement')
+
     def test_gzip_and_canonical_integrity(self):
         with tempfile.TemporaryDirectory() as directory:
             path = Path(directory)/'fixture.json.gz'

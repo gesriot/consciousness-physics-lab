@@ -44,6 +44,7 @@ class Memory:
         self.policy=policy
         self.rows={r['id']:{k:copy.deepcopy(r[k]) for k in ('id','value','unit','depth','timestamp','step_id')} for r in case['records']}
         self.sources=copy.deepcopy(case['sources'])
+        self.source_order=list(case['source_order'])
         self.direct={r['id']:set(r['source_ids']) for r in case['records']} if policy.startswith('G') or policy=='F' else {}
         self.parents={r['id']:list(r['parents']) for r in case['records']} if policy.startswith('G') else {}
         self.labels={r['id']:lab.ancestry(r['id'],case) for r in case['records']} if policy.startswith('L') else {}
@@ -64,8 +65,8 @@ class Memory:
             records.append(item)
         self.record_bytes=[len(canonical({k:v for k,v in r.items() if k!='value'}))+8 for r in records]
         if max(self.record_bytes)>SLOT_BYTES:raise ValueError('Memory capacity exceeded')
-        self.bytes=sum(self.record_bytes)+len(canonical(self.sources))
-        self.capacity=len(records)*SLOT_BYTES+len(canonical(self.sources))
+        self.bytes=sum(self.record_bytes)+len(canonical(self.sources))+len(canonical(self.source_order))
+        self.capacity=len(records)*SLOT_BYTES+len(canonical(self.sources))+len(canonical(self.source_order))
     def grounds(self,cid):
         if self.policy.startswith('L'):return set(self.labels[cid])
         if self.policy.startswith('G'):
@@ -127,7 +128,7 @@ def choose(memory,tests,candidates,noise=False):
     if memory.policy=='T':
         def key(t):
             position=(len(memory.sources)+memory.rows[t['id']]['timestamp']
-                      if t['kind']=='check_claim' else list(memory.sources).index(t['candidate']))
+                      if t['kind']=='check_claim' else memory.source_order.index(t['candidate']))
             return (-position,t['id'],t['kind'])
     elif memory.policy=='F':
         key=lambda t:(t['candidate'] not in candidates,t['candidate'],t['cost'],t['id'])
