@@ -123,6 +123,20 @@ separately. False accusation requires an innocent ground to be named AND at
 least one descendant actually revised; an unaffordable attempted accusation is
 reported separately.
 
+## Before-data clarification: diagnosis and observable resolution
+
+A posterior threshold permits a diagnosis; it does not by itself resolve an
+episode for adaptation. An observation diagnosis can train only when the latest
+actual paid observation repeat reports no discrepancy. Earlier reports superseded
+by a later contrary repeat do not suffice. No compulsory extra check is appended
+after threshold crossing: an uncorroborated inferred dismissal remains a verdict
+but supplies no learning update. A ground diagnosis can train only after at least
+one paid descendant rebuild and agreement with the initiating public observation
+or the named comparison endpoints. This agreement is observable, not a truth
+label; a mistaken report can still produce a mistaken self-training update.
+The recorded diagnosis and observable-resolution flag are distinct. Unresolved
+episodes retain suspicion separately and never update prior or reliability counts.
+
 ## Development selection, exposure and freeze
 
 Development seeds are 20270501 through 20270512 inclusive, each in all four
