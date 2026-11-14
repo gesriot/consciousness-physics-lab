@@ -1,0 +1,95 @@
+{
+  "conditions": 2016,
+  "deep_records_without_direct_attributes": 1152,
+  "final_correct_loss_histogram": {
+    "0": 1304,
+    "1": 712
+  },
+  "mechanism": {
+    "regime|conflict|G": {
+      "initial_bad": 72,
+      "priority_bad": 72,
+      "priority_selected": 72,
+      "unnecessary": 96,
+      "unnecessary_after_candidates": 96
+    },
+    "regime|conflict|Gx": {
+      "initial_bad": 72,
+      "priority_bad": 24,
+      "priority_selected": 24,
+      "unnecessary": 177,
+      "unnecessary_after_candidates": 177
+    },
+    "regime|revision|G": {
+      "initial_bad": 72,
+      "priority_bad": 72,
+      "priority_selected": 72,
+      "unnecessary": 96,
+      "unnecessary_after_candidates": 96
+    },
+    "regime|revision|Gx": {
+      "initial_bad": 72,
+      "priority_bad": 24,
+      "priority_selected": 24,
+      "unnecessary": 177,
+      "unnecessary_after_candidates": 177
+    },
+    "units|conflict|G": {
+      "initial_bad": 72,
+      "priority_bad": 72,
+      "priority_selected": 72,
+      "unnecessary": 96,
+      "unnecessary_after_candidates": 96
+    },
+    "units|conflict|Gx": {
+      "initial_bad": 72,
+      "priority_bad": 24,
+      "priority_selected": 24,
+      "unnecessary": 177,
+      "unnecessary_after_candidates": 177
+    },
+    "units|revision|G": {
+      "initial_bad": 72,
+      "priority_bad": 72,
+      "priority_selected": 72,
+      "unnecessary": 96,
+      "unnecessary_after_candidates": 96
+    },
+    "units|revision|Gx": {
+      "initial_bad": 72,
+      "priority_bad": 24,
+      "priority_selected": 24,
+      "unnecessary": 177,
+      "unnecessary_after_candidates": 177
+    },
+    "version|conflict|G": {
+      "initial_bad": 72,
+      "priority_bad": 72,
+      "priority_selected": 72,
+      "unnecessary": 96,
+      "unnecessary_after_candidates": 96
+    },
+    "version|conflict|Gx": {
+      "initial_bad": 72,
+      "priority_bad": 24,
+      "priority_selected": 24,
+      "unnecessary": 177,
+      "unnecessary_after_candidates": 177
+    },
+    "version|revision|G": {
+      "initial_bad": 72,
+      "priority_bad": 72,
+      "priority_selected": 72,
+      "unnecessary": 96,
+      "unnecessary_after_candidates": 96
+    },
+    "version|revision|Gx": {
+      "initial_bad": 72,
+      "priority_bad": 24,
+      "priority_selected": 24,
+      "unnecessary": 177,
+      "unnecessary_after_candidates": 177
+    }
+  },
+  "scope": "Descriptive reanalysis of stored confirmation data; no new trials."
+}

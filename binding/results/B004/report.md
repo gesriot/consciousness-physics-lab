@@ -2,7 +2,7 @@
 
 ## Result and scope
 
-Transitive provenance prioritizes the affected descendants better than the registered flat and temporal rules at limited budgets. The effect is selective revision in this laboratory, not consciousness, cortical synchronization, or necessity of every explicit graph representation.
+Transitive provenance prioritizes the affected descendants better than the registered flat and temporal rules at limited budgets. However, the registered flat control F has no source attributes at all on depth-2 and depth-3 claims: those records can be reached only by blind scanning. The deep-claim advantage is therefore built into the definition of this control, fixed before data. The mechanism tested is selective propagation after the culprit is known, not a contest against a flat representation carrying inherited provenance in another form. It is not evidence for consciousness, cortical synchronization, or necessity of every explicit graph representation.
 
 All three fault types give identical action/count/cost summaries here: their magnitudes differ, but the same paired support chains cross the accuracy threshold. The tables below apply separately to units, regime and version; they are not three independent replications. There are 12 independent confirmation series, 48 original claims each, and 72 initially inaccurate claims per corruption. Budgets are 2/8/32 units of 69 ticks. Actual costs below are paid evaluation/bookkeeping ticks, not elapsed time.
 
@@ -64,13 +64,15 @@ Unnecessary means every initially correct claim temporarily withdrawn, including
 
 ## Depth and forecasts
 
-At budget 2, G and G1 leave only the 24 depth-3 errors; F leaves 0/23/23 by depth. At budget 8, G leaves 0/0/0, G1 0/0/18, F 0/19/16. This is the predicted distinction between transitive, one-hop and flat provenance. At budget 32 all active rules exhaust the 48 records and recover every error; N keeps all 72 with no correct loss.
+At budget 2, G and G1 leave only the 24 depth-3 errors; F leaves 0/23/23 by depth. At budget 8, G leaves 0/0/0, G1 0/0/18, F 0/19/16. This is the registered distinction between transitive provenance, one-hop links and absence of inherited provenance; it does not distinguish explicit links from equivalent inherited labels. At budget 32 all active rules exhaust the 48 records and recover every error; N keeps all 72 with no correct loss.
 
 F and G both leave zero depth-1 errors at every budget. This supports the depth-1 accuracy forecast only; F can still inspect more correct roots. Gx loses the effect and matches F, while Gxprime matches G exactly as the registered structural placebo predicts.
 
-G uses fewer aggregate paid ticks than F and T in the non-saturated cells, but costs are not exactly equal and per-series ordering is not uniformly favorable. The precise equal-price forecast was therefore not directly tested; common limits must not be described as identical expenditure. No mechanism or action was retuned after confirmation. At budget 8 in the conflict branch G loses 12 correct claims at end against F 11 and T 8: fewer errors is not domination on all safety measures.
+G uses fewer aggregate paid ticks than F and T in the non-saturated cells, but costs are not exactly equal and per-series ordering is not uniformly favorable. The precise equal-price forecast was therefore not directly tested; common limits must not be described as identical expenditure. No mechanism or action was retuned after confirmation. At budget 8 in the conflict branch the aggregate losses are G 12, F 11 and T 8. In every one of the 2016 confirmation conditions the final correct loss is only 0 or 1 per series (1304 zero-loss and 712 one-loss conditions). Every loss is the final withdrawal for which the registered stop rule cannot afford rederivation. These aggregate differences describe the stopping rule, not a ranking of memory representations.
 
-The registered all-cell closure rule is false in 12 of 18 primary cells: F leaves more errors or makes more unnecessary withdrawals. The other six cells are budget-32 saturation. This conjunction failing is not by itself evidence that every forecast holds. The present positive finding comes from held-out deep-chain effects and the targeted graph intervention, subject to the assumptions below.
+The registered all-cell closure rule is false in 12 of 18 primary cells: F leaves more errors or makes more unnecessary withdrawals. The other six cells are budget-32 saturation. This conjunction failing is not by itself evidence that every forecast holds. The positive mechanism finding is that, at budget 8 and separately for each corruption and signal branch, G selects all 72 inaccurate claims before any blind action, with priority precision 72/72 (100%). Gx reduces this priority selection to 24/72. All 96 unnecessary G withdrawals in each of these cells occur only after its priority candidates are exhausted. The blind continuation and its final unaffordable withdrawal are distinct from the priority mechanism.
+
+The [descriptive archive audit](interpretation-audit.json) verifies these counts directly from saved records and traces; it introduces no new trials. Reproduce it with `python3 -m binding.analyze_b004_interpretation`.
 
 ## Conflict localization and false notices
 
@@ -108,3 +110,7 @@ Both final aggregate suites pass: 519 main tests and 30 sphere-tool tests each.
 Ordinary and last-bit logs are preserved under logs/check-final.log and
 logs/check-noise-final.log. Each run covers the source laboratory, symlink
 portability, policy isolation and independent-auditor mutation tests.
+
+## Owner-reported cross-platform repeat
+
+The owner reports a 43-second, about 127 MB macOS arm64 confirmation replay: all 12 series and 2016 conditions passed, decisions and numerical diagnostics matched, and all decompressed series JSON bytes matched. Different zlib compression changed .gz bytes only. Both 519 + 30 test suites passed; the B003 path correction worked. [Full observation and environment](owner-replay.md). B005 records compressed and canonical decompressed hashes separately.
