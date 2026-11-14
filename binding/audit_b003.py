@@ -572,16 +572,110 @@ def validate_path_normalization(old_sources,current_sources,old_text,new_text):
     equal(protected(before,old_text),protected(after,new_text),'all remaining B003 verifier text and AST unchanged')
 
 
+def validate_source_guard_transition(old_sources,current_sources,old_text,new_text):
+    """Retain the completed path bridge and all numerical verifier definitions."""
+    import ast
+    auditor='binding/audit_b003.py'
+    equal(set(old_sources),set(current_sources),'unchanged protected inventory after path bridge')
+    equal({p for p in old_sources if old_sources[p]!=current_sources[p]},{auditor},'only source authentication changed')
+    equal(byte_sha(old_text.encode()),old_sources[auditor],'source guard baseline bytes')
+    equal(byte_sha(new_text.encode()),current_sources[auditor],'source guard current bytes')
+    added={'validate_source_guard_transition','validate_import_closure','verify_import_isolation'}
+    before,after=ast.parse(old_text),ast.parse(new_text)
+    def retained(tree,text):
+        return [(ast.dump(n,include_attributes=False),ast.get_source_segment(text,n)) for n in tree.body if not isinstance(n,ast.FunctionDef) or n.name not in added|{'verify_sources'}]
+    equal(retained(before,old_text),retained(after,new_text),'all scientific and path verifier text unchanged')
+    equal({n.name for n in after.body if isinstance(n,ast.FunctionDef)}-{n.name for n in before.body if isinstance(n,ast.FunctionDef)},added,'bounded source guard helpers')
+
+
+def validate_import_closure(protected_text,available_paths):
+    """Check static and literal dynamic imports, including relative import aliases.
+
+    This checks repository Python modules, not installed dependency versions or
+    arbitrary code loading. Nonliteral calls to recognized import APIs fail.
+    """
+    import ast
+    import importlib.util
+    def module_name(path):
+        name=path.removeprefix('vendor/sphere-thermal-cli/').removesuffix('.py').replace('/','.')
+        return name.removesuffix('.__init__')
+    modules={module_name(p):p for p in available_paths if p.endswith('.py')}
+    protected=set(protected_text)
+    roots={'binding','attention','lab','sphere_thermal'}
+    checked=[]
+    def dependency(origin,name,required=True):
+        pieces=name.split('.')
+        for end in range(1,len(pieces)+1):
+            prefix='.'.join(pieces[:end]);target=modules.get(prefix)
+            if target is not None:
+                equal(target in protected,True,'protected import closure '+origin+' -> '+target)
+                checked.append((origin,target))
+        if required and pieces[0] in roots:
+            equal(name in modules,True,'resolvable protected import '+origin+' -> '+name)
+    for path,source in sorted(protected_text.items()):
+        tree=ast.parse(source,filename=path);module=module_name(path)
+        package=module if path.endswith('/__init__.py') else module.rpartition('.')[0]
+        dynamic_names={'__import__'};importlib_names={'importlib'};builtins_names={'builtins'}
+        for node in ast.walk(tree):
+            if isinstance(node,ast.Import):
+                for alias in node.names:
+                    dependency(path,alias.name)
+                    if alias.name=='importlib':importlib_names.add(alias.asname or alias.name)
+                    if alias.name=='builtins':builtins_names.add(alias.asname or alias.name)
+            elif isinstance(node,ast.ImportFrom):
+                if node.level:
+                    try:name=importlib.util.resolve_name('.'*node.level+(node.module or ''),package)
+                    except (ImportError,ValueError) as error:raise AuditError('Invalid relative import '+path) from error
+                else:name=node.module or ''
+                dependency(path,name)
+                for alias in node.names:
+                    if alias.name!='*':dependency(path,name+'.'+alias.name,False)
+                    if name=='importlib' and alias.name=='import_module':dynamic_names.add(alias.asname or alias.name)
+                    if name=='builtins' and alias.name=='__import__':dynamic_names.add(alias.asname or alias.name)
+        for node in ast.walk(tree):
+            if not isinstance(node,ast.Call):continue
+            recognized=isinstance(node.func,ast.Name) and node.func.id in dynamic_names
+            recognized=recognized or (isinstance(node.func,ast.Attribute) and isinstance(node.func.value,ast.Name) and ((node.func.value.id in importlib_names and node.func.attr=='import_module') or (node.func.value.id in builtins_names and node.func.attr=='__import__')))
+            if not recognized:continue
+            equal(bool(node.args) and isinstance(node.args[0],ast.Constant) and isinstance(node.args[0].value,str),True,'literal dynamic import required '+path)
+            # Extended __import__ forms can load extra fromlist modules.
+            equal(len(node.args)<4 and not any(k.arg in ('fromlist','level') for k in node.keywords),True,'no unexamined dynamic fromlist '+path)
+            name=node.args[0].value
+            if name.startswith('.'):
+                equal(len(node.args)>1 and isinstance(node.args[1],ast.Constant) and isinstance(node.args[1].value,str),True,'literal dynamic package required '+path)
+                name=importlib.util.resolve_name(name,node.args[1].value)
+            dependency(path,name)
+    return sorted(set(checked))
+
+
+def verify_import_isolation(head,protected):
+    """Bind the historical import closure to committed bytes and current files."""
+    import subprocess
+    all_paths=subprocess.check_output(['git','ls-tree','-r','--name-only',head],cwd=ROOT,text=True).splitlines()
+    vendor_prefix='vendor/sphere-thermal-cli/sphere_thermal/'
+    vendor=[p for p in subprocess.check_output(['git','ls-tree','-r','--name-only',EXECUTED_BASELINE,'--',vendor_prefix],cwd=ROOT,text=True).splitlines() if p.endswith('.py')]
+    supplemental=set(vendor)|{'scripts/compare_experiment_runs.py'}
+    protected=set(protected)|supplemental
+    text={}
+    for path in sorted(protected):
+        if not path.endswith('.py'):continue
+        raw=git_bytes(head,path)
+        if path in supplemental:equal(raw,git_bytes(EXECUTED_BASELINE,path),'unchanged historical supplemental source '+path)
+        if head=='HEAD':equal((ROOT/path).read_bytes(),raw,'committed protected import source '+path)
+        text[path]=raw.decode()
+    validate_import_closure(text,all_paths)
+
+
 def verify_sources(manifest):
-    """Authenticate B003 history and the bounded path fix, ignoring isolated B004 additions."""
+    """Authenticate historical sources; unrelated later modules are not dependencies."""
     import subprocess
     path_baseline='a76bde20a630042d14df04b5f67393f886ccaa25'
     head=manifest['git_head'];saved=manifest['source_sha256']
     equal(set(saved),set(source_inventory(head)),'complete executed source inventory')
     protected=set(source_inventory(path_baseline));current_inventory=set(source_inventory('HEAD'))
     equal(protected.issubset(saved) and protected.issubset(current_inventory),True,'all protected B003 sources retained')
-    for path in (set(saved)|current_inventory)-protected:
-        equal(path.startswith('binding/') and 'b004' in Path(path).stem.lower(),True,'only isolated B004 source additions')
+    verify_import_isolation(head,protected)
+    verify_import_isolation('HEAD',protected)
     for path,h in saved.items():equal(byte_sha(git_bytes(head,path)),h,'executed committed source '+path)
     saved={path:saved[path] for path in protected}
     current={path:byte_sha((ROOT/path).read_bytes()) for path in protected}
@@ -597,8 +691,12 @@ def verify_sources(manifest):
     current_text={p:(ROOT/p).read_text() for p in COMPATIBLE_SOURCES}
     validate_compatibility_record(portability,baseline,historical,baseline_text,historical_text)
     validate_verifier_correction(correction,historical,prepath,historical_text,prepath_text)
-    validate_path_normalization(prepath,current,prepath_text['binding/audit_b003.py'],current_text['binding/audit_b003.py'])
-    equal(saved in (baseline,historical,prepath,current),True,'exact authenticated source chain')
+    path_fixed_head='559a1398a014aff19d04a78264bd6269380d60e0'
+    path_fixed={p:byte_sha(git_bytes(path_fixed_head,p)) for p in protected}
+    path_fixed_text=git_bytes(path_fixed_head,'binding/audit_b003.py').decode()
+    validate_path_normalization(prepath,path_fixed,prepath_text['binding/audit_b003.py'],path_fixed_text)
+    validate_source_guard_transition(path_fixed,current,path_fixed_text,current_text['binding/audit_b003.py'])
+    equal(saved in (baseline,historical,prepath,path_fixed,current),True,'exact authenticated source chain')
     metadata=dict(port_metadata,**correction_metadata)
     for group in (port_metadata,correction_metadata):
         sha_key=next(k for k in group if k.endswith('_sha256'));commit_key=next(k for k in group if k.endswith('_commit'))

@@ -227,13 +227,13 @@ class PortabilityVerificationTests(unittest.TestCase):
         changed=hashes(new_text);changed['lab/verifier.py']='changed'
         with self.assertRaises(AuditError):A.validate_path_normalization(hashes(old_text),changed,old_text,new_text)
 
-    def test_existing_archive_identity_allows_only_isolated_b004_additions(self):
+    def test_existing_archive_identity_allows_unrelated_future_additions(self):
         manifest=read(A.ROOT/'binding/results/B003/confirmation-first/manifest.json')
         real_inventory=A.source_inventory;real_git=A.git_bytes
         def source_bytes(head,path):
             if head=='HEAD' and path=='binding/audit_b003.py':return (A.ROOT/path).read_bytes()
             return real_git(head,path)
-        for extra,passes in (('binding/run_b004.py',True),('binding/unrelated.py',False),('lab/b004.py',False)):
+        for extra,passes in (('binding/run_b004.py',True),('binding/unrelated.py',True),('lab/future_experiment.py',True)):
             def inventory(head):return sorted(set(real_inventory(head))|({extra} if head=='HEAD' else set()))
             with self.subTest(extra=extra),patch.object(A,'source_inventory',side_effect=inventory),patch.object(A,'git_bytes',side_effect=source_bytes):
                 if passes:
@@ -241,6 +241,69 @@ class PortabilityVerificationTests(unittest.TestCase):
                     self.assertIn('verifier_correction_sha256',result)
                 else:
                     with self.assertRaises(AuditError):A.verify_sources(manifest)
+
+
+class SourceImportIsolationTests(unittest.TestCase):
+    def sources(self, statement):
+        return {'binding/__init__.py':'', 'binding/core.py':statement,
+                'binding/helper.py':'VALUE = 1', 'lab/__init__.py':''}
+
+    def test_future_name_is_not_an_authorization_condition(self):
+        sources=self.sources('from binding import helper')
+        edges=A.validate_import_closure(sources,set(sources)|{'binding/b005.py','lab/unrelated_future.py'})
+        self.assertIn(('binding/core.py','binding/helper.py'),edges)
+
+    def test_unprotected_static_and_literal_dynamic_imports_fail(self):
+        for statement in ('import binding.future', 'from binding import future',
+                          'from binding.future import VALUE', 'from . import future',
+                          'from .future import VALUE', '__import__("binding.future")',
+                          'import importlib as il; il.import_module("binding.future")',
+                          'from importlib import import_module as load; load(".future", "binding")',
+                          'from builtins import __import__ as load; load("binding.future")',
+                          'import builtins as b; b.__import__("binding.future")',
+                          '__import__("binding", fromlist=["future"])'):
+            with self.subTest(statement=statement),self.assertRaises(AuditError):
+                sources=self.sources(statement)
+                A.validate_import_closure(sources,set(sources)|{'binding/future.py'})
+
+    def test_missing_local_import_and_nonliteral_dynamic_import_fail(self):
+        for statement in ('from binding import future', 'import binding.future',
+                          'from importlib import import_module; import_module(name)',
+                          '__import__(name)'):
+            with self.subTest(statement=statement),self.assertRaises(AuditError):
+                sources=self.sources(statement)
+                # The from-import case resolves an unprotected existing module;
+                # an absent attribute is left to normal Python import semantics.
+                available=set(sources)|({'binding/future.py'} if statement.startswith('from binding') else set())
+                A.validate_import_closure(sources,available)
+
+    def test_package_initializer_is_protected(self):
+        sources={'binding/core.py':'import binding.helper','binding/helper.py':''}
+        with self.assertRaises(AuditError):
+            A.validate_import_closure(sources,set(sources)|{'binding/__init__.py'})
+
+    def test_stdlib_shadowing_is_not_an_external_dependency(self):
+        sources=self.sources('import json')
+        with self.assertRaises(AuditError):A.validate_import_closure(sources,set(sources)|{'json.py'})
+
+    def test_relative_and_literal_existing_imports_are_allowed(self):
+        for statement in ('from . import helper','from .helper import VALUE',
+                          '__import__("binding.helper")', 'import math'):
+            sources=self.sources(statement)
+            A.validate_import_closure(sources,set(sources))
+
+    def test_new_bridge_preserves_old_path_and_science(self):
+        from pathlib import Path
+        old=A.git_bytes('559a139','binding/audit_b003.py').decode()
+        new=(A.ROOT/'binding/audit_b003.py').read_text()
+        def hashes(value):return {'binding/audit_b003.py':A.byte_sha(value.encode()),'lab/core.py':'fixed'}
+        A.validate_source_guard_transition(hashes(old),hashes(new),old,new)
+        for changed in (new.replace('return (development/saved.relative_to(old_root)).resolve()',
+                                    'return development/saved.relative_to(old_root)'),
+                        new.replace('def check_package(', 'def altered_package('),
+                        new+'\ndef unrelated(): return 0\n'):
+            with self.subTest(changed=changed[-80:]),self.assertRaises(AuditError):
+                A.validate_source_guard_transition(hashes(old),hashes(changed),old,changed)
 
 
 class NoiseVerifierCorrectionTests(unittest.TestCase):
