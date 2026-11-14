@@ -12,3 +12,5 @@ The failed first archives and audit log are retained. Before freezing, an explic
 source_order list is added and verified. The journal uses that list in execution
 and independent audit, with a JSON-roundtrip regression test. A new development
 run and its sequential replays are required. No confirmation data have been run.
+
+The corrected development passes 12 series / 7776 paired conditions in each independent audit. Ordinary and last-bit-noisy replay preserve every protected decision and metric. The frozen design retains all four fault families. No confirmation data were inspected before this freeze.
