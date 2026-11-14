@@ -53,8 +53,8 @@ act or pay for diagnosis.
 
 ## Equal-capacity memories and actions
 
-Every memory retains all 48 records in equal fixed-size padded slots, with identical
-numerical payloads, statement units/modes and timestamps. No eviction. G has parent
+Every memory retains all 48 records with an equal 2048-byte logical slot limit, with identical
+numerical payloads, statement units/modes and timestamps. No eviction; this is equal permitted capacity, not a claim of identical Python RAM. G has parent
 and direct-source links. F has units, regime and version of direct raw sources but
 no parent claim IDs or inherited ancestry. T has a time journal without usable
 provenance. N never revises. G1 uses direct-source roots plus their immediate
@@ -143,3 +143,17 @@ explicit. Results are written per completed series. Before a data commit measure
 new Git object sizes; limit 60 MB and individual blobs 50 MiB. If exceeded, report
 before committing. Never alter lab/ or attention/. Final check.sh and
 check-noise.sh logs belong in the report, not the manuscript.
+
+## Pre-data clarification of source identity
+
+A root has two typed direct supports: its versioned property table and its declared
+calculation-method record. Regime corruption belongs to the latter, not to an
+otherwise correct property table. Revision notices include the applicable version.
+Paid conflict diagnosis compares provenance metadata to the current catalogue and
+identifies the table or method support separately. A resolved conflict means the
+remaining accepted pair no longer disagrees; accuracy is evaluated separately.
+
+Pure immutable rederivations may be memoized across paired conditions to avoid
+repeated physical work. Every requesting policy is still charged the complete
+registered evaluation count; actual cache-miss evaluations are reported separately.
+This optimization does not expose verifier outputs before the action is paid.
