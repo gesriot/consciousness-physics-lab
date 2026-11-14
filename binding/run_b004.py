@@ -119,7 +119,7 @@ def summarize(archives):
 
 def gate(archives):
     exposure = {f:{str(d):dict(affected=0,inaccurate=0) for d in (1,2,3)} for f in B.FAULTS if f!='clean'}
-    contrasts = {k:0 for k in ('G_F_deep','G_G1_depth3','G_Gx','F_T','active_N')}
+    contrasts = {k:0 for k in ('G_F_deep','G_G1_depth3','G1_F_depth2','G_Gx','F_T','active_N')}
     placebo_mismatches, conflicts = 0,0
     for a in archives:
         for f,case in a['cases'].items():
@@ -140,6 +140,7 @@ def gate(archives):
                         return [e['id'] for e in out[p]['trace'] if e['kind'] in ('repair','withdraw') and e['depth'] in depths]
                     contrasts['G_F_deep']+=selected('G',(2,3))!=selected('F',(2,3))
                     contrasts['G_G1_depth3']+=selected('G',(3,))!=selected('G1',(3,))
+                    contrasts['G1_F_depth2']+=selected('G1',(2,))!=selected('F',(2,))
                     contrasts['G_Gx']+=selected('G',(1,2,3))!=selected('Gx',(1,2,3))
                     contrasts['F_T']+=selected('F',(1,2,3))!=selected('T',(1,2,3))
                     contrasts['active_N']+=bool(selected('G',(1,2,3)))

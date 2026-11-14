@@ -100,7 +100,7 @@ Exposure gate for every corruption and every depth separately: at least ten
 unique affected accepted claims and at least five initially inaccurate claims,
 counted across development series, not policies/budgets/repeats. A failed fault
 is excluded and reported. Before freeze inspect actual actions: G versus F on
-depths 2–3, G versus G1 at depth 3, G versus Gx, F versus T, and active versus N
+depths 2–3, G versus G1 at depth 3, G1 versus F at depth 2, G versus Gx, F versus T, and active versus N
 must differ at least once in an admitted condition; deep chains and conflicts
 must exist. Gxprime must preserve G actions. Diagnose structural degeneracy and
 record a development correction, or exclude an untestable comparison. Do not
