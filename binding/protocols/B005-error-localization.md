@@ -27,7 +27,9 @@ G stores direct parent/source links. L stores the transitive set of source and
 method IDs, including every local inference method, without parent pointers.
 F stores only direct source attributes, T stores time order, and N never revises.
 Each record has a fixed 16384-byte capacity, with actual serialized bytes reported;
-no eviction or information is compressed into identifiers. Common physical recipe
+Numerical payloads use eight-byte binary64 slots and metadata uses canonical JSON;
+these encoded sizes are measured, not Python heap estimates. No eviction or
+information is compressed into identifiers. Common physical recipe
 execution is outside memory, accessible only through paid actions. No policy can
 read the evaluator, clean catalog or recipe graph through that interface.
 
@@ -51,13 +53,15 @@ only the local step-method candidate. Intermediate checks are alternatives to a
 method-record check. Repeated observation costs twice the full deepest-claim unit.
 These explicit costs are laboratory tariffs, not measured wall-clock times.
 
-Every available test partitions the remaining candidate set into the hypotheses
+Every affordable available test partitions the remaining candidate set into the hypotheses
 it can falsify and the rest. Selection maximizes min(k,n-k)/cost; singleton sets
 have score 1/cost. Scores are rounded to nine decimals before opaque-ID ties.
 A local check has singleton coverage, not an unjustified global group-testing
 power. An additional deterministic rule prefers a local check to an equal-score
 source read. F checks direct grounds of signalled claims, then remaining records;
-T uses reverse ingestion order, with stable ID ties. All fallback checks are paid.
+T uses reverse ingestion order, with stable ID ties: source records arrive in
+catalog order before the randomly ordered claims; each local-check action uses
+its claim timestamp and each source-check action its source timestamp. All fallback checks are paid.
 
 Gx and Lx remove the provenance of the signalled endpoints and replace it with an
 unrelated request marker; edits do not know the hidden culprit. Gxprime/Lxprime
@@ -81,7 +85,8 @@ remains unresolved rather than making a false accusation by fiat.
 Do not continue blind checking after resolution. Do not withdraw a claim unless
 its full rederivation is affordable. If diagnosis runs out of money, claims whose
 provenance intersects unexonerated hypotheses become suspected, remain accepted
-and are counted separately. Budgets are 2, 8 and 32 times the full cost of unique numerical operations and source reads
+and are counted separately; a journal without provenance conservatively suspects
+all its claims while candidates remain. Budgets are 2, 8 and 32 times the full cost of unique numerical operations and source reads
 for the deepest claim, determined from the fixed graph before any fault. Every
 check, rederivation and repeated observation is charged. Report unused budget,
 actual price and all temporarily/finally withdrawn true claims separately.

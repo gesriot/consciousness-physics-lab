@@ -278,7 +278,8 @@ def build_case(inputs, fault, scope='shared', noise=False):
     # Independent synthetic observations are generated from the clean physical
     # specification, separately from stored accepted values and source corruption.
     measurements = {}
-    false_ids = set(branches[0]['primary'][1:]) if fault == 'false_measurement' else set()
+    false_ids = ({branches[0]['primary'][1 + inputs['seed'] % 3]}
+                 if fault == 'false_measurement' else set())
     for row in rows:
         cid = row['id']
         value = truth[cid]

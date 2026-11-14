@@ -132,11 +132,21 @@ class SourceLabB005Tests(unittest.TestCase):
         self.assertEqual(c['sources'],c['catalog'])
         self.assertFalse(c['inaccurate'])
         self.assertIsNone(c['culprit'])
-        self.assertEqual(len(c['false_measurement_ids']),3)
+        self.assertEqual(len(c['false_measurement_ids']),1)
+        changed=[cid for cid,m in c['measurements'].items() if m['value']!=m['repeat_value']]
+        self.assertEqual(changed,c['false_measurement_ids'])
         for cid in c['false_measurement_ids']:
             m=c['measurements'][cid]
             self.assertFalse(L.close(m['value'],m['repeat_value']))
             self.assertEqual(m['repeat_value'],c['truth'][cid])
+
+    def test_single_false_measurement_spans_registered_depths(self):
+        depths=set()
+        for seed in (1,2,3):
+            case=L.build_case(L.intake(seed),'false_measurement')
+            self.assertEqual(len(case['false_measurement_ids']),1)
+            depths.add(L.record_map(case)[case['false_measurement_ids'][0]]['depth'])
+        self.assertEqual(depths,{2,3,4})
 
     def test_cost_includes_inverse_and_shared_operations_once(self):
         c=self.clean
