@@ -1,0 +1,86 @@
+{
+  "earlier_files_modified": false,
+  "earlier_runner_review": {
+    "binding/b001.py": "Replay reads intake.json datasets and checks canonical_sha256 against saved manifest.",
+    "binding/b002.py": "Replay reads intake.json datasets and checks canonical_sha256 against saved manifest.",
+    "binding/run_b003.py": "Replay reads saved intake.json datasets, validates schema and manifest digest.",
+    "binding/run_b004.py": "Replay verifies archive hashes and saved input digest; auditor reconstructs cases from saved inputs.",
+    "binding/run_b005.py": "Replay verifies archive hashes and saved input digest; auditor reconstructs cases from saved inputs."
+  },
+  "passed": true,
+  "scope": "Authenticated historical archives and regenerated episode inputs only; not a new full policy audit or experiment",
+  "series": [
+    {
+      "diagnostic_float_fields": 24,
+      "environments": 4,
+      "saved_intake_sha256": "97fce8e778020fd60455be4ae53d4114ccddc13721ee3e813efdbac53c0d8206",
+      "seed": 20270501
+    },
+    {
+      "diagnostic_float_fields": 24,
+      "environments": 4,
+      "saved_intake_sha256": "402ff36b4458f64c369239c18aa778c88903d127defb4aab0be60379b32e2a61",
+      "seed": 20270502
+    },
+    {
+      "diagnostic_float_fields": 24,
+      "environments": 4,
+      "saved_intake_sha256": "2d91484a84a0796d79403c2b8f955ce95398515284ad8d45d1b2fde71c41c61b",
+      "seed": 20270503
+    },
+    {
+      "diagnostic_float_fields": 24,
+      "environments": 4,
+      "saved_intake_sha256": "517d0a5dfaa58dc7581c328b25e7a4a7c5e5eb28d7b79c7bf6f929d95d1e12b6",
+      "seed": 20270504
+    },
+    {
+      "diagnostic_float_fields": 24,
+      "environments": 4,
+      "saved_intake_sha256": "7930fb1cde25d65bfa68d6b0a0781816d644b6db370a21493d02f502fea485f8",
+      "seed": 20270505
+    },
+    {
+      "diagnostic_float_fields": 24,
+      "environments": 4,
+      "saved_intake_sha256": "b00d7f9d88d1ed65161f1bc498d60959ba5876b38080e547cb897ffa7eba9f6b",
+      "seed": 20270506
+    },
+    {
+      "diagnostic_float_fields": 24,
+      "environments": 4,
+      "saved_intake_sha256": "d19d36873ef5604bc1237575d44f74c269844bad4820f8bdd6b7b6bac3e5b087",
+      "seed": 20270507
+    },
+    {
+      "diagnostic_float_fields": 24,
+      "environments": 4,
+      "saved_intake_sha256": "bfe533a00ccc3d195bca087a5d0d8e21f3e85f03b315a905c1b4f0ec6d64ec58",
+      "seed": 20270508
+    },
+    {
+      "diagnostic_float_fields": 24,
+      "environments": 4,
+      "saved_intake_sha256": "64a99faa1794f9a6196400f46f3043d3c2219038efd70f1b49c739e9f4887e35",
+      "seed": 20270509
+    },
+    {
+      "diagnostic_float_fields": 24,
+      "environments": 4,
+      "saved_intake_sha256": "99105c955c426dfa7abd736dab1ce224d1a878b09edc269ad8e5d3a20da0ce1a",
+      "seed": 20270510
+    },
+    {
+      "diagnostic_float_fields": 24,
+      "environments": 4,
+      "saved_intake_sha256": "8fcc6b95694a86f0a6767766d5b2f89c502c894eb0f93d3f4bc56dd85fbba51a",
+      "seed": 20270511
+    },
+    {
+      "diagnostic_float_fields": 24,
+      "environments": 4,
+      "saved_intake_sha256": "c23e5e3a9a489b2f949ed59eb7e5cbc1ae3d42d57c5ac84d630bd915bfe2b9d1",
+      "seed": 20270512
+    }
+  ]
+}
