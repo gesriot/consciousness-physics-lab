@@ -90,7 +90,10 @@ P learns channel reliability. P0 freezes the same initial values and hypothesis
 prior. Pstar receives true channel probabilities in advance and does not learn;
 this privileged bound is not an eligible candidate. Exact 0/1 probabilities
 are retained; impossible outcome branches are omitted, never epsilon-smoothed. Px fixes near-perfect active
-reliability. Pxprime alters the same number of unused parameters; its active
+reliability: true-positive probability 0.999999 and false-positive probability
+0.000001, retaining the B006 regularization. This operational near-error-free
+intervention avoids undefined updates after reports declared impossible by the
+intervention; it is not literally an error-free likelihood. Pxprime alters the same number of unused parameters; its active
 model and learning remain P's. Both true and inferred rates are reported, with
 truth accessible only to evaluation or explicitly privileged Pstar.
 
