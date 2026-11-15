@@ -47,7 +47,7 @@ For each first action a, enumerate outcomes y with predictive probability q(y).
 Impossible zero-probability outcomes are omitted. Its one-step value is
 max(0,gap(p)-sum q(y) gap(p_y))/cost(a). For each y, choose an affordable
 second action among the SAME current-ground and observation tests that minimizes
-expected gap after that action (ties by price, kind, id); permit no second action
+expected gap after that action rounded to 9 decimal places (ties by price, kind, id); permit no second action
 if no informative one is affordable. Hypothetical queue advancement is not used:
 lookahead ends once any acceptance/clearing threshold is reached. Let g_y be that
 terminal or expected second-step gap and c_y its cost (zero if no second action).
@@ -56,8 +56,9 @@ The first action score is the larger one- and two-step value. Scores are rounded
 to 9 decimal places and resolved by kind/id/candidate. If all rounded scores are
 zero, use expected entropy reduction per price among informative actions. If
 that too rounds to zero, choose the first informative action deterministically.
-A test is informative iff a positive-probability outcome changes at least one
-posterior coordinate. Clear all already-exonerated current grounds before
+A test is informative iff its bad-report likelihood differs across hypotheses
+with positive posterior support. This mathematical test avoids treating
+normalization roundoff as information. Clear all already-exonerated current grounds before
 constructing this inventory. Stop below threshold only when budget cannot afford
 an informative allowed action or no allowed action can change the posterior;
 record the reason and remaining budget. There is no blind continuation on an
