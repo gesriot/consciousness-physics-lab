@@ -220,6 +220,17 @@ def informative(posterior, test, model):
     return len(supported) > 1
 
 
+def eligible(posterior, test, model, current, bad_seen, good_seen, threshold, noise=False):
+    if informative(posterior, test, model):
+        return True
+    if current is None or test['candidate'] != current or test['kind'] == 'repeat_observation':
+        return False
+    q = math.fsum(posterior[h]*v for h, v in likelihoods(posterior, test, model).items())
+    p = rounded(posterior[current], noise)
+    return ((p >= threshold and current not in bad_seen and q > 0)
+            or (p <= rounded(1-threshold, noise) and current not in good_seen and q < 1))
+
+
 def bad_after(bad_seen, test, bad):
     return bad_seen | ({test['candidate']} if bad and test['kind'] != 'repeat_observation' else set())
 
@@ -237,7 +248,7 @@ def expected_score(posterior, test, model, current, bad_seen, threshold,
         options = []
         if gap > 0:
             for other in tests:
-                if test['cost']+other['cost'] <= remaining and informative(after, other, model):
+                if test['cost']+other['cost'] <= remaining and eligible(after, other, model, current, seen, good, threshold, noise):
                     expected = math.fsum(q*threshold_gap(end, current, bad_after(seen, other, b), threshold, good | ({other['candidate']} if not b and other['candidate'] != 'observation' else set()))
                                          for q, b, end in outcomes(after, other, model))
                     options.append((expected, other['cost'], other['kind'], other['id']))
@@ -358,7 +369,7 @@ def audit_output(episode, output, policy, budget, state=None, config='beta4_t80'
                         stop_reason = 'threshold'
                         break
                 inventory = ([current] if current is not None else [])+[observation]
-                tests = [t for t in inventory if t['cost'] <= limit-spent and informative(posterior, t, view['active'])]
+                tests = [t for t in inventory if t['cost'] <= limit-spent and eligible(posterior, t, view['active'], current['candidate'] if current else None, direct_bad, direct_good, CONFIGS[config][2], noise)]
                 if not tests:
                     stop_reason = ('budget' if not any(t['cost'] <= limit-spent for t in inventory)
                                    else 'no_informative_action')
@@ -442,7 +453,10 @@ def audit_output(episode, output, policy, budget, state=None, config='beta4_t80'
                    abstained=int(bool(ids) and decision is None), repaired=len(repaired), suspected=len(suspected),
                    signal_depth=max((rows[c]['depth'] for c in ids), default=0),
                    uncorroborated_accusations=int(decision not in (None, 'observation') and decision not in direct_bad),
-                   premature_stops=0)
+                   premature_stops=int(probabilistic and bool(ids) and decision is None and any(
+                       t['cost'] <= limit-spent and eligible(posterior, t, view['active'],
+                       current['candidate'] if current else None, direct_bad, direct_good, CONFIGS[config][2], noise)
+                       for t in ([current] if current is not None else [])+[observation])))
     protected = dict(signal_ids=ids, initial_candidates=sorted(original), decision=decision,
                      resolved=resolved, observable_resolved=observable_resolved, abstained=terminal['abstained'], checked=sorted(checked),
                      repaired=repaired, suspected=suspected, budget=limit, cost=spent,

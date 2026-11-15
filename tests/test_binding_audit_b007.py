@@ -18,6 +18,12 @@ class IndependentAuditTests(unittest.TestCase):
                 with patch.object(policy, 'simulate', side_effect=AssertionError('policy execution forbidden')):
                     self.assertEqual(audit.audit_series(self.series, records, name, 8, config), 4)
 
+    def test_exact_reliability_and_three_budgets(self):
+        series = policy.lab.make_series(47, 'low_zero', episodes=4)
+        for budget in (2, 8, 32):
+            records = policy.simulate_series(series, 'Pstar', budget)
+            audit.audit_series(series, records, 'Pstar', budget)
+
     def test_noise_reconstruction(self):
         records = policy.simulate_series(self.series, 'P', 8, noise=True)
         audit.audit_series(self.series, records, 'P', 8, noise=True)
@@ -54,6 +60,21 @@ class IndependentAuditTests(unittest.TestCase):
         self.assertTrue(audit.informative({'a': .5, 'b': .5}, test, model))
         model['check_source'] = dict(tp=.2, fp=.2)
         self.assertFalse(audit.informative({'a': .5, 'b': .5}, test, model))
+
+    def test_corroboration_without_posterior_information(self):
+        test = dict(kind='check_source', id='a', candidate='a', cost=1)
+        model = {k: dict(tp=1., fp=0.) for k in audit.KINDS}
+        certain_bad = {'observation': 0., 'a': 1.}
+        certain_good = {'observation': 0., 'a': 0., 'b': 1.}
+        self.assertFalse(audit.informative(certain_bad, test, model))
+        self.assertTrue(audit.eligible(certain_bad, test, model, 'a', set(), set(), .8))
+        self.assertFalse(audit.eligible(certain_bad, test, model, 'a', {'a'}, set(), .8))
+        self.assertTrue(audit.eligible(certain_good, test, model, 'a', set(), set(), .8))
+        self.assertFalse(audit.eligible(certain_good, test, model, 'a', set(), {'a'}, .8))
+        self.assertFalse(audit.eligible(certain_good, test, model, 'b', set(), set(), .8))
+        self.assertGreater(audit.expected_score(certain_bad, test, model, 'a', set(), .8, [test], 1), 0)
+        impossible = {k: dict(tp=0., fp=0.) for k in audit.KINDS}
+        self.assertFalse(audit.eligible(certain_bad, test, impossible, 'a', set(), set(), .8))
 
     def test_privileged_rates_are_explicit(self):
         with self.assertRaises(ValueError):
