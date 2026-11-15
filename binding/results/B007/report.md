@@ -158,8 +158,19 @@ The saved [analysis](analysis.json) contains every P comparison against D, R, K3
 
 ## Evidence and reproduction
 
-The [protocol](../../protocols/B007-reliability-correction.md) and its amendments were registered before scientific data; no post-outcome changes were made. The first [manifest](development/manifest.json), [gate](development/gate.json), [summary](development/summary.json) and [independent audit](development/audit.json) are retained. Audit passed all 119,808 conditions. Saved-data analysis authenticates archives and embedded intake without rerunning policies. Ordinary and numerical-noise replay are pending; their status will be finalized after comparison and audit. Full repeat archives are not retained; replay manifests, comparisons and logs provide compact evidence.
+The [protocol](../../protocols/B007-reliability-correction.md) and its amendments were registered before scientific data; no post-outcome changes were made. The first [manifest](development/manifest.json), [gate](development/gate.json), [summary](development/summary.json) and [independent audit](development/audit.json) are retained. Audit passed all 119,808 conditions. Saved-data analysis authenticates archives and embedded intake without rerunning policies. The [ordinary comparison](ordinary/comparison.json) and [one-bit comparison](noise/comparison.json) both preserve all 119,808 protected conditions. Ordinary replay has zero numerical differences. One-bit replay changes 4,574,299 floating values along 1,340 diagnostic paths, with maximum absolute difference 3.885780586188048e-16 and maximum relative difference 1.184506714893672e-14. Both repeats pass full independent reconstruction: [ordinary audit](ordinary/audit.json), [noise audit](noise/audit.json). The admission result remains unchanged. Runs and repeats were sequential, with explicit runtime override. Full archives are retained only for the first run; repeat manifests, comparisons, audits and [logs](logs/) retain compact evidence.
 
 B006 portability fixes authenticate saved canonical intake, regenerate only for numerical diagnostics and reject structural/discrete drift. Runtime overrides do not authorize changing source or protocol. The separate portability record preserves the owner's macOS observations; it does not rewrite historical outcomes.
 
 No result here tests attention mechanisms or establishes consciousness. The result concerns fallible diagnosis with a fixed candidate queue, three report channels, certified repairs and limited budgets.
+
+Reproduce in fresh output directories, one run at a time:
+
+```sh
+python -m binding.run_b007 --output /tmp/b007-ordinary --replay binding/results/B007/development --runtime-override
+python -m binding.audit_b007 /tmp/b007-ordinary
+python -m binding.run_b007 --output /tmp/b007-noise --replay binding/results/B007/development --runtime-override --noise
+python -m binding.audit_b007 /tmp/b007-noise
+```
+
+Use `binding.run_b007.compare(first_directory, repeat_directory)` for protected-decision comparison and floating diagnostics. Existing output directories must be empty. No confirmation run is authorized after this failed admission.

@@ -142,7 +142,7 @@ confirmation cohort after the failed four-configuration admission.
 
 ## B007 outcome
 
-All four corrected policies fail the preregistered reliability-learning gate; all worsen high_moderate rate MSE. The remaining admission checks pass. First development and independent audit cover 119,808 dependent conditions in 12 independent series. No confirmation or third correction is run. This closes the laboratory task, not the general question of reliability models. Ordinary and noise replay remain pending.
+All four corrected policies fail the preregistered reliability-learning gate; all worsen high_moderate rate MSE. The remaining admission checks pass. First development and independent audit cover 119,808 dependent conditions in 12 independent series. No confirmation or third correction is run. This closes the laboratory task, not the general question of reliability models. Ordinary and one-bit replay both preserve all 119,808 protected conditions and pass full independent audits. Ordinary replay is numerically identical; one-bit replay has 4,574,299 diagnostic floating differences without decision changes. Only first-run archives are retained; repeats keep compact receipts.
 
 [Protocol](protocols/B007-reliability-correction.md), [report](results/B007/report.md), [analysis](results/B007/analysis.json), [gate](results/B007/development/gate.json).
 
