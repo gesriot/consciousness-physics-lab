@@ -138,3 +138,16 @@ conditions despite 3,175,174 numerical differences. First and noisy data pass
 independent reconstruction; ordinary data reuse it by verified identity.
 Complete archives and [logs](results/B006/logs/) are retained. There is no
 confirmation cohort after the failed four-configuration admission.
+
+
+## B007 outcome
+
+All four corrected policies fail the preregistered reliability-learning gate; all worsen high_moderate rate MSE. The remaining admission checks pass. First development and independent audit cover 119,808 dependent conditions in 12 independent series. No confirmation or third correction is run. This closes the laboratory task, not the general question of reliability models. Ordinary and noise replay remain pending.
+
+[Protocol](protocols/B007-reliability-correction.md), [report](results/B007/report.md), [analysis](results/B007/analysis.json), [gate](results/B007/development/gate.json).
+
+Saved-data analysis, without simulations:
+
+```sh
+python -m binding.analyze_b007 binding/results/B007/development --output binding/results/B007/analysis.json
+```
