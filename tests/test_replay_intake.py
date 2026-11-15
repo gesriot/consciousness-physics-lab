@@ -32,7 +32,7 @@ class IntakePortabilityTests(unittest.TestCase):
     def test_replay_and_audit_use_saved_inputs(self):
         original_factory=R.lab.make_series
         original_intake=R.lab.physics.intake
-        def factory(seed,env,noise=False,inputs=None):
+        def factory(seed,env,episodes=2,noise=False,inputs=None):
             return original_factory(seed,env,episodes=2,noise=noise,inputs=inputs)
         def changed(seed):
             value=original_intake(seed)
