@@ -231,9 +231,10 @@ of 656 units after two correct source reports. Its posterior assigned the true
 culprit probability 0.8022284122562674, below the 0.95 decision threshold; ten
 incorrect claims remained. Every affordable one-step classification-loss gain
 rounded to zero, so the policy stopped rather than exhausting its budget.
-The most likely hypothesis would remain the same after either possible next
-answer, even though another positive report about that culprit could raise its
-probability past the decision threshold. The acquisition loss values a change
+The current leader remains among the most likely hypotheses after every next
+answer; one possible report produces an exact tie, resolved in favor of the same
+leader by the registered ordering. Another positive report about the true culprit
+would raise its probability to 0.970105, past the decision threshold. The acquisition loss values a change
 in classification, whereas the stopping rule requires sufficient confidence.
 This is a consequence of the registered myopic objective and threshold, not an
 implementation deviation. It helps explain the failed design, and is not a
