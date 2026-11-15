@@ -1,0 +1,16 @@
+{"seed": 20270501, "seconds": 171.34, "bytes": 4294940}
+{"seed": 20270502, "seconds": 318.087, "bytes": 3682964}
+{"seed": 20270503, "seconds": 474.703, "bytes": 3865556}
+{"seed": 20270504, "seconds": 635.427, "bytes": 3824494}
+{"seed": 20270505, "seconds": 801.806, "bytes": 4200636}
+{"seed": 20270506, "seconds": 969.73, "bytes": 3706187}
+{"seed": 20270507, "seconds": 1124.977, "bytes": 3503700}
+{"seed": 20270508, "seconds": 1306.631, "bytes": 4178705}
+{"seed": 20270509, "seconds": 1517.954, "bytes": 4215844}
+{"seed": 20270510, "seconds": 1690.289, "bytes": 3962442}
+{"seed": 20270511, "seconds": 1880.056, "bytes": 3815729}
+{"seed": 20270512, "seconds": 2073.929, "bytes": 4186337}
+
+real	38m58.829s
+user	38m2.827s
+sys	0m54.294s
