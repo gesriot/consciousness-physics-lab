@@ -114,3 +114,20 @@ B004–B005 support provenance information, including inherited source and metho
 labels. Explicit links add no necessary information for this laboratory: G and L
 match in all 864 paired conditions, following from equal information under the
 same rule. This representation question will not be retuned on those data.
+
+
+## B006 outcome
+
+Fallible checks and false objections were tested on 12 independent development
+series, yielding 82,944 dependent episode conditions. None of four global P
+configurations passed the strict low_zero admission gate. No confirmation was
+run and no closure conclusion is evaluated. K3of5 was the selected constant
+control. D made 1,225 false accusations under moderate error; all P/Pxprime
+placebo action comparisons matched. These checks passed but did not rescue the
+failed admission. Primary effects are cell-specific tradeoffs, not a pooled win.
+Lost-good counts are structurally zero under certified repair. Adaptive learning
+uses posterior self-training after observable resolution, not evaluator truth.
+
+See the [protocol](protocols/B006-fallible-diagnosis.md),
+[report](results/B006/report.md), [analysis](results/B006/analysis.json), and
+[development gate](results/B006/development/gate.json).
