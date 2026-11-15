@@ -1,0 +1,24 @@
+{
+  "historical_source_sha256": {
+    "binding/diagnose_b005.py": "8d29495dc4128472cab9a3b12e934e70eb2b1181b0882225bb764fb215216aa6",
+    "binding/diagnose_b006.py": "333aa1acc664e67825fabf3a47f51714c9f42667110ec8ca02c5b2f017ca4c00",
+    "binding/run_b005.py": "dc6f73198bbcd08aa9483ebaebe417fd6814265cef9882803a2e91e5a225ac2b",
+    "binding/run_b006.py": "b088def78bbf3b96ce2ce9ed2bd845f131100dd41e5277392db891686a2a2866",
+    "binding/source_lab_b004.py": "c3766eeddbb2e161300d0ac71f3bedf71436a858e83b02383d3b712259da58a6",
+    "binding/source_lab_b005.py": "972ad59be1ed96f2aed2289ee84e238c96dd3553a60a2e156c8e087e4fd899ea",
+    "binding/source_lab_b006.py": "370f2eabbe18930c4950d1dd53df3a0dc55e97c4901cbf798175e5f751dfef7d",
+    "vendor/sphere-thermal-cli/sphere_thermal/response.py": "27e9e1180a686c3a8f11d611b0f2e2c267a098011ccc92389ae6dce3fe48bc32"
+  },
+  "reason": "Input transport portability only; recorded experimental outcomes unchanged. Exact source maps, not unrestricted compatibility.",
+  "replacement_source_sha256": {
+    "binding/diagnose_b005.py": "8d29495dc4128472cab9a3b12e934e70eb2b1181b0882225bb764fb215216aa6",
+    "binding/diagnose_b006.py": "333aa1acc664e67825fabf3a47f51714c9f42667110ec8ca02c5b2f017ca4c00",
+    "binding/replay_intake.py": "e15a69c6304ca976cbba96f6f22709bd85efe58cf0f06b0361a99459cd7e429c",
+    "binding/run_b005.py": "dc6f73198bbcd08aa9483ebaebe417fd6814265cef9882803a2e91e5a225ac2b",
+    "binding/run_b006.py": "25d7a702c744a8d9e69d22ad89eb97d089a38595f0a235b63b5ae915ded2fd9e",
+    "binding/source_lab_b004.py": "c3766eeddbb2e161300d0ac71f3bedf71436a858e83b02383d3b712259da58a6",
+    "binding/source_lab_b005.py": "972ad59be1ed96f2aed2289ee84e238c96dd3553a60a2e156c8e087e4fd899ea",
+    "binding/source_lab_b006.py": "18f4662bb1a98dcb15e87334c6331e07394af8f2847ba1b57f82ed741ebb2fee",
+    "vendor/sphere-thermal-cli/sphere_thermal/response.py": "27e9e1180a686c3a8f11d611b0f2e2c267a098011ccc92389ae6dce3fe48bc32"
+  }
+}

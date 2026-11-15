@@ -12,6 +12,7 @@ from pathlib import Path
 
 from binding import source_lab_b005 as physics
 from binding import source_lab_b006 as laboratory
+from binding.replay_intake import compare_regenerated
 
 
 def require(condition, label):
@@ -382,7 +383,8 @@ def audit_series(series, outputs, policy, budget, config='beta8_t80', noise=Fals
 def verify_series_data(series, noise=False):
     """Regenerate the exogenous tape; allow rounding only in physical outputs."""
     from binding.audit_b005 import verify_series
-    rebuilt = laboratory.make_series(series['seed'], series['environment'], len(series['episodes']), noise)
+    compare_regenerated(series['intake'], physics.intake(series['seed']))
+    rebuilt = laboratory.make_series(series['seed'], series['environment'], len(series['episodes']), noise, inputs=series['intake'])
     require(series.keys() == rebuilt.keys(), 'series fields')
     for key in ('seed', 'environment', 'intake'):
         compare_structure(series[key], rebuilt[key], 'series '+key)
@@ -413,7 +415,7 @@ def expected_variants(selection=None):
 
 
 def audit_archive(archive, selection=None, noise=False):
-    require(archive['inputs'] == physics.intake(archive['seed']), 'archive intake specification')
+    compare_regenerated(archive['inputs'], physics.intake(archive['seed']))
     require(archive['intake_sha256'] == digest(archive['inputs']), 'archive intake hash')
     require(set(archive['environments']) == set(laboratory.ENVIRONMENTS), 'environment inventory')
     conditions = {v+'|'+str(b) for v in expected_variants(selection) for b in (2, 8, 32)}
@@ -500,7 +502,7 @@ def verify_identity(manifest):
     """Check complete current and historical source/protocol bytes and ancestry."""
     from binding import run_b006 as runner
     runner.verify_runtime_manifest(manifest, override=True)
-    require(set(manifest['source_sha256']) == set(runner.SOURCES), 'complete source inventory')
+    require(runner.source_compatible(manifest['source_sha256'], runner.source_metadata()['source_sha256']), 'complete source inventory')
     head, protocol_commit = manifest['git_head'], manifest['protocol_commit']
     runner.git('merge-base', '--is-ancestor', protocol_commit, head)
     import subprocess
@@ -550,12 +552,14 @@ def audit(directory):
     require(manifest['variants'] == expected_variants(selection), 'variant cohort')
     require(set(manifest['files']) == {f'series-{seed}.json.gz' for seed in seeds}, 'archive inventory')
     count = 0
+    intake_diagnostics = {}
     for seed in seeds:
         name = f'series-{seed}.json.gz'
         runner.verify_file(directory/name, manifest['files'][name])
         archive = runner.read(directory/name)
         require(archive['seed'] == seed, 'archive seed')
         require(manifest['intakes'][str(seed)] == archive['intake_sha256'], 'manifest intake')
+        intake_diagnostics[str(seed)] = compare_regenerated(archive['inputs'], physics.intake(seed))
         count += audit_archive(archive, selection, manifest['noise'])
     archives = runner.ArchiveCollection(directory, [f'series-{seed}.json.gz' for seed in seeds])
     confidences = selection['fixed_confidences'] if selection else confidence_estimates(archives)
@@ -566,7 +570,7 @@ def audit(directory):
     compare_structure(runner.read(directory/'summary.json'), summary, 'summary', True)
     if selection is None:
         require(runner.read(directory/'gate.json') == runner.development_gate(archives), 'development gate accounting')
-    return dict(passed=True, series=len(seeds), conditions=count,
+    return dict(passed=True, series=len(seeds), conditions=count, regenerated_input_diagnostics=intake_diagnostics,
                 auditor_sha256=runner.sha_file(Path(__file__)), audit_git_head=runner.git('rev-parse', 'HEAD'))
 
 

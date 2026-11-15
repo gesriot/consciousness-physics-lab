@@ -362,3 +362,26 @@ The auditor with the same substitution passed all 12 series and 82 944 condition
 in 2195 s. These are owner-reported observations, not an independently inspected
 macOS archive. They locate the reported portability failure in regenerated-input
 validation rather than in the experimental outcomes.
+
+## Portable saved-input replay
+
+Replay now authenticates the archived compressed bytes and canonical JSON using
+its manifest, validates its intake digest, and uses that exact saved intake.
+Regeneration from the seed is a diagnostic comparison: identical structure,
+field types and integers are required; finite floating-point inputs may differ
+by at most eight local ULPs. Larger drift fails. Every changed floating field is
+reported with absolute/relative difference and ULP distance. The auditor applies
+the same structural check, then reconstructs cases from saved inputs. Neither
+path silently replaces or edits the historical archive.
+
+A bounded source compatibility record accepts exactly the original B006 source
+map and exactly the portability replacement map. Protocol identity, unchanged
+scientific code, historical committed source bytes and ancestry remain checked.
+The independent auditor still reconstructs all actions rather than importing
+policy simulation. No B006 outcome or development admission rule is changed.
+
+Review of earlier runners found B004 and B005 already consume saved inputs with
+manifest/digest verification, and their auditors reconstruct cases from those
+inputs. B001–B003 also load saved intake files and validate their hashes/schema,
+not a bytewise reconstruction of floating-point inputs from the seed. Their
+source files are unchanged by this correction.

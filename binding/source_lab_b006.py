@@ -54,7 +54,7 @@ def _false_signal(case, branch, ordinal):
     return sorted(pairs[(ordinal // 4) % len(pairs)])
 
 
-def make_series(seed, environment, episodes=EPISODES, noise=False):
+def make_series(seed, environment, episodes=EPISODES, noise=False, inputs=None):
     """Evaluator-side factory; environment/rates never enter public episodes.
 
     A series has one intake and fixed identities/edges. Episode faults are reset,
@@ -63,7 +63,7 @@ def make_series(seed, environment, episodes=EPISODES, noise=False):
     if environment not in ENVIRONMENTS or episodes < 1:
         raise ValueError('unknown environment or invalid episode count')
     frequency, reliability = environment.split('_')
-    inputs = physics.intake(seed)
+    inputs = physics.intake(seed) if inputs is None else copy.deepcopy(inputs)
     cache = {}
     out = []
     for index in range(episodes):
