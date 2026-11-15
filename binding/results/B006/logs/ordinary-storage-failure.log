@@ -1,0 +1,42 @@
+{"seed": 20270501, "seconds": 124.694, "bytes": 2716157}
+{"seed": 20270502, "seconds": 228.835, "bytes": 2329160}
+{"seed": 20270503, "seconds": 369.018, "bytes": 2522924}
+{"seed": 20270504, "seconds": 523.152, "bytes": 2354924}
+{"seed": 20270505, "seconds": 724.986, "bytes": 2658234}
+{"seed": 20270506, "seconds": 887.557, "bytes": 2391316}
+{"seed": 20270507, "seconds": 1045.225, "bytes": 2260588}
+Traceback (most recent call last):
+  File "<python-runtime>/pathlib.py", line 1311, in mkdir
+    os.mkdir(self, mode)
+FileNotFoundError: [Errno 2] No such file or directory: '/workspace/shared/b006-delivery/development-ordinary'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<python-runtime>/pathlib.py", line 1311, in mkdir
+    os.mkdir(self, mode)
+FileNotFoundError: [Errno 2] No such file or directory: '/workspace/shared/b006-delivery'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/workspace/scratch/1594829ace7a/b006-checkout/binding/run_b006.py", line 317, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "/workspace/scratch/1594829ace7a/b006-checkout/binding/run_b006.py", line 315, in main
+    args=parser.parse_args();run(args.output,args.phase,args.replay,args.noise,args.runtime_override,args.freeze)
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/1594829ace7a/b006-checkout/binding/run_b006.py", line 261, in run
+    write(out/name,archive);manifest['files'][name]=file_hashes(out/name)
+    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/1594829ace7a/b006-checkout/binding/run_b005.py", line 44, in write
+    path.parent.mkdir(parents=True, exist_ok=True)
+  File "<python-runtime>/pathlib.py", line 1315, in mkdir
+    self.parent.mkdir(parents=True, exist_ok=True)
+  File "<python-runtime>/pathlib.py", line 1315, in mkdir
+    self.parent.mkdir(parents=True, exist_ok=True)
+  File "<python-runtime>/pathlib.py", line 1311, in mkdir
+    os.mkdir(self, mode)
+OSError: [Errno 30] Read-only file system: '/workspace/shared'
