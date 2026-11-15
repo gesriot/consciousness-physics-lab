@@ -261,3 +261,17 @@ python3 -m binding.analyze_b005 --input binding/results/B005/confirmation-first 
 
 The analysis reads saved canonical archives only; it generates no experimental data or new parameter choices. Runtime, source identities, canonical decompressed hashes and compressed-file hashes are recorded separately in the manifests. Compression byte changes are not numerical or decision changes.
 
+
+## Owner replay on macOS
+
+The owner reports macOS arm64, Python 3.12.13, NumPy 2.3.5 and SciPy 1.17.0.
+Confirmation replay with `--runtime-override` took 541 seconds under substantial
+unrelated load (mean load about 78), with peak memory about 330 MB.
+The independent audit passed 12 series and 7776 conditions. Decision comparison
+passed with no differing decisions; summary.json matched byte for byte.
+Canonical decompressed JSON matched in 11 of 12 series. Series 20270418 differed
+in 90 numeric fields along 4 paths, with maximum relative difference 3.3e-16;
+no decisions changed. All compressed files differed, as expected.
+Both complete check scripts passed 588 main and 30 utility tests, taking about
+9 and 11.5 minutes under the same load. These are owner-reported replay results,
+not an independent inspection of the owner's archives.
