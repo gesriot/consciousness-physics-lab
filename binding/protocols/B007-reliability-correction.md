@@ -30,7 +30,10 @@ D's deterministic cost/order rule on the same remaining candidates, with the
 same affordability filter. No policy receives evaluator truth. N does nothing.
 
 P keeps the current D-selected ground until its posterior is at least threshold
-(to accuse) or at most one minus threshold (to clear and advance). Accusation
+(to accuse) or at most one minus threshold (to clear and advance), with at least one direct
+good report required for clearing. Without this corroboration, small initial
+per-ground priors would clear every untested ground; this pre-data clarification
+prevents a degenerate queue. Accusation
 additionally requires an actual direct bad report about that ground. An
 observation diagnosis requires its posterior to reach threshold. P can choose
 only the current ground check or a signal repeat; it cannot jump to another
@@ -39,7 +42,8 @@ and every reconstructed descendant is paid. No suspicion alone withdraws claims.
 
 For a posterior p and current ground h, let gap be the minimum of
 max(0,t-p(observation)), max(0,p(h)-(1-t)), and max(0,t-p(h)); include the
-last term only after a direct bad report for h, and omit both ground terms when
+last term only after a direct bad report for h and the clearing term only after
+a direct good report for h; omit both ground terms when
 there is no current ground. This potential includes clearing the current ground,
 which advances the fixed queue on the next real iteration.
 
