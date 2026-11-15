@@ -290,8 +290,50 @@ strata are retained in the machine-readable analysis, including negative results
 The first development and its independent audit were committed before this report.
 [Gate](development/gate.json), [summary](development/summary.json),
 [manifest](development/manifest.json) and [independent audit](development/audit.json)
-retain the admission decision and data identities. Reproduction logs and final
-replay status are documented separately when their checks complete.
+retain the admission decision and data identities. Complete ordinary and noisy
+replay archives are also retained; identical ordinary blobs are shared by Git.
+
+| Run | Dependent conditions | Protected comparison | Reconstruction |
+|---|---:|---|---|
+| First development | 82,944 | reference | independent PASS |
+| Ordinary replay | 82,944 | PASS, all archive and summary bytes identical | first reconstruction reused by verified identity |
+| Last-bit replay | 82,944 | PASS, 3,175,174 numerical differences across 1,340 paths | independent PASS |
+
+Both replays used --runtime-override. All three summary files are byte-identical;
+the noisy numerical differences occur in diagnostics and propagated physical
+values, not in protected choices, verdicts, integer counters or admission.
+See the [ordinary comparison](compare-ordinary.json),
+[identity verification](replay-ordinary/identity-verification.json),
+[noisy comparison](compare-noise.json) and [noisy audit](replay-noise/audit.json).
+Repeating the same series is a reproducibility check, not additional independent
+evidence. Each completed experimental run preceded the next one. Read-only
+audit and comparison work could overlap a later run.
+
+The auditor independently reconstructs policy choices, posterior updates,
+learning, action prices and outcome ledgers. It shares the physical executor;
+gate/closure accounting uses the common function over independently reconstructed
+primary metrics. This is independent policy reconstruction, not a third physical
+model or an independently designed hypothesis-selection criterion.
+
+Both complete test suites passed 648 main plus 30 utility tests:
+[ordinary log](logs/check.log) and [one-bit log](logs/check-noise.log).
+The first data survived an interrupted environment and were restored with every
+compressed and canonical hash checked. A later ordinary replay lost its external
+output mount after seven completed series and was restarted in the working
+project environment; its [failure log](logs/ordinary-storage-failure.log) and
+[recovery record](logs/recovery.txt) are retained. This was a storage interruption,
+not a changed parameter or discarded scientific outcome.
+
+Reproduce into fresh output directories:
+
+```sh
+python3 -m binding.run_b006 --phase development --output /tmp/b006-repeat --replay binding/results/B006/development --runtime-override
+python3 -m binding.run_b006 --phase development --output /tmp/b006-noise --replay binding/results/B006/development --runtime-override --noise
+python3 -m binding.audit_b006 binding/results/B006/development
+python3 -m binding.audit_b006 binding/results/B006/replay-noise
+./scripts/check.sh
+./scripts/check-noise.sh
+```
 
 Saved-data analysis does not simulate new episodes:
 

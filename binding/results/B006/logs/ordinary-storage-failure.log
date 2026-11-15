@@ -8,30 +8,30 @@
 Traceback (most recent call last):
   File "<python-runtime>/pathlib.py", line 1311, in mkdir
     os.mkdir(self, mode)
-FileNotFoundError: [Errno 2] No such file or directory: '/workspace/shared/b006-delivery/development-ordinary'
+FileNotFoundError: [Errno 2] No such file or directory: '<external-output>/development-ordinary'
 
 During handling of the above exception, another exception occurred:
 
 Traceback (most recent call last):
   File "<python-runtime>/pathlib.py", line 1311, in mkdir
     os.mkdir(self, mode)
-FileNotFoundError: [Errno 2] No such file or directory: '/workspace/shared/b006-delivery'
+FileNotFoundError: [Errno 2] No such file or directory: '<external-output>'
 
 During handling of the above exception, another exception occurred:
 
 Traceback (most recent call last):
   File "<frozen runpy>", line 198, in _run_module_as_main
   File "<frozen runpy>", line 88, in _run_code
-  File "/workspace/scratch/1594829ace7a/b006-checkout/binding/run_b006.py", line 317, in <module>
+  File "<project>/binding/run_b006.py", line 317, in <module>
     if __name__=='__main__':main()
                             ^^^^^^
-  File "/workspace/scratch/1594829ace7a/b006-checkout/binding/run_b006.py", line 315, in main
+  File "<project>/binding/run_b006.py", line 315, in main
     args=parser.parse_args();run(args.output,args.phase,args.replay,args.noise,args.runtime_override,args.freeze)
                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/workspace/scratch/1594829ace7a/b006-checkout/binding/run_b006.py", line 261, in run
+  File "<project>/binding/run_b006.py", line 261, in run
     write(out/name,archive);manifest['files'][name]=file_hashes(out/name)
     ^^^^^^^^^^^^^^^^^^^^^^^
-  File "/workspace/scratch/1594829ace7a/b006-checkout/binding/run_b005.py", line 44, in write
+  File "<project>/binding/run_b005.py", line 44, in write
     path.parent.mkdir(parents=True, exist_ok=True)
   File "<python-runtime>/pathlib.py", line 1315, in mkdir
     self.parent.mkdir(parents=True, exist_ok=True)
@@ -39,4 +39,4 @@ Traceback (most recent call last):
     self.parent.mkdir(parents=True, exist_ok=True)
   File "<python-runtime>/pathlib.py", line 1311, in mkdir
     os.mkdir(self, mode)
-OSError: [Errno 30] Read-only file system: '/workspace/shared'
+OSError: [Errno 30] Read-only file system: '<external-mount>'

@@ -131,3 +131,10 @@ uses posterior self-training after observable resolution, not evaluator truth.
 See the [protocol](protocols/B006-fallible-diagnosis.md),
 [report](results/B006/report.md), [analysis](results/B006/analysis.json), and
 [development gate](results/B006/development/gate.json).
+
+B006 reproduction is complete: both suites pass 648 + 30 tests. Ordinary replay
+is byte-identical to the first run; the noisy replay preserves all 82,944 protected
+conditions despite 3,175,174 numerical differences. First and noisy data pass
+independent reconstruction; ordinary data reuse it by verified identity.
+Complete archives and [logs](results/B006/logs/) are retained. There is no
+confirmation cohort after the failed four-configuration admission.
