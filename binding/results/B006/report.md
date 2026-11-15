@@ -224,6 +224,23 @@ cost from 50,626 to 83,634. In the measurement branch it reduces accusations fro
 These are different tradeoffs, not uniform improvement. Relations against R and
 K3of5 must likewise be read cell by cell in the saved analysis.
 
+## A registered one-step stopping limitation
+
+In low_zero, series 20270501 episode 0, beta8_t95 at budget 8 spent only 60
+of 656 units after two correct source reports. Its posterior assigned the true
+culprit probability 0.8022284122562674, below the 0.95 decision threshold; ten
+incorrect claims remained. Every affordable one-step classification-loss gain
+rounded to zero, so the policy stopped rather than exhausting its budget.
+The most likely hypothesis would remain the same after either possible next
+answer, even though another positive report about that culprit could raise its
+probability past the decision threshold. The acquisition loss values a change
+in classification, whereas the stopping rule requires sufficient confidence.
+This is a consequence of the registered myopic objective and threshold, not an
+implementation deviation. It helps explain the failed design, and is not a
+counterfactual experiment demonstrating a replacement's advantage. Distinguishing
+action/exposure gates passed; no configuration or objective was changed to turn
+the failed admission into confirmation.
+
 ## Calibration, abstention and secondary outcomes
 
 Calibration is computed for issued diagnoses; abstentions are counted separately,
