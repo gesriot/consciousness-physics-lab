@@ -343,3 +343,22 @@ python3 -m binding.analyze_b006 binding/results/B006/development --output bindin
 
 The failed admission is the stopping result. Confirmation and closure must not be
 inferred from development contrasts. No conclusion about consciousness follows.
+
+## Owner replay on macOS arm64
+
+The owner reports Python 3.12.13, NumPy 2.3.5 and SciPy 1.17.0. Both complete
+checks passed, each with 648 main and 30 utility tests, in 2 min 21 s and
+2 min 36 s. The documented development replay with `--runtime-override` stopped
+after 3 s with `Replay input mismatch`; the auditor stopped at `archive intake
+specification`. Regenerating inputs differed in 45 floating-point values across
+9 of 12 series (maximum relative difference 3.8e-16), including radii, z, z2,
+radius2 and material properties.
+
+The owner's diagnostic replay substituted the archived inputs without changing
+the repository code. It took 2352 s and about 1.6 GB peak memory. All 12 canonical
+unpacked series, summary.json and gate.json matched the first run byte for byte;
+decisions_pass was true for 82 944 conditions with zero numerical differences.
+The auditor with the same substitution passed all 12 series and 82 944 conditions
+in 2195 s. These are owner-reported observations, not an independently inspected
+macOS archive. They locate the reported portability failure in regenerated-input
+validation rather than in the experimental outcomes.
