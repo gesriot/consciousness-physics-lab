@@ -343,3 +343,45 @@ python3 -m binding.analyze_b006 binding/results/B006/development --output bindin
 
 The failed admission is the stopping result. Confirmation and closure must not be
 inferred from development contrasts. No conclusion about consciousness follows.
+
+## Owner replay on macOS arm64
+
+The owner reports Python 3.12.13, NumPy 2.3.5 and SciPy 1.17.0. Both complete
+checks passed, each with 648 main and 30 utility tests, in 2 min 21 s and
+2 min 36 s. The documented development replay with `--runtime-override` stopped
+after 3 s with `Replay input mismatch`; the auditor stopped at `archive intake
+specification`. Regenerating inputs differed in 45 floating-point values across
+9 of 12 series (maximum relative difference 3.8e-16), including radii, z, z2,
+radius2 and material properties.
+
+The owner's diagnostic replay substituted the archived inputs without changing
+the repository code. It took 2352 s and about 1.6 GB peak memory. All 12 canonical
+unpacked series, summary.json and gate.json matched the first run byte for byte;
+decisions_pass was true for 82 944 conditions with zero numerical differences.
+The auditor with the same substitution passed all 12 series and 82 944 conditions
+in 2195 s. These are owner-reported observations, not an independently inspected
+macOS archive. They locate the reported portability failure in regenerated-input
+validation rather than in the experimental outcomes.
+
+## Portable saved-input replay
+
+Replay now authenticates the archived compressed bytes and canonical JSON using
+its manifest, validates its intake digest, and uses that exact saved intake.
+Regeneration from the seed is a diagnostic comparison: identical structure,
+field types and integers are required; finite floating-point inputs may differ
+by at most eight local ULPs. Larger drift fails. Every changed floating field is
+reported with absolute/relative difference and ULP distance. The auditor applies
+the same structural check, then reconstructs cases from saved inputs. Neither
+path silently replaces or edits the historical archive.
+
+A bounded source compatibility record accepts exactly the original B006 source
+map and exactly the portability replacement map. Protocol identity, unchanged
+scientific code, historical committed source bytes and ancestry remain checked.
+The independent auditor still reconstructs all actions rather than importing
+policy simulation. No B006 outcome or development admission rule is changed.
+
+Review of earlier runners found B004 and B005 already consume saved inputs with
+manifest/digest verification, and their auditors reconstruct cases from those
+inputs. B001–B003 also load saved intake files and validate their hashes/schema,
+not a bytewise reconstruction of floating-point inputs from the seed. Their
+source files are unchanged by this correction.

@@ -7,12 +7,13 @@ import time
 from binding import run_b005 as common
 from binding import diagnose_b006 as B
 from binding import source_lab_b006 as lab
+from binding.replay_intake import compare_regenerated
 
 ROOT = Path(__file__).resolve().parents[1]
 PROTOCOL = 'binding/protocols/B006-fallible-diagnosis.md'
 SOURCES = ('binding/source_lab_b006.py','binding/diagnose_b006.py','binding/run_b006.py',
            'binding/source_lab_b005.py','binding/diagnose_b005.py','binding/source_lab_b004.py',
-           'binding/run_b005.py','vendor/sphere-thermal-cli/sphere_thermal/response.py')
+           'binding/run_b005.py','binding/replay_intake.py','vendor/sphere-thermal-cli/sphere_thermal/response.py')
 DEVELOPMENT = tuple(range(20270501,20270513))
 CONFIRMATION = tuple(range(20270601,20270613))
 canonical, read, write = common.canonical, common.read, common.write
@@ -51,26 +52,38 @@ def source_metadata():
                 source_sha256={s:sha_file(ROOT/s) for s in SOURCES},git_head=git('rev-parse','HEAD'))
 
 
+def source_compatible(recorded, current):
+    """Accept only the recorded pre-portability source set or exact current code."""
+    if recorded == current:
+        return True
+    registry_path = ROOT/'binding/b006_replay_compatibility.json'
+    committed_file(registry_path)
+    registry = read(registry_path)
+    return recorded == registry['historical_source_sha256'] and current == registry['replacement_source_sha256']
+
+
 def verify_runtime_manifest(manifest, override=False):
     current=source_metadata()
-    for key in ('protocol_sha256','protocol_commit','source_sha256'):
+    for key in ('protocol_sha256','protocol_commit'):
         if manifest[key]!=current[key]:
             raise ValueError('Replay identity mismatch: '+key)
+    if not source_compatible(manifest['source_sha256'],current['source_sha256']):
+        raise ValueError('Replay identity mismatch: source_sha256')
     if manifest['runtime']!=runtime() and not override:
         raise ValueError('Runtime differs; explicit --runtime-override required')
 
 
-def make_archive(seed, selected=None, noise=False):
+def make_archive(seed, selected=None, noise=False, inputs=None):
     environments={}
     for environment in lab.ENVIRONMENTS:
-        series=lab.make_series(seed,environment,noise=noise)
+        series=lab.make_series(seed,environment,noise=noise,inputs=inputs) if inputs is not None else lab.make_series(seed,environment,noise=noise)
         outputs={}
         for variant in variants(selected):
             policy,config=split_variant(variant)
             for budget in B.BUDGETS:
                 outputs[f'{variant}|{budget}']=B.simulate_series(series,policy,budget,config,noise)
         environments[environment]=dict(series=series,outputs=outputs)
-    intake=lab.physics.intake(seed)
+    intake=lab.physics.intake(seed) if inputs is None else copy.deepcopy(inputs)
     return dict(seed=seed,inputs=intake,intake_sha256=common.B.digest(intake),environments=environments)
 
 
@@ -249,14 +262,17 @@ def run(output, phase, replay=None, noise=False, override=False, freeze=None):
         for key in ('phase','seeds','variants','environments','freeze_sha256'):
             if previous.get(key)!=manifest.get(key):raise ValueError('Replay cohort mismatch '+key)
         manifest['replay_manifest_sha256']=sha_file(Path(replay)/'manifest.json')
+    manifest['regenerated_input_diagnostics']={}
     names=[];start=time.monotonic()
     for seed in seeds:
         name=f'series-{seed}.json.gz'
         if previous:
             verify_file(Path(replay)/name,previous['files'][name])
             saved=read(Path(replay)/name)
-            if saved['seed']!=seed or saved['inputs']!=lab.physics.intake(seed):raise ValueError('Replay input mismatch')
-        archive=make_archive(seed,selection,noise)
+            if type(saved['seed']) is not int or saved['seed']!=seed:raise ValueError('Replay seed mismatch')
+            if saved['intake_sha256']!=common.B.digest(saved['inputs']) or saved['intake_sha256']!=previous['intakes'][str(seed)]:raise ValueError('Replay intake hash mismatch')
+            manifest['regenerated_input_diagnostics'][str(seed)]=compare_regenerated(saved['inputs'],lab.physics.intake(seed))
+        archive=make_archive(seed,selection,noise,inputs=saved['inputs'] if previous else None)
         if previous and archive['intake_sha256']!=previous['intakes'][str(seed)]:raise ValueError('Replay intake hash mismatch')
         write(out/name,archive);manifest['files'][name]=file_hashes(out/name)
         manifest['intakes'][str(seed)]=archive['intake_sha256'];names.append(name)
@@ -276,6 +292,8 @@ def run(output, phase, replay=None, noise=False, override=False, freeze=None):
 def compare(first, second):
     first,second=Path(first),Path(second);a,b=read(first/'manifest.json'),read(second/'manifest.json')
     differences=[k for k in ('phase','seeds','variants','environments','source_sha256','protocol_sha256','protocol_commit','intakes','freeze_sha256','freeze_commit') if a.get(k)!=b.get(k)]
+    if 'source_sha256' in differences and source_compatible(a['source_sha256'],b['source_sha256']):
+        differences.remove('source_sha256')
     diagnostics={};count=0
     if a['phase']=='development':
         if read(first/'gate.json')!=read(second/'gate.json'):differences.append('development_gate')
